@@ -2,14 +2,15 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
+@app.route("/home.html")
 def hello():
-    links = {'bool_link': render_template('link.html', text='THE BOOL', href='bool', id='bool_link')}
+    links = {'bool_link': render_template('link.html', text='THE BOOL', href='bools.html', id='bool_link')}
     return render_template('home.html', **links)
 
 
-@app.route("/bool")
+@app.route("/bools.html")
 def bools():
-    links = {'home_link': render_template('link.html', text='HOME', href='', id='home_link')}
+    links = {'home_link': render_template('link.html', text='HOME', href='home.html', id='home_link')}
     return render_template('bools.html', **links)
 
 

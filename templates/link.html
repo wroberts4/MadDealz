@@ -2,7 +2,7 @@
 <script language="JavaScript">
     var url = window.location.href
     var root = '/'
-    newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
+    newRoot = 'http://127.0.0.1:5000/'
     document.getElementById('tmp').href = newRoot + '{{ href }}'
     document.getElementById('tmp').id = '{{ id }}'
 </script>

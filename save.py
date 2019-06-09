@@ -1,5 +1,9 @@
 import urllib.request
-with urllib.request.urlopen('http://localhost:5000/home.html') as page:
-    code = page.read().decode('utf8')
-    with open('site.html', 'w') as file:
-        file.write(code)
+import os
+
+
+for url in ['http://localhost:5000/home.html', 'http://localhost:5000/bools.html']:
+    with urllib.request.urlopen(url) as page:
+        code = page.read().decode('utf8')
+        with open(os.path.join('output', url.split('/')[-1]), 'w') as file:
+            file.write(code)

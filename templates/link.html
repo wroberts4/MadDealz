@@ -4,6 +4,6 @@
     var root = '/'
     newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
     document.getElementById('tmp').href = newRoot + '{{ href }}'
-    document.getElementById('tmp').id = '{{ id }}'
     document.getElementById("tmp").innerHTML = newRoot + '{{ href }}'
+    document.getElementById('tmp').id = '{{ id }}'
 </script>

@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<!-- saved from url=(0026)http://localhost:5000/home -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <title>Title</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>site</title>
 </head>
 <body>
-    <h1>Hello World! THIS IS A TEST</h1>
-    <a href="http://localhost:5000/bools">THE BOOLS</a>
-
-</body></html>
+    <h1>Hello World!</h1>
+    <a id='tmp'>THE BOOL</a>
+<script language="JavaScript">
+    var url = window.location.href
+    var root = '/'
+    newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
+    document.getElementById('tmp').href = newRoot + 'bool'
+    document.getElementById('tmp').id = 'bool_link'
+</script>
+</body>
+</html>

@@ -2,20 +2,16 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/home")
 def hello():
-    return render_template('home.html')
+    links = {'bool_link': render_template('link.html', text='THE BOOL', href='bool', id='bool_link')}
+    return render_template('home.html', **links)
 
 
-@app.route("/bools")
+@app.route("/bool")
 def bools():
-    return render_template('bools.html')
+    links = {'home_link': render_template('link.html', text='HOME', href='', id='home_link')}
+    return render_template('bools.html', **links)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# import urllib.request
-# with urllib.request.urlopen('http://127.0.0.1:5000/') as page:
-#     code = page.read().decode('utf8')
-#     print(code)

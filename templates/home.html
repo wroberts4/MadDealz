@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>site</title>
 </head>
-<body>
-    <h1>Hello World!</h1>
-    {{ bool_link | safe }}
+<body style="height:100%; width:100%">
+    <div style="position: fixed; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)">
+        <h1>Hello World!</h1>
+    </div>
+    <div id="test" style="position: fixed; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)">
+        {{ bool_link | safe }}
+    </div>
 </body>
 </html>

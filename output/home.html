@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>site</title>
 </head>
-<body>
-    <h1>Hello World!</h1>
-    <script language="JavaScript">
+<body style="height:100%; width:100%">
+    <div style="position: fixed; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)">
+        <h1>Hello World!</h1>
+    </div>
+    <div id="test" style="position: fixed; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)">
+        <script language="JavaScript">
     var url = window.location.href
     var root = '/'
     newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
@@ -14,7 +17,9 @@
     link.href = newRoot + 'bools.html'
     link.innerHTML = 
     link.id = 'bool_link'
-    document.body.appendChild(link);
+    var parent = document.getElementById('test') || document.body
+    parent.appendChild(link);
 </script>
+    </div>
 </body>
 </html>

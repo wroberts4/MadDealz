@@ -14,7 +14,8 @@
     link.href = newRoot + 'home.html'
     link.innerHTML = 
     link.id = 'home_link'
-    document.body.appendChild(link);
+    var parent = document.getElementById('body') || document.body
+    parent.appendChild(link);
 </script>
 </body>
 </html>

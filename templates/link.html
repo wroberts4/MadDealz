@@ -6,5 +6,6 @@
     link.href = newRoot + '{{ href }}'
     link.innerHTML = {{ text }}
     link.id = '{{ id }}'
-    document.body.appendChild(link);
+    var parent = document.getElementById('{{ div }}') || document.body
+    parent.appendChild(link);
 </script>

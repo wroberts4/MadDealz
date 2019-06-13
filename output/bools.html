@@ -6,14 +6,15 @@
 </head>
 <body>
     <h1>THE BOOL SPONSERED BY HAMM'S TM!!!</h1>
-    <a id='tmp'></a>
-<script language="JavaScript">
+    <script language="JavaScript">
     var url = window.location.href
     var root = '/'
     newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
-    document.getElementById('tmp').href = newRoot + 'home.html'
-    document.getElementById("tmp").innerHTML = newRoot + 'home.html'
-    document.getElementById('tmp').id = 'home_link'
+    var link = document.createElement('a');
+    link.href = newRoot + 'home.html'
+    link.innerHTML = 
+    link.id = 'home_link'
+    document.body.appendChild(link);
 </script>
 </body>
 </html>

@@ -1,9 +1,10 @@
-<a id='tmp'>{{ text }}</a>
 <script language="JavaScript">
     var url = window.location.href
     var root = '/'
     newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
-    document.getElementById('tmp').href = newRoot + '{{ href }}'
-    document.getElementById("tmp").innerHTML = newRoot + '{{ href }}'
-    document.getElementById('tmp').id = '{{ id }}'
+    var link = document.createElement('a');
+    link.href = newRoot + '{{ href }}'
+    link.innerHTML = {{ text }}
+    link.id = '{{ id }}'
+    document.body.appendChild(link);
 </script>

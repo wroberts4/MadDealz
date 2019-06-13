@@ -6,14 +6,15 @@
 </head>
 <body>
     <h1>Hello World!</h1>
-    <a id='tmp'></a>
-<script language="JavaScript">
+    <script language="JavaScript">
     var url = window.location.href
     var root = '/'
     newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
-    document.getElementById('tmp').href = newRoot + 'bools.html'
-    document.getElementById("tmp").innerHTML = newRoot + 'bools.html'
-    document.getElementById('tmp').id = 'bool_link'
+    var link = document.createElement('a');
+    link.href = newRoot + 'bools.html'
+    link.innerHTML = 
+    link.id = 'bool_link'
+    document.body.appendChild(link);
 </script>
 </body>
 </html>

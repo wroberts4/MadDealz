@@ -1,0 +1,18 @@
+<script language="JavaScript">
+    var table = document.createElement('table');
+    table.id = '{{ id | safe }}'
+    table.style.border = '1px solid black'
+    for (var i = 0; i < {{ data | safe }}.length; i++) {
+        var row = document.createElement('tr')
+        row.style.border = '1px solid black'
+        for (var j = 0; j < {{ data | safe }}[i].length; j++) {
+            var cell = i == 0 ? document.createElement('th') : document.createElement('td')
+            cell.innerHTML = {{ data | safe }}[i][j]
+            cell.style.border = '1px solid black'
+            row.appendChild(cell)
+        }
+        table.appendChild(row)
+    }
+    var parent = document.getElementById('{{ div | safe }}') || document.body
+    parent.appendChild(table);
+</script>

@@ -3,9 +3,9 @@
     var root = '/'
     newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
     var link = document.createElement('a');
-    link.href = newRoot + '{{ href }}'
-    link.innerHTML = {{ text }}
-    link.id = '{{ id }}'
-    var parent = document.getElementById('{{ div }}') || document.body
+    link.href = newRoot + '{{ href | safe }}'
+    link.innerHTML = {{ text | safe }}
+    link.id = '{{ id | safe }}'
+    var parent = document.getElementById('{{ div | safe }}') || document.body
     parent.appendChild(link);
 </script>

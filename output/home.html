@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <title>site</title>
 </head>
-<body style="height:100%; width:100%">
-    <div style="position: fixed; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)">
-        <h1>Hello World!</h1>
-    </div>
-    <div id="test" style="position: fixed; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)">
+<body style="height: 200%; width: 100%">
+    <div style="z-index: 1; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)"></div>
+    <div style="z-index: 1; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)"></div>
+    <div id="text" style="z-index: 2; position: absolute; height: 100%;">
+        <h1>MONDAY</h1>
+        <script language="JavaScript">
+    var table = document.createElement('table');
+    table.id = 'monday'
+    table.style.border = '1px solid black'
+    for (var i = 0; i < [['Bar Name', 'Deal', 'Start Time', 'End Time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm']].length; i++) {
+        var row = document.createElement('tr')
+        row.style.border = '1px solid black'
+        for (var j = 0; j < [['Bar Name', 'Deal', 'Start Time', 'End Time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm']][i].length; j++) {
+            var cell = i == 0 ? document.createElement('th') : document.createElement('td')
+            cell.innerHTML = [['Bar Name', 'Deal', 'Start Time', 'End Time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm']][i][j]
+            cell.style.border = '1px solid black'
+            row.appendChild(cell)
+        }
+        table.appendChild(row)
+    }
+    var parent = document.getElementById('text') || document.body
+    parent.appendChild(table);
+</script>
         <script language="JavaScript">
     var url = window.location.href
     var root = '/'
@@ -17,7 +35,7 @@
     link.href = newRoot + 'bools.html'
     link.innerHTML = 
     link.id = 'bool_link'
-    var parent = document.getElementById('test') || document.body
+    var parent = document.getElementById('text') || document.body
     parent.appendChild(link);
 </script>
     </div>

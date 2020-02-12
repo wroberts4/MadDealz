@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <title>site</title>
 </head>
-<body style="height: 200%; width: 100%">
-    <div style="z-index: 1; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)"></div>
-    <div style="z-index: 1; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)"></div>
-    <div id="text" style="z-index: 2; position: absolute; height: 100%;">
-        <h1>MONDAY</h1>
-        {{ monday | safe }}
-        {{ bool_link | safe }}
+<body>
+    <div style="height: 100%; width: 100%; white-space: nowrap; display: inline-block">
+        <div style="z-index: 1; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)"></div>
+        <div style="z-index: 1; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)"></div>
+        <div id="text" style="z-index: 2; position: absolute; height: 100%; width: 100%;">
+            MONDAY
+            {{ monday | safe }}
+            TUESDAY
+            {{ tuesday | safe }}
+            WEDNESDAY
+            {{ wednesday | safe }}
+            THURSDAY
+            {{ thursday | safe }}
+            FRIDAY
+            {{ friday | safe }}
+            SATURDAY
+            {{ saturday | safe }}
+            SUNDAY
+            {{ sunday | safe }}
+            {{ the_bool_link | safe }}
+        </div>
     </div>
 </body>
 </html>

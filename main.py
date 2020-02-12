@@ -1,20 +1,23 @@
 from flask import Flask, render_template
+import yaml
 app = Flask(__name__)
+
 
 @app.route("/")
 @app.route("/home.html")
 def hello():
-    links = {'bool_link': render_template('link.html', href='bools.html', id='bool_link', div='text')}
-    tables = {'monday': render_template('table.html', id='monday', div='text',
-                                        data=[['Bar Name', 'Deal', 'Start Time', 'End Time'],
-                                              ['State Street Brats', '$1 Hamburgers', '9pm', '10pm']])}
+    links = {'the_bool_link': render_template('link.html', href='the_bool.html', id='the_bool_link', div='text')}
+    with open('deals.yml') as file:
+        data = yaml.load(file, Loader=yaml.FullLoader)
+        tables = {day: render_template('table.html', id=day, div='text', data=data) for day in
+                  ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']}
     return render_template('home.html', **links, **tables)
 
 
-@app.route("/bools.html")
-def bools():
+@app.route("/the_bool.html")
+def the_bool():
     links = {'home_link': render_template('link.html', href='home.html', id='home_link', div='body')}
-    return render_template('bools.html', **links)
+    return render_template('the_bool.html', **links)
 
 
 if __name__ == '__main__':

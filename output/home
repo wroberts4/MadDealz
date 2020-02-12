@@ -409,11 +409,8 @@
     parent.appendChild(table);
 </script>
             <script language="JavaScript">
-    var url = window.location.href
-    var root = '/'
-    newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
     var link = document.createElement('a');
-    link.href = newRoot + 'the_bool.html'
+    link.href = '/the_bool'
     link.innerHTML = 
     link.id = 'the_bool_link'
     var parent = document.getElementById('text') || document.body

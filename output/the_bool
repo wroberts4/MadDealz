@@ -7,11 +7,8 @@
 <body>
     <h1>THE BOOL SPONSERED BY HAMM'S TM!!!</h1>
     <script language="JavaScript">
-    var url = window.location.href
-    var root = '/'
-    newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
     var link = document.createElement('a');
-    link.href = newRoot + 'home.html'
+    link.href = '/home'
     link.innerHTML = 
     link.id = 'home_link'
     var parent = document.getElementById('body') || document.body

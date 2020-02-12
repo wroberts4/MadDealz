@@ -1,9 +1,6 @@
 <script language="JavaScript">
-    var url = window.location.href
-    var root = '/'
-    newRoot = url.substring(0, url.lastIndexOf(root) + root.length)
     var link = document.createElement('a');
-    link.href = newRoot + '{{ href | safe }}'
+    link.href = '{{ href | safe }}'
     link.innerHTML = {{ text | safe }}
     link.id = '{{ id | safe }}'
     var parent = document.getElementById('{{ div | safe }}') || document.body

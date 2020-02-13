@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .utils.sort import sort_by_day
 
 
 # Makes using templates inside of templates easier.
@@ -35,7 +36,7 @@ def home(request):
 
     # Add a table template for each day.
     for day in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']:
-        context.render(day, 'table.html', id=day, div='text', data=data)
+        context.render(day, 'table.html', id=day, div='text', data=sort_by_day(data, day))
 
     # Show home.html template.
     return render(request, 'home.html', context)

@@ -1,56 +1,22 @@
 <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = '{{ id | safe }}'
-    table.style.border = '1px solid black'
+    table.id = '{{ id | safe }}';
+    var data = {{ data | safe }};
+    var parent = document.getElementById('{{ div | safe }}') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {{ data | safe }}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('{{ id | safe }}')) {
-                var day = data[bar][deal]["days"]['{{ id | safe }}']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('{{ div | safe }}') || document.body
     parent.appendChild(table);
 </script>

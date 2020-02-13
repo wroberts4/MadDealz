@@ -12,400 +12,162 @@
             MONDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'monday'
-    table.style.border = '1px solid black'
+    table.id = 'monday';
+    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm'], ['Sconnie', '$1 Hamburgers', '1pm', '2pm']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('monday')) {
-                var day = data[bar][deal]["days"]['monday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             TUESDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'tuesday'
-    table.style.border = '1px solid black'
+    table.id = 'tuesday';
+    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm'], ['State Street Brats', 'Free Beer', '12am', '12pm'], ['Sconnie', '$1 Hamburgers', '1pm', '2pm']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('tuesday')) {
-                var day = data[bar][deal]["days"]['tuesday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             WEDNESDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'wednesday'
-    table.style.border = '1px solid black'
+    table.id = 'wednesday';
+    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', 'Free Beer', '12am', '12pm']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('wednesday')) {
-                var day = data[bar][deal]["days"]['wednesday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             THURSDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'thursday'
-    table.style.border = '1px solid black'
+    table.id = 'thursday';
+    var data = [['location', 'deal', 'start time', 'end time']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('thursday')) {
-                var day = data[bar][deal]["days"]['thursday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             FRIDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'friday'
-    table.style.border = '1px solid black'
+    table.id = 'friday';
+    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm'], ['State Street Brats', 'Free Beer', '12am', '12pm'], ['Sconnie', '$1 Hamburgers', '1pm', '2pm']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('friday')) {
-                var day = data[bar][deal]["days"]['friday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             SATURDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'saturday'
-    table.style.border = '1px solid black'
+    table.id = 'saturday';
+    var data = [['location', 'deal', 'start time', 'end time']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('saturday')) {
-                var day = data[bar][deal]["days"]['saturday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             SUNDAY
             <script language="JavaScript">
     var table = document.createElement('table');
-    table.id = 'sunday'
-    table.style.border = '1px solid black'
+    table.id = 'sunday';
+    var data = [['location', 'deal', 'start time', 'end time']];
+    var parent = document.getElementById('text') || document.body;
 
-    <!--Make tags-->
-    var row = document.createElement('tr')
-    row.style.border = '1px solid black'
-    var tags = ['location', 'deal', 'start time', 'end time']
-    for (var tag in tags) {
-        var cell = document.createElement('th')
-        cell.innerHTML = tags[tag]
-        cell.style.border = '1px solid black'
-        row.appendChild(cell)
-    }
-    table.appendChild(row)
+    var table_border = '1px solid black';
+    var cell_border = '1px solid black';
 
-    <!--Make content-->
-    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}}
-    for (var bar in data) {
-        for (var deal in data[bar]) {
-            row = document.createElement('tr')
-            row.style.border = '1px solid black'
-            if (Object.keys(data[bar][deal]["days"]).includes('sunday')) {
-                var day = data[bar][deal]["days"]['sunday']
-
-                <!--bar-->
-                var cell = document.createElement('td')
-                cell.innerHTML = bar
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--deal-->
-                var cell = document.createElement('td')
-                cell.innerHTML = deal
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--start time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['start_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-
-                <!--end time-->
-                var cell = document.createElement('td')
-                cell.innerHTML = day['end_time']
-                cell.style.border = '1px solid black'
-                row.appendChild(cell)
-            }
-            table.appendChild(row)
+    table.style.border = table_border;
+    for(var i = 0; i < data.length; i++) {
+        var row = document.createElement('tr');
+        for(var j = 0; j < data[i].length; j++) {
+            var cell = document.createElement('th');
+            cell.innerHTML = data[i][j];
+            cell.style.border = cell_border;
+            row.appendChild(cell);
         }
+        table.appendChild(row);
     }
-    var parent = document.getElementById('text') || document.body
     parent.appendChild(table);
 </script>
             <script language="JavaScript">

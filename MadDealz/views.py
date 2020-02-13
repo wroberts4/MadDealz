@@ -17,7 +17,7 @@ class Context(dict):
 def home(request):
     context = Context(request)
     # Add a link template.
-    context.render('the_bool_link', 'link.html', href='/the_bool', id='the_bool_link', div='text')
+    context.render('the_bool_link', 'link.html', href='/the_bool.html', id='the_bool_link', div='text')
 
     # Temporary data.
     data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days':
@@ -44,6 +44,6 @@ def home(request):
 def the_bool(request):
     context = Context(request)
     # Add a link template.
-    context.render('home_link', 'link.html', href='/home', id='home_link', div='body')
+    context.render('home_link', 'link.html', href='/home.html', id='home_link', div='body')
     # show the_bool.html template.
     return render(request, 'the_bool.html', context)

@@ -19,7 +19,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home.html/', views.home),
     path('home/', views.home),
     path('', views.home),
+    path('the_bool.html/', views.the_bool),
     path('the_bool/', views.the_bool)
 ]

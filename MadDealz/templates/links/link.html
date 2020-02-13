@@ -1,0 +1,7 @@
+<!--links/link.html-->
+<script language="JavaScript">
+    var parent = document.getElementById('{{ div | safe }}') || document.body;
+    var link_info = {'href': '{{ href }}', 'id': '{{ id }}', 'innerHTML': '{{ text }}'}
+    {% include "links/base_link.html" %}
+</script>
+<!--links/link.html-->

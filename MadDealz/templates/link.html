@@ -1,8 +1,0 @@
-<script language="JavaScript">
-    var link = document.createElement('a');
-    link.href = '{{ href | safe }}'
-    link.innerHTML = {{ text | safe }}
-    link.id = '{{ id | safe }}'
-    var parent = document.getElementById('{{ div | safe }}') || document.body
-    parent.appendChild(link);
-</script>

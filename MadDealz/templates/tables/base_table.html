@@ -1,0 +1,18 @@
+<!--tables/base_table.html-->
+<!--Variables taken:-->
+<!--    table: table-->
+<!--    document: parent-->
+<!--    2d list: data-->
+<!--    Object: cell_style={'border': '1px solid black', ...}-->
+for(var i = 0; i < data.length; i++) {
+    var row = document.createElement('tr');
+    for(var j = 0; j < data[i].length; j++) {
+        var cell = document.createElement('th');
+        cell.innerHTML = data[i][j];
+        Object.assign(cell.style, cell_style);
+        row.appendChild(cell);
+    }
+    table.appendChild(row);
+}
+parent.appendChild(table);
+<!--tables/base_table.html-->

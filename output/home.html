@@ -9,16 +9,47 @@
         <div style="z-index: 1; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)"></div>
         <div style="z-index: 1; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)"></div>
         <div id="text" style="z-index: 2; position: absolute; height: 100%; width: 100%;">
+            <script language="JavaScript">
+    <!--All sorting functions. Add a map to sort_map in table.html for every function-->
+    function sort_by_day(data, info) {
+        var day = info.day;
+        var tmp = [['location', 'deal', 'start time', 'end time']]
+        for (bar in data) {
+            var deals = data[bar];
+            for (deal in deals) {
+                var info = deals[deal];
+                if (info.days && info.days[day]) {
+                    tmp.push([bar, deal, info.days[day].start_time, info.days[day].end_time])
+                }
+            }
+        }
+        return tmp;
+    }
+
+    <!--Map function name to function-->
+    var sort_map = {'sort_by_day': sort_by_day};
+</script>
             MONDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'monday';
-    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm'], ['Sconnie', '$1 Hamburgers', '1pm', '2pm']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'monday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'monday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');
@@ -34,14 +65,25 @@
 </script>
             TUESDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'tuesday';
-    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm'], ['State Street Brats', 'Free Beer', '12am', '12pm'], ['Sconnie', '$1 Hamburgers', '1pm', '2pm']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'tuesday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'tuesday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');
@@ -57,14 +99,25 @@
 </script>
             WEDNESDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'wednesday';
-    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', 'Free Beer', '12am', '12pm']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'wednesday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'wednesday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');
@@ -80,14 +133,25 @@
 </script>
             THURSDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'thursday';
-    var data = [['location', 'deal', 'start time', 'end time']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'thursday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'thursday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');
@@ -103,14 +167,25 @@
 </script>
             FRIDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'friday';
-    var data = [['location', 'deal', 'start time', 'end time'], ['State Street Brats', '$1 Hamburgers', '9pm', '10pm'], ['State Street Brats', 'Free Beer', '12am', '12pm'], ['Sconnie', '$1 Hamburgers', '1pm', '2pm']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'friday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'friday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');
@@ -126,14 +201,25 @@
 </script>
             SATURDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'saturday';
-    var data = [['location', 'deal', 'start time', 'end time']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'saturday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'saturday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');
@@ -149,14 +235,25 @@
 </script>
             SUNDAY
             <script language="JavaScript">
+    <!--Map function name to function. Look at sort.html-->
+    var sort_map = sort_map ? sort_map : {};
+
+    <!--Setup variables-->
     var table = document.createElement('table');
     table.id = 'sunday';
-    var data = [['location', 'deal', 'start time', 'end time']];
     var parent = document.getElementById('text') || document.body;
-
+    var data = {'State Street Brats': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '9pm', 'end_time': '10pm'}, 'tuesday': {'start_time': '9pm', 'end_time': '10pm'}, 'friday': {'start_time': '9pm', 'end_time': '10pm'}}}, 'Free Beer': {'extra_info': '', 'days': {'wednesday': {'start_time': '12am', 'end_time': '12pm'}, 'tuesday': {'start_time': '12am', 'end_time': '12pm'}, 'friday': {'start_time': '12am', 'end_time': '12pm'}}}}, 'Sconnie': {'$1 Hamburgers': {'extra_info': '', 'days': {'monday': {'start_time': '1pm', 'end_time': '2pm'}, 'tuesday': {'start_time': '1pm', 'end_time': '2pm'}, 'friday': {'start_time': '1pm', 'end_time': '2pm'}}}}};
     var table_border = '1px solid black';
     var cell_border = '1px solid black';
 
+
+    <!--If sorting, sort.-->
+    var sort_func = sort_map[{'day': 'sunday', 'function': 'sort_by_day'}['function']];
+    if (sort_func) {
+        data = sort_func(data, {'day': 'sunday', 'function': 'sort_by_day'});
+    }
+
+    <!--Main part of table-->
     table.style.border = table_border;
     for(var i = 0; i < data.length; i++) {
         var row = document.createElement('tr');

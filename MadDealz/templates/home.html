@@ -9,6 +9,7 @@
         <div style="z-index: 1; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(red, yellow)"></div>
         <div style="z-index: 1; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(yellow, red)"></div>
         <div id="text" style="z-index: 2; position: absolute; height: 100%; width: 100%;">
+            {{ sort_db | safe }}
             MONDAY
             {{ monday | safe }}
             TUESDAY

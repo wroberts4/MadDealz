@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     console.log(id);
 
     let rc = await User.get_user(id);
-    console.log(rc);
+    
     return res.status(rc.status).json({ message: rc.message, user: rc.user });
 });
 

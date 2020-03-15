@@ -26,3 +26,16 @@ export async function get_bar(id) {
   
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
   }
+
+  export async function get_bars() {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+  
+    let bars = await dbo.collection("bars").find({}).toArray();
+    con.close();
+    
+    if (bars.length == 0)
+      return { status: 404, message: "No bars found", bars: bars};
+  
+    return {status: 200, message: "Bar successfully retrieved", bars: bars};
+  }

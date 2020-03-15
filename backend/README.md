@@ -7,5 +7,6 @@ get user: `/user` <br>
 
 get bar: `/bar` <br>
 create bar: `/bar/create` <br>
+get list of bars: `/bar/list` <br>
 
 Documentation to come...

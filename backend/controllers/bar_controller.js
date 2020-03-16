@@ -39,10 +39,10 @@ router.post('/create', async (req, res) => {
     return res.status(rc.status).send(rc.message);
 });
 
-router.get('/list', async (req, res) => {
-    console.log("/bar/list GET request received");
+router.post('/list', async (req, res) => {
+    console.log("/bar/list POST request received");
     
-    let rc = await Bar.get_bars();
+    let rc = await Bar.get_bars(req.body.location);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });

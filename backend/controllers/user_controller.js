@@ -61,4 +61,12 @@ router.put('/update', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message });
 });
 
+router.delete('/delete', async (req, res) => {
+    console.log('/user/delete DELETE request received');
+    console.log(req.body);
+
+    let rc = await User.delete_user(req.query.id);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
 module.exports = router;

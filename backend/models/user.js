@@ -111,6 +111,22 @@ export async function update_user(user) {
   return { status: 200, message: "User updated successfully"};
 }
 
+export async function delete_user(id) {
+  if (id == '' || id == null)
+    return { status: 400, message: "Must specify a user _id"};
+
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { _id: db_util.ObjectId(id) };
+  let result = await dbo.collection("users").deleteOne(query, {});
+
+  if (result.deletedCount == 0)
+    return { status: 500, message: "User not found"};
+  
+  return { status: 200, message: "User deleted successfully" };
+}
+
 function encryptPass(password) {
   let salt = crypto.randomBytes(16).toString('base64');
   let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");

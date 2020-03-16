@@ -17,8 +17,8 @@ import * as db_util from '../db';
 //     bars_owned: [String]
 
 export async function create_user(user) {
-    if (user.password == null || user.email == null)
-        return { status: 400, message: "Email or password blank" };
+    if (user.password == null || user.email == null ||  user.password == '' || user.email == '')
+        return { status: 400, message: "Email or password is empty" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
@@ -31,9 +31,12 @@ export async function create_user(user) {
 
     result = await dbo.collection('users').insertOne(user);
     con.close;
+
     if (result == null)
       return { status: 500, message: "Error adding user to database" };
-    return { status: 201, message: "User successfully created" };
+
+    result.ops[0].password = null;
+    return { status: 201, message: "User successfully created", user: result.ops[0] };
 }
 
 export async function get_user(id) {
@@ -44,8 +47,9 @@ export async function get_user(id) {
   con.close();
   
   if (user == undefined)
-    return { status: 404, message: "User does not exist", user: user};
+    return { status: 404, message: "User not found", user: user};
 
+  user.password = null;
   return {status: 200, message: "User successfully retrieved", user: user};
 }
 
@@ -66,8 +70,10 @@ export async function user_login(user) {
   
   if (!checkPass(user.password, result.password))
     return { status: 401, message: "Incorrect password", user: user};
+
+  result.password = null;
   
-  return { status: 200, message: "User authenticated successfully", user: user};
+  return { status: 200, message: "User authenticated successfully", user: result};
 }
 
 function encryptPass(password) {

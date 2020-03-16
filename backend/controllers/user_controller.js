@@ -11,7 +11,7 @@ router.use(cors());
 
 router.get('/', async (req, res) => {
     console.log("/user GET request received");
-    const id = req.body.id;
+    const id = req.query.id;
     console.log(id);
 
     let rc = await User.get_user(id);
@@ -37,7 +37,7 @@ router.post('/create', async (req, res) => {
         bars_owned: []
     });
 
-    return res.status(rc.status).send(rc.message);
+    return res.status(rc.status).json({ message: rc.message, user: rc.user });
 });
 
 router.post('/login', async (req, res) => {
@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
         password: req.body.password
     });
 
-    return res.status(rc.status).send(rc.message);
+    return res.status(rc.status).json({ message: rc.message, user: rc.user });
 });
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import * as db_util from '../db';
 
 export async function create_bar(bar) {
-    if (bar.name == null || bar.location == null)
+    if (bar.name == null || bar.address == null || bar.name == '' || bar.address == '')
         return { status: 400, message: "Bar name and location must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -46,7 +46,7 @@ export async function get_bar(id) {
       return a.distance - b.distance;
     });
   
-    return {status: 200, message: "Bar successfully retrieved", bars: bars};
+    return {status: 200, message: "Bars successfully retrieved", bars: bars};
   }
 
   function get_distance(x1, y1, x2, y2) {

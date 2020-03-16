@@ -11,7 +11,7 @@ router.use(cors());
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
-    const id = req.body.id;
+    const id = req.query.id;
     console.log(id);
 
     let rc = await Bar.get_bar(id);
@@ -36,13 +36,15 @@ router.post('/create', async (req, res) => {
         comments: []
     });
 
-    return res.status(rc.status).send(rc.message);
+    return res.status(rc.status).json({ message: rc.message });
 });
 
-router.post('/list', async (req, res) => {
+router.get('/list', async (req, res) => {
     console.log("/bar/list POST request received");
     
-    let rc = await Bar.get_bars(req.body.location);
+    let rc = await Bar.get_bars({
+        lat: req.query.lat, lon: req.query.lon
+    });
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });

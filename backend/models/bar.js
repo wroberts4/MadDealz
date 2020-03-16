@@ -80,6 +80,22 @@ export async function get_bar(id) {
     return { status: 200, message: "Bar updated successfully"};
   }
 
+  export async function delete_bar(id) {
+    if (id == '' || id == null)
+      return { status: 400, message: "Must specify a bar id"};
+  
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+  
+    const query = { _id: db_util.ObjectId(id) };
+    let result = await dbo.collection("bars").deleteOne(query, {});
+  
+    if (result.deletedCount == 0)
+      return { status: 500, message: "Bar not found"};
+    
+    return { status: 200, message: "Bar deleted successfully" };
+  }
+
   function get_distance(x1, y1, x2, y2) {
     let radlat1 = Math.PI * x1/180
     let radlat2 = Math.PI * x2/180

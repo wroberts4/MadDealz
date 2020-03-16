@@ -113,7 +113,7 @@ export async function update_user(user) {
 
 export async function delete_user(id) {
   if (id == '' || id == null)
-    return { status: 400, message: "Must specify a user _id"};
+    return { status: 400, message: "Must specify a user id"};
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);

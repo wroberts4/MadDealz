@@ -46,7 +46,7 @@ export async function create_user(user) {
     return { status: 201, message: "User successfully created", user: result.ops[0] };
 }
 
-export async function get_user_by_id(id) {
+/* export async function get_user_by_id(id) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -58,7 +58,7 @@ export async function get_user_by_id(id) {
 
   user.password = null;
   return {status: 200, message: "User successfully retrieved", user: user};
-}
+} */
 
 export async function get_user(username) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });

@@ -11,14 +11,14 @@ router.use(cors());
 
 router.get('/', async (req, res) => {
     console.log("/user GET request received");
-    const id = req.query.id;
+    //const id = req.query.id;
     const username = req.query.username;
     let rc;
 
-    if (id)
-        rc = await User.get_user_by_id(id);
-    else
-        rc = await User.get_user(username);
+    //if (id)
+    //    rc = await User.get_user_by_id(id);
+    //else
+    rc = await User.get_user(username);
     
     return res.status(rc.status).json({ message: rc.message, user: rc.user });
 });

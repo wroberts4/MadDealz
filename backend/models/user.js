@@ -25,9 +25,13 @@ export async function create_user(user) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
-    let result = await dbo.collection('users').findOne({email: user.email});
+    let result = await dbo.collection('users').findOne({username: user.username});
     if (result != null)
-      return { status: 409, message: "User already exists" };
+      return { status: 409, message: "Username already taken" };
+
+    result = await dbo.collection('users').findOne({email: user.email});
+    if (result != null)
+      return { status: 409, message: "Email already in use" };
     
     user.password = encryptPass(user.password);
 
@@ -41,11 +45,25 @@ export async function create_user(user) {
     return { status: 201, message: "User successfully created", user: result.ops[0] };
 }
 
-export async function get_user(id) {
+export async function get_user_by_id(id) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
   let user = await dbo.collection("users").findOne({ _id: db_util.ObjectId(id) }, {});
+  con.close();
+  
+  if (user == undefined)
+    return { status: 404, message: "User not found", user: user};
+
+  user.password = null;
+  return {status: 200, message: "User successfully retrieved", user: user};
+}
+
+export async function get_user(username) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  let user = await dbo.collection("users").findOne({ username: username }, {});
   con.close();
   
   if (user == undefined)

@@ -97,15 +97,15 @@ export async function update_user(user) {
   delete values._id;
 
   const query = { _id: db_util.ObjectId(user._id) };
-  let result = await dbo.collection("users").updateOne(query, { $set: values}, { upsert: true });
+  let result = await dbo.collection("users").updateOne(query, { $set: values}, { upsert: false });
   con.close();
 
   console.log(result);
 
-  if (result.matchedCont == 0)
+  if (result.matchedCount == 0)
     return { status: 500, message: "User not found"};
 
-  if (result.modifiedCount == 0 && result.matchedCont == 1)
+  if (result.modifiedCount == 0 && result.matchedCount == 1)
     return { status: 200, message: "Nothing to update"};
 
   return { status: 200, message: "User updated successfully"};

@@ -66,7 +66,7 @@ export async function get_bar(id) {
     delete values._id;
   
     const query = { _id: db_util.ObjectId(bar._id) };
-    let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: true });
+    let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
   
     console.log(result);

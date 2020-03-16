@@ -11,7 +11,7 @@ export async function create_bar(bar) {
     con.close;
     if (result == null)
       return { status: 500, message: "Error adding bar to database" };
-    return { status: 201, message: "Bar successfully created" };
+    return { status: 201, message: "Bar successfully created", bar: result.ops[0] };
 }
 
 export async function get_bar(id) {
@@ -47,6 +47,37 @@ export async function get_bar(id) {
     });
   
     return {status: 200, message: "Bars successfully retrieved", bars: bars};
+  }
+
+  export async function update_bar(bar) {
+    if (bar._id == '' || bar._id == null) {
+      return { status: 400, message: "Must specify a bar _id"};
+    }
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+    
+    let values = {};
+  
+    for (let key in bar) {
+      if (bar[key] != '' && key != '_id') {
+        values[key] = bar[key];
+      }
+    }
+    delete values._id;
+  
+    const query = { _id: db_util.ObjectId(bar._id) };
+    let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: true });
+    con.close();
+  
+    console.log(result);
+  
+    if (result.matchedCont == 0)
+      return { status: 500, message: "Bar not found"};
+  
+    if (result.modifiedCount == 0 && result.matchedCont == 1)
+      return { status: 200, message: "Nothing to update"};
+  
+    return { status: 200, message: "Bar updated successfully"};
   }
 
   function get_distance(x1, y1, x2, y2) {

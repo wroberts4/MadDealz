@@ -36,7 +36,7 @@ router.post('/create', async (req, res) => {
         comments: []
     });
 
-    return res.status(rc.status).json({ message: rc.message });
+    return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
 });
 
 router.get('/list', async (req, res) => {
@@ -47,6 +47,14 @@ router.get('/list', async (req, res) => {
     });
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
+});
+
+router.put('/update', async (req, res) => {
+    console.log("/bar/update PUT request receieved");
+    console.log(req.body);
+
+    let rc = await Bar.update_bar(req.body);
+    return res.status(rc.status).json({ message: rc.message });
 });
 
 module.exports = router;

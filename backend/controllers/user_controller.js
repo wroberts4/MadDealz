@@ -27,6 +27,7 @@ router.post('/create', async (req, res) => {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
+        username: req.body.username,
         password: req.body.password,
         favorites: {
             bars: [],
@@ -50,6 +51,14 @@ router.post('/login', async (req, res) => {
     });
 
     return res.status(rc.status).json({ message: rc.message, user: rc.user });
+});
+
+router.put('/update', async (req, res) => {
+    console.log("/user/update PUT request receieved");
+    console.log(req.body);
+
+    let rc = await User.update_user(req.body);
+    return res.status(rc.status).json({ message: rc.message });
 });
 
 module.exports = router;

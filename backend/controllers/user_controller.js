@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
     console.log("/user GET request received");
     const id = req.query.id;
     const username = req.query.username;
-    console.log(id);
     let rc;
 
     if (id)

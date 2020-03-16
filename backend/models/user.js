@@ -4,6 +4,7 @@ import * as db_util from '../db';
 
 //  DB SCHEMA FOR USER OBJECTS
 
+//     _id: String,
 //     first_name: String,
 //     last_name: String,
 //     email: String,
@@ -20,7 +21,7 @@ import * as db_util from '../db';
 export async function create_user(user) {
     if (user.password == null || user.email == null || user.username == null ||  
           user.password == '' || user.email == '' || user.username == '')
-        return { status: 400, message: "Email or password is empty" };
+        return { status: 400, message: "Email, password, or username is empty" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);

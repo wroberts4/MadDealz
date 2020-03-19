@@ -114,8 +114,6 @@ export async function update_user(user) {
   let result = await dbo.collection("users").updateOne(query, { $set: values}, { upsert: false });
   con.close();
 
-  console.log(result);
-
   if (result.matchedCount == 0)
     return { status: 500, message: "User not found"};
 

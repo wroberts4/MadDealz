@@ -29,6 +29,26 @@ async function add_user(username, password, email){
 };
 
 /**
+ * Description: Delete a user into the system.
+ *
+ * @param  {string} username
+ *
+ * @return {object} user object containing username, password,
+                    location, favorite bars, and friends.
+ */
+async function delete_user(username){
+  var url = IP + '/user/delete?username=' + username;
+  const response = await fetch(url, {
+     method: 'DELETE',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+  });
+  // Returns a new user object.
+  return await response.json();
+};
+
+/**
  * Description: Get a user from the system.
  *
  * @param  {string} username
@@ -49,20 +69,24 @@ async function get_user(username){
 };
 
 /**
- * Description: Get a user from the system.
+ * Description: Update a user in the system.
  *
- * @param  {string} username
+ * @param {object} user
+ *   @subparam   {string} username
+ *   @subpparam  {string} first_name (optional)
+ *   @subpparam  {string} last_name  (optional)
+ *   @subpparam  {string} email      (optional)
+ *   @subpparam  {string} password   (optional)
+ *   @subpparam  {string} favorites  (optional)
+ *   @subpparam  {string} friends    (optional)
+ *   @subpparam  {string} comments   (optional)
+ *   @subpparam  {string} bars_owned (optional)
  *
  * @return {object} user object containing username, password,
                     location, favorite bars, and friends.
  */
-async function update_user(username, first_name=null, last_name=null, email=null,
-                           password=null, favorites=null, friends=null, comments=null,
-                           bars_owned=null){
+async function update_user(user){
   var url = IP + '/user/update';
-  let user = {'username': username, 'first_name': first_name, 'last_name': last_name,
-              'email': email, 'password': password, 'favorites': favorites, 'friends': friends,
-              'comments': comments, 'bars_owned': bars_owned}
   const response = await fetch(url, {
      method: 'PUT',
      headers: {
@@ -74,14 +98,35 @@ async function update_user(username, first_name=null, last_name=null, email=null
   return await response.json();
 };
 
-//async function tmp(username, first_name=null, last_name=null, email=null,
-//                   password=null, favorites=null, friends=null, comments=null,
-//                   bars_owned=null) {
-//  let user = await update_user(username, first_name=first_name, last_name=last_name, email=email,
-//                               password=password, favorites=favorites, friends=friends,
-//                               comments=comments, bars_owned=bars_owned);
-//  console.log(user);
-//  return user;
-//}
-//
-//tmp('test', password='user')
+
+////////////////////////////////////// TESTS //////////////////////////////////////
+async function test_delete_username(username) {
+  let response = await delete_user(username);
+  console.log(response);
+}
+
+async function test_add_username(username, password, email) {
+  let user = await add_user(username, password, email);
+  console.log(user);
+  return user;
+}
+
+async function test_get_username(username) {
+  let user = await get_user(username);
+  console.log(user);
+  return user;
+}
+
+async function test_update_username(user) {
+  user = await update_user(user);
+  console.log(user);
+  return user;
+}
+
+async function test_suite() {
+  await test_delete_username('test')
+  await test_add_username('test', 'user', 'fake@gmail.com')
+  await test_get_username('test')
+  await test_update_username({'username': 'test', 'password': 'user'})
+}
+test_suite()

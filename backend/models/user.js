@@ -42,8 +42,11 @@ export async function create_user(user) {
     if (result == null)
       return { status: 500, message: "Error adding user to database" };
 
-    result.ops[0].password = null;
-    return { status: 201, message: "User successfully created", user: result.ops[0] };
+		let user_result = result.ops[0];
+		delete user_result.password;
+		delete user_result.email;
+
+    return { status: 201, message: "User successfully created", user: user_result };
 }
 
 async function _get_user(username) {
@@ -57,11 +60,13 @@ async function _get_user(username) {
 
 export async function get_user(username) {
   let user = await _get_user(username);
+ 	
+	delete user.password;
+	delete user.email;
   
-  if (user == undefined)
+	if (user == undefined)
     return { status: 404, message: "User not found", user: user};
 
-  user.password = null;
   return {status: 200, message: "User successfully retrieved", user: user};
 }
 

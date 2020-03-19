@@ -93,6 +93,9 @@ export async function update_user(user) {
   if (user.username == '' || user.username == null) {
     return { status: 400, message: "Must specify a username"};
   }
+	if (user.password == '' || user.password == null)
+		return { status: 400, message: "Password is empty or null" };
+
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
   

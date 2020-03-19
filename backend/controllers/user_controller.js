@@ -9,9 +9,9 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(cors());
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
     console.log("/user GET request received");
-    const username = req.body.username;
+    const username = req.query.username;
 
     let rc = await User.get_user(username);
 

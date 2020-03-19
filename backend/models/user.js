@@ -93,6 +93,7 @@ export async function update_user(user) {
   if (user.username == '' || user.username == null) {
     return { status: 400, message: "Must specify a username"};
   }
+
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
   

@@ -33,6 +33,10 @@ export async function create_user(user) {
     result = await dbo.collection('users').findOne({email: user.email});
     if (result != null)
       return { status: 409, message: "Email already in use" };
+
+    result = await dbo.collection('users').findOne({password: user.password});
+    if (result != null)
+      return { status: 409, message: "password already taken" };
     
     user.password = encryptPass(user.password);
 
@@ -102,12 +106,13 @@ export async function update_user(user) {
   for (let key in user) {
     if (user[key] != '' && key != '_id') {
       if (key == 'password') {
-				if (user[key] == null || user[key] == '')
-					return { status: 400, message: "Password must not be empty or null" };
-				user[key] = encryptPass(user.password);
-			}
-      if (user[key] != null)
-				values[key] = user[key];
+        if (user[key] == null || user[key] == '')
+          return { status: 400, message: "Password must not be empty or null" };
+        user[key] = encryptPass(user.password);
+      }
+      if (user[key] != null) {
+        values[key] = user[key];
+      }
     }
   }
   const query = { 'username': user.username };
@@ -151,8 +156,7 @@ function checkPass(user_pass, password) {
   let salt = passwordFields[0];
   let hash = crypto.createHmac('sha512', salt).update(user_pass).digest("base64");
   console.log(hash);
-  if (hash === passwordFields[1]) {
+  if (hash === passwordFields[1])
     return true;
-  }
   return false;
 }

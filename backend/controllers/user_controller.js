@@ -9,17 +9,12 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(cors());
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     console.log("/user GET request received");
-    //const id = req.query.id;
-    const username = req.query.username;
-    let rc;
+    const username = req.body.username;
 
-    //if (id)
-    //    rc = await User.get_user_by_id(id);
-    //else
-    rc = await User.get_user(username);
-    
+    let rc = await User.get_user(username);
+
     return res.status(rc.status).json({ message: rc.message, user: rc.user });
 });
 
@@ -69,7 +64,7 @@ router.delete('/delete', async (req, res) => {
     console.log('/user/delete DELETE request received');
     console.log(req.body);
 
-    let rc = await User.delete_user(req.query.id);
+    let rc = await User.delete_user(req.query.username);
     return res.status(rc.status).json({ message: rc.message });
 });
 

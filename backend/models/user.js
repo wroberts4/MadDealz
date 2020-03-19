@@ -46,26 +46,17 @@ export async function create_user(user) {
     return { status: 201, message: "User successfully created", user: result.ops[0] };
 }
 
-/* export async function get_user_by_id(id) {
+async function _get_user(username) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
-  let user = await dbo.collection("users").findOne({ _id: db_util.ObjectId(id) }, {});
+  let user = await dbo.collection("users").findOne({ 'username': username }, {});
   con.close();
-  
-  if (user == undefined)
-    return { status: 404, message: "User not found", user: user};
-
-  user.password = null;
-  return {status: 200, message: "User successfully retrieved", user: user};
-} */
+  return user;
+}
 
 export async function get_user(username) {
-  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
-  let dbo = con.db(db_util.db_name);
-
-  let user = await dbo.collection("users").findOne({ username: username }, {});
-  con.close();
+  user = await _get_user(username);
   
   if (user == undefined)
     return { status: 404, message: "User not found", user: user};
@@ -98,8 +89,9 @@ export async function user_login(user) {
 }
 
 export async function update_user(user) {
-  if (user._id == '' || user._id == null) {
-    return { status: 400, message: "Must specify a user _id"};
+// Note: we may want to get the _id from the username for future use?
+  if (user.username == '' || user.username == null) {
+    return { status: 400, message: "Must specify a username"};
   }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
@@ -113,9 +105,7 @@ export async function update_user(user) {
       values[key] = user[key];
     }
   }
-  delete values._id;
-
-  const query = { _id: db_util.ObjectId(user._id) };
+  const query = { 'username': user.username };
   let result = await dbo.collection("users").updateOne(query, { $set: values}, { upsert: false });
   con.close();
 
@@ -130,14 +120,14 @@ export async function update_user(user) {
   return { status: 200, message: "User updated successfully"};
 }
 
-export async function delete_user(id) {
-  if (id == '' || id == null)
-    return { status: 400, message: "Must specify a user id"};
+export async function delete_user(username) {
+  if (username == '' || username == null)
+    return { status: 400, message: "Must specify a user username"};
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
-  const query = { _id: db_util.ObjectId(id) };
+  const query = { 'username': username };
   let result = await dbo.collection("users").deleteOne(query, {});
 
   if (result.deletedCount == 0)

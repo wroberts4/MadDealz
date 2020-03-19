@@ -14,11 +14,11 @@ export async function create_bar(bar) {
     return { status: 201, message: "Bar successfully created", bar: result.ops[0] };
 }
 
-export async function get_bar(id) {
+export async function get_bar(name) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
-    let bar = await dbo.collection("bars").findOne({ _id: db_util.ObjectId(id) }, {});
+    let bar = await dbo.collection("bars").findOne({ 'name': name }, {});
     con.close();
     
     if (bar == undefined)
@@ -50,8 +50,8 @@ export async function get_bar(id) {
   }
 
   export async function update_bar(bar) {
-    if (bar._id == '' || bar._id == null) {
-      return { status: 400, message: "Must specify a bar _id"};
+    if (bar.name == '' || bar.name == null) {
+      return { status: 400, message: "Must specify a bar name"};
     }
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
@@ -63,9 +63,8 @@ export async function get_bar(id) {
         values[key] = bar[key];
       }
     }
-    delete values._id;
   
-    const query = { _id: db_util.ObjectId(bar._id) };
+    const query = { 'name': name };
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
   
@@ -80,14 +79,14 @@ export async function get_bar(id) {
     return { status: 200, message: "Bar updated successfully"};
   }
 
-  export async function delete_bar(id) {
-    if (id == '' || id == null)
-      return { status: 400, message: "Must specify a bar id"};
+  export async function delete_bar(name) {
+    if (name == '' || name == null)
+      return { status: 400, message: "Must specify a bar name"};
   
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
-    const query = { _id: db_util.ObjectId(id) };
+    const query = { 'name': name };
     let result = await dbo.collection("bars").deleteOne(query, {});
   
     if (result.deletedCount == 0)

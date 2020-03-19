@@ -56,7 +56,7 @@ async function _get_user(username) {
 }
 
 export async function get_user(username) {
-  user = await _get_user(username);
+  let user = await _get_user(username);
   
   if (user == undefined)
     return { status: 404, message: "User not found", user: user};
@@ -103,7 +103,8 @@ export async function update_user(user) {
     if (user[key] != '' && key != '_id') {
       if (key == 'password')
         user[key] = encryptPass(user.password);
-      values[key] = user[key];
+      if (user[key] != null)
+				values[key] = user[key];
     }
   }
   const query = { 'username': user.username };

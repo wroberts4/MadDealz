@@ -68,8 +68,6 @@ export async function get_bar(name) {
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
   
-    console.log(result);
-  
     if (result.matchedCont == 0)
       return { status: 500, message: "Bar not found"};
   

@@ -64,7 +64,7 @@ export async function get_bar(name) {
       }
     }
   
-    const query = { 'name': name };
+    const query = { 'name': bar.name };
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
   
@@ -73,7 +73,7 @@ export async function get_bar(name) {
     if (result.matchedCont == 0)
       return { status: 500, message: "Bar not found"};
   
-    if (result.modifiedCount == 0 && result.matchedCont == 1)
+    if (result.modifiedCount == 0 && result.matchedCount == 1)
       return { status: 200, message: "Nothing to update"};
   
     return { status: 200, message: "Bar updated successfully"};

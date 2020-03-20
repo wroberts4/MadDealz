@@ -1,7 +1,8 @@
 const fetch = require('node-fetch');
 
-let IP = 'http://104.187.156.165:4000'
+let IP = 'https://api.maddealz.software'
 
+//TODO: encrypt_password, verify_password, add_review
 /**
  * Description: Add a user into the system.
  *
@@ -13,7 +14,7 @@ let IP = 'http://104.187.156.165:4000'
                     location, favorite bars, and friends.
  */
 async function add_user(username, password, email){
-  var url = IP + '/user/create';
+  let url = IP + '/user/create';
   data = {'username' : username,
           'password': password,
           'email': email};
@@ -37,7 +38,7 @@ async function add_user(username, password, email){
                     location, favorite bars, and friends.
  */
 async function delete_user(username){
-  var url = IP + '/user/delete?username=' + username;
+  let url = IP + '/user/delete?username=' + username;
   const response = await fetch(url, {
      method: 'DELETE',
      headers: {
@@ -57,7 +58,7 @@ async function delete_user(username){
                     location, favorite bars, and friends.
  */
 async function get_user(username){
-  var url = IP + '/user?username=' + username;
+  let url = IP + '/user?username=' + username;
   const response = await fetch(url, {
      method: 'GET',
      headers: {
@@ -66,6 +67,23 @@ async function get_user(username){
   });
   // Returns a new user object.
   return await response.json();
+};
+
+/**
+ * Description: Get a user from the system.
+ *
+ * @param  {list of strings} usernames
+ *
+ * @return {list of object} list of user objects containing username, password,
+ *                          location, favorite bars, and friends.
+ */
+async function get_users(usernames){
+  let users = [];
+  for (let i = 0; i < usernames.length; i++) {
+      users.push(await get_user(usernames[i]));
+  }
+  // Returns a new user object.
+  return users;
 };
 
 /**
@@ -86,7 +104,7 @@ async function get_user(username){
                     location, favorite bars, and friends.
  */
 async function update_user(user){
-  var url = IP + '/user/update';
+  let url = IP + '/user/update';
   const response = await fetch(url, {
      method: 'PUT',
      headers: {
@@ -100,33 +118,40 @@ async function update_user(user){
 
 
 ////////////////////////////////////// TESTS //////////////////////////////////////
-async function test_delete_username(username) {
+async function test_delete_user(username) {
   let response = await delete_user(username);
   console.log(response);
 }
 
-async function test_add_username(username, password, email) {
+async function test_add_user(username, password, email) {
   let user = await add_user(username, password, email);
   console.log(user);
   return user;
 }
 
-async function test_get_username(username) {
+async function test_get_user(username) {
   let user = await get_user(username);
   console.log(user);
   return user;
 }
 
-async function test_update_username(user) {
+async function test_get_users(usernames) {
+  let users = await get_users(usernames);
+  console.log(users);
+  return users;
+}
+
+async function test_update_user(user) {
   user = await update_user(user);
   console.log(user);
   return user;
 }
 
 async function test_suite() {
-  await test_delete_username('test')
-  await test_add_username('test', 'user', 'fake@gmail.com')
-  await test_get_username('test')
-  await test_update_username({'username': 'test', 'password': 'user'})
+  await test_delete_user('test');
+  await test_add_user('test', 'user', 'fake@gmail.com');
+  await test_get_user('test');
+  await test_get_users(['test']);
+  await test_update_user({'username': 'test', 'password': 'new_user'});
 }
-test_suite()
+test_suite();

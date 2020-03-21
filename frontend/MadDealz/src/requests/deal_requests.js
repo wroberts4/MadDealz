@@ -1,6 +1,4 @@
-const fetch = require('node-fetch');
-
-let IP = 'https://api.maddealz.software'
+const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
 
 /**
  * Description: Add a user into the system.
@@ -11,10 +9,9 @@ let IP = 'https://api.maddealz.software'
  * @return {object} deal object containing name and address.
  */
 async function create_deal(name, address){
-  let url = IP + '/deal/create';
   data = {'name' : name,
           'address': address};
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/deal/create', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json'

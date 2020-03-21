@@ -1,6 +1,4 @@
-const fetch = require('node-fetch');
-
-let IP = 'https://api.maddealz.software'
+const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
 
 /**
  * Description: Add a bar into the system.
@@ -12,10 +10,9 @@ let IP = 'https://api.maddealz.software'
  * @return {object} bar object containing name and adsress.
  */
 async function create_bar(name, address){
-  let url = IP + '/bar/create';
   data = {'name' : name,
           'address': address};
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/bar/create', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json'
@@ -35,8 +32,7 @@ async function create_bar(name, address){
  * @param  {string} name
  */
 async function delete_bar(name){
-  let url = IP + '/bar/delete?name=' + name;
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/bar/delete?name=' + name, {
      method: 'DELETE',
      headers: {
        'Content-Type': 'application/json'
@@ -55,8 +51,7 @@ async function delete_bar(name){
  * @return {object} bar object containing name and address.
  */
 async function get_bar(name){
-  let url = IP + '/bar?name=' + name;
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/bar?name=' + name, {
      method: 'GET',
      headers: {
        'Content-Type': 'application/json'
@@ -93,8 +88,7 @@ async function get_bars(names){
  *   @subpparam  {string} address
  */
 async function update_bar(bar){
-  let url = IP + '/bar/update';
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/bar/update', {
      method: 'PUT',
      headers: {
        'Content-Type': 'application/json'

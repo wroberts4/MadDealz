@@ -1,9 +1,6 @@
-const fetch = require('node-fetch');
-
-let IP = 'https://api.maddealz.software'
+const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
 
 //TODO: encrypt_password, verify_password, add_review
-
 /**
  * Description: Add a user into the system.
  *
@@ -15,11 +12,10 @@ let IP = 'https://api.maddealz.software'
                     location, favorite bars, and friends.
  */
 async function add_user(username, password, email) {
-  let url = IP + '/user/create';
   data = {'username' : username,
           'password': password,
           'email': email};
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/user/create', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json'
@@ -39,8 +35,7 @@ async function add_user(username, password, email) {
  * @param  {string} username
  */
 async function delete_user(username){
-  let url = IP + '/user/delete?username=' + username;
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/user/delete?username=' + username, {
      method: 'DELETE',
      headers: {
        'Content-Type': 'application/json'
@@ -60,13 +55,12 @@ async function delete_user(username){
                     location, favorite bars, and friends.
  */
 async function get_user(username){
-  let url = IP + '/user?username=' + username;
-  const response = await fetch(url, {
-     method: 'GET',
-     headers: {
-       'Content-Type': 'application/json'
-     },
-  });
+  const response = await fetchWithTimeout('/user?username=' + username, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+   })
   if (response.status != 200) {
     throw (await response.json()).message;
   }
@@ -106,8 +100,7 @@ async function get_users(usernames){
  *   @subpparam  {string} bars_owned (optional)
  */
 async function update_user(user){
-  let url = IP + '/user/update';
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout('/user/update', {
      method: 'PUT',
      headers: {
        'Content-Type': 'application/json'

@@ -11,7 +11,7 @@ export async function create_bar(bar) {
     con.close;
     if (result == null)
       return { status: 500, message: "Error adding bar to database" };
-    return { status: 201, message: "Bar successfully created", bar: result.ops[0] };
+    return { status: 200, message: "Bar successfully created", bar: result.ops[0] };
 }
 
 export async function get_bar(name) {

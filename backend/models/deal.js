@@ -11,5 +11,5 @@ export async function create_deal(deal) {
     con.close;
     if (result == null)
       return { status: 500, message: "Error adding deal to database" };
-    return { status: 201, message: "Deal successfully created", deal: result.ops[0] };
+    return { status: 200, message: "Deal successfully created", deal: result.ops[0] };
 }

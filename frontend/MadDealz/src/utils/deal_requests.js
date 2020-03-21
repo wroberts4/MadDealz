@@ -22,7 +22,7 @@ async function create_deal(name, address){
      body: JSON.stringify(data)
   });
   // Returns a new user object.
-  return await response;
+  return response;
 };
 
 module.exports = {create_deal};

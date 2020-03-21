@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 let IP = 'https://api.maddealz.software'
 
 //TODO: encrypt_password, verify_password, add_review
+
 /**
  * Description: Add a user into the system.
  *
@@ -13,7 +14,7 @@ let IP = 'https://api.maddealz.software'
  * @return {object} user object containing username, password,
                     location, favorite bars, and friends.
  */
-async function add_user(username, password, email){
+async function add_user(username, password, email) {
   let url = IP + '/user/create';
   data = {'username' : username,
           'password': password,
@@ -26,7 +27,7 @@ async function add_user(username, password, email){
      body: JSON.stringify(data)
   });
   // Returns a new user object.
-  return await response;
+  return response
 };
 
 /**
@@ -46,7 +47,7 @@ async function delete_user(username){
      },
   });
   // Returns a new user object.
-  return await response;
+  return response;
 };
 
 /**
@@ -65,8 +66,7 @@ async function get_user(username){
        'Content-Type': 'application/json'
      },
   });
-  // Returns a new user object.
-  return await response;
+  return response;
 };
 
 /**
@@ -113,7 +113,7 @@ async function update_user(user){
      body: JSON.stringify(user)
   });
   // Returns a new user object.
-  return await response;
+  return response;
 };
 
 module.exports = {add_user, delete_user, get_user, get_users, update_user};

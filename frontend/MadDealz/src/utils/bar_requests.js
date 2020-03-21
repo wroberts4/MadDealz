@@ -23,7 +23,7 @@ async function create_bar(name, address){
      body: JSON.stringify(data)
   });
   // Returns a new bar object.
-  return await response;
+  return response;
 };
 
 /**
@@ -42,7 +42,7 @@ async function delete_bar(name){
      },
   });
   // Returns a new bar object.
-  return await response;
+  return response;
 };
 
 /**
@@ -61,7 +61,7 @@ async function get_bar(name){
      },
   });
   // Returns a new bar object.
-  return await response;
+  return response;
 };
 
 /**
@@ -99,7 +99,7 @@ async function update_bar(bar){
      body: JSON.stringify(bar)
   });
   // Returns a new bar object.
-  return await response;
+  return response;
 };
 
 module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar};

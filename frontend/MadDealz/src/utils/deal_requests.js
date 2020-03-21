@@ -21,8 +21,11 @@ async function create_deal(name, address){
      },
      body: JSON.stringify(data)
   });
-  // Returns a new user object.
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
+  // Returns a new deal object.
+  return (await response.json()).deal;
 };
 
 module.exports = {create_deal};

@@ -22,16 +22,17 @@ async function create_bar(name, address){
      },
      body: JSON.stringify(data)
   });
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
   // Returns a new bar object.
-  return response;
+  return (await response.json()).bar;
 };
 
 /**
  * Description: Delete a bar into the system.
  *
  * @param  {string} name
- *
- * @return {object} bar object containing name and address.
  */
 async function delete_bar(name){
   let url = IP + '/bar/delete?name=' + name;
@@ -41,8 +42,9 @@ async function delete_bar(name){
        'Content-Type': 'application/json'
      },
   });
-  // Returns a new bar object.
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
 };
 
 /**
@@ -60,8 +62,11 @@ async function get_bar(name){
        'Content-Type': 'application/json'
      },
   });
-  // Returns a new bar object.
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
+  // Returns a bar object.
+  return (await response.json()).bar;
 };
 
 /**
@@ -86,8 +91,6 @@ async function get_bars(names){
  * @param {object} bar
  *   @subparam   {string} name
  *   @subpparam  {string} address
- *
- * @return {object} bar object containing name and address.
  */
 async function update_bar(bar){
   let url = IP + '/bar/update';
@@ -98,8 +101,9 @@ async function update_bar(bar){
      },
      body: JSON.stringify(bar)
   });
-  // Returns a new bar object.
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
 };
 
 module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar};

@@ -26,17 +26,17 @@ async function add_user(username, password, email) {
      },
      body: JSON.stringify(data)
   });
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
   // Returns a new user object.
-  return response
+  return (await response.json()).user;
 };
 
 /**
  * Description: Delete a user into the system.
  *
  * @param  {string} username
- *
- * @return {object} user object containing username, password,
-                    location, favorite bars, and friends.
  */
 async function delete_user(username){
   let url = IP + '/user/delete?username=' + username;
@@ -46,8 +46,9 @@ async function delete_user(username){
        'Content-Type': 'application/json'
      },
   });
-  // Returns a new user object.
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
 };
 
 /**
@@ -66,7 +67,11 @@ async function get_user(username){
        'Content-Type': 'application/json'
      },
   });
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
+  // Returns a user object.
+  return (await response.json()).user;
 };
 
 /**
@@ -82,7 +87,7 @@ async function get_users(usernames){
   for (let i = 0; i < usernames.length; i++) {
       users.push(await get_user(usernames[i]));
   }
-  // Returns a new user object.
+  // Returns a list of user objects.
   return users;
 };
 
@@ -99,9 +104,6 @@ async function get_users(usernames){
  *   @subpparam  {string} friends    (optional)
  *   @subpparam  {string} comments   (optional)
  *   @subpparam  {string} bars_owned (optional)
- *
- * @return {object} user object containing username, password,
-                    location, favorite bars, and friends.
  */
 async function update_user(user){
   let url = IP + '/user/update';
@@ -112,8 +114,9 @@ async function update_user(user){
      },
      body: JSON.stringify(user)
   });
-  // Returns a new user object.
-  return response;
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
 };
 
 module.exports = {add_user, delete_user, get_user, get_users, update_user};

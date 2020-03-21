@@ -18,76 +18,69 @@ const update_bar = bar_requests.update_bar;
 
 ///////////////////////////////////// USER TESTS /////////////////////////////////////
 async function test_delete_user(username) {
-  const response = await delete_user(username);
-  expect(response.status).toBe(200);
-  return response;
+  await delete_user(username);
 }
 
 async function test_add_user(username, password, email) {
-  const response = await add_user(username, password, email);
-  expect(response.status).toBe(200);
-  return response;
+  let user = await add_user(username, password, email);
+  expect(user.username).toBe(username);
+  return user;
 }
 
 async function test_get_user(username) {
-  const response = await get_user(username);
-  expect(response.status).toBe(200);
-  return response;
+  let user = await get_user(username);
+  expect(user.username).toBe(username);
+  return user;
 }
 
 async function test_get_users(usernames) {
-  const responses = await get_users(usernames);
-  for (let i = 0; i < responses.length; i++) {
-    const response = responses[i];
-    expect(response.status).toBe(200);
+  const users = await get_users(usernames);
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    expect(user.username).toBe(usernames[i]);
   }
-  return responses;
+  return users;
 }
 
 async function test_update_user(user) {
-  response = await update_user(user);
-  expect(response.status).toBe(200);
-  return response;
+  await update_user(user);
 }
 
 ///////////////////////////////////// DEAL TESTS /////////////////////////////////////
 async function test_create_deal(name, address) {
-  const response = await create_deal(name, address);
-  expect(response.status).toBe(200);
-  return response;
+  let deal = await create_deal(name, address);
+  expect(deal.name).toBe(name);
+  return deal;
 }
 
 ///////////////////////////////////// BAR TESTS /////////////////////////////////////
 async function test_delete_bar(name) {
-  const response = await delete_bar(name);
-  expect(response.status).toBe(200);
+  await delete_bar(name);
 }
 
 async function test_create_bar(name, address) {
-  const response = await create_bar(name, address);
-  expect(response.status).toBe(200);
-  return response;
+  let bar = await create_bar(name, address);
+  expect(bar.name).toBe(name);
+  return bar;
 }
 
 async function test_get_bar(name) {
-  const response = await get_bar(name);
-  expect(response.status).toBe(200);
-  return response;
+  let bar = await get_bar(name);
+  expect(bar.name).toBe(name);
+  return bar;
 }
 
 async function test_get_bars(names) {
-  const responses = await get_bars(names);
-  for (let i = 0; i < responses.length; i++) {
-    const response = responses[i];
-    expect(response.status).toBe(200);
+  const bars = await get_bars(names);
+  for (let i = 0; i < bars.length; i++) {
+    const bar = bars[i];
+    expect(bar.name).toBe(names[i]);
   }
-  return responses;
+  return bars;
 }
 
 async function test_update_bar(bar) {
-  response = await update_bar(bar);
-  expect(response.status).toBe(200);
-  return response;
+  await update_bar(bar);
 }
 
 test('test delete_user', async () => {return test_delete_user('test')});

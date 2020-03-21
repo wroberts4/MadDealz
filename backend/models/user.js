@@ -50,7 +50,7 @@ export async function create_user(user) {
 		delete user_result.password;
 		delete user_result.email;
 
-    return { status: 201, message: "User successfully created", user: user_result };
+    return { status: 200, message: "User successfully created", user: user_result };
 }
 
 async function _get_user(username) {

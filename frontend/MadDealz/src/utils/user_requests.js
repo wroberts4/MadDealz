@@ -26,7 +26,7 @@ async function add_user(username, password, email){
      body: JSON.stringify(data)
   });
   // Returns a new user object.
-  return await response.json();
+  return await response;
 };
 
 /**
@@ -46,7 +46,7 @@ async function delete_user(username){
      },
   });
   // Returns a new user object.
-  return await response.json();
+  return await response;
 };
 
 /**
@@ -66,7 +66,7 @@ async function get_user(username){
      },
   });
   // Returns a new user object.
-  return await response.json();
+  return await response;
 };
 
 /**
@@ -113,45 +113,7 @@ async function update_user(user){
      body: JSON.stringify(user)
   });
   // Returns a new user object.
-  return await response.json();
+  return await response;
 };
 
-
-////////////////////////////////////// TESTS //////////////////////////////////////
-async function test_delete_user(username) {
-  let response = await delete_user(username);
-  console.log(response);
-}
-
-async function test_add_user(username, password, email) {
-  let user = await add_user(username, password, email);
-  console.log(user);
-  return user;
-}
-
-async function test_get_user(username) {
-  let user = await get_user(username);
-  console.log(user);
-  return user;
-}
-
-async function test_get_users(usernames) {
-  let users = await get_users(usernames);
-  console.log(users);
-  return users;
-}
-
-async function test_update_user(user) {
-  user = await update_user(user);
-  console.log(user);
-  return user;
-}
-
-async function test_suite() {
-  await test_delete_user('test');
-  await test_add_user('test', 'user', 'fake@gmail.com');
-  await test_get_user('test');
-  await test_get_users(['test']);
-  await test_update_user({'username': 'test', 'password': 'new_user'});
-}
-test_suite();
+module.exports = {add_user, delete_user, get_user, get_users, update_user};

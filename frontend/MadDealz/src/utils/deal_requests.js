@@ -22,17 +22,7 @@ async function create_deal(name, address){
      body: JSON.stringify(data)
   });
   // Returns a new user object.
-  return await response.json();
+  return await response;
 };
 
-////////////////////////////////////// TESTS //////////////////////////////////////
-async function test_create_deal(name, address) {
-  let deal = await create_deal(name, address);
-  console.log(deal);
-  return deal;
-}
-
-async function test_suite() {
-  await test_create_deal('test', 'fake street');
-}
-test_suite();
+module.exports = {create_deal};

@@ -23,7 +23,7 @@ async function create_bar(name, address){
      body: JSON.stringify(data)
   });
   // Returns a new bar object.
-  return await response.json();
+  return await response;
 };
 
 /**
@@ -42,7 +42,7 @@ async function delete_bar(name){
      },
   });
   // Returns a new bar object.
-  return await response.json();
+  return await response;
 };
 
 /**
@@ -61,7 +61,7 @@ async function get_bar(name){
      },
   });
   // Returns a new bar object.
-  return await response.json();
+  return await response;
 };
 
 /**
@@ -99,44 +99,7 @@ async function update_bar(bar){
      body: JSON.stringify(bar)
   });
   // Returns a new bar object.
-  return await response.json();
+  return await response;
 };
 
-////////////////////////////////////// TESTS //////////////////////////////////////
-async function test_delete_bar(name) {
-  let response = await delete_bar(name);
-  console.log(response);
-}
-
-async function test_create_bar(name, address) {
-  let bar = await create_bar(name, address);
-  console.log(bar);
-  return bar;
-}
-
-async function test_get_bar(name) {
-  let bar = await get_bar(name);
-  console.log(bar);
-  return bar;
-}
-
-async function test_get_bars(names) {
-  let bars = await get_bars(names);
-  console.log(bars);
-  return bars;
-}
-
-async function test_update_bar(bar) {
-  bar = await update_bar(bar);
-  console.log(bar);
-  return bar;
-}
-
-async function test_suite() {
-  await test_delete_bar('test');
-  await test_create_bar('test', 'fake street');
-  await test_get_bar('test');
-  await test_get_bars(['test']);
-  await test_update_bar({'name': 'test', 'address': 'new fake street'});
-}
-test_suite();
+module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar};

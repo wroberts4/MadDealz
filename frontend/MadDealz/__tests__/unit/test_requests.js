@@ -1,20 +1,6 @@
-import user_requests from '../../src/requests/user_requests.js';
-import deal_requests from '../../src/requests/deal_requests';
-import bar_requests from '../../src/requests/bar_requests';
-
-const delete_user = user_requests.delete_user;
-const add_user = user_requests.add_user;
-const get_user = user_requests.get_user;
-const get_users = user_requests.get_users;
-const update_user = user_requests.update_user;
-
-const create_deal = deal_requests.create_deal;
-
-const create_bar = bar_requests.create_bar;
-const delete_bar = bar_requests.delete_bar;
-const get_bar = bar_requests.get_bar;
-const get_bars = bar_requests.get_bars;
-const update_bar = bar_requests.update_bar;
+import {delete_user, add_user, get_user, get_users, update_user} from '../../src/requests/user_requests.js';
+import {create_deal} from '../../src/requests/deal_requests';
+import {create_bar, delete_bar, get_bar, get_bars, update_bar} from '../../src/requests/bar_requests';
 
 async function undefined_error(promise, var_name) {
   let unexpected_error = 'Expected an error when getting ' + var_name + ' that is not in database';

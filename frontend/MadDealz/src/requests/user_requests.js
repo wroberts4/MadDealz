@@ -1,6 +1,6 @@
 const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
 
-//TODO: encrypt_password, verify_password, add_review
+//TODO: add_review
 /**
  * Description: Add a user into the system.
  *

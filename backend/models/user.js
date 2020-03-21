@@ -64,13 +64,13 @@ async function _get_user(username) {
 
 export async function get_user(username) {
   let user = await _get_user(username);
- 	
-	delete user.password;
-	delete user.email;
-  
-	if (user == undefined)
+
+  if (user == undefined)
     return { status: 404, message: "User not found", user: user};
 
+  delete user.password;
+  delete user.email;
+  
   return {status: 200, message: "User successfully retrieved", user: user};
 }
 

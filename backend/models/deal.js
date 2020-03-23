@@ -7,10 +7,11 @@ export async function create_deal(deal) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
-    let result = await dbo.collection('deals').insertOne(deal);
-  
-    const query = { _id: db_util.ObjectId(deal.bar) };
-    let result1 = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': result.ops[0]._id.toString() } }, { upsert: false });
+    //let result = await dbo.collection('deals').insertOne(deal);
+    let bar_id = db_util.ObjectId(deal.bar);
+    const query = { _id: bar_id };
+    delete deal.bar;
+    let result = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': deal } }, { upsert: false });
     con.close();
     
     if (result == null)

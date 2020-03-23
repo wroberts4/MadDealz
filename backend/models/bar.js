@@ -19,8 +19,14 @@ export async function create_bar(bar) {
 export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
+
+    let query;
+    if (typeof id === 'object')
+      query = { _id: id };
+    else
+      query = { _id: db_util.ObjectId(id) };
   
-    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
+    let bar = await dbo.collection("bars").findOne({ query }, {});
     con.close();
     
     if (bar == undefined)
@@ -66,8 +72,13 @@ export async function get_bar(id) {
         values[key] = bar[key];
       }
     }
-  
-    const query = { _id: db_util.ObjectId(bar._id) };
+    
+    let query;
+    if (typeof bar._id === 'object')
+      query = { _id: bar._id };
+    else
+      query = { _id: db_util.ObjectId(bar._id) };
+
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
   

@@ -41,6 +41,8 @@ async function delete_bar(id){
   if (response.status != 200) {
     throw (await response.json()).message;
   }
+
+  return (await response.json()).message;
 };
 
 /**
@@ -121,6 +123,7 @@ async function update_bar(bar){
   if (response.status != 200) {
     throw (await response.json()).message;
   }
+  return (await response.json()).message;
 };
 
 module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar, get_bar_list};

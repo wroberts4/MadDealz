@@ -70,11 +70,21 @@ async function test_create_deal(name, address) {
 }
 
 ///////////////////////////////////// BAR TESTS /////////////////////////////////////
-async function test_delete_bar(name) {
-  await delete_bar(name);
+async function test_delete_bar() {
+  let bar = await create_bar("test bar", "test address");
+  expect(bar.name).toBe("test bar");
+  
+  let res = await delete_bar(bar._id);
+  expect(res).toBe("Bar deleted successfully");
+
+  try {
+    await get_bar(bar._id);
+  } catch (err) {
+    expect(err).toBe("Bar does not exist");
+  }  
 
   // Error cases.
-  await undefined_error(delete_bar(undefined), 'name');
+  //await undefined_error(delete_bar(undefined), 'name');
 }
 
 async function test_create_bar(name, address) {
@@ -87,20 +97,30 @@ async function test_create_bar(name, address) {
   return bar;
 }
 
-async function test_get_bar(name) {
-  let bar = await get_bar(name);
-  expect(bar.name).toBe(name);
+async function test_get_bar() {
+  let res = await create_bar("test name", "test address");
+
+  let bar = await get_bar(res._id);
+  expect(bar.name).toBe("test name");
+
+  await delete_bar(res._id);
 
   // Error cases.
-  await undefined_error(get_bar(undefined), 'name');
+  //await undefined_error(get_bar(undefined), 'name');
   return bar;
 }
 
-async function test_get_bars(names) {
-  const bars = await get_bars(names);
+async function test_get_bars() {
+  let ids = [];
+  let res = await create_bar("test name 1", "test address 1");
+  ids.push(res._id);
+  res = await create_bar("test name 2", "test address 2");
+  ids.push(res._id);
+  const bars = await get_bars(ids);
   for (let i = 0; i < bars.length; i++) {
     const bar = bars[i];
-    expect(bar.name).toBe(names[i]);
+    expect(bar._id).toBe(ids[i]);
+    await delete_bar(ids[i]);
   }
 
   // Error cases.
@@ -108,8 +128,12 @@ async function test_get_bars(names) {
   return bars;
 }
 
-async function test_update_bar(bar) {
-  await update_bar(bar);
+async function test_update_bar() {
+  let res = await create_bar({name: 'test', address: 'fake street'});
+  let bar = {_id: res._id, name: 'test', address: 'new fake street'}
+  let update_res = await update_bar(bar);
+  expect(update_res).toBe("Bar updated successfully");
+  await delete_bar(res._id);
 
   // Error cases.
   await undefined_error(update_bar(undefined), 'bar');
@@ -123,8 +147,8 @@ test('test update_user', async () => {return test_update_user({'username': 'test
 
 //test('test create_deal', async () => {return test_create_deal('test', 'fake street')});
 
-test('test delete_bar', async () => {return test_delete_bar('test')});
+test('test delete_bar', async () => {return test_delete_bar()});
 test('test create_bar', async () => {return test_create_bar('test', 'fake street')});
-test('test get_bar', async () => {return test_get_bar('test')});
-test('test get_bars', async () => {return test_get_bars(['test'])});
-test('test update_bar', async () => {return test_update_bar({'name': 'test', 'address': 'new fake street'})});
+test('test get_bar', async () => {return test_get_bar()});
+test('test get_bars', async () => {return test_get_bars()});
+test('test update_bar', async () => {return test_update_bar()});

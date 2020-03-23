@@ -27,9 +27,9 @@ router.get('/', async (req, res) => {
     const id = req.query.id;
     console.log(id);
 
-    let rc = await Bar.get_bar(id);
+    let rc = await Deal.get_deal(id);
     
-    return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
+    return res.status(rc.status).json({ message: rc.message, deal: rc.deal });
 });
 
 module.exports = router;

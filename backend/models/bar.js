@@ -21,9 +21,9 @@ export async function get_bar(id) {
     let dbo = con.db(db_util.db_name);
 
     let query;
-    if (typeof id === 'object')
-      query = { _id: id };
-    else
+    // if (typeof id === 'object')
+    //   query = { _id: id };
+    // else
       query = { _id: db_util.ObjectId(id) };
   
     let bar = await dbo.collection("bars").findOne({ query }, {});

@@ -83,10 +83,18 @@ async function get_bars(ids){
 /**
  * Description: Get list of bars sorted by closest location to user
  *
+ * @param {string} lat
+ * @param {string} lon
+ * @param {int} limit
+ * 
  * @return {list of object} list of bar objects containing name and address.
  */
-async function get_bar_list(){
-  const response = await fetchWithTimeout('/bar/list', {
+async function get_bar_list(lat=undefined, lon=undefined, limit){
+  let url = '/bar/list?limit=' + limit;
+  if (lat && lon)
+    url = url + '&lat=' + lat  + '&lon=' + lon;
+
+  const response = await fetchWithTimeout(url, {
     method: 'GET'
   });
   if (response.status != 200) {
@@ -100,8 +108,7 @@ async function get_bar_list(){
  * Description: Update a bar in the system.
  *
  * @param {object} bar
- *   @subparam   {string} name
- *   @subpparam  {string} address
+ *   @subparam   {string} id
  */
 async function update_bar(bar){
   const response = await fetchWithTimeout('/bar/update', {

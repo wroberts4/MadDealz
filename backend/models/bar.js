@@ -24,9 +24,10 @@ export async function get_bar(id) {
     // if (typeof id === 'object')
     //   query = { _id: id };
     // else
-    const query = { "_id": db_util.ObjectId(id) };
+    const query = { '_id': db_util.ObjectId(id) };
   
-    let bar = await dbo.collection("bars").findOne({ query }, {});
+    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
+    console.log(bar);
     con.close();
     
     if (bar == undefined)

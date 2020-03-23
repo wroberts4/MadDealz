@@ -20,11 +20,11 @@ export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
-    let query;
+
     // if (typeof id === 'object')
     //   query = { _id: id };
     // else
-    query = { "_id": db_util.ObjectId(id) };
+    const query = { "_id": db_util.ObjectId(id) };
   
     let bar = await dbo.collection("bars").findOne({ query }, {});
     con.close();

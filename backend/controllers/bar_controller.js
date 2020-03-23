@@ -33,7 +33,7 @@ router.post('/create', async (req, res) => {
         deals: req.body.deals ? req.body.deals : [],
         favorites: 0,
         rating: null,
-        comments: []
+        reviews: []
     });
 
     return res.status(rc.status).json({ message: rc.message, bar: rc.bar });

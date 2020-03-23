@@ -22,4 +22,12 @@ router.post('/create', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message, deal: rc.deal });
 });
 
-router.get('/')
+router.get('/', async (req, res) => {
+    console.log("/bar GET request received");
+    const id = req.query.id;
+    console.log(id);
+
+    let rc = await Bar.get_bar(id);
+    
+    return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
+});

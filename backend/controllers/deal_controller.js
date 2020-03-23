@@ -23,7 +23,7 @@ router.post('/create', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    console.log("/bar GET request received");
+    console.log("/deal GET request received");
     const id = req.query.id;
     console.log(id);
 

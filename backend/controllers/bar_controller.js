@@ -64,4 +64,14 @@ router.delete('/delete', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message });
 });
 
+router.get('/deals', async (req, res) => {
+    console.log("/bar/deals GET request received");
+    const id = req.query.id;
+    console.log(id);
+
+    let rc = await Bar.get_deals(id);
+    
+    return res.status(rc.status).json({ message: rc.message, deals: rc.deals });
+});
+
 module.exports = router;

@@ -96,6 +96,25 @@ export async function get_bar(id) {
     return { status: 200, message: "Bar deleted successfully" };
   }
 
+  export async function get_deals(bar_id) {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+
+    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(bar_id) }, {});
+
+    const deal_ids = bar.deals;
+    let deals = [];
+
+    let query, deal;
+    for (id of deal_ids) {
+      query = { _id: db_util.ObjectId(id) };
+      deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
+      deals.push(deal);
+    }
+
+    return { status: 200, message: "Deals fetched successfully", deals: deals };
+  }
+
   function get_distance(x1, y1, x2, y2) {
     let radlat1 = Math.PI * x1/180
     let radlat2 = Math.PI * x2/180

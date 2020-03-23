@@ -29,10 +29,10 @@ async function create_bar(name, address){
 /**
  * Description: Delete a bar into the system.
  *
- * @param  {string} name
+ * @param  {string} id
  */
-async function delete_bar(name){
-  const response = await fetchWithTimeout('/bar/delete?name=' + name, {
+async function delete_bar(id){
+  const response = await fetchWithTimeout('/bar/delete?id=' + id, {
      method: 'DELETE',
      headers: {
        'Content-Type': 'application/json'
@@ -46,12 +46,12 @@ async function delete_bar(name){
 /**
  * Description: Get a bar from the system.
  *
- * @param  {string} name
+ * @param  {string} id
  *
  * @return {object} bar object containing name and address.
  */
-async function get_bar(name){
-  const response = await fetchWithTimeout('/bar?name=' + name, {
+async function get_bar(id){
+  const response = await fetchWithTimeout('/bar?id=' + id, {
      method: 'GET',
      headers: {
        'Content-Type': 'application/json'
@@ -67,17 +67,33 @@ async function get_bar(name){
 /**
  * Description: Get a bar from the system.
  *
- * @param  {list of strings} names
+ * @param  {list of strings} ids
  *
  * @return {list of object} list of bar objects containing name and address.
  */
-async function get_bars(names){
+async function get_bars(ids){
   let bars = [];
-  for (let i = 0; i < names.length; i++) {
-      bars.push(await get_bar(names[i]));
+  for (let i = 0; i < ids.length; i++) {
+      bars.push(await get_bar(ids[i]));
   }
   // Returns a new bar object.
   return bars;
+};
+
+/**
+ * Description: Get list of bars sorted by closest location to user
+ *
+ * @return {list of object} list of bar objects containing name and address.
+ */
+async function get_bar_list(){
+  const response = await fetchWithTimeout('/bar/list', {
+    method: 'GET'
+  });
+  if (response.status != 200) {
+    throw (await response.json()).message;
+  }
+  // Returns a list of bar objects
+  return await response.json().bars;
 };
 
 /**
@@ -100,4 +116,4 @@ async function update_bar(bar){
   }
 };
 
-module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar};
+module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar, get_bar_list};

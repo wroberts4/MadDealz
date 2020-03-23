@@ -11,10 +11,10 @@ router.use(cors());
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
-    const name = req.query.name;
-    console.log(name);
+    const id = req.query.id;
+    console.log(id);
 
-    let rc = await Bar.get_bar(name);
+    let rc = await Bar.get_bar(id);
     
     return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
 });
@@ -59,9 +59,8 @@ router.put('/update', async (req, res) => {
 
 router.delete('/delete', async (req, res) => {
     console.log('/bar/delete DELETE request received');
-    console.log(req.body);
 
-    let rc = await Bar.delete_bar(req.query.name);
+    let rc = await Bar.delete_bar(req.query.id);
     return res.status(rc.status).json({ message: rc.message });
 });
 

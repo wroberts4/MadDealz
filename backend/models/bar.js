@@ -9,16 +9,18 @@ export async function create_bar(bar) {
 
     let result = await dbo.collection('bars').insertOne(bar);
     con.close;
+
     if (result == null)
       return { status: 500, message: "Error adding bar to database" };
+
     return { status: 200, message: "Bar successfully created", bar: result.ops[0] };
 }
 
-export async function get_bar(name) {
+export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
-    let bar = await dbo.collection("bars").findOne({ 'name': name }, {});
+    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
     con.close();
     
     if (bar == undefined)
@@ -37,6 +39,7 @@ export async function get_bar(name) {
     if (bars.length == 0)
       return { status: 404, message: "No bars found", bars: bars};
 
+    // users current location, otherwise if none specified then madison's lat/lon
     let user_loc = loc ? loc : { lat: 43.0731, lon: -89.401230 };
     for (let bar of bars) {
       bar.distance = get_distance(bar.location.lat, bar.location.lon, user_loc.lat, user_loc.lon);
@@ -50,8 +53,8 @@ export async function get_bar(name) {
   }
 
   export async function update_bar(bar) {
-    if (bar.name == '' || bar.name == null) {
-      return { status: 400, message: "Must specify a bar name"};
+    if (bar.id == '' || bar.id == null) {
+      return { status: 400, message: "Must specify a bar id"};
     }
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
@@ -64,7 +67,7 @@ export async function get_bar(name) {
       }
     }
   
-    const query = { 'name': bar.name };
+    const query = { _id: db_util.ObjectId(bar._id) };
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
   
@@ -77,14 +80,14 @@ export async function get_bar(name) {
     return { status: 200, message: "Bar updated successfully"};
   }
 
-  export async function delete_bar(name) {
-    if (name == '' || name == null)
-      return { status: 400, message: "Must specify a bar name"};
+  export async function delete_bar(id) {
+    if (id == '' || id == null)
+      return { status: 400, message: "Must specify a bar id"};
   
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
-    const query = { 'name': name };
+    const query = { _id: db_util.ObjectId(bar._id) };
     let result = await dbo.collection("bars").deleteOne(query, {});
   
     if (result.deletedCount == 0)

@@ -129,8 +129,8 @@ async function test_get_bars() {
 }
 
 async function test_update_bar() {
-  let res = await create_bar({name: 'test', address: 'fake street'});
-  let bar = {_id: res._id, name: 'test', address: 'new fake street'}
+  let res = await create_bar('test', 'fake street');
+  let bar = {_id: res._id, name: 'test', address: 'new fake street'};
   let update_res = await update_bar(bar);
   expect(update_res).toBe("Bar updated successfully");
   await delete_bar(res._id);

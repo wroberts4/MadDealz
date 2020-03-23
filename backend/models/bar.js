@@ -87,10 +87,11 @@ export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
+    let query;
     if (typeof id === 'object')
-      let query = { _id: id };
+      query = { _id: id };
     else
-      let query = { _id: db_util.ObjectId(id) };
+      query = { _id: db_util.ObjectId(id) };
     let result = await dbo.collection("bars").deleteOne(query, {});
   
     if (result.deletedCount == 0)

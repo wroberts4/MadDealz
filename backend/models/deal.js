@@ -10,7 +10,7 @@ export async function create_deal(deal) {
     let result = await dbo.collection('deals').insertOne(deal);
   
     const query = { _id: db_util.ObjectId(deal.bar) };
-    let result1 = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': deal.bar } }, { upsert: false });
+    let result1 = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': result.ops[0]._id } }, { upsert: false });
     con.close();
     
     if (result == null)

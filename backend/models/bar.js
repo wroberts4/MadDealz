@@ -24,7 +24,7 @@ export async function get_bar(id) {
     // if (typeof id === 'object')
     //   query = { _id: id };
     // else
-      query = { _id: db_util.ObjectId(id) };
+    query = { _id: db_util.ObjectId(id) };
   
     let bar = await dbo.collection("bars").findOne({ query }, {});
     con.close();

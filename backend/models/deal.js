@@ -1,8 +1,8 @@
 import * as db_util from '../db';
 
 export async function create_deal(deal) {
-    if (deal.name == null || deal.address == null || deal.name == '' || deal.address == '')
-        return { status: 400, message: "Deal name and info must be filled out" };
+    if (deal.info == null || deal.times == null || deal.info == '' || deal.times == '')
+        return { status: 400, message: "Deal info and times must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);

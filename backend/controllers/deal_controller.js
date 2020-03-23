@@ -31,3 +31,5 @@ router.get('/', async (req, res) => {
     
     return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
 });
+
+module.exports = router;

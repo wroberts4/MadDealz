@@ -33,3 +33,27 @@ export async function get_deal(id) {
 
   return {status: 200, message: "Deal successfully retrieved", deal: deal};
 }
+
+export async function delete_deal(id) {
+  if (id == '' || id == null)
+    return { status: 400, message: "Must specify a deal id"};
+
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  let query;
+  if (typeof id === 'object')
+    query = { _id: id };
+  else
+    query = { _id: db_util.ObjectId(id) };
+  
+  let deal = await dbo.collection("deals").findOne(query, {});
+  await dbo.collection("bars").updateOne({ _id: db_util.ObjectId(deal.bar) }, { $pull: { 'deals': id } });
+  
+  let result = await dbo.collection("deals").deleteOne(query, {});
+
+  if (result.deletedCount == 0)
+    return { status: 500, message: "Deal not found"};
+  
+  return { status: 200, message: "Deal deleted successfully" };
+}

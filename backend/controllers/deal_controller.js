@@ -32,4 +32,11 @@ router.get('/', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message, deal: rc.deal });
 });
 
+router.delete('/delete', async (req, res) => {
+    console.log('/deal/delete DELETE request received');
+
+    let rc = await Deal.delete_deal(req.query.id);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
 module.exports = router;

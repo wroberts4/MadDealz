@@ -23,14 +23,14 @@ export async function get_bar(id) {
   
     let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
     console.log(bar);
-
-    let deals = await get_deals(bar.deals);
-    bar.deals = deals;
-    con.close();
     
     if (bar == undefined)
       return { status: 404, message: "Bar does not exist", bar: bar};
   
+    let deals = await get_deals(bar.deals);
+    bar.deals = deals;
+    con.close();
+
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
   }
 

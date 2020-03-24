@@ -138,6 +138,18 @@ export async function get_bar(id) {
     return deals;
   }
 
+  export async function update_favorites(id, value) {
+    value = Number(value);
+    if (value != -1 && value != 1)
+      return { status: 400, message: "value must be -1 or 1" };
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+
+    let query = { _id: db_util.ObjectId(id) };
+    let result = await dbo.collection("bars").updateOne(query, { $inc: { favorites: value }}, {});
+    return { status: 200, message: "Bar favorites updated successfully" };
+  }
+
   function get_distance(x1, y1, x2, y2) {
     let radlat1 = Math.PI * x1/180
     let radlat2 = Math.PI * x2/180

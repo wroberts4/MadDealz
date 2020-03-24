@@ -74,4 +74,13 @@ router.get('/deals', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message, deals: rc.deals });
 });
 
+router.put('/update_favorites', async (req, res) => {
+    console.log("/bar/favorites PUT request received");
+    console.log(req.body);
+    
+    let rc = await Bar.update_favorites(req.body.id, req.body.value);
+
+    return res.status(rc.status).json({ message: rc.message });
+});
+
 module.exports = router;

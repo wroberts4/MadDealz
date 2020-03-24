@@ -15,6 +15,10 @@ import * as db_util from '../db';
 //         deals: [String]
 //     },
 //     friends: [String],
+//     friend_requests: {
+//         incoming: [String],
+//         outgoing: [String]
+//     },
 //     comments: [String],
 //     bars_owned: [String]
 
@@ -34,9 +38,9 @@ export async function create_user(user) {
     if (result != null)
       return { status: 409, message: "Email already in use" };
 
-    result = await dbo.collection('users').findOne({password: user.password});
-    if (result != null)
-      return { status: 409, message: "password already taken" };
+    // result = await dbo.collection('users').findOne({password: user.password});
+    // if (result != null)
+    //   return { status: 409, message: "password already taken" };
     
     user.password = encryptPass(user.password);
 
@@ -168,6 +172,36 @@ export async function remove_favorite(username, bar_id) {
   await dbo.collection("users").updateOne(query, { $pull: { 'favorites.bars': bar_id } });
 
   return { status: 200, message: "Favorite removed successfully" };
+}
+
+export async function send_friend_request(requester, requestee) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+  
+  const query = { 'username': requester };
+  await dbo.collection("users").updateOne(query, { $addToSet: { 'friend_requests.outgoing': requestee } }, { upsert: false });
+  
+  const query2 = { 'username': requestee };
+  await dbo.collection("users").updateOne(query2, { $addToSet: { 'friend_requests.incoming': requester } }, { upsert: false });
+  con.close();
+
+  return { status: 200, message: "Friend request sent successfully" };
+}
+
+export async function accept_friend_request(requester, requestee) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { 'username': requestee };
+  await dbo.collection("users").updateOne(query, { $addToSet: { 'friends': requester } }, { upsert: false });
+  await dbo.collection("users").updateOne(query, { $pull: { 'friend_requests.incoming': requester } });
+
+  const query2 = { 'username': requester };
+  await dbo.collection("users").updateOne(query2, { $addToSet: { 'friends': requestee } }, { upsert: false });
+  await dbo.collection("users").updateOne(query2, { $pull: { 'friend_requests.outgoing': requestee } });
+  con.close();
+
+  return { status: 200, message: "Friend request accepted successfully" };
 }
 
 function encryptPass(password) {

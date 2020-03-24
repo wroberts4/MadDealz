@@ -33,6 +33,10 @@ router.post('/create', async (req, res) => {
             deals: []
         },
         friends: [],
+        friend_requests: {
+            incoming: [],
+            outgoing: []
+        },
         comments: [],
         bars_owned: []
     });
@@ -79,6 +83,20 @@ router.delete('/remove_favorite', async (req, res) => {
     console.log('/user/remove_favorite DELETE request received');
 
     let rc = await User.remove_favorite(req.body.username, req.body.bar_id);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
+router.put('/friend_request', async (req, res) => {
+    console.log('/user/friend_request PUT request received');
+
+    let rc = await User.send_friend_request(req.body.requester, req.body.requestee);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
+router.put('/accept_friend', async (req, res) => {
+    console.log('/user/accept_friend PUT request received');
+
+    let rc = await User.accept_friend_request(req.body.requester, req.body.requestee);
     return res.status(rc.status).json({ message: rc.message });
 });
 

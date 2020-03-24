@@ -1,4 +1,5 @@
 import * as db_util from '../db';
+import { delete_deal } from './deal';
 
 export async function create_bar(bar) {
     if (bar.name == null || bar.address == null || bar.name == '' || bar.address == '')
@@ -19,12 +20,6 @@ export async function create_bar(bar) {
 export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
-
-
-    // if (typeof id === 'object')
-    //   query = { _id: id };
-    // else
-    const query = { '_id': db_util.ObjectId(id) };
   
     let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
     console.log(bar);
@@ -105,6 +100,13 @@ export async function get_bar(id) {
   
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
+
+    // delete all deals corrosponding to bar
+    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
+    let deal_id;
+    for (deal_id of bar.deals) {
+      await delete_deal(deal_id);
+    }
   
     let query;
     if (typeof id === 'object')

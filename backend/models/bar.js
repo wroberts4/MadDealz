@@ -28,6 +28,9 @@ export async function get_bar(id) {
   
     let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
     console.log(bar);
+
+    let deals = await get_deals(bar.deals);
+    bar.deals = deals;
     con.close();
     
     if (bar == undefined)
@@ -42,6 +45,8 @@ export async function get_bar(id) {
   
     let bars = await dbo.collection("bars").find({}).toArray();
     con.close();
+
+    console.log(bars);
     
     if (bars.length == 0)
       return { status: 404, message: "No bars found", bars: bars};
@@ -50,6 +55,8 @@ export async function get_bar(id) {
     let user_loc = loc ? loc : { lat: 43.0731, lon: -89.401230 };
     for (let bar of bars) {
       bar.distance = get_distance(bar.location.lat, bar.location.lon, user_loc.lat, user_loc.lon);
+      let deals = await get_deals(bar.deals);
+      bar.deals = deals;
     }
 
     bars.sort((a, b) => {
@@ -112,25 +119,22 @@ export async function get_bar(id) {
     return { status: 200, message: "Bar deleted successfully" };
   }
 
-  // export async function get_deals(bar_id) {
-  //   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
-  //   let dbo = con.db(db_util.db_name);
-    
-  //   let bar = await dbo.collection("bars").findOne({ _id: db_util.ObjectId(bar_id) }, {});
+  export async function get_deals(deal_ids) {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+  
+    let deals = [];
+    let id;
 
-  //   const deal_ids = bar.deals;
-  //   let deals = [];
+    for (id of deal_ids) {
+      let deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
+      delete deal.bar;
+      deals.push(deal);
+    }
+    con.close();
 
-  //   let query, deal;
-  //   for (id of deal_ids) {
-  //     query = { _id: db_util.ObjectId(id) };
-  //     deal = await dbo.collection("deals").findOne({ query }, {});
-  //     deals.push(deal);
-  //   }
-  //   con.close();
-
-  //   return { status: 200, message: "Deals fetched successfully", deals: deals };
-  // }
+    return deals;
+  }
 
   function get_distance(x1, y1, x2, y2) {
     let radlat1 = Math.PI * x1/180

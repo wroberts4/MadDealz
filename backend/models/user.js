@@ -153,7 +153,7 @@ export async function delete_user(username) {
   return { status: 200, message: "User deleted successfully" };
 }
 
-export async function add_favorite(username, bar_id) {
+export async function add_favorite_bar(username, bar_id) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -161,17 +161,38 @@ export async function add_favorite(username, bar_id) {
   let result = await dbo.collection("users").updateOne(query, { $addToSet: { 'favorites.bars': bar_id } }, { upsert: false });
   con.close();
 
-  return { status: 200, message: "Favorite added successfully" };
+  return { status: 200, message: "Favorite bar added successfully" };
 }
 
-export async function remove_favorite(username, bar_id) {
+export async function remove_favorite_bar(username, bar_id) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
   const query = { 'username': username };
   await dbo.collection("users").updateOne(query, { $pull: { 'favorites.bars': bar_id } });
 
-  return { status: 200, message: "Favorite removed successfully" };
+  return { status: 200, message: "Favorite bar removed successfully" };
+}
+
+export async function add_favorite_deal(username, deal_id) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { 'username': username };
+  let result = await dbo.collection("users").updateOne(query, { $addToSet: { 'favorites.deals': deal_id } }, { upsert: false });
+  con.close();
+
+  return { status: 200, message: "Favorite deal added successfully" };
+}
+
+export async function remove_favorite_deal(username, deal_id) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { 'username': username };
+  await dbo.collection("users").updateOne(query, { $pull: { 'favorites.deals': deal_id } });
+
+  return { status: 200, message: "Favorite deal removed successfully" };
 }
 
 export async function send_friend_request(requester, requestee) {

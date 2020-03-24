@@ -72,17 +72,31 @@ router.delete('/delete', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message });
 });
 
-router.put('/add_favorite', async (req, res) => {
-    console.log('/user/add_favorite PUT request received');
+router.put('/add_favorite_bar', async (req, res) => {
+    console.log('/user/add_favorite_bar PUT request received');
 
-    let rc = await User.add_favorite(req.body.username, req.body.bar_id);
+    let rc = await User.add_favorite_bar(req.body.username, req.body.bar_id);
     return res.status(rc.status).json({ message: rc.message });
 });
 
-router.delete('/remove_favorite', async (req, res) => {
-    console.log('/user/remove_favorite DELETE request received');
+router.delete('/remove_favorite_bar', async (req, res) => {
+    console.log('/user/remove_favorite_bar DELETE request received');
 
-    let rc = await User.remove_favorite(req.body.username, req.body.bar_id);
+    let rc = await User.remove_favorite_bar(req.body.username, req.body.bar_id);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
+router.put('/add_favorite_deal', async (req, res) => {
+    console.log('/user/add_favorite_deal PUT request received');
+
+    let rc = await User.add_favorite_deal(req.body.username, req.body.deal_id);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
+router.delete('/remove_favorite_deal', async (req, res) => {
+    console.log('/user/remove_favorite_deal DELETE request received');
+
+    let rc = await User.remove_favorite_deal(req.body.username, req.body.deal_id);
     return res.status(rc.status).json({ message: rc.message });
 });
 

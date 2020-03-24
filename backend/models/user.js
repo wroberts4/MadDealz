@@ -204,6 +204,20 @@ export async function accept_friend_request(requester, requestee) {
   return { status: 200, message: "Friend request accepted successfully" };
 }
 
+export async function remove_friend(user1, user2) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { 'username': user1 };
+  await dbo.collection("users").updateOne(query, { $pull: { 'friends': user2 } });
+
+  const query2 = { 'username': user2 };
+  await dbo.collection("users").updateOne(query2, { $pull: { 'friends': user1 } });
+  con.close();
+
+  return { status: 200, message: "Friend removed successfully" };
+}
+
 function encryptPass(password) {
   let salt = crypto.randomBytes(16).toString('base64');
   let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");

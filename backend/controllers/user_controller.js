@@ -100,4 +100,11 @@ router.put('/accept_friend', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message });
 });
 
+router.delete('/remove_friend', async (req, res) => {
+    console.log('/user/remove_friend DELETE request received');
+
+    let rc = await User.remove_friend(req.body.user1, req.body.user2);
+    return res.status(rc.status).json({ message: rc.message });
+});
+
 module.exports = router;

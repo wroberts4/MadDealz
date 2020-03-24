@@ -39,4 +39,15 @@ router.delete('/delete', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message });
 });
 
+router.put('/update', async (req, res) => {
+    console.log('/deal/update PUT request received');
+
+    let rc = await Deal.update_deal({
+        id: req.body.id,
+        info: req.body.info,
+        times: req.body.times
+    });
+    return res.status(rc.status).json({ message: rc.message });
+});
+
 module.exports = router;

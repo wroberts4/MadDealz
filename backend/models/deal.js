@@ -57,3 +57,33 @@ export async function delete_deal(id) {
   
   return { status: 200, message: "Deal deleted successfully" };
 }
+
+export async function update_deal(deal) {
+  if (deal.id == '' || deal.id == null) {
+    return { status: 400, message: "Must specify a deal id"};
+  }
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+  
+  let values = {
+    info: deal.info,
+    times: deal.times
+  };
+  
+  let query;
+  if (typeof deal.id === 'object')
+    query = { _id: deal.id };
+  else
+    query = { _id: db_util.ObjectId(deal.id) };
+
+  let result = await dbo.collection("deals").updateOne(query, { $set: values}, { upsert: false });
+  con.close();
+
+  if (result.matchedCont == 0)
+    return { status: 500, message: "Deal not found"};
+
+  if (result.modifiedCount == 0 && result.matchedCount == 1)
+    return { status: 200, message: "Nothing to update"};
+
+  return { status: 200, message: "Deal updated successfully"};
+}

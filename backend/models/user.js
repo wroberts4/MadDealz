@@ -149,6 +149,27 @@ export async function delete_user(username) {
   return { status: 200, message: "User deleted successfully" };
 }
 
+export async function add_favorite(username, bar_id) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { 'username': username };
+  let result = await dbo.collection("users").updateOne(query, { $addToSet: { 'favorites.bars': bar_id } }, { upsert: false });
+  con.close();
+
+  return { status: 200, message: "Favorite added successfully" };
+}
+
+export async function remove_favorite(username, bar_id) {
+  let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+  let dbo = con.db(db_util.db_name);
+
+  const query = { 'username': username };
+  await dbo.collection("users").updateOne(query, { $pull: { 'favorites.bars': bar_id } });
+
+  return { status: 200, message: "Favorite removed successfully" };
+}
+
 function encryptPass(password) {
   let salt = crypto.randomBytes(16).toString('base64');
   let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");

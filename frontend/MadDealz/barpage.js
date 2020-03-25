@@ -1,15 +1,18 @@
 // Page that shows up when a bar object is clicked
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, Dimensions } from 'react-native';
 
-export default class Barpage extends Component {
+class Barpage extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Barpage.</Text>
-            </View>
-            
+            <SafeAreaView>
+                <ScrollView>
+                    <View style={styles.bar}>
+                        <Text style={{fontSize:20}}>Bar page.</Text>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 
@@ -20,5 +23,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    bar: {
+        flex: 1,
+        paddingTop: 15,
+        alignItems: 'center'
     }
 });
+
+export default Barpage;

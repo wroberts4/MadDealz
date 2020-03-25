@@ -53,6 +53,16 @@ Navigation.events().registerAppLaunchedListener(() => {
                 }
               }
             }
+          },
+          {
+            component: { // TEMPORARY FOR TESTING, does not belong on bottom tab
+              name: "BarpageScreen",
+              options: {
+                bottomTab: {
+                  text: 'BarPage'
+                }
+              }
+            }
           }
 
         ]

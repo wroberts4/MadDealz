@@ -7,9 +7,9 @@ class Barpage extends React.Component {
     render() {
         return (
             <SafeAreaView>
-                <ScrollView>
+                <ScrollView style={{backgroundColor:'black', height:Dimensions.get('screen').height}}>
                     <View style={styles.bar}>
-                        <Text style={{fontSize:20}}>Bar page.</Text>
+                        <Text style={{fontSize:20, color:'white'}}>Bar page.</Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>

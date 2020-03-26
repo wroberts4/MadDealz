@@ -14,11 +14,31 @@ export async function create_review(review) {
 
     let result = await dbo.collection("bars").updateOne(query, { $addToSet: { 'reviews': review_result.ops[0]._id.toString() } }, { upsert: false });
     con.close();
+
+    await update_score(query, Number(review.score));
     
     if (result == null)
       return { status: 500, message: "Error adding review to database" };
       
     return { status: 200, message: "Review successfully created", review: review };
+}
+
+async function update_score(query, score) {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+  
+    let bar = await dbo.collection("bars").findOne(query, {});
+    
+    let rating;
+    if (bar.rating == undefined) {
+        rating = score;
+    }
+    else {
+        rating = ((bar.rating * (bar.reviews.length - 1)) + score) / bar.reviews.length;
+    }
+
+    let result = await dbo.collection("bars").updateOne(query, { $set: { 'rating': rating } }, { upsert: false });
+    con.close();
 }
 
 export async function get_review(id) {
@@ -51,12 +71,32 @@ export async function get_review(id) {
     await dbo.collection("bars").updateOne({ _id: db_util.ObjectId(review.bar) }, { $pull: { 'reviews': id } });
     
     let result = await dbo.collection("reviews").deleteOne(query, {});
+
+    await update_score_delete({ _id: db_util.ObjectId(review.bar) }, review.score);
   
     if (result.deletedCount == 0)
       return { status: 500, message: "Review not found"};
     
     return { status: 200, message: "Review deleted successfully" };
   }
+
+  async function update_score_delete(query, score) {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+  
+    let bar = await dbo.collection("bars").findOne(query, {});
+    
+    let rating;
+    if (bar.reviews.length == 0) {
+        rating = null;
+    }
+    else {
+        rating = ((bar.rating * (bar.reviews.length + 1)) - score) / bar.reviews.length;
+    }
+
+    let result = await dbo.collection("bars").updateOne(query, { $set: { 'rating': rating } }, { upsert: false });
+    con.close();
+}
 
   export async function update_review(review) {
     if (review.id == '' || review.id == null) {

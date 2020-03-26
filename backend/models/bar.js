@@ -28,8 +28,8 @@ export async function get_bar(id) {
     if (bar == undefined)
       return { status: 404, message: "Bar does not exist", bar: bar};
   
-    let deals = await get_deals(bar.deals);
-    bar.deals = deals;
+    let rc = await get_deals(bar.deals);
+    bar.deals = rc.deals;
     con.close();
 
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
@@ -42,7 +42,7 @@ export async function get_bar(id) {
     let bars = await dbo.collection("bars").find({}).toArray();
     con.close();
 
-    console.log(bars);
+    //console.log(bars);
     
     if (bars.length == 0)
       return { status: 404, message: "No bars found", bars: bars};
@@ -51,8 +51,8 @@ export async function get_bar(id) {
     let user_loc = loc ? loc : { lat: 43.0731, lon: -89.401230 };
     for (let bar of bars) {
       bar.distance = get_distance(bar.location.lat, bar.location.lon, user_loc.lat, user_loc.lon);
-      let deals = await get_deals(bar.deals);
-      bar.deals = deals;
+      let rc = await get_deals(bar.deals);
+      bar.deals = rc.deals;
     }
 
     bars.sort((a, b) => {
@@ -127,21 +127,42 @@ export async function get_bar(id) {
     return { status: 200, message: "Bar deleted successfully" };
   }
 
-  export async function get_deals(deal_ids) {
+  export async function get_deals(bar_id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
+
+    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(bar_id) }, {});
   
     let deals = [];
     let id;
 
-    for (id of deal_ids) {
+    for (id of bar.deals) {
       let deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
       delete deal.bar;
       deals.push(deal);
     }
     con.close();
 
-    return deals;
+    return { status: 200, message: "Deals retrieved successfully", deals: deals };
+  }
+
+  export async function get_reviews(bar_id) {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+
+    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(bar_id) }, {});
+  
+    let reviews = [];
+    let id;
+
+    for (id of bar.reviews) {
+      let review = await dbo.collection("reviews").findOne({ '_id': db_util.ObjectId(id) }, {});
+      delete review.bar;
+      reviews.push(review);
+    }
+    con.close();
+
+    return { status: 200, message: "Reviews retrieved successfully", reviews: reviews };
   }
 
   export async function update_favorites(id, value) {

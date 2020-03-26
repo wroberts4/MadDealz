@@ -74,6 +74,16 @@ router.get('/deals', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message, deals: rc.deals });
 });
 
+router.get('/reviews', async (req, res) => {
+    console.log("/bar/reviews GET request received");
+    const id = req.query.id;
+    console.log(id);
+
+    let rc = await Bar.get_reviews(id);
+    
+    return res.status(rc.status).json({ message: rc.message, reviews: rc.reviews });
+});
+
 router.put('/update_favorites', async (req, res) => {
     console.log("/bar/favorites PUT request received");
     console.log(req.body);

@@ -1,6 +1,7 @@
 // Page that shows up when a bar object is clicked
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Dimensions } from 'react-native';
+import { Card } from 'react-native-elements';
 
 class Barpage extends React.Component {
 

@@ -14,8 +14,10 @@ class Barpage extends React.Component {
                     </View>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <Image
+                            // TODO: Figure out how to make the whole image appear regardless of image
+                            style={{height: 200, width:Dimensions.get('screen').width-20}}
                             source={require('./assets/UU.jpg')}
-                            style={{width:Dimensions.get('screen').width-20, height:200}}
+                            resizeMode="contain"
                         />
                     </View>
                     <Card title="Contact Us" containerStyle={{borderRadius:10, alignItems:'center'}}>

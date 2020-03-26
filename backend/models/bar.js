@@ -1,5 +1,6 @@
 import * as db_util from '../db';
 import { delete_deal } from './deal';
+import { delete_review } from './review';
 
 export async function create_bar(bar) {
     if (bar.name == null || bar.address == null || bar.name == '' || bar.address == '')
@@ -106,6 +107,11 @@ export async function get_bar(id) {
     let deal_id;
     for (deal_id of bar.deals) {
       await delete_deal(deal_id);
+    }
+
+    let review_id;
+    for (review_id of bar.reviews) {
+      await delete_review(review_id);
     }
   
     let query;

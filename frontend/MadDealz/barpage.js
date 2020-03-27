@@ -33,17 +33,4 @@ class Barpage extends React.Component {
 
 }
 
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center'
-//     },
-//     bar: {
-//         flex: 1,
-//         paddingTop: 15,
-//         alignItems: 'center'
-//     }
-// });
-
 export default Barpage;

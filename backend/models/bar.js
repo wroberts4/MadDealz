@@ -28,7 +28,7 @@ export async function get_bar(id) {
     if (bar == undefined)
       return { status: 404, message: "Bar does not exist", bar: bar};
   
-    let rc = await get_deals(bar.deals);
+    let rc = await get_deals(id);
     bar.deals = rc.deals;
     con.close();
 
@@ -51,7 +51,7 @@ export async function get_bar(id) {
     let user_loc = loc ? loc : { lat: 43.0731, lon: -89.401230 };
     for (let bar of bars) {
       bar.distance = get_distance(bar.location.lat, bar.location.lon, user_loc.lat, user_loc.lon);
-      let rc = await get_deals(bar.deals);
+      let rc = await get_deals(bar._id.toString());
       bar.deals = rc.deals;
     }
 

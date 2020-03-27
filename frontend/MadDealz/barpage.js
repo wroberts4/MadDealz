@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import { Card, Image } from 'react-native-elements';
 
+import styles from "./styles";
 class Barpage extends React.Component {
 
     render() {
         return (
             <SafeAreaView>
-                <ScrollView style={{backgroundColor:'black', height:Dimensions.get('screen').height}}>
+                <ScrollView style={styles.scroll}>
                     <View style={styles.bar}>
                         <Text style={{fontSize:20, color:'white'}}>Bar page.</Text>
                     </View>
@@ -32,17 +33,17 @@ class Barpage extends React.Component {
 
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    bar: {
-        flex: 1,
-        paddingTop: 15,
-        alignItems: 'center'
-    }
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center'
+//     },
+//     bar: {
+//         flex: 1,
+//         paddingTop: 15,
+//         alignItems: 'center'
+//     }
+// });
 
 export default Barpage;

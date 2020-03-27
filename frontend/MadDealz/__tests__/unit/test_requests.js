@@ -91,6 +91,8 @@ async function test_create_bar(name, address) {
   let bar = await create_bar(name, address);
   expect(bar.name).toBe(name);
 
+  await delete_bar(bar._id);
+
   // Error cases.
   await undefined_error(create_bar(undefined, address), 'name');
   await undefined_error(create_bar(name, undefined), 'address');

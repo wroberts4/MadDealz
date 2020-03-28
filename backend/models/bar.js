@@ -56,11 +56,10 @@ export async function get_bar(id) {
     bars.sort((a, b) => {
       return a.distance - b.distance;
     });
+    
+    if (limit)
+      bars = bars.slice(0, limit);
 
-    bars = bars.slice(0, limit);
-
-
-  
     return {status: 200, message: "Bars successfully retrieved", bars: bars};
   }
 

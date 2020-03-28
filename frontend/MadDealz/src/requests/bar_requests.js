@@ -103,7 +103,7 @@ async function get_bar_list(lat=undefined, lon=undefined, limit){
     throw (await response.json()).message;
   }
   // Returns a list of bar objects
-  return await response.json().bars;
+  return (await response.json()).bars;
 };
 
 /**

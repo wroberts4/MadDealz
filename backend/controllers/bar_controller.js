@@ -40,11 +40,11 @@ router.post('/create', async (req, res) => {
 });
 
 router.get('/list', async (req, res) => {
-    console.log("/bar/list POST request received");
+    console.log("/bar/list GET request received");
     
     let rc = await Bar.get_bars({
         lat: req.query.lat, lon: req.query.lon
-    });
+    }, req.query.limit);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });

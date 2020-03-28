@@ -3,8 +3,8 @@ import { delete_deal } from './deal';
 import { delete_review } from './review';
 
 export async function create_bar(bar) {
-    if (bar.name == null || bar.address == null || bar.name == '' || bar.address == '')
-        return { status: 400, message: "Bar name and location must be provided" };
+    if (!bar.name || !bar.address)
+        return { status: 400, message: "Bar name and address must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
@@ -35,14 +35,12 @@ export async function get_bar(id) {
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
   }
 
-  export async function get_bars(loc) {
+  export async function get_bars(loc, limit) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
     let bars = await dbo.collection("bars").find({}).toArray();
     con.close();
-
-    //console.log(bars);
     
     if (bars.length == 0)
       return { status: 404, message: "No bars found", bars: bars};
@@ -58,6 +56,10 @@ export async function get_bar(id) {
     bars.sort((a, b) => {
       return a.distance - b.distance;
     });
+
+    bars = bars.slice(0, limit);
+
+
   
     return {status: 200, message: "Bars successfully retrieved", bars: bars};
   }

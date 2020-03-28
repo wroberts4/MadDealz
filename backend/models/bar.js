@@ -2,10 +2,25 @@ import * as db_util from '../db';
 import { delete_deal } from './deal';
 import { delete_review } from './review';
 
+const fetch = require('node-fetch');
+
 export async function create_bar(bar) {
     if (!bar.name || !bar.address)
         return { status: 400, message: "Bar name and address must be provided" };
-    
+        
+    console.log(bar);
+    if (!bar.location.lat || !bar.location.lon) {
+      let url = 'http://www.mapquestapi.com/geocoding/v1/address?key=' 
+                    + process.env.WQ_API_KEY 
+                    + '&location=' + bar.address;
+      url = url.replace(/\s/g, '%20');
+      let response = await fetch(url);
+      let data = await response.json();
+      let location = data.results[0].locations[0].latLng
+      bar.location.lat = location.lat;
+      bar.location.lon = location.lng;
+    }
+        
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 

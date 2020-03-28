@@ -79,7 +79,7 @@ export async function get_bar(id) {
   }
 
   export async function update_bar(bar) {
-    if (bar._id == '' || bar._id == null) {
+    if (!bar._id) {
       return { status: 400, message: "Must specify a bar id"};
     }
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -112,7 +112,7 @@ export async function get_bar(id) {
   }
 
   export async function delete_bar(id) {
-    if (id == '' || id == null)
+    if (!id)
       return { status: 400, message: "Must specify a bar id"};
   
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });

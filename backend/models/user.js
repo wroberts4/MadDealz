@@ -23,8 +23,7 @@ import * as db_util from '../db';
 //     bars_owned: [String]
 
 export async function create_user(user) {
-    if (user.password == null || user.email == null || user.username == null ||  
-          user.password == '' || user.email == '' || user.username == '')
+    if (!user.password || !user.email || !user.username)
         return { status: 400, message: "Email, password, or username is empty" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -79,7 +78,7 @@ export async function get_user(username) {
 }
 
 export async function user_login(user) {
-  if (user.email == undefined || user.password == undefined)
+  if (!user.email || !user.password)
     return { status: 400, message: "No email or password specified"};
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -103,7 +102,7 @@ export async function user_login(user) {
 
 export async function update_user(user) {
 // Note: we may want to get the _id from the username for future use?
-  if (user.username == '' || user.username == null) {
+  if (!user.username) {
     return { status: 400, message: "Must specify a username"};
   }
 
@@ -138,7 +137,7 @@ export async function update_user(user) {
 }
 
 export async function delete_user(username) {
-  if (username == '' || username == null)
+  if (!username)
     return { status: 400, message: "Must specify a username"};
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });

@@ -1,7 +1,7 @@
 import * as db_util from '../db';
 
 export async function create_deal(deal) {
-    if (deal.info == null || deal.times == null || deal.info == '' || deal.times == '')
+    if (!deal.info || !deal.times)
         return { status: 400, message: "Deal info and times must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -35,7 +35,7 @@ export async function get_deal(id) {
 }
 
 export async function delete_deal(id) {
-  if (id == '' || id == null)
+  if (!id)
     return { status: 400, message: "Must specify a deal id"};
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -59,7 +59,7 @@ export async function delete_deal(id) {
 }
 
 export async function update_deal(deal) {
-  if (deal.id == '' || deal.id == null) {
+  if (!deal.id) {
     return { status: 400, message: "Must specify a deal id"};
   }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });

@@ -38,7 +38,7 @@ export async function get_bar(id) {
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
   }
 
-  export async function get_bars(limit, loc) {
+  export async function get_bars(loc, limit) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   

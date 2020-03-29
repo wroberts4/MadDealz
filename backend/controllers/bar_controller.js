@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
     const id;
     try {
       id = JSON.parse(req.query.id);
-    } catch () {
+    } catch {
       id = req.query.id;
     }
     console.log(id);

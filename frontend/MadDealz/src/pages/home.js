@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import {Image} from 'react-native-elements';
 
@@ -17,7 +17,7 @@ export default class Home extends Component {
             <SafeAreaView>
                 <Image
                 style={{height: 250, width:Dimensions.get('screen').width}}
-                source={require('./assets/Home-background.jpg')}
+                source={require('../../assets/Home-background.jpg')}
                 resizeMode="contain"
                 />
                 <ScrollView style = {styles.scroll}>

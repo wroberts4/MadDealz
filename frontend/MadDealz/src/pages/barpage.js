@@ -17,7 +17,7 @@ class Barpage extends React.Component {
                         <Image
                             // TODO: Figure out how to make the whole image appear regardless of image
                             style={{height: 200, width:Dimensions.get('screen').width-20}}
-                            source={require('./assets/UU.jpg')}
+                            source={require('../../assets/UU.jpg')}
                             resizeMode="contain"
                         />
                     </View>

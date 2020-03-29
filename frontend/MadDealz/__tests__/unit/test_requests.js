@@ -248,7 +248,7 @@ async function test_update_favorites(id, value) {
 test('test delete_user', async () => {return test_delete_user('test')});
 test('test add_user', async () => {return test_add_user('test', 'user', 'fake@gmail.com')});
 test('test get_user', async () => {return test_get_user('test')});
-test('test get_users', async () => {return test_get_users('test2', 'user2', 'fake2@gmail.com')});
+test('test get_users', async () => {return test_get_users('test3', 'user3', 'fake3@gmail.com')});
 test('test update_user', async () => {return test_update_user({'username': 'test', 'password': 'new_user'})});
 
 //test('test create_deal', async () => {return test_create_deal('test', 'fake street')});
@@ -258,3 +258,7 @@ test('test create_bar', async () => {return test_create_bar('test name', 'test a
 test('test get_bar', async () => {return test_get_bar("test name", "test address")});
 test('test get_bars', async () => {return test_get_bars("test name", "test address")});
 test('test update_bar', async () => {return test_update_bar("test name", "test address", "test name two", "test address two")});
+
+//afterAll(() => {
+//  return;
+//});

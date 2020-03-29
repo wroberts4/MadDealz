@@ -92,6 +92,12 @@ export async function get_users() {
     if (users.length == 0)
       return { status: 404, message: "No users found", users: users};
 
+    users.forEach((user) => {
+      delete user.password;
+      delete user.email
+      console.log(user, await get_user(username));
+    });
+
     return {status: 200, message: "Users successfully retrieved", users: users};
 }
 

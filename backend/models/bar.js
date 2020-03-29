@@ -20,27 +20,29 @@ export async function create_bar(bar) {
       bar.location.lat = location.lat;
       bar.location.lon = location.lng;
     }
-        
+
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
     let result = await dbo.collection('bars').insertOne(bar);
     con.close;
 
-    if (result == null)
+    if (!result)
       return { status: 500, message: "Error adding bar to database" };
 
     return { status: 200, message: "Bar successfully created", bar: result.ops[0] };
 }
 
 export async function get_bar(id) {
+    if (!id)
+        return { status: 400, message: "id must be provided" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
     let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
     console.log(bar);
     
-    if (bar == undefined)
+    if (!bar)
       return { status: 404, message: "Bar does not exist", bar: bar};
   
     let rc = await get_deals(id);
@@ -88,7 +90,7 @@ export async function get_bar(id) {
     let values = {};
   
     for (let key in bar) {
-      if (bar[key] != '' && key != '_id') {
+      if (bar[key] && key != '_id') {
         values[key] = bar[key];
       }
     }

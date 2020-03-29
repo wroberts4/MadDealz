@@ -76,10 +76,12 @@ router.post('/create', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     console.log("/bar/list GET request received");
-    
-    let rc = await Bar.get_bars({
-        lat: req.query.lat, lon: req.query.lon
-    }, req.query.limit);
+
+    let loc;
+    if (req.query.lat && req.query.lon) {
+      loc = {lat: req.query.lat, lon: req.query.lon};
+    }
+    let rc = await Bar.get_bars(loc, req.query.limit);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });

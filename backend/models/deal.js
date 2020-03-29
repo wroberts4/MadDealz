@@ -15,7 +15,7 @@ export async function create_deal(deal) {
     let result = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': deal_result.ops[0]._id.toString() } }, { upsert: false });
     con.close();
     
-    if (result == null)
+    if (!result)
       return { status: 500, message: "Error adding deal to database" };
       
     return { status: 200, message: "Deal successfully created", deal: deal };
@@ -28,7 +28,7 @@ export async function get_deal(id) {
   let deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
   con.close();
   
-  if (deal == undefined)
+  if (!deal)
     return { status: 404, message: "Deal does not exist", deal: deal};
 
   return {status: 200, message: "Deal successfully retrieved", deal: deal};

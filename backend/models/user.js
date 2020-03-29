@@ -30,28 +30,28 @@ export async function create_user(user) {
     let dbo = con.db(db_util.db_name);
 
     let result = await dbo.collection('users').findOne({username: user.username});
-    if (result != null)
+    if (result)
       return { status: 409, message: "Username already taken" };
 
     result = await dbo.collection('users').findOne({email: user.email});
-    if (result != null)
+    if (result)
       return { status: 409, message: "Email already in use" };
 
-    // result = await dbo.collection('users').findOne({password: user.password});
-    // if (result != null)
-    //   return { status: 409, message: "password already taken" };
+    result = await dbo.collection('users').findOne({password: user.password});
+    if (result)
+      return { status: 409, message: "password already taken" };
     
     user.password = encryptPass(user.password);
 
     result = await dbo.collection('users').insertOne(user);
     con.close;
 
-    if (result == null)
+    if (!result)
       return { status: 500, message: "Error adding user to database" };
 
-		let user_result = result.ops[0];
-		delete user_result.password;
-		delete user_result.email;
+    let user_result = result.ops[0];
+	delete user_result.password;
+	delete user_result.email;
 
     return { status: 200, message: "User successfully created", user: user_result };
 }
@@ -68,7 +68,7 @@ async function _get_user(username) {
 export async function get_user(username) {
   let user = await _get_user(username);
 
-  if (user == undefined)
+  if (!user)
     return { status: 404, message: "User not found", user: user};
 
   delete user.password;
@@ -89,7 +89,7 @@ export async function user_login(user) {
 
   console.log(result);
 
-  if (result == null)
+  if (!result)
     return { status: 404, message: "User does not exist", user: user};
   
   if (!checkPass(user.password, result.password))
@@ -112,13 +112,13 @@ export async function update_user(user) {
   let values = {};
 
   for (let key in user) {
-    if (user[key] != '' && key != '_id') {
+    if (user[key] && key != '_id') {
       if (key == 'password') {
-        if (user[key] == null || user[key] == '')
+        if (!user[key])
           return { status: 400, message: "Password must not be empty or null" };
         user[key] = encryptPass(user.password);
       }
-      if (user[key] != null) {
+      if (user[key]) {
         values[key] = user[key];
       }
     }

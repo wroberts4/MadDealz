@@ -7,7 +7,7 @@ async function fetchWithTimeout(url, options) {
 
   return await new Promise(async function(resolve, reject) {
       const timeout = setTimeout(function() {
-          throw 'Request timed out';
+          throw url + ' timed out with options ' + JSON.stringify(options);
       }, FETCH_TIMEOUT);
       try {
         const response = await fetch(IP + url, options);

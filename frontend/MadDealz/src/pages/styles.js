@@ -18,5 +18,23 @@ export default StyleSheet.create({
     homeBackground: {
         flex: 1,
         resizeMode: 'cover'
+    },
+    searchbar: {
+        marginTop:-30,
+        marginLeft: Dimensions.get('screen').width*.10,
+        flex:1, 
+        backgroundColor: 'transparent',
+        width: Dimensions.get('screen').width*.75,
+        alignItems: 'center',
+        borderBottomColor: 'transparent',
+        borderTopColor: 'transparent',
+    },
+    searchbarinput: {
+        backgroundColor: 'white',
+    },
+    homepicture: {
+        height: 250, 
+        width:Dimensions.get('screen').width,
+        
     }
 });

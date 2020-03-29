@@ -76,9 +76,7 @@ async function get_bar(id){
  * @return {list of object} list of bar objects containing name and address.
  */
 async function get_bars(limit, lat, lon){
-  let url = '/bar/list?limit=' + limit;
-  if (lat && lon)
-    url = url + '&lat=' + lat  + '&lon=' + lon;
+  let url = '/bar/list?limit=' + limit + '&lat=' + lat  + '&lon=' + lon;
   const response = await fetchWithTimeout(url, {
     method: 'GET'
   });
@@ -109,4 +107,14 @@ async function update_bar(bar){
   return (await response.json()).message;
 };
 
-module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar};
+async function get_deals(bar_id) {
+};
+
+async function get_reviews(bar_id) {
+};
+
+async function update_favorites(id, value) {
+};
+
+module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar,
+                  get_deals, get_reviews, update_favorites};

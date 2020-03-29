@@ -95,7 +95,7 @@ export async function user_login(user) {
   if (!checkPass(user.password, result.password))
     return { status: 401, message: "Incorrect password", user: user};
 
-  result.password = null;
+  delete result.password;
   
   return { status: 200, message: "User authenticated successfully", user: result};
 }

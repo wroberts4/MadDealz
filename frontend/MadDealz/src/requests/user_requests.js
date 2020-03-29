@@ -114,4 +114,32 @@ async function update_user(user){
   return (await response.json()).message;
 };
 
-module.exports = {add_user, delete_user, get_user, get_users, update_user};
+async function user_login(user) {
+};
+
+async function add_favorite_bar(username, bar_id) {
+};
+
+async function remove_favorite_bar(username, bar_id) {
+};
+
+async function add_favorite_deal(username, deal_id) {
+};
+
+async function remove_favorite_deal(username, deal_id) {
+};
+
+async function send_friend_request(requester, requestee) {
+};
+
+async function accept_friend_request(requester, requestee) {
+};
+
+async function remove_friend(user1, user2) {
+};
+
+
+
+module.exports = {add_user, delete_user, get_user, get_users, update_user, user_login,
+                  add_favorite_bar, remove_favorite_bar, add_favorite_deal, remove_favorite_deal,
+                  send_friend_request, accept_friend_request, remove_friend};

@@ -77,13 +77,16 @@ async function get_user(username){
  * @return {list of object} list of user objects containing username, password,
  *                          location, favorite bars, and friends.
  */
-async function get_users(usernames){
-  let users = [];
-  for (let i = 0; i < usernames.length; i++) {
-      users.push(await get_user(usernames[i]));
+async function get_users(){
+  let url = '/user/list';
+  const response = await fetchWithTimeout(url, {
+    method: 'GET'
+  });
+  if (response.status != 200) {
+    throw (await response.json()).message;
   }
-  // Returns a list of user objects.
-  return users;
+  // Returns a list of bar objects
+  return (await response.json()).users;
 };
 
 /**

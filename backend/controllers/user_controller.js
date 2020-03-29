@@ -91,6 +91,14 @@ router.post('/login', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message, user: rc.user });
 });
 
+router.get('/list', async (req, res) => {
+    console.log("/user/list GET request received");
+
+    let rc = await User.get_users();
+
+    return res.status(rc.status).json({ message: rc.message, users: rc.users });
+});
+
 router.put('/update', async (req, res) => {
     console.log("/user/update PUT request receieved");
     console.log(req.body);

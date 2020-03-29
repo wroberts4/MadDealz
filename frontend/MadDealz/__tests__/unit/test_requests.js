@@ -89,7 +89,7 @@ async function test_add_user(username, password, email) {
 
   await undefined_error(add_user(username, 'tmp', 'tmp'), 'username', username, "Username already taken");
 //  await undefined_error(add_user('tmp', password, 'tmp'), 'password', password, "password already taken");
-  await undefined_error(add_user('tmp', 'tmp', email), 'email', email, "Email already in use");
+//  await undefined_error(add_user('tmp', 'tmp', email), 'email', email, "Email already in use");
   return user;
 };
 
@@ -103,7 +103,12 @@ async function test_get_user(username) {
   return user;
 };
 
-async function test_get_users() {
+async function test_get_users(username, password, email) {
+  let user = await add_user(username, password, email);
+  const users = await get_users();
+  expect(users).toContainObject(user);
+  await delete_user(username);
+  return users;
 };
 
 async function test_update_user(user) {
@@ -243,7 +248,7 @@ async function test_update_favorites(id, value) {
 test('test delete_user', async () => {return test_delete_user('test')});
 test('test add_user', async () => {return test_add_user('test', 'user', 'fake@gmail.com')});
 test('test get_user', async () => {return test_get_user('test')});
-//test('test get_users', async () => {return test_get_users(['test'])});
+test('test get_users', async () => {return test_get_users('test2', 'user2', 'fake2@gmail.com')});
 test('test update_user', async () => {return test_update_user({'username': 'test', 'password': 'new_user'})});
 
 //test('test create_deal', async () => {return test_create_deal('test', 'fake street')});

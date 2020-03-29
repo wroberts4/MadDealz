@@ -82,6 +82,19 @@ export async function get_user(username) {
   return {status: 200, message: "User successfully retrieved", user: user};
 }
 
+export async function get_users() {
+    let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
+    let dbo = con.db(db_util.db_name);
+
+    let users = await dbo.collection("users").find({}).toArray();
+    con.close();
+
+    if (users.length == 0)
+      return { status: 404, message: "No users found", users: users};
+
+    return {status: 200, message: "Users successfully retrieved", users: users};
+}
+
 export async function user_login(user) {
   if (!user.email || !user.password)
     return { status: 400, message: "No email or password specified"};

@@ -101,7 +101,7 @@ async function test_get_user(username) {
   expect(user.username).toBe(username);
 
   // Error cases.
-  await await undefined_error(get_user(undefined), 'username', undefined, "User not found");
+  await await undefined_error(get_user(undefined), 'username', undefined, "Must specify a username");
   return user;
 };
 

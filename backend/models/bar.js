@@ -130,9 +130,18 @@ export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
+    let query;
+    if (typeof id === 'object')
+      query = { _id: id };
+    else
+      query = { _id: db_util.ObjectId(id) };
+
     // delete all deals corrosponding to bar
-    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
-    let deal_id;
+    let bar = await dbo.collection("bars").findOne(query, {});
+    if (!bar)
+      return { status: 500, message: "Bar not found"};
+    
+      let deal_id;
     for (deal_id of bar.deals) {
       await delete_deal(deal_id);
     }
@@ -142,16 +151,8 @@ export async function get_bar(id) {
       await delete_review(review_id);
     }
   
-    let query;
-    if (typeof id === 'object')
-      query = { _id: id };
-    else
-      query = { _id: db_util.ObjectId(id) };
     let result = await dbo.collection("bars").deleteOne(query, {});
   
-    if (result.deletedCount == 0)
-      return { status: 500, message: "Bar not found"};
-    
     return { status: 200, message: "Bar deleted successfully" };
   }
 

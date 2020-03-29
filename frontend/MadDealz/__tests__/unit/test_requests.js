@@ -12,11 +12,8 @@ async function undefined_error(promise, var_name, value, expected_error) {
     await promise;
     throw unexpected_error;
   } catch(error) {
-    if (error == unexpected_error) {
-      expect(unexpected_error).not.toBe(error);
-    } else if (expected_error && expected_error != error) {
-      expect(error).toBe(expected_error);
-    }
+    expect(unexpected_error).not.toBe(error);
+    expect(error).toBe(expected_error);
   }
 };
 
@@ -102,19 +99,11 @@ async function test_get_user(username) {
 
   // Error cases.
   await await undefined_error(get_user(undefined), 'username', undefined, "Must specify a username");
+  await await undefined_error(get_user('DNE'), 'username', 'DNE', "User not found");
   return user;
 };
 
-async function test_get_users(usernames) {
-  const users = await get_users(usernames);
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    expect(user.username).toBe(usernames[i]);
-  }
-
-  // Error cases.
-  await undefined_error(get_users(undefined), 'usernames', undefined);
-  return users;
+async function test_get_users() {
 };
 
 async function test_update_user(user) {
@@ -125,8 +114,8 @@ async function test_update_user(user) {
   await undefined_error(update_user(undefined), 'username', undefined, "Must specify a username");
   await undefined_error(update_user({'username': 'this_user_does_not_exist'}), 'username', 'this_user_does_not_exist', "User not found");
   // TODO: password should also fail if undefined.
-  await undefined_error(update_user({'username': user.username, 'password': undefined}),
-                                     'password', undefined, "Password must not be empty or null");
+  await undefined_error(update_user({'username': user.username, 'password': null}),
+                                     'password', null, "Password must not be empty or null");
 };
 
 async function test_user_login(user) {
@@ -254,7 +243,7 @@ async function test_update_favorites(id, value) {
 test('test delete_user', async () => {return test_delete_user('test')});
 test('test add_user', async () => {return test_add_user('test', 'user', 'fake@gmail.com')});
 test('test get_user', async () => {return test_get_user('test')});
-test('test get_users', async () => {return test_get_users(['test'])});
+//test('test get_users', async () => {return test_get_users(['test'])});
 test('test update_user', async () => {return test_update_user({'username': 'test', 'password': 'new_user'})});
 
 //test('test create_deal', async () => {return test_create_deal('test', 'fake street')});

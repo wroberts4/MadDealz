@@ -1,4 +1,5 @@
 import * as db_util from '../db';
+import { string_to_object } from '../utils/string_to_object.js'
 
 export async function create_review(review) {
     
@@ -42,6 +43,10 @@ async function update_score(query, score) {
 }
 
 export async function get_review(id) {
+    id = string_to_object(id);
+    if (!id) {
+      return { status: 400, message: "Must specify a review id"};
+    }
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -55,8 +60,10 @@ export async function get_review(id) {
   }
 
   export async function delete_review(id) {
-    if (!id)
+    id = string_to_object(id);
+    if (!id) {
       return { status: 400, message: "Must specify a review id"};
+    }
   
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);

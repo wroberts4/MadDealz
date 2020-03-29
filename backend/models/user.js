@@ -95,7 +95,6 @@ export async function get_users() {
     users.forEach((user) => {
       delete user.password;
       delete user.email
-      console.log(user, await get_user(username));
     });
 
     return {status: 200, message: "Users successfully retrieved", users: users};

@@ -77,7 +77,7 @@ async function test_delete_user(username) {
   let res = await delete_user(username);
   expect(res).toBe("User deleted successfully");
   //Error cases.
-  await undefined_error(delete_user(''), 'username', '', "Must specify a username");
+  await undefined_error(delete_user(undefined), 'username', undefined, "Must specify a username");
   await undefined_error(delete_user('this_user_does_not_exist'), 'username', 'this_user_does_not_exist', "User not found");
 };
 
@@ -125,8 +125,8 @@ async function test_update_user(user) {
   await undefined_error(update_user(undefined), 'username', undefined, "Must specify a username");
   await undefined_error(update_user({'username': 'this_user_does_not_exist'}), 'username', 'this_user_does_not_exist', "User not found");
   // TODO: password should also fail if undefined.
-  await undefined_error(update_user({'username': user.username, 'password': null}),
-                                     'password', null, "Password must not be empty or null");
+  await undefined_error(update_user({'username': user.username, 'password': undefined}),
+                                     'password', undefined, "Password must not be empty or null");
 };
 
 async function test_user_login(user) {
@@ -187,7 +187,7 @@ async function test_delete_bar(name, address) {
   let res = await delete_bar(bar._id);
   expect(res).toBe("Bar deleted successfully");
 
-  await undefined_error(delete_bar(''), 'id', '', "Must specify a bar id");
+  await undefined_error(delete_bar(undefined), 'id', undefined, "Must specify a bar id");
   // TODO: THIS IS FAILING.
   await undefined_error(delete_bar(-1), 'id', -1, "Bar not found");
 };
@@ -217,7 +217,7 @@ async function test_get_bar(name, address) {
 
 async function test_get_bars(name, address) {
   let bar = await create_bar(name, address);
-  const bars = await get_bars('');
+  const bars = await get_bars();
   for (let i = 0; i < bars.length; i++) {
     delete bars[i].distance;
   }

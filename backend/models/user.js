@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-
+import { string_to_object } from '../utils/string_to_object.js'
 import * as db_util from '../db';
 
 //  DB SCHEMA FOR USER OBJECTS
@@ -57,6 +57,7 @@ export async function create_user(user) {
 }
 
 async function _get_user(username) {
+  username = string_to_object(username);
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -66,6 +67,10 @@ async function _get_user(username) {
 }
 
 export async function get_user(username) {
+  username = string_to_object(username);
+  if (!username) {
+    return { status: 400, message: "Must specify a username" };
+  }
   let user = await _get_user(username);
 
   if (!user)
@@ -104,7 +109,10 @@ export async function update_user(user) {
 // Note: we may want to get the _id from the username for future use?
   if (!user.username) {
     return { status: 400, message: "Must specify a username"};
+  } else if (!user.password){
+    return { status: 400, message: "Password must not be empty or null" };
   }
+  user.password = encryptPass(user.password);
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
@@ -112,11 +120,6 @@ export async function update_user(user) {
   let values = {};
 
   for (let key in user) {
-    if (key == 'password') {
-      if (!user[key])
-        return { status: 400, message: "Password must not be empty or null" };
-      user[key] = encryptPass(user.password);
-    }
     if (user[key] && key != '_id') {
       if (user[key]) {
         values[key] = user[key];
@@ -137,6 +140,7 @@ export async function update_user(user) {
 }
 
 export async function delete_user(username) {
+  username = string_to_object(username);
   if (!username)
     return { status: 400, message: "Must specify a username"};
 
@@ -153,6 +157,13 @@ export async function delete_user(username) {
 }
 
 export async function add_favorite_bar(username, bar_id) {
+  username = string_to_object(username);
+  bar_id = string_to_object(bar_id);
+  if (!username) {
+    return { status: 400, message: "Must specify a username"};
+  } else if (!bar_id) {
+    return { status: 400, message: "Must specify a bar id"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -164,6 +175,13 @@ export async function add_favorite_bar(username, bar_id) {
 }
 
 export async function remove_favorite_bar(username, bar_id) {
+  username = string_to_object(username);
+  bar_id = string_to_object(bar_id);
+  if (!username) {
+    return { status: 400, message: "Must specify a username"};
+  } else if (!bar_id) {
+    return { status: 400, message: "Must specify a bar id"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -174,6 +192,13 @@ export async function remove_favorite_bar(username, bar_id) {
 }
 
 export async function add_favorite_deal(username, deal_id) {
+  username = string_to_object(username);
+  deal_id = string_to_object(deal_id);
+  if (!username) {
+    return { status: 400, message: "Must specify a username"};
+  } else if (!deal_id) {
+    return { status: 400, message: "Must specify a deal id"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -185,6 +210,13 @@ export async function add_favorite_deal(username, deal_id) {
 }
 
 export async function remove_favorite_deal(username, deal_id) {
+  username = string_to_object(username);
+  deal_id = string_to_object(deal_id);
+  if (!username) {
+    return { status: 400, message: "Must specify a username"};
+  } else if (!deal_id) {
+    return { status: 400, message: "Must specify a deal id"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -195,6 +227,13 @@ export async function remove_favorite_deal(username, deal_id) {
 }
 
 export async function send_friend_request(requester, requestee) {
+  requester = string_to_object(requester);
+  requestee = string_to_object(requestee);
+  if (!requester) {
+    return { status: 400, message: "Must specify a requester"};
+  } else if (!requestee) {
+    return { status: 400, message: "Must specify a requestee"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
   
@@ -209,6 +248,13 @@ export async function send_friend_request(requester, requestee) {
 }
 
 export async function accept_friend_request(requester, requestee) {
+  requester = string_to_object(requester);
+  requestee = string_to_object(requestee);
+  if (!requester) {
+    return { status: 400, message: "Must specify a requester"};
+  } else if (!requestee) {
+    return { status: 400, message: "Must specify a requestee"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -225,6 +271,11 @@ export async function accept_friend_request(requester, requestee) {
 }
 
 export async function remove_friend(user1, user2) {
+  user1 = string_to_object(user1);
+  user2 = string_to_object(user2);
+  if (!user1 || !user2) {
+    return { status: 400, message: "Must specify two users"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 

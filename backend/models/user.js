@@ -137,7 +137,7 @@ export async function update_user(user) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
-  result = await dbo.collection('users').findOne({email: user.email});
+  let result = await dbo.collection('users').findOne({email: user.email});
   if (result)
     return { status: 409, message: "Email already in use" };
 

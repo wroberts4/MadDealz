@@ -109,6 +109,11 @@ export async function update_user(user) {
 // Note: we may want to get the _id from the username for future use?
   if (!user.username) {
     return { status: 400, message: "Must specify a username"};
+  } else if ("password" in user) {
+    if (!user.password) {
+      return { status: 400, message: "Password must not be empty or null" };
+    }
+    user.password = encryptPass(user.password);
   }
 
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -117,12 +122,6 @@ export async function update_user(user) {
   let values = {};
 
   for (let key in user) {
-    if (key == 'password') {
-      if (!string_to_object(user.password)){
-        return { status: 400, message: "Password must not be empty or null" };
-      }
-      user[key] = encryptPass(user.password);
-    }
     if (user[key] && key != '_id') {
       if (user[key]) {
         values[key] = user[key];

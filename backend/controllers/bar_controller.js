@@ -81,7 +81,7 @@ router.get('/list', async (req, res) => {
     const lat = string_to_object(req.query.lat);
     const lon = string_to_object(req.query.lon);
     const limit = string_to_object(req.query.limit);
-    const loc;
+    let loc;
     if (lat && lon) {
       loc = {lat: lat, lon: lon};
     }

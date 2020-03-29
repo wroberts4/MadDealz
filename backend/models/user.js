@@ -159,7 +159,7 @@ export async function update_user(user) {
     }
   }
   const query = { 'username': user.username };
-  let result = await dbo.collection("users").updateOne(query, { $set: values}, { upsert: false });
+  result = await dbo.collection("users").updateOne(query, { $set: values}, { upsert: false });
   con.close();
 
   if (result.matchedCount == 0)

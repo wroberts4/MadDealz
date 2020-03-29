@@ -37,11 +37,6 @@ export async function create_user(user) {
     if (result)
       return { status: 409, message: "Email already in use" };
 
-    // TODO: How to check if password is encrypted?
-    result = await dbo.collection('users').findOne({password: user.password});
-    if (result)
-      return { status: 409, message: "password already taken" };
-
     user.password = encryptPass(user.password);
 
     result = await dbo.collection('users').insertOne(user);
@@ -141,11 +136,6 @@ export async function update_user(user) {
   let result = await dbo.collection('users').findOne({email: user.email});
   if (result)
     return { status: 409, message: "Email already in use" };
-
-  // TODO: How to check if password is encrypted?
-  result = await dbo.collection('users').findOne({password: user.password});
-  if (result)
-    return { status: 409, message: "password already taken" };
   
   let values = {};
 

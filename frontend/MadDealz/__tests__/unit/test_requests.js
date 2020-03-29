@@ -92,8 +92,6 @@ async function test_add_user(username, password, email) {
   await undefined_error(add_user(username, password, undefined), 'email', undefined, "Email, password, or username is empty");
 
   await undefined_error(add_user(username, 'tmp', 'tmp'), 'username', username, "Username already taken");
-  // TODO: Trying to create to a taken password should fail.
-//  await undefined_error(add_user('tmp', password, 'tmp'), 'password', password, "password already taken");
   await undefined_error(add_user('tmp', 'tmp', email), 'email', email, "Email already in use");
   return user;
 };
@@ -125,9 +123,6 @@ async function test_update_user(user) {
   // TODO: password should also fail if undefined.
   await undefined_error(update_user({'username': user.username, 'password': null}),
                                      'password', null, "Password must not be empty or null");
-  // TODO: Trying to update to a taken password should fail.
-//  await undefined_error(update_user({'username': user.username, 'password': user.password, 'email': 'tmp'}),
-//                                    'password', user.password, "password already taken");
   await undefined_error(update_user({'username': user.username, 'password': 'tmp', 'email': user.email}),
                                     'email', user.email, "Email already in use");
 };

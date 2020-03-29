@@ -1,5 +1,5 @@
 import * as Bar from '../models/bar';
-import string_to_object from '../utils/string_to_object'
+import { string_to_object } from '../utils/string_to_object'
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');

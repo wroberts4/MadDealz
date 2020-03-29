@@ -210,7 +210,8 @@ async function test_get_bar(name, address) {
   await delete_bar(res._id);
 
   // Error cases.
-  await undefined_error(get_bar(undefined), 'name', undefined, "Bar does not exist");
+  await undefined_error(get_bar(undefined), 'name', undefined, "id must be provided");
+  await undefined_error(get_bar(-1), 'name', -1, "Bar does not exist");
   return bar;
 };
 
@@ -261,5 +262,5 @@ test('test update_user', async () => {return test_update_user({'username': 'test
 test('test delete_bar', async () => {return test_delete_bar("test name", "test address")});
 test('test create_bar', async () => {return test_create_bar('test name', 'test address')});
 test('test get_bar', async () => {return test_get_bar("test name", "test address")});
-test('test get_bars', async () => {return test_get_bars("test name", "test address")}, 10000);
+test('test get_bars', async () => {return test_get_bars("test name", "test address")});
 test('test update_bar', async () => {return test_update_bar("test name", "test address", "test name two", "test address two")});

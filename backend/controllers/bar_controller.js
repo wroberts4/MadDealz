@@ -1,5 +1,5 @@
 import * as Bar from '../models/bar';
-//import string_to_object from '../utils/string_to_object.js'
+import string_to_object from '../utils/string_to_object'
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -32,19 +32,6 @@ const upload = multer({
         callback("Image must be png, jpg, jpeg");
       }
 });
-
-function string_to_object(string) {
-  // JSON.parse does not convert undefined string to undefined or NaN string to NaN.
-  if (string === "undefined") {
-    return undefined;
-  } else if (string === "NaN") {
-    return NaN;
-  };
-  try {
-    return JSON.parse(string);
-  } catch {};
-  return string;
-};
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
@@ -91,11 +78,14 @@ router.post('/create', async (req, res) => {
 router.get('/list', async (req, res) => {
     console.log("/bar/list GET request received");
 
-    let loc;
-    if (req.query.lat && req.query.lon) {
-      loc = {lat: req.query.lat, lon: req.query.lon};
+    const lat = string_to_object(req.query.lat);
+    const lon = string_to_object(req.query.lon);
+    const limit = string_to_object(req.query.limit);
+    const loc;
+    if (lat && lon) {
+      loc = {lat: lat, lon: lon};
     }
-    let rc = await Bar.get_bars(loc, req.query.limit);
+    let rc = await Bar.get_bars(loc, limit);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });
@@ -111,13 +101,14 @@ router.put('/update', async (req, res) => {
 router.delete('/delete', async (req, res) => {
     console.log('/bar/delete DELETE request received');
 
-    let rc = await Bar.delete_bar(req.query.id);
+    const id = string_to_object(req.query.id);
+    let rc = await Bar.delete_bar(id);
     return res.status(rc.status).json({ message: rc.message });
 });
 
 router.get('/deals', async (req, res) => {
     console.log("/bar/deals GET request received");
-    const id = req.query.id;
+    const id = string_to_object(req.query.id);
     console.log(id);
 
     let rc = await Bar.get_deals(id);
@@ -127,7 +118,7 @@ router.get('/deals', async (req, res) => {
 
 router.get('/reviews', async (req, res) => {
     console.log("/bar/reviews GET request received");
-    const id = req.query.id;
+    const id = string_to_object(req.query.id);
     console.log(id);
 
     let rc = await Bar.get_reviews(id);
@@ -138,7 +129,7 @@ router.get('/reviews', async (req, res) => {
 router.put('/update_favorites', async (req, res) => {
     console.log("/bar/favorites PUT request received");
     console.log(req.body);
-    
+
     let rc = await Bar.update_favorites(req.body.id, req.body.value);
 
     return res.status(rc.status).json({ message: rc.message });

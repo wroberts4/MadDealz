@@ -120,8 +120,8 @@ async function test_update_user(user) {
   // Error cases.
   await undefined_error(update_user(undefined), 'username', undefined, "Must specify a username");
   await undefined_error(update_user({'username': 'this_user_does_not_exist'}), 'username', 'this_user_does_not_exist', "User not found");
-  await undefined_error(update_user({'username': user.username, 'password': null}),
-                                     'password', null, "Password must not be empty or null");
+  await undefined_error(update_user({'username': user.username, 'password': undefined}),
+                                     'password', undefined, "Password must not be empty or null");
 }
 
 ///////////////////////////////////// DEAL TESTS /////////////////////////////////////
@@ -146,8 +146,6 @@ async function test_delete_bar(name, address) {
 
 async function test_create_bar(name, address) {
   let bar = await create_bar(name, address);
-
-  await delete_bar(bar._id);
 
   // Error cases.
   await undefined_error(create_bar(undefined, address), 'name', undefined, "Bar name and address must be provided");

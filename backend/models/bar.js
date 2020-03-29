@@ -1,7 +1,7 @@
 import * as db_util from '../db';
 
 export async function create_bar(bar) {
-    if (bar.name == null || bar.address == null || bar.name == '' || bar.address == '')
+    if (!bar.name || !bar.address)
         return { status: 400, message: "Bar name and location must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -10,13 +10,15 @@ export async function create_bar(bar) {
     let result = await dbo.collection('bars').insertOne(bar);
     con.close;
 
-    if (result == null)
+    if (!result)
       return { status: 500, message: "Error adding bar to database" };
 
     return { status: 200, message: "Bar successfully created", bar: result.ops[0] };
 }
 
 export async function get_bar(id) {
+    if (!id)
+        return { status: 400, message: "id must be provided" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
@@ -30,13 +32,13 @@ export async function get_bar(id) {
     console.log(bar);
     con.close();
     
-    if (bar == undefined)
+    if (!bar)
       return { status: 404, message: "Bar does not exist", bar: bar};
   
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
   }
 
-  export async function get_bars(loc) {
+  export async function get_bars(limit, loc) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -55,12 +57,18 @@ export async function get_bar(id) {
     bars.sort((a, b) => {
       return a.distance - b.distance;
     });
+
+    if (!limit) {
+      bars = bars.filter((bar) => {
+        return bar.distance <= limit;
+      });
+    }
   
     return {status: 200, message: "Bars successfully retrieved", bars: bars};
   }
 
   export async function update_bar(bar) {
-    if (bar._id == '' || bar._id == null) {
+    if (!bar._id) {
       return { status: 400, message: "Must specify a bar id"};
     }
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -69,7 +77,7 @@ export async function get_bar(id) {
     let values = {};
   
     for (let key in bar) {
-      if (bar[key] != '' && key != '_id') {
+      if (bar[key] && key != '_id') {
         values[key] = bar[key];
       }
     }
@@ -93,7 +101,7 @@ export async function get_bar(id) {
   }
 
   export async function delete_bar(id) {
-    if (id == '' || id == null)
+    if (!id)
       return { status: 400, message: "Must specify a bar id"};
   
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });

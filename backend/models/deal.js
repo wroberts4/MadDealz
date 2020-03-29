@@ -1,7 +1,7 @@
 import * as db_util from '../db';
 
 export async function create_deal(deal) {
-    if (deal.info == null || deal.times == null || deal.info == '' || deal.times == '')
+    if (!deal.info || !deal.times)
         return { status: 400, message: "Deal info and times must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -14,7 +14,7 @@ export async function create_deal(deal) {
     let result = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': deal } }, { upsert: false });
     con.close();
     
-    if (result == null)
+    if (!result)
       return { status: 500, message: "Error adding deal to database" };
       
     return { status: 200, message: "Deal successfully created", deal: deal };
@@ -27,7 +27,7 @@ export async function get_deal(id) {
   let deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
   con.close();
   
-  if (deal == undefined)
+  if (!deal)
     return { status: 404, message: "Deal does not exist", deal: deal};
 
   return {status: 200, message: "Deal successfully retrieved", deal: deal};

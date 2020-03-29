@@ -44,6 +44,7 @@ async function delete_user(username){
   if (response.status != 200) {
     throw (await response.json()).message;
   }
+  return (await response.json()).message;
 };
 
 /**
@@ -110,6 +111,7 @@ async function update_user(user){
   if (response.status != 200) {
     throw (await response.json()).message;
   }
+  return (await response.json()).message;
 };
 
 module.exports = {add_user, delete_user, get_user, get_users, update_user};

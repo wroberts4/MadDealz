@@ -67,22 +67,6 @@ async function get_bar(id){
 };
 
 /**
- * Description: Get a bar from the system.
- *
- * @param  {list of strings} ids
- *
- * @return {list of object} list of bar objects containing name and address.
- */
-async function get_bars(ids){
-  let bars = [];
-  for (let i = 0; i < ids.length; i++) {
-      bars.push(await get_bar(ids[i]));
-  }
-  // Returns a new bar object.
-  return bars;
-};
-
-/**
  * Description: Get list of bars sorted by closest location to user
  *
  * @param {string} lat
@@ -91,11 +75,10 @@ async function get_bars(ids){
  * 
  * @return {list of object} list of bar objects containing name and address.
  */
-async function get_bar_list(lat=undefined, lon=undefined, limit){
+async function get_bars(limit, lat, lon){
   let url = '/bar/list?limit=' + limit;
   if (lat && lon)
     url = url + '&lat=' + lat  + '&lon=' + lon;
-
   const response = await fetchWithTimeout(url, {
     method: 'GET'
   });
@@ -103,7 +86,7 @@ async function get_bar_list(lat=undefined, lon=undefined, limit){
     throw (await response.json()).message;
   }
   // Returns a list of bar objects
-  return await response.json().bars;
+  return (await response.json()).bars;
 };
 
 /**
@@ -126,4 +109,4 @@ async function update_bar(bar){
   return (await response.json()).message;
 };
 
-module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar, get_bar_list};
+module.exports = {create_bar, delete_bar, get_bar, get_bars, update_bar};

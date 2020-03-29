@@ -117,8 +117,8 @@ export async function update_user(user) {
   let values = {};
 
   for (let key in user) {
-    if (key === 'password') {
-      if (!user.password){
+    if (key == 'password') {
+      if (!string_to_object(user.password)){
         return { status: 400, message: "Password must not be empty or null" };
       }
       user[key] = encryptPass(user.password);

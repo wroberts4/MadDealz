@@ -92,10 +92,10 @@ export async function get_users() {
     if (users.length == 0)
       return { status: 404, message: "No users found", users: users};
 
-    users.forEach((user) => {
-      delete user.password;
-      delete user.email
-    });
+    for (let i = 0; i < users.length; i++) {
+      delete users[i].password;
+      delete users[i].email;
+    };
 
     return {status: 200, message: "Users successfully retrieved", users: users};
 }

@@ -81,7 +81,7 @@ router.get('/list', async (req, res) => {
     if (req.query.lat && req.query.lon) {
       loc = {lat: req.query.lat, lon: req.query.lon};
     }
-    let rc = await Bar.get_bars(loc, req.query.limit);
+    let rc = await Bar.get_bars(loc, req.query.limit, req.query.distance);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });

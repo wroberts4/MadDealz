@@ -75,8 +75,8 @@ async function get_bar(id){
  * 
  * @return {list of object} list of bar objects containing name and address.
  */
-async function get_bars(limit, lat, lon){
-  let url = '/bar/list?limit=' + limit + '&lat=' + lat  + '&lon=' + lon;
+async function get_bars(lat, lon, limit, distance){
+  let url = '/bar/list?limit=' + limit + '&lat=' + lat  + '&lon=' + lon + '&distance=' + distance;
   const response = await fetchWithTimeout(url, {
     method: 'GET'
   });

@@ -54,8 +54,9 @@ export async function get_bar(id) {
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
   }
 
-  export async function get_bars(loc, limit) {
+  export async function get_bars(loc, limit, distance) {
     limit = string_to_object(limit);
+    distance = string_to_object(distance);
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -79,6 +80,11 @@ export async function get_bar(id) {
     
     if (limit)
       bars = bars.slice(0, limit);
+    if (distance) {
+      bars = bars.filter((bar) => {
+        return bar.distance <= distance;
+      });
+    }
 
     return {status: 200, message: "Bars successfully retrieved", bars: bars};
   }

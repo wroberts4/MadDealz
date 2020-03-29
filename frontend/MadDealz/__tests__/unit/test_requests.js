@@ -70,7 +70,11 @@ expect.extend({
 });
 
 ///////////////////////////////////// USER TESTS /////////////////////////////////////
-async function test_delete_user(username) {
+async function test_delete_user(username, password, email) {
+//  const users = await get_users();
+//  for (let i = 0; i < users.length; i++) {
+//      await delete_user(users[i].username)
+//  }
   let res = await delete_user(username);
   expect(res).toBe("User deleted successfully");
   //Error cases.
@@ -88,8 +92,9 @@ async function test_add_user(username, password, email) {
   await undefined_error(add_user(username, password, undefined), 'email', undefined, "Email, password, or username is empty");
 
   await undefined_error(add_user(username, 'tmp', 'tmp'), 'username', username, "Username already taken");
+  // TODO: Trying to create to a taken password should fail.
 //  await undefined_error(add_user('tmp', password, 'tmp'), 'password', password, "password already taken");
-//  await undefined_error(add_user('tmp', 'tmp', email), 'email', email, "Email already in use");
+  await undefined_error(add_user('tmp', 'tmp', email), 'email', email, "Email already in use");
   return user;
 };
 
@@ -103,11 +108,10 @@ async function test_get_user(username) {
   return user;
 };
 
-async function test_get_users(username, password, email) {
-  let user = await add_user(username, password, email);
+async function test_get_users(username) {
+  let user = await get_user(username);
   const users = await get_users();
   expect(users).toContainObject(user);
-  await delete_user(username);
   return users;
 };
 
@@ -121,6 +125,11 @@ async function test_update_user(user) {
   // TODO: password should also fail if undefined.
   await undefined_error(update_user({'username': user.username, 'password': null}),
                                      'password', null, "Password must not be empty or null");
+  // TODO: Trying to update to a taken password should fail.
+//  await undefined_error(update_user({'username': user.username, 'password': user.password, 'email': 'tmp'}),
+//                                    'password', user.password, "password already taken");
+  await undefined_error(update_user({'username': user.username, 'password': 'tmp', 'email': user.email}),
+                                    'email', user.email, "Email already in use");
 };
 
 async function test_user_login(user) {
@@ -192,7 +201,6 @@ async function test_create_bar(name, address) {
   // Error cases.
   await undefined_error(create_bar(undefined, address), 'name', undefined, "Bar name and address must be provided");
   await undefined_error(create_bar(name, undefined), 'address', undefined, "Bar name and address must be provided");
-  await delete_bar(bar._id);
   return bar;
 };
 
@@ -200,8 +208,6 @@ async function test_get_bar(name, address) {
   let res = await create_bar(name, address);
   let bar = await get_bar(res._id);
   expect(bar.name).toBe(name);
-
-  await delete_bar(res._id);
 
   // Error cases.
   await undefined_error(get_bar(undefined), 'name', undefined, "id must be provided");
@@ -216,7 +222,6 @@ async function test_get_bars(name, address) {
     delete bars[i].distance;
   }
   expect(bars).toContainObject(bar);
-  await delete_bar(bar._id);
   return bars;
 };
 
@@ -225,15 +230,9 @@ async function test_update_bar(name1, address1, name2, address2) {
   let bar = {_id: res._id, name: name2, address: address2};
   let update_res = await update_bar(bar);
   expect(update_res).toBe("Bar updated successfully");
-  await delete_bar(res._id);
 
   // Error cases.
   await undefined_error(update_bar(undefined), 'bar', undefined, "Must specify a bar id");
-
-//  const bars = await get_bars();
-//  for (let i = 0; i < bars.length; i++) {
-//      await delete_bar(bars[i]._id)
-//  }
 };
 
 async function test_get_deals(bar_id) {
@@ -245,20 +244,42 @@ async function test_get_reviews(bar_id) {
 async function test_update_favorites(id, value) {
 };
 
-test('test delete_user', async () => {return test_delete_user('test')});
-test('test add_user', async () => {return test_add_user('test', 'user', 'fake@gmail.com')});
-test('test get_user', async () => {return test_get_user('test')});
-test('test get_users', async () => {return test_get_users('test3', 'user3', 'fake3@gmail.com')});
-test('test update_user', async () => {return test_update_user({'username': 'test', 'password': 'new_user'})});
+let name = 'test_name';
+let name2 = 'test_name2'
+let password = 'test_password';
+let password2 = 'test_password2';
+let email = 'fake@gmail.com';
+let email2 = 'fake2@gmail.com';
+let address = 'test_address'
+let address2 = 'test_address2';
+
+test('test add_user', async () => {return test_add_user(name, password, email)});
+test('test get_user', async () => {return test_get_user(name)});
+test('test get_users', async () => {return test_get_users(name)});
+test('test update_user', async () => {return test_update_user({'username': name, 'password': password2, 'email': email2})});
+test('test delete_user', async () => {return test_delete_user(name)});
 
 //test('test create_deal', async () => {return test_create_deal('test', 'fake street')});
 
-test('test delete_bar', async () => {return test_delete_bar("test name", "test address")});
-test('test create_bar', async () => {return test_create_bar('test name', 'test address')});
-test('test get_bar', async () => {return test_get_bar("test name", "test address")});
-test('test get_bars', async () => {return test_get_bars("test name", "test address")});
-test('test update_bar', async () => {return test_update_bar("test name", "test address", "test name two", "test address two")});
+test('test delete_bar', async () => {return test_delete_bar(name, address)});
+test('test create_bar', async () => {return test_create_bar(name, address)});
+test('test get_bar', async () => {return test_get_bar(name, address)});
+test('test get_bars', async () => {return test_get_bars(name, address)});
+test('test update_bar', async () => {return test_update_bar(name, address, name2, address2)});
 
-//afterAll(() => {
-//  return;
-//});
+afterAll(async () => {
+  try {
+    await delete_user(name);
+  } catch {};
+  try {
+    await delete_user('tmp');
+  } catch {};
+  try {
+    bars = await get_bars();
+    for (let i = 0; i < bars.length; i++) {
+      if (bars[i].name == name || bars[i].name == name2) {
+        await delete_bar(bars[i]._id);
+      }
+    }
+  } catch {};
+});

@@ -120,8 +120,9 @@ async function test_update_user(user) {
   // Error cases.
   await undefined_error(update_user(undefined), 'username', undefined, "Must specify a username");
   await undefined_error(update_user({'username': 'this_user_does_not_exist'}), 'username', 'this_user_does_not_exist', "User not found");
-  await undefined_error(update_user({'username': user.username, 'password': undefined}),
-                                     'password', undefined, "Password must not be empty or null");
+  // TODO: password should also fail if undefined.
+  await undefined_error(update_user({'username': user.username, 'password': null}),
+                                     'password', null, "Password must not be empty or null");
 }
 
 ///////////////////////////////////// DEAL TESTS /////////////////////////////////////

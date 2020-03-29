@@ -1,5 +1,4 @@
 import * as Bar from '../models/bar';
-import { string_to_object } from '../utils/string_to_object'
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -35,7 +34,7 @@ const upload = multer({
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
-    const id = string_to_object(req.query.id);
+    const id = req.query.id;
     console.log(id);
 
     let rc = await Bar.get_bar(id);
@@ -78,14 +77,11 @@ router.post('/create', async (req, res) => {
 router.get('/list', async (req, res) => {
     console.log("/bar/list GET request received");
 
-    const lat = string_to_object(req.query.lat);
-    const lon = string_to_object(req.query.lon);
-    const limit = string_to_object(req.query.limit);
     let loc;
-    if (lat && lon) {
-      loc = {lat: lat, lon: lon};
+    if (req.query.lat && req.query.lon) {
+      loc = {lat: req.query.lat, lon: req.query.lon};
     }
-    let rc = await Bar.get_bars(loc, limit);
+    let rc = await Bar.get_bars(loc, req.query.limit);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });
@@ -101,14 +97,13 @@ router.put('/update', async (req, res) => {
 router.delete('/delete', async (req, res) => {
     console.log('/bar/delete DELETE request received');
 
-    const id = string_to_object(req.query.id);
-    let rc = await Bar.delete_bar(id);
+    let rc = await Bar.delete_bar(req.query.id);
     return res.status(rc.status).json({ message: rc.message });
 });
 
 router.get('/deals', async (req, res) => {
     console.log("/bar/deals GET request received");
-    const id = string_to_object(req.query.id);
+    const id = req.query.id;
     console.log(id);
 
     let rc = await Bar.get_deals(id);
@@ -118,7 +113,7 @@ router.get('/deals', async (req, res) => {
 
 router.get('/reviews', async (req, res) => {
     console.log("/bar/reviews GET request received");
-    const id = string_to_object(req.query.id);
+    const id = req.query.id;
     console.log(id);
 
     let rc = await Bar.get_reviews(id);

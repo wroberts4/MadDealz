@@ -1,4 +1,5 @@
 import * as db_util from '../db';
+import { string_to_object } from '../utils/string_to_object.js'
 import { delete_deal } from './deal';
 import { delete_review } from './review';
 
@@ -34,6 +35,7 @@ export async function create_bar(bar) {
 }
 
 export async function get_bar(id) {
+    id = string_to_object(id);
     if (!id)
         return { status: 400, message: "id must be provided" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -53,6 +55,7 @@ export async function get_bar(id) {
   }
 
   export async function get_bars(loc, limit) {
+    limit = string_to_object(limit);
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -114,6 +117,7 @@ export async function get_bar(id) {
   }
 
   export async function delete_bar(id) {
+    id = string_to_object(id);
     if (!id)
       return { status: 400, message: "Must specify a bar id"};
   
@@ -146,6 +150,9 @@ export async function get_bar(id) {
   }
 
   export async function get_deals(bar_id) {
+    bar_id = string_to_object(bar_id);
+    if (!bar_id)
+      return { status: 400, message: "Must specify a bar id"};
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
@@ -165,6 +172,9 @@ export async function get_bar(id) {
   }
 
   export async function get_reviews(bar_id) {
+    bar_id = string_to_object(bar_id);
+    if (!bar_id)
+      return { status: 400, message: "Must specify a bar id"};
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
@@ -184,7 +194,10 @@ export async function get_bar(id) {
   }
 
   export async function update_favorites(id, value) {
-    value = Number(value);
+    id = string_to_object(id);
+    if (!id)
+      return { status: 400, message: "Must specify a bar id"};
+    value = string_to_object(value);
     if (value != -1 && value != 1)
       return { status: 400, message: "value must be -1 or 1" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -196,13 +209,13 @@ export async function get_bar(id) {
   }
 
   function get_distance(x1, y1, x2, y2) {
-    let radlat1 = Math.PI * x1/180
-    let radlat2 = Math.PI * x2/180
-    let theta = y1-y2
-    let radtheta = Math.PI * theta/180
+    let radlat1 = Math.PI * string_to_object(x1)/180;
+    let radlat2 = Math.PI * string_to_object(x2)/180;
+    let theta = string_to_object(y1)-string_to_object(y2);
+    let radtheta = Math.PI * theta/180;
     let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    dist = Math.acos(dist)
-    dist = dist * 180/Math.PI
-    dist = dist * 60 * 1.1515
-    return dist
+    dist = Math.acos(dist);
+    dist = dist * 180/Math.PI;
+    dist = dist * 60 * 1.1515;
+    return dist;
   }

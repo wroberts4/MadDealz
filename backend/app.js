@@ -5,6 +5,8 @@ const review_controller = require('./controllers/review_controller');
 const express = require('express');
 
 const app = express();
+
+app.use(express.static('public'));
 app.use('/user', user_controller);
 app.use('/bar', bar_controller);
 app.use('/deal', deal_controller);

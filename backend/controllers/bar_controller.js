@@ -2,12 +2,35 @@ import * as Bar from '../models/bar';
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const multer = require('multer');
 
 const router = express.Router();
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(cors());
+
+const Storage = multer.diskStorage({
+    destination(req, file, callback) {
+      callback(null, './public/images/bar/')
+    },
+    filename(req, file, callback) {
+      callback(null, `${req.query.id}`)
+    },
+  });
+
+const upload = multer({ 
+    storage: Storage,
+    fileFilter: function (req, file, callback) {
+        let filetypes = /jpeg|jpg|png/;
+        let mimetype = filetypes.test(file.mimetype);
+    
+        if (mimetype) {
+          return callback(null, true);
+        }
+        callback("Image must be png, jpg, jpeg");
+      }
+});
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
@@ -18,6 +41,17 @@ router.get('/', async (req, res) => {
     
     return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
 });
+
+  router.post('/uploadimage', upload.single('image'), (req, res) => {
+    let status = 200;
+    let message = "Image uploaded successfully"
+    if (req.image) {
+      status = 404;
+      message = "Image failed to upload"
+    }
+
+    return res.status(status).json({ message: message });
+  });
 
 router.post('/create', async (req, res) => {
     console.log("/bar/create POST request received");

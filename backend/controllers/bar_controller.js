@@ -1,5 +1,5 @@
 import * as Bar from '../models/bar';
-import string_to_object from '../utils/string_to_object.js'
+//import string_to_object from '../utils/string_to_object.js'
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -32,6 +32,19 @@ const upload = multer({
         callback("Image must be png, jpg, jpeg");
       }
 });
+
+function string_to_object(string) {
+  // JSON.parse does not convert undefined string to undefined or NaN string to NaN.
+  if (string === "undefined") {
+    return undefined;
+  } else if (string === "NaN") {
+    return NaN;
+  };
+  try {
+    return JSON.parse(string);
+  } catch {};
+  return string;
+};
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");

@@ -34,7 +34,12 @@ const upload = multer({
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
-    const id = JSON.parse(req.query.id);
+    const id;
+    try {
+      id = JSON.parse(req.query.id);
+    } catch () {
+      id = req.query.id;
+    }
     console.log(id);
 
     let rc = await Bar.get_bar(id);

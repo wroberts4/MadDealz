@@ -42,6 +42,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/uploadimage', upload.single('image'), (req, res) => {
+    console.log("/user/uploadimage POST request received");
     let status = 200;
     let message = "Image uploaded successfully"
     if (req.image) {

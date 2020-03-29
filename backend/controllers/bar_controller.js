@@ -43,14 +43,15 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/uploadimage', upload.single('image'), (req, res) => {
-let status = 200;
-let message = "Image uploaded successfully"
-if (req.image) {
-    status = 404;
-    message = "Image failed to upload"
-}
+    console.log("/bar/uploadimage POST request received");
+    let status = 200;
+    let message = "Image uploaded successfully"
+    if (req.image) {
+        status = 404;
+        message = "Image failed to upload"
+    }
 
-return res.status(status).json({ message: message });
+    return res.status(status).json({ message: message });
 });
 
 router.post('/create', async (req, res) => {

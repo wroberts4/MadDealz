@@ -8,7 +8,7 @@ Run instructions Android:
 yarn android
 ```
 
-Run instructions IOS:
+Run instructions IOS (must run: 'pod install' in frontend/MadDealz/ios first):
 ```
 yarn ios
 ```

@@ -15,12 +15,15 @@ export default StyleSheet.create({
         backgroundColor:'black', 
         height:Dimensions.get('screen').height
     },
+    scroll2: {
+        flex: 1,
+        // backgroundColor:'black',
+    },
     homeBackground: {
         flex: 1,
         resizeMode: 'cover'
     },
     searchbar: {
-        marginTop:-30,
         marginLeft: Dimensions.get('screen').width*.10,
         flex:1, 
         backgroundColor: 'transparent',
@@ -33,8 +36,30 @@ export default StyleSheet.create({
         backgroundColor: 'white',
     },
     homepicture: {
-        height: 250, 
-        width:Dimensions.get('screen').width,
-        
+        // flex: 1,
+        height: null,
+        width: null,
+        flex: 1
+        // resizeMode="stretch",
+    },
+    idk: {
+        flex: 1,
+        backgroundColor: 'black'
+    },
+    idk2: {
+        flex: 1,
+        height: 1000,
+        backgroundColor: 'yellow'
+    },
+    idk3: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 200,
+        backgroundColor: 'red'
+    },
+    idk4: {
+        flex: 1,
     }
 });

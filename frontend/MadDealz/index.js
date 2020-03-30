@@ -3,17 +3,16 @@
  */
 
 import {AppRegistry} from 'react-native';
-import App from './App';
+import App from './src/pages/App';
 import {name as appName} from './app.json';
 import {Navigation} from 'react-native-navigation';
 
-import Barpage from './src/screens/barpage'; // Barpage screen
-import Home from './src/screens/home'; // Home screen
-import Profile from './src/screens/profile'; // Profile screen
-import Favorites from './src/screens/favorites'; // Favorites page
-
-import Login from './src/screens/login'; // Login screen
-import Signup from './src/screens/signup'; // Signup screen
+import Barpage from './src/pages/barpage'; // Barpage screen
+import Home from './src/pages/home'; // Home screen
+import Profile from './src/pages/profile'; // Profile screen
+import Favorites from './src/pages/favorites'; // Favorites page
+import Login from './src/pages/login'; // Login screen
+import Signup from './src/pages/signup'; // Signup screen
 
 AppRegistry.registerComponent(appName, () => App);
 Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => App);

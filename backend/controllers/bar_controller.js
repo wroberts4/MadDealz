@@ -1,5 +1,4 @@
 import * as Bar from '../models/bar';
-import string_to_object from '../utils/string_to_object.js'
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -35,7 +34,7 @@ const upload = multer({
 
 router.get('/', async (req, res) => {
     console.log("/bar GET request received");
-    const id = string_to_object(req.query.id);
+    const id = req.query.id;
     console.log(id);
 
     let rc = await Bar.get_bar(id);
@@ -82,7 +81,7 @@ router.get('/list', async (req, res) => {
     if (req.query.lat && req.query.lon) {
       loc = {lat: req.query.lat, lon: req.query.lon};
     }
-    let rc = await Bar.get_bars(loc, req.query.limit);
+    let rc = await Bar.get_bars(loc, req.query.limit, req.query.distance);
 
     return res.status(rc.status).json({ message: rc.message, bars: rc.bars });
 });
@@ -125,7 +124,7 @@ router.get('/reviews', async (req, res) => {
 router.put('/update_favorites', async (req, res) => {
     console.log("/bar/favorites PUT request received");
     console.log(req.body);
-    
+
     let rc = await Bar.update_favorites(req.body.id, req.body.value);
 
     return res.status(rc.status).json({ message: rc.message });

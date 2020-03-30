@@ -1,4 +1,5 @@
 import * as db_util from '../db';
+import { string_to_object } from '../utils/string_to_object.js'
 
 export async function create_deal(deal) {
     if (!deal.info || !deal.times)
@@ -22,6 +23,10 @@ export async function create_deal(deal) {
 }
 
 export async function get_deal(id) {
+  id = string_to_object(id);
+  if (!id) {
+    return { status: 400, message: "Must specify a deal id"};
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -35,6 +40,7 @@ export async function get_deal(id) {
 }
 
 export async function delete_deal(id) {
+  id = string_to_object(id);
   if (!id)
     return { status: 400, message: "Must specify a deal id"};
 

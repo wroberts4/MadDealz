@@ -15,7 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+  rootViewController.view = rootView;
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView]; // <- initialization using the storyboard file name
+ 
+  self.window.rootViewController = rootViewController;
+  [self.window makeKeyAndVisible];
   [ReactNativeNavigation bootstrapWithDelegate:self launchOptions:launchOptions];
   return YES;
 }

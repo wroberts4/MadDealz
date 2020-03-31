@@ -13,6 +13,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import {SearchBar} from 'react-native-elements';
+// import styles from './styles';
 
 bar_requests = require('../requests/bar_requests');
 
@@ -72,6 +73,11 @@ export default class Home extends Component {
       extrapolate: 'clamp',
     });
 
+    const filterTranslate = scrollY.interpolate({
+      inputRange: [0, HEADER_SCROLL_DISTANCE],
+      outputRange: [0, -HEADER_SCROLL_DISTANCE],
+      extrapolate: 'clamp'
+    })
     const searchTranslate = scrollY.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE + 35],
         outputRange: [0, -(HEADER_SCROLL_DISTANCE + 35)],
@@ -97,23 +103,56 @@ export default class Home extends Component {
           barStyle="light-content"
           backgroundColor="#990000"
         />
+        
+        {/* <Animated.View
+          style={{
+            backgroundColor: 'blue',
+            transform: [{ translateY: filterTranslate }],
+            marginTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
+            paddingBottom: 15, 
+            height: 100,
+            elevation: 20,
+          }}
+        > 
+ 
+        </Animated.View> */}
+        <Animated.View
+          style={{
+            backgroundColor: '#242020',
+            transform: [{ translateY: filterTranslate }],
+            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
+            // paddingBottom: 15, 
+            height: 65,
+            elevation: 1,
+            // position: 'absolute'
+          }}
+        > 
+ 
+        </Animated.View>
+
         <Animated.FlatList
+
           data={this.state.bars}
           renderItem={({ item }) => <Item name={item.name} address={item.address} />}
           keyExtractor={item => item._id}
           contentContainerStyle={{
-            paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT + 30 : 30,
-            paddingBottom: 15,
-            backgroundColor: '#303536'
+            paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT + 50 : 30,
+            paddingBottom: 15, 
+            // backgroundColor: '#303536'
+            backgroundColor: 'black',
+            elevation: 20,
+
+            
           }}
           style={{
-            elevation: 0,
+            elevation: 1,
           }}
           scrollEventThrottle={16}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
             { useNativeDriver: true },
           )}
+
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -135,7 +174,19 @@ export default class Home extends Component {
         >
         </Animated.FlatList>
 
-        
+        {/* <Animated.View
+          style={{
+            backgroundColor: 'blue',
+            transform: [{ translateY: filterTranslate }],
+            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
+            paddingBottom: 15, 
+            height: 100,
+            elevation: 20,
+            position: 'absolute'
+          }}
+        > 
+ 
+        </Animated.View> */}
 
         <Animated.View
           pointerEvents="none"
@@ -164,6 +215,7 @@ export default class Home extends Component {
             height: 60,
             marginLeft: Dimensions.get('screen').width*.10,
             transform: [{ translateY: searchTranslate }],
+            elevation: 5
           }}
         >
         <SearchBar
@@ -208,6 +260,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#990000',
     overflow: 'hidden',
     height: HEADER_MAX_HEIGHT,
+    elevation:4,
+    shadowOffset: { width: 5, height: 5 },
+    shadowColor: "black",
+    shadowOpacity:1,
+    shadowRadius: 10,
   },
   backgroundImage: {
     position: 'absolute',
@@ -254,15 +311,21 @@ const styles = StyleSheet.create({
     borderTopColor: 'transparent',
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    backgroundColor: '#990000',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
   },
   name: {
     fontSize: 32,
+    color: '#ebe6e6'
   },
   address: {
     fontSize: 16,
+    color: '#ebe6e6'
   },
 });

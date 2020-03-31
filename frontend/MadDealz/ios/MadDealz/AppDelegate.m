@@ -9,11 +9,13 @@
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 
 #import <React/RCTBundleURLProvider.h>
+#import "RNBootSplash.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
   [ReactNativeNavigation bootstrapWithDelegate:self launchOptions:launchOptions];
   return YES;
 }

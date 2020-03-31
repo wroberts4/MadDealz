@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -28,8 +28,11 @@ import {
 import {delete_user, add_user, get_user, get_users, update_user} from '../requests/user_requests.js';
 import {create_deal} from '../requests/deal_requests';
 import {create_bar, delete_bar, get_bar, get_bars, update_bar} from '../requests/bar_requests';
+import RNBootSplash from "react-native-bootsplash";
 
+RNBootSplash.hide({ duration: 250 });
 export default class App extends Component{
+  
 
   constructor(){
       super();

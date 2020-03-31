@@ -6,6 +6,7 @@ import {AppRegistry} from 'react-native';
 import App from './src/pages/App';
 import {name as appName} from './app.json';
 import {Navigation} from 'react-native-navigation';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 import Barpage from './src/pages/barpage'; // Barpage screen
 import Home from './src/pages/home'; // Home screen
@@ -15,13 +16,13 @@ import Login from './src/pages/login'; // Login screen
 import Signup from './src/pages/signup'; // Signup screen
 
 AppRegistry.registerComponent(appName, () => App);
-Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => App);
-Navigation.registerComponent('BarpageScreen', () => Barpage);
-Navigation.registerComponent('HomeScreen', () => Home);
-Navigation.registerComponent('ProfileScreen', () => Profile);
-Navigation.registerComponent('FavoritesScreen', () => Favorites);
-Navigation.registerComponent('LoginScreen', () => Login);
-Navigation.registerComponent('SignupScreen', () => Signup);
+Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => gestureHandlerRootHOC(App));
+Navigation.registerComponent('BarpageScreen', () => gestureHandlerRootHOC(Barpage));
+Navigation.registerComponent('HomeScreen', () => gestureHandlerRootHOC(Home));
+Navigation.registerComponent('ProfileScreen', () => gestureHandlerRootHOC(Profile));
+Navigation.registerComponent('FavoritesScreen', () => gestureHandlerRootHOC(Favorites));
+Navigation.registerComponent('LoginScreen', () => gestureHandlerRootHOC(Login));
+Navigation.registerComponent('SignupScreen', () => gestureHandlerRootHOC(Signup));
 
 Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setRoot({

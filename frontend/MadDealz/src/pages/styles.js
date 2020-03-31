@@ -61,5 +61,13 @@ export default StyleSheet.create({
     },
     idk4: {
         flex: 1,
+    },
+    button: {
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        backgroundColor: '#990000',
+        marginRight: 15,
     }
 });

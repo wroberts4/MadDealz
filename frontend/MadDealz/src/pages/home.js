@@ -10,10 +10,15 @@ import {
   Dimensions,
   SafeAreaView,
   FlatList,
-  TouchableOpacity
 } from 'react-native';
-import {SearchBar} from 'react-native-elements';
+
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import {SearchBar } from 'react-native-elements';
 // import styles from './styles';
+import Dialog, { DialogTitle, DialogContent, ScaleAnimation, DialogButton, DialogFooter } from 'react-native-popup-dialog';
+
+import ToggleSwitch from 'toggle-switch-react-native';
 
 bar_requests = require('../requests/bar_requests');
 
@@ -41,9 +46,25 @@ export default class Home extends Component {
       refreshing: false,
       bars: [],
       search: '',
+      filterVisible: false,
+      distance: false,
+      filterColor: 'green',
+      distanceSwitch: false,
+
+
     };
   }
+  filterPress = () => {
+    this.setState({ filterVisible: true})
+  }
 
+  distancePress = () => {
+    this.setState({ distance: true})
+  }
+
+  // sortPress() {
+  //   alert("Sort Button Pressed")
+  // }
   componentDidMount() {
       this.get_list_of_bars();
   }
@@ -66,7 +87,6 @@ export default class Home extends Component {
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0,
     );
-
     const headerTranslate = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
       outputRange: [0, -HEADER_SCROLL_DISTANCE],
@@ -75,7 +95,7 @@ export default class Home extends Component {
 
     const filterTranslate = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, -HEADER_SCROLL_DISTANCE],
+      outputRange: [0, -HEADER_SCROLL_DISTANCE - 10],
       extrapolate: 'clamp'
     })
     const searchTranslate = scrollY.interpolate({
@@ -95,39 +115,157 @@ export default class Home extends Component {
       outputRange: [0, 100],
       extrapolate: 'clamp',
     });
+    
+    const dSwitch = this.state.distanceSwitch;
+
+    let dButton;
+
+    if(dSwitch == false) {
+      dButton = <ToggleSwitch
+      isOn = {this.state.distanceSwitch}
+      offColor="grey"
+      onColor="skyblue"
+      onToggle={
+        () => this.setState({distanceSwitch:true})}/>;
+      } else {
+        dButton =  <ToggleSwitch
+        isOn = {this.state.distanceSwitch}
+        offColor="grey"
+        onColor="skyblue"
+        onToggle={
+          () => this.setState({distanceSwitch:false})}/>;
+        }
 
     return (
       <View style={styles.fill}>
+        
+        <Dialog 
+          rounded
+          width={Dimensions.get('screen').width*.75}
+          // height={Dimensions.get('screen').height*.75}
+          visible={this.state.filterVisible}
+          dialogTitle={<DialogTitle title="Filter" />}
+          onTouchOutside={() => {
+            this.setState({ filterVisible: false});
+          }}
+          dialogAnimation={new ScaleAnimation({
+            initialValue: 0,
+            useNativeDriver: true,
+          })}
+          >
+            <DialogContent>
+              <View style = {{
+                flexDirection: 'row',
+                paddingTop:5,
+                paddingBottom:10
+              }}>
+                <View style = {{
+                  paddingRight: 150,
+                  paddingTop: 10,
+                  elevation: 1,
+                  zIndex: 5
+                }}>
+                  <Text
+                    style = {{
+                    //  paddingTop: 4,
+                    //  paddingLeft: 10,
+                    //  paddingRight: 10,
+                     fontSize: 18,
+                     paddingBottom: 8,
+                }}
+                  >Distance</Text>
+                </View>
+                  {dButton}
+              </View>  
+            </DialogContent>
+            <DialogFooter>
+              <DialogButton
+                text="Cancel"
+                onPress={() => this.setState({filterVisible: false})}
+              />
+              <DialogButton
+              
+                text="Search"
+                onPress={() => this.setState({filterVisible: false})}
+              />
+            </DialogFooter>
+          </Dialog>
         <StatusBar
           translucent
           barStyle="light-content"
           backgroundColor="#990000"
         />
         
-        {/* <Animated.View
-          style={{
-            backgroundColor: 'blue',
-            transform: [{ translateY: filterTranslate }],
-            marginTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
-            paddingBottom: 15, 
-            height: 100,
-            elevation: 20,
-          }}
-        > 
- 
-        </Animated.View> */}
         <Animated.View
+          pointerEvents='auto'
           style={{
             backgroundColor: '#242020',
             transform: [{ translateY: filterTranslate }],
             top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
             // paddingBottom: 15, 
-            height: 65,
+            height: 75,
             elevation: 1,
+            zIndex: 1
             // position: 'absolute'
           }}
         > 
- 
+          <View style = {{
+            flexDirection: 'row',
+            // justifyContent: 'space-around',
+            paddingTop: 25,
+            paddingLeft: 15,
+            elevation: 1,
+            zIndex: 1
+
+          }}>
+            <TouchableOpacity 
+             
+              onPress={this.filterPress}
+              // onPress={() => {alert("Button Pressed"); console.log('pressed')}}
+              style = {{
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,
+                borderTopLeftRadius: 10,
+                borderTopRightRadius: 10,
+                backgroundColor: '#990000',
+                marginRight: 15,
+                elevation: 1,
+                zIndex: 1
+                
+            }}>
+              <Text 
+              style = {{
+                paddingTop: 8,
+                color: 'white',
+                paddingLeft: 10,
+                paddingRight: 10,
+                fontSize: 14,
+                paddingBottom: 8
+              }}>
+                FILTER</Text>
+            </TouchableOpacity>
+            {/* <TouchableOpacity
+              onPress={this.sortPress}
+              style = {{
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,
+                borderTopLeftRadius: 10,
+                borderTopRightRadius: 10,
+                backgroundColor: '#990000',
+                marginRight: 15,
+            }}>
+              <Text 
+                style = {{
+                  paddingTop: 8,
+                  color: 'white',
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  fontSize: 14,
+                  paddingBottom: 8,
+                }}>
+                  SORT</Text>
+            </TouchableOpacity>*/}
+          </View> 
         </Animated.View>
 
         <Animated.FlatList
@@ -173,20 +311,6 @@ export default class Home extends Component {
           }}
         >
         </Animated.FlatList>
-
-        {/* <Animated.View
-          style={{
-            backgroundColor: 'blue',
-            transform: [{ translateY: filterTranslate }],
-            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
-            paddingBottom: 15, 
-            height: 100,
-            elevation: 20,
-            position: 'absolute'
-          }}
-        > 
- 
-        </Animated.View> */}
 
         <Animated.View
           pointerEvents="none"

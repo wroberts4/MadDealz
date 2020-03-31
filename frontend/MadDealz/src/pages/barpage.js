@@ -17,8 +17,8 @@ class Barpage extends React.Component {
             <SafeAreaView>
                 <ScrollView style={styles.scroll}>
                     <View style={styles.bar}>
-                        <Text style={{fontSize: 20, color: 'white'}}>
-                            Bar page.
+                        <Text style={{fontSize: 20, color: 'white', paddingBottom: 5}}>
+                            Bar Name
                         </Text>
                     </View>
                     <View
@@ -36,6 +36,28 @@ class Barpage extends React.Component {
                             resizeMode="contain"
                         />
                     </View>
+                    <Card
+                        title="Dealz"
+                        containerStyle={{
+                            borderRadius: 10,
+                            alignItems: 'center',
+                        }}>
+                        <Text>Sunday</Text>
+                        <Text>Monday</Text>
+                        <Text>Tuesday</Text>
+                        <Text>Wednesday</Text>
+                        <Text>Thursday</Text>
+                        <Text>Friday</Text>
+                        <Text>Saturday</Text>
+                    </Card>
+                    <Card
+                        title="Reviews"
+                        containerStyle={{
+                            borderRadius: 10,
+                            alignItems: 'center',
+                        }}>
+                        <Text>Reviews here</Text>
+                    </Card>
                     <Card
                         title="Contact Us"
                         containerStyle={{

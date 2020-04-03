@@ -64,7 +64,7 @@ async function _get_user(username) {
 }
 
 export async function get_user(username) {
-  console.log(username);
+  console.log('TYPEOF USERNAME', typeof username);
   username = convert_to_object(username);
   if (!username) {
     return { status: 400, message: "Must specify a username" };
@@ -123,7 +123,7 @@ export async function user_login(user) {
 }
 
 export async function update_user(user) {
-  console.log('TYPEOF USER:', typeof user)
+  console.log(user)
   user = convert_to_object(user);
 // Note: we may want to get the _id from the username for future use?
   if (!user.username) {

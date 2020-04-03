@@ -123,7 +123,7 @@ export async function user_login(user) {
 }
 
 export async function update_user(user) {
-  console.log(user)
+  console.log('TYPEOF USER:', typeof user)
   user = convert_to_object(user);
 // Note: we may want to get the _id from the username for future use?
   if (!user.username) {

@@ -123,6 +123,7 @@ export async function user_login(user) {
 
 export async function update_user(user) {
   user = convert_to_object(user);
+  console.log('UPDATED USER:', user);
 // Note: we may want to get the _id from the username for future use?
   if (!user.username) {
     return { status: 400, message: "Must specify a username"};

@@ -118,11 +118,11 @@ async function test_update_user(user) {
   expect(res).toBe("User updated successfully");
 
   // Error cases.
-  await undefined_error(update_user(undefined), 'username', undefined, "Must specify a username");
+  await undefined_error(update_user(undefined), 'user', undefined, "Must specify a user");
   await undefined_error(update_user({'username': 'this_user_does_not_exist'}), 'username', 'this_user_does_not_exist', "User not found");
   // TODO: password should also fail if undefined.
-  await undefined_error(update_user({'username': user.username, 'password': null}),
-                                     'password', null, "Password must not be empty or null");
+  await undefined_error(update_user({'username': user.username, 'password': undefined}),
+                                     'password', undefined, "Password must not be empty or null");
   await undefined_error(update_user({'username': user.username, 'password': 'tmp', 'email': user.email}),
                                     'email', user.email, "Email already in use");
 };
@@ -227,7 +227,7 @@ async function test_update_bar(name1, address1, name2, address2) {
   expect(update_res).toBe("Bar updated successfully");
 
   // Error cases.
-  await undefined_error(update_bar(undefined), 'bar', undefined, "Must specify a bar id");
+  await undefined_error(update_bar(undefined), 'bar', undefined, "Must specify a bar");
 };
 
 async function test_get_deals(bar_id) {

@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-import { convert_to_object } from '../utils/convert_to_object.js'
 import * as db_util from '../db';
 
 //  DB SCHEMA FOR USER OBJECTS
@@ -23,7 +22,9 @@ import * as db_util from '../db';
 //     bars_owned: [String]
 
 export async function create_user(user) {
-    user = convert_to_object(user);
+    if (!user) {
+      return { status: 400, message: "Must specify a user"};
+    }
     if (!user.password || !user.email || !user.username)
         return { status: 400, message: "Email, password, or username is empty" };
     
@@ -54,7 +55,6 @@ export async function create_user(user) {
 }
 
 async function _get_user(username) {
-  username = convert_to_object(username);
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
@@ -97,7 +97,9 @@ export async function get_users() {
 }
 
 export async function user_login(user) {
-  user = convert_to_object(user);
+  if (!user) {
+    return { status: 400, message: "Must specify a user"};
+  }
   if (!user.email || !user.password)
     return { status: 400, message: "No email or password specified"};
 
@@ -121,10 +123,12 @@ export async function user_login(user) {
 }
 
 export async function update_user(user) {
-  user = convert_to_object(user);
+  if (!user) {
+    return { status: 400, message: "Must specify a user"};
+  }
 // Note: we may want to get the _id from the username for future use?
   if (!user.username) {
-    return { status: 400, message: "Must specify a username"};
+    return { status: 400, message: "Must specify a username" };
   } else if ("password" in user) {
     if (!user.password) {
       return { status: 400, message: "Password must not be empty or null" };
@@ -162,7 +166,6 @@ export async function update_user(user) {
 }
 
 export async function delete_user(username) {
-  username = convert_to_object(username);
   if (!username)
     return { status: 400, message: "Must specify a username"};
 
@@ -179,8 +182,6 @@ export async function delete_user(username) {
 }
 
 export async function add_favorite_bar(username, bar_id) {
-  username = convert_to_object(username);
-  bar_id = convert_to_object(bar_id);
   if (!username) {
     return { status: 400, message: "Must specify a username"};
   } else if (!bar_id) {
@@ -197,8 +198,6 @@ export async function add_favorite_bar(username, bar_id) {
 }
 
 export async function remove_favorite_bar(username, bar_id) {
-  username = convert_to_object(username);
-  bar_id = convert_to_object(bar_id);
   if (!username) {
     return { status: 400, message: "Must specify a username"};
   } else if (!bar_id) {
@@ -214,8 +213,6 @@ export async function remove_favorite_bar(username, bar_id) {
 }
 
 export async function add_favorite_deal(username, deal_id) {
-  username = convert_to_object(username);
-  deal_id = convert_to_object(deal_id);
   if (!username) {
     return { status: 400, message: "Must specify a username"};
   } else if (!deal_id) {
@@ -232,8 +229,6 @@ export async function add_favorite_deal(username, deal_id) {
 }
 
 export async function remove_favorite_deal(username, deal_id) {
-  username = convert_to_object(username);
-  deal_id = convert_to_object(deal_id);
   if (!username) {
     return { status: 400, message: "Must specify a username"};
   } else if (!deal_id) {
@@ -249,8 +244,6 @@ export async function remove_favorite_deal(username, deal_id) {
 }
 
 export async function send_friend_request(requester, requestee) {
-  requester = convert_to_object(requester);
-  requestee = convert_to_object(requestee);
   if (!requester) {
     return { status: 400, message: "Must specify a requester"};
   } else if (!requestee) {
@@ -270,8 +263,6 @@ export async function send_friend_request(requester, requestee) {
 }
 
 export async function accept_friend_request(requester, requestee) {
-  requester = convert_to_object(requester);
-  requestee = convert_to_object(requestee);
   if (!requester) {
     return { status: 400, message: "Must specify a requester"};
   } else if (!requestee) {
@@ -293,8 +284,6 @@ export async function accept_friend_request(requester, requestee) {
 }
 
 export async function remove_friend(user1, user2) {
-  user1 = convert_to_object(user1);
-  user2 = convert_to_object(user2);
   if (!user1 || !user2) {
     return { status: 400, message: "Must specify two users"};
   }

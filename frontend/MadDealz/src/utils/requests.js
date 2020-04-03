@@ -18,4 +18,19 @@ async function fetchWithTimeout(url, options) {
   })
 }
 
-module.exports = {fetchWithTimeout};
+function falsy_to_empty(obj) {
+  if (!obj) {
+    return '';
+  } else if (typeof obj != 'object') {
+    return obj;
+  }
+  // credit: https://stackoverflow.com/questions/684672/how-do-i-loop-through-or-enumerate-a-javascript-object
+  for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+          obj[key] = falsy_to_empty(obj[key]);
+      };
+  };
+  return obj;
+}
+
+module.exports = {fetchWithTimeout, falsy_to_empty};

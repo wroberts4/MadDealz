@@ -1,4 +1,5 @@
 const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
+const falsy_to_empty = require('../utils/requests').falsy_to_empty;
 
 /**
  * Description: Add a bar into the system.
@@ -10,6 +11,8 @@ const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
  * @return {object} bar object containing name and adsress.
  */
 async function create_bar(name, address) {
+    name = falsy_to_empty(name);
+    address = falsy_to_empty(address);
     data = {name: name, address: address};
     const response = await fetchWithTimeout('/bar/create', {
         method: 'POST',
@@ -31,6 +34,7 @@ async function create_bar(name, address) {
  * @param  {string} id
  */
 async function delete_bar(id) {
+    id = falsy_to_empty(id);
     const response = await fetchWithTimeout('/bar/delete?id=' + id, {
         method: 'DELETE',
         headers: {
@@ -52,6 +56,7 @@ async function delete_bar(id) {
  * @return {object} bar object containing name and address.
  */
 async function get_bar(id) {
+    id = falsy_to_empty(id);
     const response = await fetchWithTimeout('/bar?id=' + id, {
         method: 'GET',
         headers: {
@@ -75,6 +80,10 @@ async function get_bar(id) {
  * @return {list of object} list of bar objects containing name and address.
  */
 async function get_bars(lat, lon, limit, distance) {
+    lat = falsy_to_empty(lat);
+    lon = falsy_to_empty(lon);
+    limit = falsy_to_empty(limit);
+    distance = falsy_to_empty(distance);
     let url =
         '/bar/list?limit=' +
         limit +
@@ -101,6 +110,7 @@ async function get_bars(lat, lon, limit, distance) {
  *   @subparam   {string} id
  */
 async function update_bar(bar) {
+    bar = falsy_to_empty(bar);
     const response = await fetchWithTimeout('/bar/update', {
         method: 'PUT',
         headers: {

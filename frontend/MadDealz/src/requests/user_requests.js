@@ -1,4 +1,5 @@
 const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
+const falsy_to_empty = require('../utils/requests').falsy_to_empty;
 
 //TODO: add_review
 /**
@@ -12,6 +13,9 @@ const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
                     location, favorite bars, and friends.
  */
 async function add_user(username, password, email) {
+    username = falsy_to_empty(username);
+    password = falsy_to_empty(password);
+    email = falsy_to_empty(email);
     data = {username: username, password: password, email: email};
     const response = await fetchWithTimeout('/user/create', {
         method: 'POST',
@@ -33,6 +37,7 @@ async function add_user(username, password, email) {
  * @param  {string} username
  */
 async function delete_user(username) {
+    username = falsy_to_empty(username);
     const response = await fetchWithTimeout(
         '/user/delete?username=' + username,
         {
@@ -57,6 +62,7 @@ async function delete_user(username) {
                     location, favorite bars, and friends.
  */
 async function get_user(username) {
+    username = falsy_to_empty(username);
     const response = await fetchWithTimeout('/user?username=' + username, {
         method: 'GET',
         headers: {
@@ -105,6 +111,10 @@ async function get_users() {
  *   @subpparam  {string} bars_owned (optional)
  */
 async function update_user(user) {
+    user = falsy_to_empty(user);
+    if (!user) {
+      user = {'username': ''};
+    }
     const response = await fetchWithTimeout('/user/update', {
         method: 'PUT',
         headers: {

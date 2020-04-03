@@ -1,8 +1,9 @@
 import * as db_util from '../db';
-import { convert_to_object } from '../utils/convert_to_object.js'
 
 export async function create_deal(deal) {
-    deal = convert_to_object(deal);
+    if (!deal) {
+      return { status: 400, message: "Must specify a deal"};
+    }
     if (!deal.info || !deal.times)
         return { status: 400, message: "Deal info and times must be provided" };
     
@@ -24,7 +25,6 @@ export async function create_deal(deal) {
 }
 
 export async function get_deal(id) {
-  id = convert_to_object(id);
   if (!id) {
     return { status: 400, message: "Must specify a deal id"};
   }
@@ -41,7 +41,6 @@ export async function get_deal(id) {
 }
 
 export async function delete_deal(id) {
-  id = convert_to_object(id);
   if (!id)
     return { status: 400, message: "Must specify a deal id"};
 
@@ -66,7 +65,9 @@ export async function delete_deal(id) {
 }
 
 export async function update_deal(deal) {
-  deal = convert_to_object(deal);
+  if (!deal) {
+    return { status: 400, message: "Must specify a deal"};
+  }
   if (!deal.id) {
     return { status: 400, message: "Must specify a deal id"};
   }

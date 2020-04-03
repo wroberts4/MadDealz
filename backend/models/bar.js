@@ -1,12 +1,13 @@
 import * as db_util from '../db';
-import { convert_to_object } from '../utils/convert_to_object.js'
 import { delete_deal } from './deal';
 import { delete_review } from './review';
 
 const fetch = require('node-fetch');
 
 export async function create_bar(bar) {
-    bar = convert_to_object(bar);
+    if (!bar) {
+      return { status: 400, message: "Must specify a bar"};
+    }
     if (!bar.name || !bar.address)
         return { status: 400, message: "Bar name and address must be provided" };
         
@@ -36,7 +37,6 @@ export async function create_bar(bar) {
 }
 
 export async function get_bar(id) {
-    id = convert_to_object(id);
     if (!id)
         return { status: 400, message: "id must be provided" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -56,9 +56,6 @@ export async function get_bar(id) {
   }
 
   export async function get_bars(loc, limit, distance) {
-    loc = convert_to_object(loc);
-    limit = convert_to_object(limit);
-    distance = convert_to_object(distance);
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -92,7 +89,9 @@ export async function get_bar(id) {
   }
 
   export async function update_bar(bar) {
-    bar = convert_to_object(bar);
+    if (!bar) {
+      return { status: 400, message: "Must specify a bar"};
+    }
     if (!bar._id) {
       return { status: 400, message: "Must specify a bar id"};
     }
@@ -126,7 +125,6 @@ export async function get_bar(id) {
   }
 
   export async function delete_bar(id) {
-    id = convert_to_object(id);
     if (!id)
       return { status: 400, message: "Must specify a bar id"};
   
@@ -160,7 +158,6 @@ export async function get_bar(id) {
   }
 
   export async function get_deals(bar_id) {
-    bar_id = convert_to_object(bar_id);
     if (!bar_id)
       return { status: 400, message: "Must specify a bar id"};
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -182,7 +179,6 @@ export async function get_bar(id) {
   }
 
   export async function get_reviews(bar_id) {
-    bar_id = convert_to_object(bar_id);
     if (!bar_id)
       return { status: 400, message: "Must specify a bar id"};
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
@@ -204,10 +200,8 @@ export async function get_bar(id) {
   }
 
   export async function update_favorites(id, value) {
-    id = convert_to_object(id);
     if (!id)
       return { status: 400, message: "Must specify a bar id"};
-    value = convert_to_object(value);
     if (value != -1 && value != 1)
       return { status: 400, message: "value must be -1 or 1" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });

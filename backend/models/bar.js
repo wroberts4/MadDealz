@@ -219,9 +219,9 @@ export async function get_bar(id) {
   }
 
   function get_distance(x1, y1, x2, y2) {
-    let radlat1 = Math.PI * convert_to_object(x1)/180;
-    let radlat2 = Math.PI * convert_to_object(x2)/180;
-    let theta = convert_to_object(y1)-convert_to_object(y2);
+    let radlat1 = Math.PI * x1/180;
+    let radlat2 = Math.PI * x2/180;
+    let theta = y1 - y2;
     let radtheta = Math.PI * theta/180;
     let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
     dist = Math.acos(dist);

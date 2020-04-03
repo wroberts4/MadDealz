@@ -1,8 +1,8 @@
 import * as db_util from '../db';
-import { string_to_object } from '../utils/string_to_object.js'
+import { convert_to_object } from '../utils/convert_to_object.js'
 
 export async function create_review(review) {
-    
+    review = convert_to_object(review);
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
@@ -25,6 +25,8 @@ export async function create_review(review) {
 }
 
 async function update_score(query, score) {
+    query = convert_to_object(query);
+    score = convert_to_object(score);
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -43,7 +45,7 @@ async function update_score(query, score) {
 }
 
 export async function get_review(id) {
-    id = string_to_object(id);
+    id = convert_to_object(id);
     if (!id) {
       return { status: 400, message: "Must specify a review id"};
     }
@@ -60,7 +62,7 @@ export async function get_review(id) {
   }
 
   export async function delete_review(id) {
-    id = string_to_object(id);
+    id = convert_to_object(id);
     if (!id) {
       return { status: 400, message: "Must specify a review id"};
     }
@@ -88,6 +90,8 @@ export async function get_review(id) {
   }
 
   async function update_score_delete(query, score) {
+    query = convert_to_object(query);
+    score = convert_to_object(score);
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
   
@@ -106,6 +110,7 @@ export async function get_review(id) {
 }
 
   export async function update_review(review) {
+    review = convert_to_object(review);
     if (!review.id) {
       return { status: 400, message: "Must specify a review id"};
     }

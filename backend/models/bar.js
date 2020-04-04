@@ -44,9 +44,9 @@ export async function get_bar(id) {
 
     let query;
     if (typeof id === 'object')
-      query = { _id: id };
-    else
       query = { _id: db_util.ObjectId(id) };
+    else
+      query = { _id: id };
 
     let bar = await dbo.collection("bars").findOne(query, {});
     console.log(bar);
@@ -114,9 +114,9 @@ export async function get_bar(id) {
     
     let query;
     if (typeof bar._id === 'object')
-      query = { _id: bar._id };
-    else
       query = { _id: db_util.ObjectId(bar._id) };
+    else
+      query = { _id: bar._id };
 
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();

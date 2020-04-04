@@ -43,10 +43,18 @@ export async function get_bar(id) {
     let dbo = con.db(db_util.db_name);
 
     let query;
-    if (typeof id === 'object')
+    if (typeof id === 'object') {
+      if (JSON.stringify(id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
       query = { _id: id };
-    else
-      query = { _id: db_util.ObjectId(id) };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
 
     let bar = await dbo.collection("bars").findOne(query, {});
     console.log(bar);
@@ -113,10 +121,18 @@ export async function get_bar(id) {
     }
     
     let query;
-    if (typeof bar._id === 'object')
+    if (typeof bar._id === 'object') {
+      if (JSON.stringify(bar._id).length != 26) {
+        return { status: 400, message: "invalid bar id provided" };
+      }
       query = { _id: bar._id };
-    else
-      query = { _id: db_util.ObjectId(bar._id) };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(bar._id) };
+      } catch {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+    }
 
     let result = await dbo.collection("bars").updateOne(query, { $set: values}, { upsert: false });
     con.close();
@@ -138,10 +154,18 @@ export async function get_bar(id) {
     let dbo = con.db(db_util.db_name);
 
     let query;
-    if (typeof id === 'object')
+    if (typeof id === 'object') {
+      if (JSON.stringify(id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
       query = { _id: id };
-    else
-      query = { _id: db_util.ObjectId(id) };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
 
     // delete all deals corrosponding to bar
     let bar = await dbo.collection("bars").findOne(query, {});
@@ -170,10 +194,18 @@ export async function get_bar(id) {
     let dbo = con.db(db_util.db_name);
 
     let query;
-    if (typeof bar_id === 'object')
+    if (typeof bar_id === 'object') {
+      if (JSON.stringify(bar_id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
       query = { _id: bar_id };
-    else
-      query = { _id: db_util.ObjectId(bar_id) };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(bar_id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
 
     let bar = await dbo.collection("bars").findOne(query, {});
   
@@ -181,10 +213,18 @@ export async function get_bar(id) {
     let id;
 
     for (id of bar.deals) {
-      if (typeof id === 'object')
+      if (typeof id === 'object') {
+        if (JSON.stringify(id).length != 26) {
+          return { status: 400, message: "invalid id provided" };
+        }
         query = { _id: id };
-      else
-        query = { _id: db_util.ObjectId(id) };
+      } else {
+        try {
+          query = { _id: db_util.ObjectId(id) };
+        } catch {
+          return { status: 400, message: "invalid id provided" };
+        }
+      }
 
       let deal = await dbo.collection("deals").findOne(query, {});
       delete deal.bar;
@@ -202,10 +242,18 @@ export async function get_bar(id) {
     let dbo = con.db(db_util.db_name);
 
     let query;
-    if (typeof bar_id === 'object')
+    if (typeof bar_id === 'object') {
+      if (JSON.stringify(bar_id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
       query = { _id: bar_id };
-    else
-      query = { _id: db_util.ObjectId(bar_id) };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(bar_id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
 
     let bar = await dbo.collection("bars").findOne(query, {});
   
@@ -213,10 +261,18 @@ export async function get_bar(id) {
     let id;
 
     for (id of bar.reviews) {
-      if (typeof id === 'object')
+      if (typeof id === 'object') {
+        if (JSON.stringify(id).length != 26) {
+          return { status: 400, message: "invalid id provided" };
+        }
         query = { _id: id };
-      else
-        query = { _id: db_util.ObjectId(id) };
+      } else {
+        try {
+          query = { _id: db_util.ObjectId(id) };
+        } catch {
+          return { status: 400, message: "invalid id provided" };
+        }
+      }
 
       let review = await dbo.collection("reviews").findOne(query, {});
       delete review.bar;
@@ -236,10 +292,18 @@ export async function get_bar(id) {
     let dbo = con.db(db_util.db_name);
 
     let query;
-    if (typeof id === 'object')
+    if (typeof id === 'object') {
+      if (JSON.stringify(id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
       query = { _id: id };
-    else
-      query = { _id: db_util.ObjectId(id) };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
 
     let result = await dbo.collection("bars").updateOne(query, { $inc: { favorites: value }}, {});
     return { status: 200, message: "Bar favorites updated successfully" };

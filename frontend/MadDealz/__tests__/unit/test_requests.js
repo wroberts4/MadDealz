@@ -187,7 +187,8 @@ async function test_delete_bar(name, address) {
 
   await undefined_error(delete_bar(undefined), 'id', undefined, "Must specify a bar id");
   // TODO: THIS IS FAILING.
-  await undefined_error(delete_bar(-1), 'id', -1, "Bar not found");
+  await undefined_error(delete_bar(-1), 'id', -1, "invalid id provided");
+  await undefined_error(delete_bar('abcdefghijlm'), 'id', 'abcdefghijlm', "Bar not found");
 };
 
 async function test_create_bar(name, address) {
@@ -206,7 +207,8 @@ async function test_get_bar(name, address) {
 
   // Error cases.
   await undefined_error(get_bar(undefined), 'name', undefined, "id must be provided");
-  await undefined_error(get_bar(-1), 'name', -1, "Bar does not exist");
+  await undefined_error(get_bar(-1), 'name', -1, "invalid id provided");
+  await undefined_error(get_bar('abcdefghijlm'), 'id', 'abcdefghijlm', "Bar does not exist");
   return bar;
 };
 

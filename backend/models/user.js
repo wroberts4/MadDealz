@@ -54,20 +54,15 @@ export async function create_user(user) {
     return { status: 200, message: "User successfully created", user: user_result };
 }
 
-async function _get_user(username) {
+export async function get_user(username) {
+  if (!username) {
+    return { status: 400, message: "Must specify a username" };
+  }
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
   let user = await dbo.collection("users").findOne({ 'username': username }, {});
   con.close();
-  return user;
-}
-
-export async function get_user(username) {
-  if (!username) {
-    return { status: 400, message: "Must specify a username" };
-  }
-  let user = await _get_user(username);
 
   if (!user)
     return { status: 404, message: "User not found", user: user};

@@ -112,9 +112,6 @@ async function get_users() {
  */
 async function update_user(user) {
     user = falsy_to_empty(user);
-    if (!user) {
-      user = {'username': ''};
-    }
     const response = await fetchWithTimeout('/user/update', {
         method: 'PUT',
         headers: {

@@ -19,7 +19,9 @@ async function fetchWithTimeout(url, options) {
 }
 
 function falsy_to_empty(obj) {
-  if (!obj) {
+  if (obj === 0) {
+    return 0;
+  } else if (!obj) {
     return '';
   } else if (typeof obj != 'object') {
     return obj;

@@ -41,8 +41,14 @@ export async function get_bar(id) {
         return { status: 400, message: "id must be provided" };
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
-  
-    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(id) }, {});
+
+    let query;
+    if (typeof id === 'object')
+      query = { _id: id };
+    else
+      query = { _id: db_util.ObjectId(id) };
+
+    let bar = await dbo.collection("bars").findOne(query, {});
     console.log(bar);
     
     if (!bar)
@@ -163,13 +169,24 @@ export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
-    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(bar_id) }, {});
+    let query;
+    if (typeof bar_id === 'object')
+      query = { _id: bar_id };
+    else
+      query = { _id: db_util.ObjectId(bar_id) };
+
+    let bar = await dbo.collection("bars").findOne(query, {});
   
     let deals = [];
     let id;
 
     for (id of bar.deals) {
-      let deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
+      if (typeof id === 'object')
+        query = { _id: id };
+      else
+        query = { _id: db_util.ObjectId(id) };
+
+      let deal = await dbo.collection("deals").findOne(query, {});
       delete deal.bar;
       deals.push(deal);
     }
@@ -184,13 +201,24 @@ export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
-    let bar = await dbo.collection("bars").findOne({ '_id': db_util.ObjectId(bar_id) }, {});
+    let query;
+    if (typeof bar_id === 'object')
+      query = { _id: bar_id };
+    else
+      query = { _id: db_util.ObjectId(bar_id) };
+
+    let bar = await dbo.collection("bars").findOne(query, {});
   
     let reviews = [];
     let id;
 
     for (id of bar.reviews) {
-      let review = await dbo.collection("reviews").findOne({ '_id': db_util.ObjectId(id) }, {});
+      if (typeof id === 'object')
+        query = { _id: id };
+      else
+        query = { _id: db_util.ObjectId(id) };
+
+      let review = await dbo.collection("reviews").findOne(query, {});
       delete review.bar;
       reviews.push(review);
     }
@@ -207,7 +235,12 @@ export async function get_bar(id) {
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
-    let query = { _id: db_util.ObjectId(id) };
+    let query;
+    if (typeof id === 'object')
+      query = { _id: id };
+    else
+      query = { _id: db_util.ObjectId(id) };
+
     let result = await dbo.collection("bars").updateOne(query, { $inc: { favorites: value }}, {});
     return { status: 200, message: "Bar favorites updated successfully" };
   }

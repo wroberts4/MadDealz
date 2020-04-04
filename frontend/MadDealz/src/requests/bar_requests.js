@@ -154,11 +154,70 @@ async function update_bar(bar, fetch_timeout, ip) {
     return (await response.json()).message;
 }
 
-async function get_deals(bar_id, fetch_timeout, ip) {}
+async function get_deals(id, fetch_timeout, ip) {
+    id = falsy_to_empty(id);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/deals?id=' + id;
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    // Returns a bar object.
+    return (await response.json()).deals;
+}
 
-async function get_reviews(bar_id, fetch_timeout, ip) {}
+async function get_reviews(id, fetch_timeout, ip) {
+    id = falsy_to_empty(id);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/reviews?id=' + id;
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    // Returns a bar object.
+    return (await response.json()).reviews;
+}
 
-async function update_favorites(id, value, fetch_timeout, ip) {}
+async function update_favorites(id, value, fetch_timeout, ip) {
+    id = falsy_to_empty(id);
+    value = falsy_to_empty(value);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/favorites';
+    let data = {'id': id, 'value': value};
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
 module.exports = {
     create_bar,

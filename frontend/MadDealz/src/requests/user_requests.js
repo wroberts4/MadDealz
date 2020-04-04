@@ -156,7 +156,7 @@ async function user_login(email, password, fetch_timeout, ip) {
     password = falsy_to_empty(password);
     let data = {'email': email, 'password': password};
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/login';
+    let url = ip + '/user/login';
     const response = await fetchWithTimeout(
         url,
         {
@@ -179,7 +179,7 @@ async function add_favorite_bar(username, bar_id, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     bar_id = falsy_to_empty(bar_id);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/add_favorite_bar';
+    let url = ip + '/user/add_favorite_bar';
     data = {'username': username, 'bar_id': bar_id}
     const response = await fetchWithTimeout(
         url,
@@ -202,7 +202,7 @@ async function remove_favorite_bar(username, bar_id, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     bar_id = falsy_to_empty(bar_id);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/remove_favorite_bar';
+    let url = ip + '/user/remove_favorite_bar';
     data = {'username': username, 'bar_id': bar_id}
     const response = await fetchWithTimeout(
         url,
@@ -225,7 +225,7 @@ async function add_favorite_deal(username, deal_id, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     deal_id = falsy_to_empty(deal_id);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/add_favorite_deal';
+    let url = ip + '/user/add_favorite_deal';
     data = {'username': username, 'deal_id': deal_id}
     const response = await fetchWithTimeout(
         url,
@@ -248,7 +248,7 @@ async function remove_favorite_deal(username, deal_id, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     deal_id = falsy_to_empty(deal_id);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/remove_favorite_deal';
+    let url = ip + '/user/remove_favorite_deal';
     data = {'username': username, 'deal_id': deal_id}
     const response = await fetchWithTimeout(
         url,
@@ -271,7 +271,7 @@ async function send_friend_request(requester, requestee, fetch_timeout, ip) {
     requester = falsy_to_empty(requester);
     requestee = falsy_to_empty(requestee);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/friend_request';
+    let url = ip + '/user/friend_request';
     data = {'requester': requester, 'requestee': requestee}
     const response = await fetchWithTimeout(
         url,
@@ -294,7 +294,7 @@ async function accept_friend_request(requester, requestee, fetch_timeout, ip) {
     requester = falsy_to_empty(requester);
     requestee = falsy_to_empty(requestee);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/accept_friend';
+    let url = ip + '/user/accept_friend';
     data = {'requester': requester, 'requestee': requestee}
     const response = await fetchWithTimeout(
         url,
@@ -317,7 +317,7 @@ async function remove_friend(user1, user2, fetch_timeout, ip) {
     user1 = falsy_to_empty(user1);
     user2 = falsy_to_empty(user2);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/remove_friend';
+    let url = ip + '/user/remove_friend';
     data = {'user1': user1, 'user2': user2}
     const response = await fetchWithTimeout(
         url,

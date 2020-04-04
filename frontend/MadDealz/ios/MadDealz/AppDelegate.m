@@ -6,15 +6,24 @@
  */
 
 #import "AppDelegate.h"
-#import <ReactNativeNavigation/ReactNativeNavigation.h>
 
+#import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
+#import <React/RCTRootView.h>
+#import <ReactNativeNavigation/ReactNativeNavigation.h>
 #import "RNBootSplash.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  UIViewController *rootViewController = [UIViewController new];
+  NSURL *jsCodeLocation;
+  
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation moduleName:@"MadDealz" initialProperties:nil launchOptions:launchOptions];
+  rootView.backgroundColor = [UIColor blackColor];
   rootViewController.view = rootView;
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView]; // <- initialization using the storyboard file name
  
@@ -25,6 +34,7 @@
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+
 {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

@@ -10,7 +10,7 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
  *
  * @return {object} bar object containing name and adsress.
  */
-async function create_bar(name, address, ip, fetch_timeout) {
+async function create_bar(name, address, fetch_timeout, ip) {
     name = falsy_to_empty(name);
     address = falsy_to_empty(address);
     data = {name: name, address: address};
@@ -39,7 +39,7 @@ async function create_bar(name, address, ip, fetch_timeout) {
  *
  * @param  {string} id
  */
-async function delete_bar(id, ip, fetch_timeout) {
+async function delete_bar(id, fetch_timeout, ip) {
     id = falsy_to_empty(id);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/bar/delete?id=' + id;
@@ -67,7 +67,7 @@ async function delete_bar(id, ip, fetch_timeout) {
  *
  * @return {object} bar object containing name and address.
  */
-async function get_bar(id, ip, fetch_timeout) {
+async function get_bar(id, fetch_timeout, ip) {
     id = falsy_to_empty(id);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/bar?id=' + id;
@@ -97,7 +97,7 @@ async function get_bar(id, ip, fetch_timeout) {
  *
  * @return {list of object} list of bar objects containing name and address.
  */
-async function get_bars(lat, lon, limit, distance, ip, fetch_timeout) {
+async function get_bars(lat, lon, limit, distance, fetch_timeout, ip) {
     lat = falsy_to_empty(lat);
     lon = falsy_to_empty(lon);
     limit = falsy_to_empty(limit);
@@ -133,7 +133,7 @@ async function get_bars(lat, lon, limit, distance, ip, fetch_timeout) {
  * @param {object} bar
  *   @subparam   {string} id
  */
-async function update_bar(bar, ip, fetch_timeout) {
+async function update_bar(bar, fetch_timeout, ip) {
     bar = falsy_to_empty(bar);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/bar/update';
@@ -154,11 +154,11 @@ async function update_bar(bar, ip, fetch_timeout) {
     return (await response.json()).message;
 }
 
-async function get_deals(bar_id, ip, fetch_timeout) {}
+async function get_deals(bar_id, fetch_timeout, ip) {}
 
-async function get_reviews(bar_id, ip, fetch_timeout) {}
+async function get_reviews(bar_id, fetch_timeout, ip) {}
 
-async function update_favorites(id, value, ip, fetch_timeout) {}
+async function update_favorites(id, value, fetch_timeout, ip) {}
 
 module.exports = {
     create_bar,

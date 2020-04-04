@@ -12,7 +12,7 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
  * @return {object} user object containing username, password,
                     location, favorite bars, and friends.
  */
-async function add_user(username, password, email, ip, fetch_timeout) {
+async function add_user(username, password, email, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     password = falsy_to_empty(password);
     email = falsy_to_empty(email);
@@ -42,7 +42,7 @@ async function add_user(username, password, email, ip, fetch_timeout) {
  *
  * @param  {string} username
  */
-async function delete_user(username, ip, fetch_timeout) {
+async function delete_user(username, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/delete?username=' + username;
@@ -70,7 +70,7 @@ async function delete_user(username, ip, fetch_timeout) {
  * @return {object} user object containing username, password,
                     location, favorite bars, and friends.
  */
-async function get_user(username, ip, fetch_timeout) {
+async function get_user(username, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user?username=' + username;
@@ -99,7 +99,7 @@ async function get_user(username, ip, fetch_timeout) {
  * @return {list of object} list of user objects containing username, password,
  *                          location, favorite bars, and friends.
  */
-async function get_users(ip, fetch_timeout) {
+async function get_users(fetch_timeout, ip) {
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/list';
     const response = await fetchWithTimeout(
@@ -130,7 +130,7 @@ async function get_users(ip, fetch_timeout) {
  *   @subpparam  {string} comments   (optional)
  *   @subpparam  {string} bars_owned (optional)
  */
-async function update_user(user, ip, fetch_timeout) {
+async function update_user(user, fetch_timeout, ip) {
     user = falsy_to_empty(user);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/update';
@@ -151,8 +151,10 @@ async function update_user(user, ip, fetch_timeout) {
     return (await response.json()).message;
 }
 
-async function user_login(user, ip, fetch_timeout) {
-    user = falsy_to_empty(user);
+async function user_login(email, password, fetch_timeout, ip) {
+    email = falsy_to_empty(email);
+    password = falsy_to_empty(password);
+    let data = {'email': email, 'password': password};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/login';
     const response = await fetchWithTimeout(
@@ -162,7 +164,7 @@ async function user_login(user, ip, fetch_timeout) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(data),
         },
         fetch_timeout
     );
@@ -173,19 +175,166 @@ async function user_login(user, ip, fetch_timeout) {
     return (await response.json()).user;
 }
 
-async function add_favorite_bar(username, bar_id) {}
+async function add_favorite_bar(username, bar_id, fetch_timeout, ip) {
+    username = falsy_to_empty(username);
+    bar_id = falsy_to_empty(bar_id);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/add_favorite_bar';
+    data = {'username': username, 'bar_id': bar_id}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
-async function remove_favorite_bar(username, bar_id) {}
+async function remove_favorite_bar(username, bar_id, fetch_timeout, ip) {
+    username = falsy_to_empty(username);
+    bar_id = falsy_to_empty(bar_id);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/remove_favorite_bar';
+    data = {'username': username, 'bar_id': bar_id}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
-async function add_favorite_deal(username, deal_id) {}
+async function add_favorite_deal(username, deal_id, fetch_timeout, ip) {
+    username = falsy_to_empty(username);
+    deal_id = falsy_to_empty(deal_id);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/add_favorite_deal';
+    data = {'username': username, 'deal_id': deal_id}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
-async function remove_favorite_deal(username, deal_id) {}
+async function remove_favorite_deal(username, deal_id, fetch_timeout, ip) {
+    username = falsy_to_empty(username);
+    deal_id = falsy_to_empty(deal_id);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/remove_favorite_deal';
+    data = {'username': username, 'deal_id': deal_id}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
-async function send_friend_request(requester, requestee) {}
+async function send_friend_request(requester, requestee, fetch_timeout, ip) {
+    requester = falsy_to_empty(requester);
+    requestee = falsy_to_empty(requestee);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/friend_request';
+    data = {'requester': requester, 'requestee': requestee}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
-async function accept_friend_request(requester, requestee) {}
+async function accept_friend_request(requester, requestee, fetch_timeout, ip) {
+    requester = falsy_to_empty(requester);
+    requestee = falsy_to_empty(requestee);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/accept_friend';
+    data = {'requester': requester, 'requestee': requestee}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
-async function remove_friend(user1, user2) {}
+async function remove_friend(user1, user2, fetch_timeout, ip) {
+    user1 = falsy_to_empty(user1);
+    user2 = falsy_to_empty(user2);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/remove_friend';
+    data = {'user1': user1, 'user2': user2}
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    return (await response.json()).message;
+}
 
 module.exports = {
     add_user,

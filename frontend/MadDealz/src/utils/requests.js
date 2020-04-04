@@ -1,16 +1,13 @@
 const fetch = require('node-fetch');
 
-let IP = 'https://api.maddealz.software'
-const FETCH_TIMEOUT = 3000;
-
-async function fetchWithTimeout(url, options) {
-
+async function fetchWithTimeout(url, options, fetch_timeout) {
+  fetch_timeout = fetch_timeout ? fetch_timeout : 3000;
   return await new Promise(async function(resolve, reject) {
       const timeout = setTimeout(function() {
           throw url + ' timed out with options ' + JSON.stringify(options);
-      }, FETCH_TIMEOUT);
+      }, fetch_timeout);
       try {
-        const response = await fetch(IP + url, options);
+        const response = await fetch(url, options);
         clearTimeout(timeout);
         resolve(response);
         return response;

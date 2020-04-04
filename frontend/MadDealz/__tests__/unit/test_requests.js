@@ -6,6 +6,9 @@ import {create_bar, delete_bar, get_bar, get_bars, update_bar,
         get_deals, get_reviews, update_favorites} from '../../src/requests/bar_requests';
 import {create_review, get_review, delete_review, update_review} from '../../src/requests/review_requests';
 
+const TIMEOUT = 3000;
+const IP = 'https://api.maddealz.software';
+
 async function undefined_error(promise, var_name, value, expected_error) {
   let unexpected_error = 'Expected an error given ' + var_name + ' with value ' + value;
   try {
@@ -71,59 +74,65 @@ expect.extend({
 
 ///////////////////////////////////// USER TESTS /////////////////////////////////////
 async function test_delete_user(username, password, email) {
-//  const users = await get_users();
+//  const users = await get_users(IP, TIMEOUT);
 //  for (let i = 0; i < users.length; i++) {
-//      await delete_user(users[i].username)
+//      await delete_user(users[i].username, IP, TIMEOUT)
 //  }
-  let res = await delete_user(username);
+  let res = await delete_user(username, IP, TIMEOUT);
   expect(res).toBe("User deleted successfully");
   //Error cases.
-  await undefined_error(delete_user(undefined), 'username', undefined, "Must specify a username");
-  await undefined_error(delete_user(-1), 'username', -1, "User not found");
+  await undefined_error(delete_user(undefined, IP, TIMEOUT), 'username', undefined, "Must specify a username");
+  await undefined_error(delete_user(-1, IP, TIMEOUT), 'username', -1, "User not found");
 };
 
 async function test_add_user(username, password, email) {
-  let user = await add_user(username, password, email);
+  let user = await add_user(username, password, email, IP, TIMEOUT);
   expect(user.username).toBe(username);
 
   //Error cases.
-  await undefined_error(add_user(undefined, password, email), 'username', undefined, "Email, password, or username is empty");
-  await undefined_error(add_user(username, undefined, email), 'password', undefined, "Email, password, or username is empty");
-  await undefined_error(add_user(username, password, undefined), 'email', undefined, "Email, password, or username is empty");
+  await undefined_error(add_user(undefined, password, email, IP, TIMEOUT), 'username',
+                                 undefined, "Email, password, or username is empty");
+  await undefined_error(add_user(username, undefined, email, IP, TIMEOUT), 'password',
+                                 undefined, "Email, password, or username is empty");
+  await undefined_error(add_user(username, password, undefined, IP, TIMEOUT), 'email',
+                                 undefined, "Email, password, or username is empty");
 
-  await undefined_error(add_user(username, 'tmp', 'tmp'), 'username', username, "Username already taken");
-  await undefined_error(add_user('tmp', 'tmp', email), 'email', email, "Email already in use");
+  await undefined_error(add_user(username, 'tmp', 'tmp', IP, TIMEOUT), 'username',
+                                 username, "Username already taken");
+  await undefined_error(add_user('tmp', 'tmp', email, IP, TIMEOUT), 'email',
+                                 email, "Email already in use");
   return user;
 };
 
 async function test_get_user(username) {
-  let user = await get_user(username);
+  let user = await get_user(username, IP, TIMEOUT);
   expect(user.username).toBe(username);
 
   // Error cases.
-  await await undefined_error(get_user(undefined), 'username', undefined, "Must specify a username");
-  await await undefined_error(get_user(-1), 'username', -1, "User not found");
+  await await undefined_error(get_user(undefined, IP, TIMEOUT), 'username',
+                                       undefined, "Must specify a username");
+  await await undefined_error(get_user(-1, IP, TIMEOUT), 'username', -1, "User not found");
   return user;
 };
 
 async function test_get_users(username) {
-  let user = await get_user(username);
-  const users = await get_users();
+  let user = await get_user(username, IP, TIMEOUT);
+  const users = await get_users(IP, TIMEOUT);
   expect(users).toContainObject(user);
   return users;
 };
 
 async function test_update_user(user) {
-  let res = await update_user(user);
+  let res = await update_user(user, IP, TIMEOUT);
   expect(res).toBe("User updated successfully");
 
   // Error cases.
-  await undefined_error(update_user({}), 'user', {}, "Must specify a username");
-  await undefined_error(update_user({'username': 'this_user_does_not_exist'}), 'username', 'this_user_does_not_exist', "User not found");
-  // TODO: password should also fail if undefined.
-  await undefined_error(update_user({'username': user.username, 'password': undefined}),
+  await undefined_error(update_user({}, IP, TIMEOUT), 'user', {}, "Must specify a username");
+  await undefined_error(update_user({'username': 'this_user_does_not_exist'}, IP, TIMEOUT),
+                                    'username', 'this_user_does_not_exist', "User not found");
+  await undefined_error(update_user({'username': user.username, 'password': undefined}, IP, TIMEOUT),
                                      'password', undefined, "Password must not be empty or null");
-  await undefined_error(update_user({'username': user.username, 'password': 'tmp', 'email': user.email}),
+  await undefined_error(update_user({'username': user.username, 'password': 'tmp', 'email': user.email}, IP, TIMEOUT),
                                     'email', user.email, "Email already in use");
 };
 
@@ -179,42 +188,41 @@ async function test_update_review(review) {
 
 ///////////////////////////////////// BAR TESTS /////////////////////////////////////
 async function test_delete_bar(name, address) {
-  let bar = await create_bar(name, address);
+  let bar = await create_bar(name, address, IP, TIMEOUT);
   expect(bar.name).toBe(name);
 
-  let res = await delete_bar(bar._id);
+  let res = await delete_bar(bar._id, IP, TIMEOUT);
   expect(res).toBe("Bar deleted successfully");
 
-  await undefined_error(delete_bar(undefined), 'id', undefined, "Must specify a bar id");
-  // TODO: THIS IS FAILING.
-  await undefined_error(delete_bar(-1), 'id', -1, "invalid id provided");
-  await undefined_error(delete_bar('abcdefghijlm'), 'id', 'abcdefghijlm', "Bar not found");
+  await undefined_error(delete_bar(undefined, IP, TIMEOUT), 'id', undefined, "Must specify a bar id");
+  await undefined_error(delete_bar(-1, IP, TIMEOUT), 'id', -1, "invalid id provided");
+  await undefined_error(delete_bar('------------', IP, TIMEOUT), 'id', '------------', "Bar not found");
 };
 
 async function test_create_bar(name, address) {
-  let bar = await create_bar(name, address);
+  let bar = await create_bar(name, address, IP, TIMEOUT);
 
   // Error cases.
-  await undefined_error(create_bar(undefined, address), 'name', undefined, "Bar name and address must be provided");
-  await undefined_error(create_bar(name, undefined), 'address', undefined, "Bar name and address must be provided");
+  await undefined_error(create_bar(undefined, address, IP, TIMEOUT), 'name', undefined, "Bar name and address must be provided");
+  await undefined_error(create_bar(name, undefined, IP, TIMEOUT), 'address', undefined, "Bar name and address must be provided");
   return bar;
 };
 
 async function test_get_bar(name, address) {
-  let res = await create_bar(name, address);
-  let bar = await get_bar(res._id);
+  let res = await create_bar(name, address, IP, TIMEOUT);
+  let bar = await get_bar(res._id, IP, TIMEOUT);
   expect(bar.name).toBe(name);
 
   // Error cases.
-  await undefined_error(get_bar(undefined), 'name', undefined, "id must be provided");
-  await undefined_error(get_bar(-1), 'name', -1, "invalid id provided");
-  await undefined_error(get_bar('abcdefghijlm'), 'id', 'abcdefghijlm', "Bar does not exist");
+  await undefined_error(get_bar(undefined, IP, TIMEOUT), 'name', undefined, "id must be provided");
+  await undefined_error(get_bar(-1, IP, TIMEOUT), 'name', -1, "invalid id provided");
+  await undefined_error(get_bar('------------', IP, TIMEOUT), 'id', '------------', "Bar does not exist");
   return bar;
 };
 
 async function test_get_bars(name, address) {
-  let bar = await create_bar(name, address);
-  const bars = await get_bars();
+  let bar = await create_bar(name, address, IP, TIMEOUT);
+  const bars = await get_bars(IP, TIMEOUT);
   for (let i = 0; i < bars.length; i++) {
     delete bars[i].distance;
   }
@@ -223,13 +231,13 @@ async function test_get_bars(name, address) {
 };
 
 async function test_update_bar(name1, address1, name2, address2) {
-  let res = await create_bar(name1, address1);
+  let res = await create_bar(name1, address1, IP, TIMEOUT);
   let bar = {_id: res._id, name: name2, address: address2};
-  let update_res = await update_bar(bar);
+  let update_res = await update_bar(bar, IP, TIMEOUT);
   expect(update_res).toBe("Bar updated successfully");
 
   // Error cases.
-  await undefined_error(update_bar({}), 'bar', {}, "Must specify a bar id");
+  await undefined_error(update_bar({}, IP, TIMEOUT), 'bar', {}, "Must specify a bar id");
 };
 
 async function test_get_deals(bar_id) {
@@ -250,32 +258,32 @@ let email2 = 'fake2@gmail.com';
 let address = 'test_address'
 let address2 = 'test_address2';
 
-test('test add_user', async () => {return test_add_user(name, password, email)});
-test('test get_user', async () => {return test_get_user(name)});
-test('test get_users', async () => {return test_get_users(name)});
-test('test update_user', async () => {return test_update_user({'username': name, 'password': password2, 'email': email2})});
-test('test delete_user', async () => {return test_delete_user(name)});
+test('test add_user', async () => {return test_add_user(name, password, email)}, TIMEOUT);
+test('test get_user', async () => {return test_get_user(name)}, TIMEOUT);
+test('test get_users', async () => {return test_get_users(name)}, TIMEOUT);
+test('test update_user', async () => {return test_update_user({'username': name, 'password': password2, 'email': email2})}, TIMEOUT);
+test('test delete_user', async () => {return test_delete_user(name)}, TIMEOUT);
 
 //test('test create_deal', async () => {return test_create_deal('test', 'fake street')});
 
-test('test delete_bar', async () => {return test_delete_bar(name, address)});
-test('test create_bar', async () => {return test_create_bar(name, address)});
-test('test get_bar', async () => {return test_get_bar(name, address)});
-test('test get_bars', async () => {return test_get_bars(name, address)});
-test('test update_bar', async () => {return test_update_bar(name, address, name2, address2)});
+test('test delete_bar', async () => {return test_delete_bar(name, address)}, TIMEOUT);
+test('test create_bar', async () => {return test_create_bar(name, address)}, TIMEOUT);
+test('test get_bar', async () => {return test_get_bar(name, address)}, TIMEOUT);
+test('test get_bars', async () => {return test_get_bars(name, address)}, TIMEOUT);
+test('test update_bar', async () => {return test_update_bar(name, address, name2, address2)}, TIMEOUT);
 
 afterAll(async () => {
   try {
-    await delete_user(name);
+    await delete_user(name, IP, TIMEOUT);
   } catch {};
   try {
-    await delete_user('tmp');
+    await delete_user('tmp', IP, TIMEOUT);
   } catch {};
   try {
-    bars = await get_bars();
+    bars = await get_bars(IP, TIMEOUT);
     for (let i = 0; i < bars.length; i++) {
       if (bars[i].name == name || bars[i].name == name2) {
-        await delete_bar(bars[i]._id);
+        await delete_bar(bars[i]._id, IP, TIMEOUT);
       }
     }
   } catch {};

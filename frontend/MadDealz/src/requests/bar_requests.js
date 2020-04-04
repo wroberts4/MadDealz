@@ -10,17 +10,23 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
  *
  * @return {object} bar object containing name and adsress.
  */
-async function create_bar(name, address) {
+async function create_bar(name, address, ip, fetch_timeout) {
     name = falsy_to_empty(name);
     address = falsy_to_empty(address);
     data = {name: name, address: address};
-    const response = await fetchWithTimeout('/bar/create', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/create';
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -33,14 +39,20 @@ async function create_bar(name, address) {
  *
  * @param  {string} id
  */
-async function delete_bar(id) {
+async function delete_bar(id, ip, fetch_timeout) {
     id = falsy_to_empty(id);
-    const response = await fetchWithTimeout('/bar/delete?id=' + id, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/delete?id=' + id;
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         },
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -55,14 +67,20 @@ async function delete_bar(id) {
  *
  * @return {object} bar object containing name and address.
  */
-async function get_bar(id) {
+async function get_bar(id, ip, fetch_timeout) {
     id = falsy_to_empty(id);
-    const response = await fetchWithTimeout('/bar?id=' + id, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar?id=' + id;
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         },
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -79,12 +97,14 @@ async function get_bar(id) {
  *
  * @return {list of object} list of bar objects containing name and address.
  */
-async function get_bars(lat, lon, limit, distance) {
+async function get_bars(lat, lon, limit, distance, ip, fetch_timeout) {
     lat = falsy_to_empty(lat);
     lon = falsy_to_empty(lon);
     limit = falsy_to_empty(limit);
     distance = falsy_to_empty(distance);
+    ip = ip ? ip : 'https://api.maddealz.software';
     let url =
+        ip +
         '/bar/list?limit=' +
         limit +
         '&lat=' +
@@ -93,9 +113,13 @@ async function get_bars(lat, lon, limit, distance) {
         lon +
         '&distance=' +
         distance;
-    const response = await fetchWithTimeout(url, {
-        method: 'GET',
-    });
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'GET',
+        },
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -109,26 +133,32 @@ async function get_bars(lat, lon, limit, distance) {
  * @param {object} bar
  *   @subparam   {string} id
  */
-async function update_bar(bar) {
+async function update_bar(bar, ip, fetch_timeout) {
     bar = falsy_to_empty(bar);
-    const response = await fetchWithTimeout('/bar/update', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/update';
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bar),
         },
-        body: JSON.stringify(bar),
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
     return (await response.json()).message;
 }
 
-async function get_deals(bar_id) {}
+async function get_deals(bar_id, ip, fetch_timeout) {}
 
-async function get_reviews(bar_id) {}
+async function get_reviews(bar_id, ip, fetch_timeout) {}
 
-async function update_favorites(id, value) {}
+async function update_favorites(id, value, ip, fetch_timeout) {}
 
 module.exports = {
     create_bar,

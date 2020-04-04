@@ -12,18 +12,24 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
  * @return {object} user object containing username, password,
                     location, favorite bars, and friends.
  */
-async function add_user(username, password, email) {
+async function add_user(username, password, email, ip, fetch_timeout) {
     username = falsy_to_empty(username);
     password = falsy_to_empty(password);
     email = falsy_to_empty(email);
     data = {username: username, password: password, email: email};
-    const response = await fetchWithTimeout('/user/create', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/user/create';
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -36,16 +42,19 @@ async function add_user(username, password, email) {
  *
  * @param  {string} username
  */
-async function delete_user(username) {
+async function delete_user(username, ip, fetch_timeout) {
     username = falsy_to_empty(username);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/user/delete?username=' + username;
     const response = await fetchWithTimeout(
-        '/user/delete?username=' + username,
+        url,
         {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
         },
+        fetch_timeout
     );
     if (response.status != 200) {
         throw (await response.json()).message;
@@ -61,14 +70,20 @@ async function delete_user(username) {
  * @return {object} user object containing username, password,
                     location, favorite bars, and friends.
  */
-async function get_user(username) {
+async function get_user(username, ip, fetch_timeout) {
     username = falsy_to_empty(username);
-    const response = await fetchWithTimeout('/user?username=' + username, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/user?username=' + username;
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         },
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -84,11 +99,16 @@ async function get_user(username) {
  * @return {list of object} list of user objects containing username, password,
  *                          location, favorite bars, and friends.
  */
-async function get_users() {
-    let url = '/user/list';
-    const response = await fetchWithTimeout(url, {
-        method: 'GET',
-    });
+async function get_users(ip, fetch_timeout) {
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/user/list';
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'GET',
+        },
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
@@ -110,22 +130,48 @@ async function get_users() {
  *   @subpparam  {string} comments   (optional)
  *   @subpparam  {string} bars_owned (optional)
  */
-async function update_user(user) {
+async function update_user(user, ip, fetch_timeout) {
     user = falsy_to_empty(user);
-    const response = await fetchWithTimeout('/user/update', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/user/update';
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
         },
-        body: JSON.stringify(user),
-    });
+        fetch_timeout
+    );
     if (response.status != 200) {
         throw (await response.json()).message;
     }
     return (await response.json()).message;
 }
 
-async function user_login(user) {}
+async function user_login(user, ip, fetch_timeout) {
+    user = falsy_to_empty(user);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/login';
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    // Returns a user object.
+    return (await response.json()).user;
+}
 
 async function add_favorite_bar(username, bar_id) {}
 

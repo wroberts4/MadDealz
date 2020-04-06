@@ -72,22 +72,36 @@ export async function delete_deal(id) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
-    let query;
-    if (typeof id === 'object') {
-      if (JSON.stringify(id).length != 26) {
-        return { status: 400, message: "invalid id provided" };
-      }
-      query = { _id: id };
-    } else {
-      try {
-        query = { _id: db_util.ObjectId(id) };
-      } catch {
-        return { status: 400, message: "invalid id provided" };
-      }
+  let query;
+  if (typeof id === 'object') {
+    if (JSON.stringify(id).length != 26) {
+      return { status: 400, message: "invalid id provided" };
     }
+    query = { _id: id };
+  } else {
+    try {
+      query = { _id: db_util.ObjectId(id) };
+    } catch {
+      return { status: 400, message: "invalid id provided" };
+    }
+  }
   
   let deal = await dbo.collection("deals").findOne(query, {});
-  await dbo.collection("bars").updateOne({ _id: db_util.ObjectId(deal.bar) }, { $pull: { 'deals': id } });
+
+  if (typeof deal.bar_id === 'object') {
+    if (JSON.stringify(deal.bar_id).length != 26) {
+      return { status: 400, message: "invalid bar id provided" };
+    }
+    query = { _id: deal.bar_id };
+  } else {
+    try {
+      query = { _id: db_util.ObjectId(deal.bar_id) };
+    } catch {
+      return { status: 400, message: "invalid bar id provided" };
+    }
+  }
+
+  await dbo.collection("bars").updateOne(query, { $pull: { 'deals': id } });
   
   let result = await dbo.collection("deals").deleteOne(query, {});
 

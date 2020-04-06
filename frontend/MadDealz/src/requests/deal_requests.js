@@ -11,7 +11,7 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
  */
 async function create_deal(info, bar_id, times, fetch_timeout, ip) {
     info = falsy_to_empty(info);
-    bar = falsy_to_empty(bar_id);
+    bar_id = falsy_to_empty(bar_id);
     times = falsy_to_empty(times);
     data = {'info': info, 'bar_id': bar_id, 'times': times};
     ip = ip ? ip : 'https://api.maddealz.software';

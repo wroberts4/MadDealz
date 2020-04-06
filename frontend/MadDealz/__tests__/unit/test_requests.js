@@ -194,17 +194,43 @@ async function test_remove_favorite_deal(username) {
   // Error cases.
 };
 
-async function test_send_friend_request(requester, requestee) {
+async function test_send_friend_request(username1, username2) {
+  let requester = await get_user(username1, TIMEOUT, IP);
+  let requestee = await get_user(username2, TIMEOUT, IP);
+  let res = await send_friend_request(requester, requestee, TIMEOUT, IP);
+  expect(res).toBe('Friend request sent successfully');
+
+  // Error cases.
 };
 
-async function test_accept_friend_request(requester, requestee) {
+async function test_accept_friend_request(username1, username2) {
+  let requester = await get_user(username1, TIMEOUT, IP);
+  let requestee = await get_user(username2, TIMEOUT, IP);
+  let res = await accept_friend_request(requester, requestee, TIMEOUT, IP);
+  expect(res).toBe('Friend request accepted successfully');
+
+  // Error cases.
 };
 
-async function test_remove_friend(user1, user2) {
+async function test_remove_friend(username1, username2) {
+  let requester = await get_user(username1, TIMEOUT, IP);
+  let requestee = await get_user(username2, TIMEOUT, IP);
+  let res = await remove_friend(requester, requestee, TIMEOUT, IP);
+  expect(res).toBe('Friend removed successfully');
+
+  // Error cases.
 };
 
 ///////////////////////////////////// DEAL TESTS /////////////////////////////////////
-async function test_create_deal(name, address){
+async function test_create_deal(name, address, times) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let deal = await create_deal(name, bar._id, times, TIMEOUT, IP);
+  console.log(deal, bar._id)
+  expect(deal.info).toBe(name);
+  expect(deal.bar).toBe(bar._id);
+  expect(deal.times).toBe(times);
+
+  // Error cases.
 };
 
 async function test_get_deal(id) {
@@ -300,19 +326,24 @@ let email = 'fake@gmail.com';
 let email2 = 'fake2@gmail.com';
 let address = 'test_address'
 let address2 = 'test_address2';
+let times = '3pm';
 
 test('test add_user', async () => {return test_add_user(name, password, email)}, TIMEOUT);
+test('test add_user', async () => {return test_add_user(name2, 'tmp', 'tmp')}, TIMEOUT);
 test('test get_user', async () => {return test_get_user(name)}, TIMEOUT);
 test('test get_users', async () => {return test_get_users(name)}, TIMEOUT);
 test('test user_login', async () => {return test_user_login(name, email, password)}, TIMEOUT);
 test('test add_favorite_bar', async () => {return test_add_favorite_bar(name)}, TIMEOUT);
 test('test remove_favorite_bar', async () => {return test_remove_favorite_bar(name)}, TIMEOUT);
-//test('test add_favorite_deal', async () => {return test_add_favorite_deal(name)}, TIMEOUT);
-//test('test remove_favorite_deal', async () => {return test_remove_favorite_deal(name)}, TIMEOUT);
+//test('test add_favorite_deal', async () => {return test_test_remove_favorite_dealadd_favorite_deal(name)}, TIMEOUT);
+//test('test remove_favorite_deal', async () => {return (name)}, TIMEOUT);
+test('test send_friend_request', async () => {return test_send_friend_request(name, name2)}, TIMEOUT);
+test('test accept_friend_request', async () => {return test_accept_friend_request(name, name2)}, TIMEOUT);
+test('test remove_friend', async () => {return test_remove_friend(name, name2)}, TIMEOUT);
 test('test update_user', async () => {return test_update_user({'username': name, 'password': password2, 'email': email2})}, TIMEOUT);
 test('test delete_user', async () => {return test_delete_user(name)}, TIMEOUT);
 
-//test('test create_deal', async () => {return test_create_deal('test', 'fake street')});
+test('test create_deal', async () => {return test_create_deal(name, address, times)});
 
 test('test delete_bar', async () => {return test_delete_bar(name, address)}, TIMEOUT);
 test('test create_bar', async () => {return test_create_bar(name, address)}, TIMEOUT);
@@ -321,12 +352,18 @@ test('test get_bars', async () => {return test_get_bars(name, address)}, TIMEOUT
 test('test update_bar', async () => {return test_update_bar(name, address, name2, address2)}, TIMEOUT);
 
 afterAll(async () => {
+  // cleanup users.
   try {
     await delete_user(name, TIMEOUT, IP);
   } catch {};
   try {
+    await delete_user(name2, TIMEOUT, IP);
+  } catch {};
+  try {
     await delete_user('tmp', TIMEOUT, IP);
   } catch {};
+
+  //cleanup bars.
   try {
     bars = await get_bars(TIMEOUT, IP);
     for (let i = 0; i < bars.length; i++) {

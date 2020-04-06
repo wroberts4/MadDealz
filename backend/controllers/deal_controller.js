@@ -15,7 +15,7 @@ router.post('/create', async (req, res) => {
     
     let rc = await Deal.create_deal({
         info: req.body.info,
-        bar: req.body.bar,
+        bar_id: req.body.bar_id,
         times: req.body.times,
     });
 

@@ -172,7 +172,7 @@ export async function get_bar(id) {
     if (!bar)
       return { status: 500, message: "Bar not found"};
     
-      let deal_id;
+    let deal_id;
     for (deal_id of bar.deals) {
       await delete_deal(deal_id);
     }

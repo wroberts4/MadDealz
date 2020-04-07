@@ -264,7 +264,7 @@ async function test_delete_deal(name, address, times) {
 
 async function test_update_deal(name, address, times) {
   let bar = await create_bar(name, address, TIMEOUT, IP);
-  let deal = await update_deal(name, bar._id, times, TIMEOUT, IP);
+  let deal = await update_deal(bar._id, name, times, TIMEOUT, IP);
   expect(deal.info).toBe(name);
   expect(deal.bar_id).toBe(bar._id);
   expect(deal.times).toBe(times);
@@ -385,6 +385,9 @@ test('test delete_user', async () => {return test_delete_user(name)}, TIMEOUT);
 
 test('test create_deal', async () => {return test_create_deal(name, address, times)});
 test('test get_deal', async () => {return test_get_deal(name, address, times)});
+// TODO: THIS IS FAILING
+test('test update_deal', async () => {return test_update_deal(name, address, times)});
+// TODO: THIS IS FAILING.
 test('test delete_deal', async () => {return test_delete_deal(name, address, times)});
 
 test('test delete_bar', async () => {return test_delete_bar(name, address)}, TIMEOUT);
@@ -406,12 +409,15 @@ afterAll(async () => {
   } catch {};
 
   //cleanup bars.
-//  try {
-//    bars = await get_bars('', '', '', '', TIMEOUT, IP);
-//    for (let i = 0; i < bars.length; i++) {
-//      if (bars[i].name == name || bars[i].name == name2) {
-//        await delete_bar(bars[i]._id, TIMEOUT, IP);
-//      }
-//    }
-//  } catch {};
+  try {
+    let bars = await get_bars('', '', '', '', TIMEOUT, IP);
+    for (let i = 0; i < bars.length; i++) {
+      if (bars[i].name == name || bars[i].name == name2) {
+        // TODO: deleting bar with null in deals crashes.
+        if (bars[i].deals.length === 0 || bars[i].deals[0] != null) {
+          await delete_bar(bars[i]._id, TIMEOUT, IP);
+        }
+      }
+    }
+  } catch {};
 });

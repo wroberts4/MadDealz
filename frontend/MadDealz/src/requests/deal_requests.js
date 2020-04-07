@@ -76,11 +76,11 @@ async function delete_deal(id, fetch_timeout, ip) {
     return (await response.json()).message;
 };
 
-async function update_deal(info, bar, times, fetch_timeout, ip) {
+async function update_deal(id, info, times, fetch_timeout, ip) {
+    id = falsy_to_empty(id);
     info = falsy_to_empty(info);
-    bar = falsy_to_empty(bar);
     times = falsy_to_empty(times);
-    data = {'info': info, 'bar': bar, 'times': times};
+    data = {'id': id, 'info': info, 'times': times};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/deal/update';
     const response = await fetchWithTimeout(

@@ -4,16 +4,27 @@ export async function create_deal(deal) {
     if (!deal) {
       return { status: 400, message: "Must specify a deal"};
     }
-    if (!deal.info || !deal.times)
-        return { status: 400, message: "Deal info and times must be provided" };
+    if (!deal.info || !deal.times || !deal.bar_id)
+        return { status: 400, message: "Deal info, bar_id, and times must be provided" };
     
     let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
     let dbo = con.db(db_util.db_name);
 
     let deal_result = await dbo.collection('deals').insertOne(deal);
-    
-    let bar_id = db_util.ObjectId(deal.bar);
-    const query = { _id: bar_id };
+
+    let query;
+    if (typeof deal.bar_id === 'object') {
+      if (JSON.stringify(deal.bar_id).length != 26) {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+      query = { _id: deal.bar_id };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(deal.bar_id) };
+      } catch {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+    }
 
     let result = await dbo.collection("bars").updateOne(query, { $addToSet: { 'deals': deal_result.ops[0]._id.toString() } }, { upsert: false });
     con.close();
@@ -31,7 +42,21 @@ export async function get_deal(id) {
   let con = await db_util.client.connect(db_util.db_url, { useUnifiedTopology: true });
   let dbo = con.db(db_util.db_name);
 
-  let deal = await dbo.collection("deals").findOne({ '_id': db_util.ObjectId(id) }, {});
+    let query;
+    if (typeof id === 'object') {
+      if (JSON.stringify(id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
+      query = { _id: id };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
+
+  let deal = await dbo.collection("deals").findOne(query, {});
   con.close();
   
   if (!deal)
@@ -48,13 +73,35 @@ export async function delete_deal(id) {
   let dbo = con.db(db_util.db_name);
 
   let query;
-  if (typeof id === 'object')
+  if (typeof id === 'object') {
+    if (JSON.stringify(id).length != 26) {
+      return { status: 400, message: "invalid id provided" };
+    }
     query = { _id: id };
-  else
-    query = { _id: db_util.ObjectId(id) };
+  } else {
+    try {
+      query = { _id: db_util.ObjectId(id) };
+    } catch {
+      return { status: 400, message: "invalid id provided" };
+    }
+  }
   
   let deal = await dbo.collection("deals").findOne(query, {});
-  await dbo.collection("bars").updateOne({ _id: db_util.ObjectId(deal.bar) }, { $pull: { 'deals': id } });
+
+  if (typeof deal.bar_id === 'object') {
+    if (JSON.stringify(deal.bar_id).length != 26) {
+      return { status: 400, message: "invalid bar id provided" };
+    }
+    query = { _id: deal.bar_id };
+  } else {
+    try {
+      query = { _id: db_util.ObjectId(deal.bar_id) };
+    } catch {
+      return { status: 400, message: "invalid bar id provided" };
+    }
+  }
+
+  await dbo.collection("bars").updateOne(query, { $pull: { 'deals': id } });
   
   let result = await dbo.collection("deals").deleteOne(query, {});
 
@@ -79,11 +126,19 @@ export async function update_deal(deal) {
     times: deal.times
   };
   
-  let query;
-  if (typeof deal.id === 'object')
-    query = { _id: deal.id };
-  else
-    query = { _id: db_util.ObjectId(deal.id) };
+    let query;
+    if (typeof id === 'object') {
+      if (JSON.stringify(id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
+      query = { _id: id };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
 
   let result = await dbo.collection("deals").updateOne(query, { $set: values}, { upsert: false });
   con.close();

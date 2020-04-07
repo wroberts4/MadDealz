@@ -227,7 +227,6 @@ export async function get_bar(id) {
       }
 
       let deal = await dbo.collection("deals").findOne(query, {});
-      delete deal.bar;
       deals.push(deal);
     }
     con.close();
@@ -275,7 +274,6 @@ export async function get_bar(id) {
       }
 
       let review = await dbo.collection("reviews").findOne(query, {});
-      delete review.bar;
       reviews.push(review);
     }
     con.close();

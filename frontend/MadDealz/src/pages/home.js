@@ -19,6 +19,7 @@ import Dialog, {
   DialogFooter,
 } from 'react-native-popup-dialog';
 import ToggleSwitch from 'toggle-switch-react-native';
+import { goToBarPage } from '../../navigation';
 
 bar_requests = require('../requests/bar_requests');
 
@@ -57,6 +58,10 @@ export default class Home extends Component {
 
   distancePress = () => {
     this.setState({distance: true});
+  };
+
+  barPage = async () => {
+    goToBarPage();
   };
 
   componentDidMount() {
@@ -211,7 +216,9 @@ export default class Home extends Component {
         <Animated.FlatList
           data={this.state.bars}
           renderItem={({item}) => (
-            <Item name={item.name} address={item.address} />
+            <TouchableOpacity onPress={this.barPage}>
+              <Item name={item.name} address={item.address} />
+            </TouchableOpacity>
           )}
           keyExtractor={item => item._id}
           contentContainerStyle={{

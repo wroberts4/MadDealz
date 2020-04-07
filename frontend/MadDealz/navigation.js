@@ -55,6 +55,22 @@ export const goToSignup = () =>
     },
   });
 
+export const goToBarPage = () =>
+  Navigation.setRoot({
+    root: {
+      stack: {
+        id: 'stackMain',
+        children: [
+          {
+            component: {
+              name: 'BarpageScreen',
+            }
+          }
+        ]
+      },
+    }
+  });
+
 export const goToTabs = () =>
   Navigation.setRoot({
     root: {
@@ -103,6 +119,15 @@ export const goToTabs = () =>
             },
           },
         ],
+      },
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'BarpageScreen',
+            }
+          }
+        ]
       },
     },
   });

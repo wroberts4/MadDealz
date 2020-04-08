@@ -10,9 +10,9 @@ import {
   LayoutAnimation,
 } from 'react-native';
 
-import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
+import {goToLogin} from '../../navigation';
 
-export default class Login extends Component {
+export default class ForgotPassword extends Component {
   static get options() {
     return {
       topBar: {
@@ -21,16 +21,8 @@ export default class Login extends Component {
     };
   }
 
-  forgotPwdPage = async () => {
-    goToForgotPwd();
-  };
-
-  signupPage = async () => {
-    goToSignup();
-  };
-
-  tabsPage = async () => {
-    goToTabs();
+  loginPage = async () => {
+    goToLogin();
   };
 
   render() {
@@ -42,25 +34,19 @@ export default class Login extends Component {
           source={require('../../assets/logo.png')}
           style={styles.image}></Image>
 
-        <Text style={styles.greeting}>{'Welcome Back!\nPlease Login.'}</Text>
+        <Text style={styles.greeting}>
+          {'Forgot Passowrd?\nEnter email to reset.'}
+        </Text>
 
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Email Address</Text>
             <TextInput style={styles.input} autoCapitalize="none"></TextInput>
           </View>
-
-          <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Password</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"></TextInput>
-          </View>
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
-          <Text style={{fontWeight: '500', color: '#222'}}>Login</Text>
+          <Text style={{fontWeight: '500', color: '#222'}}>Reset Passowrd</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -69,22 +55,9 @@ export default class Login extends Component {
             marginTop: 32,
             marginBottom: 150,
           }}
-          onPress={this.forgotPwdPage}>
+          onPress={this.loginPage}>
           <Text style={{fontSize: 14, fontWeight: '500', color: '#f55'}}>
-            Forgot Password?
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{
-            alignSelf: 'center',
-            marginTop: 32,
-            marginBottom: 150,
-          }}
-          onPress={this.signupPage}>
-          <Text style={{color: '#777', fontSize: 13}}>
-            Don't have an account?{' '}
-            <Text style={{fontWeight: '500', color: '#f55'}}>Sign Up</Text>
+            Back To Login
           </Text>
         </TouchableOpacity>
       </View>

@@ -5,14 +5,13 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Image,
   StatusBar,
+  LayoutAnimation,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 
-import {goToTabs, goToLogin} from '../../navigation';
+import {goToTabs} from '../../navigation';
 
-export default class Signup extends Component {
+export default class ChangePassword extends Component {
   static get options() {
     return {
       topBar: {
@@ -21,49 +20,39 @@ export default class Signup extends Component {
     };
   }
 
-  state = {
-    name: '',
-    email: '',
-    password: '',
-  };
-
-  loginPage = async () => {
-    goToLogin();
-  };
-
   tabsPage = async () => {
     goToTabs();
   };
 
   render() {
+    LayoutAnimation.easeInEaseOut();
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content"></StatusBar>
-        <Image
-          source={require('../../assets/logo.png')}
-          style={styles.image}></Image>
 
-        <Text style={styles.greeting}>{'Sign Up'}</Text>
+        <Text style={styles.greeting}>{'Change Password'}</Text>
 
         <View style={styles.form}>
-          <View>
-            <Text style={styles.inputTitle}>Username</Text>
-            <TextInput style={styles.input} returnKeyType="next"></TextInput>
-          </View>
-
           <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Email Address</Text>
+            <Text style={styles.inputTitle}>Old Password</Text>
             <TextInput
               style={styles.input}
+              secureTextEntry
               autoCapitalize="none"
-              returnKeyType="next"
-              autoCompleteType="email"
-              textContentType="emailAddress"
-              keyboardType="email-address"></TextInput>
+              returnKeyType="next"></TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Password</Text>
+            <Text style={styles.inputTitle}>New Password</Text>
+            <TextInput
+              style={styles.input}
+              secureTextEntry
+              autoCapitalize="none"
+              returnKeyType="next"></TextInput>
+          </View>
+
+          <View style={{marginTop: 32}}>
+            <Text style={styles.inputTitle}>Repeat Password</Text>
             <TextInput
               style={styles.input}
               secureTextEntry
@@ -73,18 +62,8 @@ export default class Signup extends Component {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
-          <Text style={{fontWeight: '500', color: '#222'}}>Sign Up</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{
-            alignSelf: 'center',
-            marginTop: 32,
-          }}
-          onPress={this.loginPage}>
-          <Text style={{color: '#777', fontSize: 13}}>
-            Already have an account?{' '}
-            <Text style={{fontWeight: '500', color: '#f55'}}>Login</Text>
+          <Text style={{fontWeight: '500', color: '#222'}}>
+            Change Password
           </Text>
         </TouchableOpacity>
       </View>
@@ -101,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     color: '#ccc',
     fontSize: 28,
-    fontWeight: '700',
+    fontWeight: '400',
     textAlign: 'center',
   },
   form: {

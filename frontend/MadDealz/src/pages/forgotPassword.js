@@ -10,7 +10,7 @@ import {
   LayoutAnimation,
 } from 'react-native';
 
-import {goToLogin} from '../../navigation';
+import {goToLogin, goToNewPwd} from '../../navigation';
 
 export default class ForgotPassword extends Component {
   static get options() {
@@ -23,6 +23,10 @@ export default class ForgotPassword extends Component {
 
   loginPage = async () => {
     goToLogin();
+  };
+
+  newPasswordPage = async () => {
+    goToNewPwd();
   };
 
   render() {
@@ -49,7 +53,7 @@ export default class ForgotPassword extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.button} onPress={this.newPasswordPage}>
           <Text style={{fontWeight: '500', color: '#222'}}>Reset Password</Text>
         </TouchableOpacity>
 
@@ -57,11 +61,10 @@ export default class ForgotPassword extends Component {
           style={{
             alignSelf: 'center',
             marginTop: 32,
-            marginBottom: 150,
           }}
           onPress={this.loginPage}>
           <Text style={{fontSize: 14, fontWeight: '500', color: '#f55'}}>
-            Back To Login
+            Back to Login
           </Text>
         </TouchableOpacity>
       </View>
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     color: '#ccc',
     fontSize: 28,
-    fontWeight: '700',
+    fontWeight: '400',
     textAlign: 'center',
   },
   form: {

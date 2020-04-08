@@ -127,14 +127,14 @@ export async function update_deal(deal) {
   };
   
     let query;
-    if (typeof id === 'object') {
-      if (JSON.stringify(id).length != 26) {
+    if (typeof deal.id === 'object') {
+      if (JSON.stringify(deal.id).length != 26) {
         return { status: 400, message: "invalid id provided" };
       }
-      query = { _id: id };
+      query = { _id: deal.id };
     } else {
       try {
-        query = { _id: db_util.ObjectId(id) };
+        query = { _id: db_util.ObjectId(deal.id) };
       } catch {
         return { status: 400, message: "invalid id provided" };
       }

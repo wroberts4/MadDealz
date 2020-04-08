@@ -42,12 +42,18 @@ export default class Login extends Component {
           source={require('../../assets/logo.png')}
           style={styles.image}></Image>
 
-        <Text style={styles.greeting}>{'Welcome Back!\nPlease Login.'}</Text>
+        <Text style={styles.greeting}>{'Login'}</Text>
 
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Email Address</Text>
-            <TextInput style={styles.input} autoCapitalize="none"></TextInput>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              returnKeyType="next"
+              autoCompleteType="email"
+              textContentType="emailAddress"
+              keyboardType="email-address"></TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
@@ -55,7 +61,8 @@ export default class Login extends Component {
             <TextInput
               style={styles.input}
               secureTextEntry
-              autoCapitalize="none"></TextInput>
+              autoCapitalize="none"
+              returnKeyType="done"></TextInput>
           </View>
         </View>
 
@@ -67,7 +74,6 @@ export default class Login extends Component {
           style={{
             alignSelf: 'center',
             marginTop: 32,
-            marginBottom: 150,
           }}
           onPress={this.forgotPwdPage}>
           <Text style={{fontSize: 14, fontWeight: '500', color: '#f55'}}>
@@ -78,7 +84,6 @@ export default class Login extends Component {
         <TouchableOpacity
           style={{
             alignSelf: 'center',
-            marginTop: 32,
             marginBottom: 150,
           }}
           onPress={this.signupPage}>
@@ -98,12 +103,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   greeting: {
-    marginTop: -32,
-    fontSize: 18,
-    fontWeight: '400',
+    marginTop: 28,
+    color: '#ccc',
+    fontSize: 28,
+    fontWeight: '700',
     textAlign: 'center',
   },
   form: {
+    marginTop: 28,
     marginBottom: 48,
     marginHorizontal: 30,
   },
@@ -128,8 +135,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    flex: 1,
-    width: null,
-    height: null,
+    alignSelf: 'center',
+    width: 400,
+    height: 128,
+    marginTop: 64,
   },
 });

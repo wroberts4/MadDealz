@@ -43,19 +43,23 @@ export default class Signup extends Component {
           source={require('../../assets/logo.png')}
           style={styles.image}></Image>
 
-        <Text style={styles.greeting}>
-          {'Welcome to MadDealz!\nSign Up to get started.'}
-        </Text>
+        <Text style={styles.greeting}>{'Sign Up'}</Text>
 
         <View style={styles.form}>
           <View>
-            <Text style={styles.inputTitle}>Full Name</Text>
-            <TextInput style={styles.input} autoCapitalize="none"></TextInput>
+            <Text style={styles.inputTitle}>Username</Text>
+            <TextInput style={styles.input} returnKeyType="next"></TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Email Address</Text>
-            <TextInput style={styles.input} autoCapitalize="none"></TextInput>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              returnKeyType="next"
+              autoCompleteType="email"
+              textContentType="emailAddress"
+              keyboardType="email-address"></TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
@@ -63,7 +67,8 @@ export default class Signup extends Component {
             <TextInput
               style={styles.input}
               secureTextEntry
-              autoCapitalize="none"></TextInput>
+              autoCapitalize="none"
+              returnKeyType="done"></TextInput>
           </View>
         </View>
 
@@ -94,12 +99,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   greeting: {
-    marginTop: -32,
-    fontSize: 18,
-    fontWeight: '400',
+    marginTop: 28,
+    color: '#ccc',
+    fontSize: 28,
+    fontWeight: '700',
     textAlign: 'center',
   },
   form: {
+    marginTop: 28,
     marginBottom: 48,
     marginHorizontal: 30,
   },
@@ -124,8 +131,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    flex: 1,
-    width: null,
-    height: null,
+    alignSelf: 'center',
+    width: 400,
+    height: 128,
+    marginTop: 64,
   },
 });

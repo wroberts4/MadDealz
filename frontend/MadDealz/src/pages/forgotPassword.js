@@ -34,19 +34,23 @@ export default class ForgotPassword extends Component {
           source={require('../../assets/logo.png')}
           style={styles.image}></Image>
 
-        <Text style={styles.greeting}>
-          {'Forgot Passowrd?\nEnter email to reset.'}
-        </Text>
+        <Text style={styles.greeting}>{'Reset Password'}</Text>
 
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Email Address</Text>
-            <TextInput style={styles.input} autoCapitalize="none"></TextInput>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              returnKeyType="done"
+              autoCompleteType="email"
+              textContentType="emailAddress"
+              keyboardType="email-address"></TextInput>
           </View>
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
-          <Text style={{fontWeight: '500', color: '#222'}}>Reset Passowrd</Text>
+          <Text style={{fontWeight: '500', color: '#222'}}>Reset Password</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -71,12 +75,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   greeting: {
-    marginTop: -32,
-    fontSize: 18,
-    fontWeight: '400',
+    marginTop: 28,
+    color: '#ccc',
+    fontSize: 28,
+    fontWeight: '700',
     textAlign: 'center',
   },
   form: {
+    marginTop: 28,
     marginBottom: 48,
     marginHorizontal: 30,
   },
@@ -101,8 +107,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    flex: 1,
-    width: null,
-    height: null,
+    alignSelf: 'center',
+    width: 400,
+    height: 128,
+    marginTop: 64,
   },
 });

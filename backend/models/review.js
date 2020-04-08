@@ -11,8 +11,19 @@ export async function create_review(review) {
 
     let review_result = await dbo.collection('reviews').insertOne(review);
     
-    let bar_id = db_util.ObjectId(review.bar);
-    const query = { _id: bar_id };
+    let query;
+    if (typeof review.bar_id === 'object') {
+      if (JSON.stringify(review.bar_id).length != 26) {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+      query = { _id: review.bar_id };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(review.bar_id) };
+      } catch {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+    }
 
     let result = await dbo.collection("bars").updateOne(query, { $addToSet: { 'reviews': review_result.ops[0]._id.toString() } }, { upsert: false });
     con.close();
@@ -68,17 +79,39 @@ export async function get_review(id) {
     let dbo = con.db(db_util.db_name);
   
     let query;
-    if (typeof id === 'object')
+    if (typeof id === 'object') {
+      if (JSON.stringify(id).length != 26) {
+        return { status: 400, message: "invalid id provided" };
+      }
       query = { _id: id };
-    else
-      query = { _id: db_util.ObjectId(id) };
-    
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(id) };
+      } catch {
+        return { status: 400, message: "invalid id provided" };
+      }
+    }
+
     let review = await dbo.collection("reviews").findOne(query, {});
-    await dbo.collection("bars").updateOne({ _id: db_util.ObjectId(review.bar) }, { $pull: { 'reviews': id } });
+
+    if (typeof review.bar_id === 'object') {
+      if (JSON.stringify(review.bar_id).length != 26) {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+      query = { _id: review.bar_id };
+    } else {
+      try {
+        query = { _id: db_util.ObjectId(review.bar_id) };
+      } catch {
+        return { status: 400, message: "invalid bar id provided" };
+      }
+    }
+
+    await dbo.collection("bars").updateOne(query, { $pull: { 'reviews': id } });
     
     let result = await dbo.collection("reviews").deleteOne(query, {});
 
-    await update_score_delete({ _id: db_util.ObjectId(review.bar) }, review.score);
+    await update_score_delete(query, review.score);
   
     if (result.deletedCount == 0)
       return { status: 500, message: "Review not found"};

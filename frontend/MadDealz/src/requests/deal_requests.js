@@ -9,11 +9,11 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
  *
  * @return {object} deal object containing name and address.
  */
-async function create_deal(info, bar, times, fetch_timeout) {
+async function create_deal(info, bar_id, times, fetch_timeout, ip) {
     info = falsy_to_empty(info);
-    bar = falsy_to_empty(bar);
+    bar_id = falsy_to_empty(bar_id);
     times = falsy_to_empty(times);
-    data = {'info': info, 'bar': bar, 'times': times};
+    data = {'info': info, 'bar_id': bar_id, 'times': times};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/deal/create';
     const response = await fetchWithTimeout(
@@ -76,11 +76,11 @@ async function delete_deal(id, fetch_timeout, ip) {
     return (await response.json()).message;
 };
 
-async function update_deal(info, bar, times, fetch_timeout, ip) {
+async function update_deal(id, info, times, fetch_timeout, ip) {
+    id = falsy_to_empty(id);
     info = falsy_to_empty(info);
-    bar = falsy_to_empty(bar);
     times = falsy_to_empty(times);
-    data = {'info': info, 'bar': bar, 'times': times};
+    data = {'id': id, 'info': info, 'times': times};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/deal/update';
     const response = await fetchWithTimeout(

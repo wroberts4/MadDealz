@@ -172,7 +172,7 @@ export async function get_bar(id) {
     if (!bar)
       return { status: 500, message: "Bar not found"};
     
-      let deal_id;
+    let deal_id;
     for (deal_id of bar.deals) {
       await delete_deal(deal_id);
     }
@@ -227,7 +227,6 @@ export async function get_bar(id) {
       }
 
       let deal = await dbo.collection("deals").findOne(query, {});
-      delete deal.bar;
       deals.push(deal);
     }
     con.close();
@@ -275,7 +274,6 @@ export async function get_bar(id) {
       }
 
       let review = await dbo.collection("reviews").findOne(query, {});
-      delete review.bar;
       reviews.push(review);
     }
     con.close();

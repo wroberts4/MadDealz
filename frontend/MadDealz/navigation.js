@@ -75,6 +75,22 @@ export const goToForgotPwd = () =>
     },
   });
 
+export const goToBarPage = () =>
+  Navigation.setRoot({
+    root: {
+      stack: {
+        id: 'stackMain',
+        children: [
+          {
+            component: {
+              name: 'BarpageScreen',
+            },
+          },
+        ],
+      },
+    },
+  });
+
 export const goToTabs = () =>
   Navigation.setRoot({
     root: {
@@ -120,6 +136,15 @@ export const goToTabs = () =>
                   text: 'BarPage',
                 },
               },
+            },
+          },
+        ],
+      },
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'BarpageScreen',
             },
           },
         ],

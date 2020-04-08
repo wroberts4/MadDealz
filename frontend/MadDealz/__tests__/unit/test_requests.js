@@ -264,10 +264,8 @@ async function test_delete_deal(name, address, times) {
 
 async function test_update_deal(name, address, times) {
   let bar = await create_bar(name, address, TIMEOUT, IP);
-  let deal = await update_deal(bar._id, name, times, TIMEOUT, IP);
-  expect(deal.info).toBe(name);
-  expect(deal.bar_id).toBe(bar._id);
-  expect(deal.times).toBe(times);
+  let res = await update_deal(bar._id, name, times, TIMEOUT, IP);
+  expect(res).toBe('Deal updated successfully');
 
   // Error cases.
 };

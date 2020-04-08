@@ -88,6 +88,10 @@ export async function delete_deal(id) {
   
   let deal = await dbo.collection("deals").findOne(query, {});
 
+  let result = await dbo.collection("deals").deleteOne(query, {});
+  if (result.deletedCount == 0)
+    return { status: 500, message: "Deal not found"};
+
   if (typeof deal.bar_id === 'object') {
     if (JSON.stringify(deal.bar_id).length != 26) {
       return { status: 400, message: "invalid bar id provided" };
@@ -100,13 +104,7 @@ export async function delete_deal(id) {
       return { status: 400, message: "invalid bar id provided" };
     }
   }
-
   await dbo.collection("bars").updateOne(query, { $pull: { 'deals': id } });
-  
-  let result = await dbo.collection("deals").deleteOne(query, {});
-
-  if (result.deletedCount == 0)
-    return { status: 500, message: "Deal not found"};
   
   return { status: 200, message: "Deal deleted successfully" };
 }

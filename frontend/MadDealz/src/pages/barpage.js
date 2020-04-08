@@ -3,28 +3,23 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    StyleSheet,
     SafeAreaView,
     ScrollView,
     Dimensions,
 } from 'react-native';
-import {Card, Image} from 'react-native-elements';
+import {Card, Image, Button, Icon, Header} from 'react-native-elements';
 
 import styles from './styles';
 class Barpage extends React.Component {
     render() {
         return (
-            <SafeAreaView>
+            <View style={{flex:1}}>
                 <ScrollView style={styles.scroll}>
-                    <View style={styles.bar}>
-                        <Text style={{fontSize: 20, color: 'white', paddingBottom: 5}}>
-                            Bar Name
-                        </Text>
-                    </View>
                     <View
                         style={{
                             justifyContent: 'center',
                             alignItems: 'center',
+                            paddingTop: 5
                         }}>
                         <Image
                             // TODO: Figure out how to make the whole image appear regardless of image
@@ -69,7 +64,7 @@ class Barpage extends React.Component {
                         <Text>Email Address?</Text>
                     </Card>
                 </ScrollView>
-            </SafeAreaView>
+            </View>
         );
     }
 }

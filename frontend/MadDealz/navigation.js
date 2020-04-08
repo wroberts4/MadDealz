@@ -11,6 +11,7 @@ import ForgotPwd from './src/pages/forgotPassword'; // Forgot Password Screen
 import NewPwd from './src/pages/newPassword'; // New Password Screen
 import ChangePwd from './src/pages/changePassword'; // Change Password Screen
 
+
 Navigation.registerComponent('BarpageScreen', () =>
   gestureHandlerRootHOC(Barpage),
 );
@@ -176,15 +177,6 @@ export const goToTabs = () =>
                   text: 'BarPage',
                 },
               },
-            },
-          },
-        ],
-      },
-      stack: {
-        children: [
-          {
-            component: {
-              name: 'BarpageScreen',
             },
           },
         ],

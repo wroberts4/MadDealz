@@ -10,12 +10,7 @@ import {
   LayoutAnimation,
 } from 'react-native';
 
-import {
-  goToTabs,
-  goToSignup,
-  goToForgotPwd,
-  goToChangePwd,
-} from '../../navigation';
+import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
 
 export default class Login extends Component {
   static get options() {
@@ -25,10 +20,6 @@ export default class Login extends Component {
       },
     };
   }
-  //TESTING ONLY
-  changePwdPage = async () => {
-    goToChangePwd();
-  };
 
   forgotPwdPage = async () => {
     goToForgotPwd();
@@ -99,17 +90,6 @@ export default class Login extends Component {
           <Text style={{color: '#777', fontSize: 13}}>
             Don't have an account?{' '}
             <Text style={{fontWeight: '500', color: '#f55'}}>Sign Up</Text>
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{
-            alignSelf: 'center',
-            marginTop: 32,
-          }}
-          onPress={this.changePwdPage}>
-          <Text style={{fontSize: 14, fontWeight: '500', color: '#f55'}}>
-            Change Password?
           </Text>
         </TouchableOpacity>
       </View>

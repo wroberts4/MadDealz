@@ -51,7 +51,7 @@ async function get_review(id, fetch_timeout, ip) {
 async function delete_review(id, fetch_timeout, ip) {
     id = falsy_to_empty(id);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/review/delete?id=';
+    let url = ip + '/review/delete?id=' + id;
     const response = await fetchWithTimeout(
         url,
         {

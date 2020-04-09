@@ -93,6 +93,9 @@ export async function get_review(id) {
     }
 
     let review = await dbo.collection("reviews").findOne(query, {});
+    let result = await dbo.collection("reviews").deleteOne(query, {});
+    if (result.deletedCount == 0)
+      return { status: 500, message: "Review not found"};
 
     if (typeof review.bar_id === 'object') {
       if (JSON.stringify(review.bar_id).length != 26) {
@@ -107,14 +110,8 @@ export async function get_review(id) {
       }
     }
 
-    await dbo.collection("bars").updateOne(query, { $pull: { 'reviews': id } });
-    
-    let result = await dbo.collection("reviews").deleteOne(query, {});
-
     await update_score_delete(query, review.score);
-  
-    if (result.deletedCount == 0)
-      return { status: 500, message: "Review not found"};
+    await dbo.collection("bars").updateOne(query, { $pull: { 'reviews': id } });
     
     return { status: 200, message: "Review deleted successfully" };
   }

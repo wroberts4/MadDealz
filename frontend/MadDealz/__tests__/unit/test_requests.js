@@ -282,10 +282,26 @@ async function test_create_review(name, address, content, score, user) {
   // Error cases.
 };
 
-async function test_get_review(id) {
+async function test_get_review(name, address, content, score, user) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let review = await create_review(content, bar._id, score, user, TIMEOUT, IP);
+  review = await get_review(review._id, TIMEOUT, IP);
+  expect(review.content).toBe(content);
+  expect(review.bar_id).toBe(bar._id);
+  expect(review.score).toBe(score);
+  expect(review.user).toBe(user);
+
+  // Error cases.
 };
 
-async function test_delete_review(id) {
+async function test_delete_review(name, address, content, score, user) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let review = await create_review(content, bar._id, score, user, TIMEOUT, IP);
+  let res = await delete_review(review._id, TIMEOUT, IP);
+  expect(res).toBe('Review deleted successfully');
+
+  // Error cases.
+  await undefined_error(get_review(review._id), 'id', review._id, 'Review not found');
 };
 
 async function test_update_review(content, bar, score, user) {
@@ -390,9 +406,9 @@ test('test delete_deal', async () => {return test_delete_deal(name, address, tim
 
 // REVIEW TESTS.
 test('test create_review', async () => {return test_create_review(name, address, 'tmp', -1, '')});
-//test('test get_deal', async () => {return test_get_deal(name, address, times)});
-//test('test update_deal', async () => {return test_update_deal(name, address, times)});
-//test('test delete_deal', async () => {return test_delete_deal(name, address, times)});
+test('test get_review', async () => {return test_get_review(name, address, 'tmp', -1, '')});
+//test('test update_review', async () => {return test_update_review(name, address, times)});
+test('test delete_review', async () => {return test_delete_review(name, address, 'tmp', -1, '')});
 
 // BAR TESTS.
 test('test delete_bar', async () => {return test_delete_bar(name, address)}, TIMEOUT);

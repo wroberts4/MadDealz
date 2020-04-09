@@ -48,7 +48,7 @@ export default class Home extends Component {
       search: '',
       filterVisible: false,
       distance: false,
-      distanceSwitch: false,
+      distanceSwitch: false
     };
   }
 

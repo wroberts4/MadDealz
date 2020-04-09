@@ -114,7 +114,7 @@ export const goToBarPage = () =>
                 topBar: {
                   visible: false
                 }
-              }
+              },
             },
           },
         ],

@@ -264,8 +264,11 @@ async function test_delete_deal(name, address, times) {
 
 async function test_update_deal(name, address, times) {
   let bar = await create_bar(name, address, TIMEOUT, IP);
-  let res = await update_deal(bar._id, name, times, TIMEOUT, IP);
+  let deal = await create_deal(name, bar._id, times, TIMEOUT, IP);
+  let res = await update_deal(deal._id, 'tmp', 'tmp', TIMEOUT, IP);
   expect(res).toBe('Deal updated successfully');
+  res = await update_deal(deal._id, 'tmp', 'tmp', TIMEOUT, IP);
+  expect(res).toBe('Nothing to update');
 
   // Error cases.
 };
@@ -301,10 +304,18 @@ async function test_delete_review(name, address, content, score, user) {
   expect(res).toBe('Review deleted successfully');
 
   // Error cases.
-  await undefined_error(get_review(review._id), 'id', review._id, 'Review not found');
+  await undefined_error(get_review(review._id), 'id', review._id, 'Review does not exist');
 };
 
-async function test_update_review(content, bar, score, user) {
+async function test_update_review(name, address, content, score, user) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let review = await create_review(content, bar._id, score, user, TIMEOUT, IP);
+  let res = await update_review(review._id, 'tmp', 'tmp', TIMEOUT, IP);
+  expect(res).toBe('Review updated successfully');
+  res = await update_review(review._id, 'tmp', 'tmp', TIMEOUT, IP);
+  expect(res).toBe('Nothing to update');
+
+  // Error cases.
 };
 
 ///////////////////////////////////// BAR TESTS /////////////////////////////////////
@@ -407,7 +418,7 @@ test('test delete_deal', async () => {return test_delete_deal(name, address, tim
 // REVIEW TESTS.
 test('test create_review', async () => {return test_create_review(name, address, 'tmp', -1, '')});
 test('test get_review', async () => {return test_get_review(name, address, 'tmp', -1, '')});
-//test('test update_review', async () => {return test_update_review(name, address, times)});
+test('test update_review', async () => {return test_update_review(name, address, times)});
 test('test delete_review', async () => {return test_delete_review(name, address, 'tmp', -1, '')});
 
 // BAR TESTS.

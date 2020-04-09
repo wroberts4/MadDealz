@@ -69,12 +69,11 @@ async function delete_review(id, fetch_timeout, ip) {
     return (await response.json()).message;
 };
 
-async function update_review(content, bar, score, fetch_timeout, ip) {
+async function update_review(id, content, score, fetch_timeout, ip) {
+    id = falsy_to_empty(id);
     content = falsy_to_empty(content);
-    bar = falsy_to_empty(bar);
     score = falsy_to_empty(score);
-    user = falsy_to_empty(user);
-    data = {'content': content, 'bar': bar, 'score': score};
+    data = {'id': id, 'content': content, 'score': score};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/review/update';
     const response = await fetchWithTimeout(

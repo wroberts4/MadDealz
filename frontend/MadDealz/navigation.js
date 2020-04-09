@@ -100,6 +100,7 @@ export const goToNewPwd = () =>
     },
   });
 
+
 export const goToBarPage = () =>
   Navigation.setRoot({
     root: {
@@ -109,6 +110,11 @@ export const goToBarPage = () =>
           {
             component: {
               name: 'BarpageScreen',
+              options: {
+                topBar: {
+                  visible: false
+                }
+              }
             },
           },
         ],
@@ -164,17 +170,6 @@ export const goToTabs = () =>
               options: {
                 bottomTab: {
                   text: 'Favorites',
-                },
-              },
-            },
-          },
-          {
-            component: {
-              // TEMPORARY FOR TESTING, does not belong on bottom tab
-              name: 'BarpageScreen',
-              options: {
-                bottomTab: {
-                  text: 'BarPage',
                 },
               },
             },

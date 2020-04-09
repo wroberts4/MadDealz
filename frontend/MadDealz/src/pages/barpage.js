@@ -9,11 +9,23 @@ import {
 } from 'react-native';
 import {Card, Image, Button, Icon, Header} from 'react-native-elements';
 
+import { goToTabs } from '../../navigation';
+
 import styles from './styles';
 class Barpage extends React.Component {
+
+    tabsPage = async () => {
+        goToTabs();
+    };
+
     render() {
         return (
             <View style={{flex:1}}>
+                <Header
+                    containerStyle = {{ backgroundColor: '#990000' }}
+                    leftComponent = { <Button icon = {<Icon name = 'arrow-back'/> } onPress = {this.tabsPage} buttonStyle = {{backgroundColor: '#990000'}}/>}
+                    centerComponent = {{ text: 'Bar Page' }}
+                />
                 <ScrollView style={styles.scroll}>
                     <View
                         style={{

@@ -366,6 +366,7 @@ let address = 'test_address'
 let address2 = 'test_address2';
 let times = '3pm';
 
+// USER TESTS.
 test('test add_user', async () => {return test_add_user(name, password, email)}, TIMEOUT);
 test('test add_user', async () => {return test_add_user(name2, 'tmp', 'tmp')}, TIMEOUT);
 test('test get_user', async () => {return test_get_user(name)}, TIMEOUT);
@@ -381,11 +382,19 @@ test('test remove_friend', async () => {return test_remove_friend(name, name2)},
 test('test update_user', async () => {return test_update_user({'username': name, 'password': password2, 'email': email2})}, TIMEOUT);
 test('test delete_user', async () => {return test_delete_user(name)}, TIMEOUT);
 
+// DEAL TESTS.
 test('test create_deal', async () => {return test_create_deal(name, address, times)});
 test('test get_deal', async () => {return test_get_deal(name, address, times)});
 test('test update_deal', async () => {return test_update_deal(name, address, times)});
 test('test delete_deal', async () => {return test_delete_deal(name, address, times)});
 
+// REVIEW TESTS.
+test('test create_review', async () => {return test_create_review(name, address, 'tmp', -1, '')});
+//test('test get_deal', async () => {return test_get_deal(name, address, times)});
+//test('test update_deal', async () => {return test_update_deal(name, address, times)});
+//test('test delete_deal', async () => {return test_delete_deal(name, address, times)});
+
+// BAR TESTS.
 test('test delete_bar', async () => {return test_delete_bar(name, address)}, TIMEOUT);
 test('test create_bar', async () => {return test_create_bar(name, address)}, TIMEOUT);
 test('test get_bar', async () => {return test_get_bar(name, address)}, TIMEOUT);

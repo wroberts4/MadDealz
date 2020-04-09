@@ -1,12 +1,12 @@
 const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
 const falsy_to_empty = require('../utils/requests').falsy_to_empty;
 
-async function create_review(content, bar, score, user, fetch_timeout, ip) {
+async function create_review(content, bar_id, score, user, fetch_timeout, ip) {
     content = falsy_to_empty(content);
-    bar = falsy_to_empty(bar);
+    bar_id = falsy_to_empty(bar_id);
     score = falsy_to_empty(score);
     user = falsy_to_empty(user);
-    data = {'content': content, 'bar': bar, 'score': score, 'user': user};
+    data = {'content': content, 'bar_id': bar_id, 'score': score, 'user': user};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/review/create';
     const response = await fetchWithTimeout(

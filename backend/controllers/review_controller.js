@@ -15,7 +15,7 @@ router.post('/create', async (req, res) => {
     
     let rc = await Review.create_review({
         content: req.body.content,
-        bar: req.body.bar_id,
+        bar_id: req.body.bar_id,
         score: req.body.score,
         user: req.body.user
     });

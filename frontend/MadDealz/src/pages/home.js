@@ -48,7 +48,8 @@ export default class Home extends Component {
       search: '',
       filterVisible: false,
       distance: false,
-      distanceSwitch: false
+      distanceSwitch: false,
+      barId: 'barz'
     };
   }
 
@@ -61,7 +62,8 @@ export default class Home extends Component {
   };
 
   barPage = async () => {
-    goToBarPage();
+    const barId  = this.state.barId;
+    goToBarPage(barId);
   };
 
   componentDidMount() {

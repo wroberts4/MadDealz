@@ -1,9 +1,8 @@
 // Page that shows up when a bar object is clicked
-import React, {Component} from 'react';
+import React from 'react';
 import {
     View,
     Text,
-    SafeAreaView,
     ScrollView,
     Dimensions,
 } from 'react-native';
@@ -19,12 +18,15 @@ class Barpage extends React.Component {
     };
 
     render() {
+
+        const { barId } = this.props;
+
         return (
             <View style={{flex:1}}>
                 <Header
                     containerStyle = {{ backgroundColor: '#990000' }}
                     leftComponent = { <Button icon = {<Icon name = 'arrow-back'/> } onPress = {this.tabsPage} buttonStyle = {{backgroundColor: '#990000'}}/>}
-                    centerComponent = {{ text: 'Bar Page' }}
+                    centerComponent = {{ text: barId }}
                 />
                 <ScrollView style={styles.scroll}>
                     <View
@@ -42,6 +44,7 @@ class Barpage extends React.Component {
                             source={require('../../assets/UU.jpg')}
                             resizeMode="contain"
                         />
+                        <Text style={{color: 'white'}}>{barId}</Text>
                     </View>
                     <Card
                         title="Dealz"

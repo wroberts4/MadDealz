@@ -101,7 +101,7 @@ export const goToNewPwd = () =>
   });
 
 
-export const goToBarPage = () =>
+export const goToBarPage = (barId) =>
   Navigation.setRoot({
     root: {
       stack: {
@@ -115,6 +115,9 @@ export const goToBarPage = () =>
                   visible: false
                 }
               },
+              passProps: {
+                barId
+              }
             },
           },
         ],
@@ -145,7 +148,6 @@ export const goToTabs = () =>
         children: [
           {
             component: {
-              //name: "navigation.playground.WelcomeScreen"
               name: 'HomeScreen',
               options: {
                 bottomTab: {

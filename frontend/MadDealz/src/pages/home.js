@@ -49,7 +49,6 @@ export default class Home extends Component {
       filterVisible: false,
       distance: false,
       distanceSwitch: false,
-      barId: 'barz'
     };
   }
 
@@ -61,8 +60,8 @@ export default class Home extends Component {
     this.setState({distance: true});
   };
 
-  barPage = async () => {
-    const barId  = this.state.barId;
+  barPage = async bar => {
+    const barId  = bar;
     goToBarPage(barId);
   };
 
@@ -75,7 +74,7 @@ export default class Home extends Component {
       this.setState({bars: bar_list});
     });
   }
-
+  
   updateSearch = search => {
     this.setState({search: search});
   };
@@ -217,9 +216,8 @@ export default class Home extends Component {
 
         <Animated.FlatList
           data={this.state.bars}
-          //this.setState({barId: 'barz'})
           renderItem={({item}) => (
-            <TouchableOpacity onPress={this.barPage}>
+            <TouchableOpacity onPress={() => this.barPage(item.name)}>
               <Item name={item.name} address={item.address} />
             </TouchableOpacity>
           )}

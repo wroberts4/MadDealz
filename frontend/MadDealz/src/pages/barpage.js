@@ -44,7 +44,6 @@ class Barpage extends React.Component {
                             source={require('../../assets/UU.jpg')}
                             resizeMode="contain"
                         />
-                        <Text style={{color: 'white'}}>{barId}</Text>
                     </View>
                     <Card
                         title="Dealz"

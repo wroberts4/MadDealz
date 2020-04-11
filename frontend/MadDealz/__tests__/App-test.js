@@ -10,8 +10,8 @@ import Barpage from '../src/pages/barpage';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
+// Tests barpage snapshot
 test('renders correctly', () => {
-//  renderer.create(<App />);
     const tree = renderer.create(<Barpage />).toJSON();
     expect(tree).toMatchSnapshot();
 });

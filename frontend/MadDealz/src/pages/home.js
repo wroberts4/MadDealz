@@ -217,7 +217,7 @@ export default class Home extends Component {
         <Animated.FlatList
           data={this.state.bars}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => this.barPage(item.name)}>
+            <TouchableOpacity onPress={() => this.barPage(item._id)}>
               <Item name={item.name} address={item.address} />
             </TouchableOpacity>
           )}

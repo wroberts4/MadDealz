@@ -7,26 +7,37 @@ import {
     Dimensions,
 } from 'react-native';
 import {Card, Image, Button, Icon, Header} from 'react-native-elements';
-
 import { goToTabs } from '../../navigation';
-
 import styles from './styles';
+
+bar_requests = require('../requests/bar_requests');
+
 class Barpage extends React.Component {
 
     tabsPage = async () => {
         goToTabs();
     };
 
+    
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            barName: '',
+            barId: ''
+        };
+
+        bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
+    }
+
     render() {
-
-        const { barId } = this.props;
-
+        
         return (
             <View style={{flex:1}}>
                 <Header
                     containerStyle = {{ backgroundColor: '#990000' }}
                     leftComponent = { <Button icon = {<Icon name = 'arrow-back'/> } onPress = {this.tabsPage} buttonStyle = {{backgroundColor: '#990000'}}/>}
-                    centerComponent = {{ text: barId }}
+                    centerComponent = {{ text: this.state.barName}}
                 />
                 <ScrollView style={styles.scroll}>
                     <View

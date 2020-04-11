@@ -1,4 +1,3 @@
-// Page that shows up when a bar object is clicked
 import React from 'react';
 import {
     View,
@@ -36,11 +35,14 @@ class Barpage extends React.Component {
         bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
         bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
         bar_requests.get_deals(this.props.barId).then(reviews => {this.setState({reviews: reviews})});
+        // TODO: Set count to 0 if bar is not in user's favorites list, 1 if bar is in user's favorites
     }
 
     render() {
         
         console.log(this.state.count);
+
+        //TODO: onPress on favorites button, add/remove bar from favorites
 
         return (
             <View style={{flex:1}}>
@@ -60,7 +62,8 @@ class Barpage extends React.Component {
                             paddingTop: 5
                         }}>
                         <Image
-                            // TODO: Figure out how to make the whole image appear regardless of image
+                            // TODO: Figure out how to make the whole image appear regardless of image size
+                            // TODO: Get the image pulled from the database
                             style={{
                                 height: 200,
                                 width: Dimensions.get('screen').width - 20,

@@ -6,15 +6,19 @@ import {
   Dimensions,
   StyleSheet,
   TouchableOpacity,
-  TextInput
+  TextInput,
 } from 'react-native';
 import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 
-import {goToLogin, goToChangePwd} from '../../navigation';
+import {goToLogin, goToChangePwd, goToChangeUsername} from '../../navigation';
 
 export default class Profile extends Component {
   loginPage = async () => {
     goToLogin();
+  };
+
+  changeUsernamePage = async () => {
+    goToChangeUsername();
   };
 
   changePwdPage = async () => {
@@ -38,7 +42,6 @@ export default class Profile extends Component {
           centerComponent={{text: userId}}
         />
         <ScrollView style={styles.scroll}>
-          
           <View
             style={{
               justifyContent: 'center',
@@ -47,44 +50,46 @@ export default class Profile extends Component {
             }}>
             <Avatar
               rounded
-              size = {200}
+              size={200}
               source={require('../../assets/Husky.jpg')}
               resizeMode="contain"
               showEditButton
             />
             <Text style={{color: 'white'}}>{userId}</Text>
-        </View>
-        <View style={styles.form}>
-          <View>
-            <Text style={styles.inputTitle}>Email Address</Text>
-            <TextInput
-              style={styles.input}
-              autoCapitalize="none"
-              returnKeyType="next"
-              autoCompleteType="email"
-              textContentType="emailAddress"
-              keyboardType="email-address"></TextInput>
           </View>
+          <View style={styles.form}>
+            <View>
+              <Text style={styles.inputTitle}>Email Address</Text>
+              <TextInput
+                style={styles.input}
+                autoCapitalize="none"
+                returnKeyType="next"
+                autoCompleteType="email"
+                textContentType="emailAddress"
+                keyboardType="email-address"
+              />
+            </View>
 
-          <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Old Password</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              returnKeyType="done"></TextInput>
+            <View style={{marginTop: 32}}>
+              <Text style={styles.inputTitle}>Old Password</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry
+                autoCapitalize="none"
+                returnKeyType="done"
+              />
+            </View>
+
+            <View style={{marginTop: 32}}>
+              <Text style={styles.inputTitle}>New Password</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry
+                autoCapitalize="none"
+                returnKeyType="done"
+              />
+            </View>
           </View>
-
-          <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>New Password</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              returnKeyType="done"></TextInput>
-          </View>
-
-        </View>
 
           <TouchableOpacity style={styles.button} onPress={this.loginPage}>
             <Text style={{fontWeight: '500', color: '#222'}}>Logout</Text>
@@ -95,6 +100,15 @@ export default class Profile extends Component {
               Change Password
             </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.changeUsernamePage}>
+            <Text style={{fontWeight: '500', color: '#222'}}>
+              Change Username
+            </Text>
+          </TouchableOpacity>
+          
         </ScrollView>
       </View>
     );

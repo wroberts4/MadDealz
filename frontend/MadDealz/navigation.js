@@ -10,6 +10,7 @@ import Signup from './src/pages/signup'; // Signup screen
 import ForgotPwd from './src/pages/forgotPassword'; // Forgot Password Screen
 import NewPwd from './src/pages/newPassword'; // New Password Screen
 import ChangePwd from './src/pages/changePassword'; // Change Password Screen
+import ChangeUsername from './src/pages/changeUsername'; // Change Password Screen
 
 
 Navigation.registerComponent('BarpageScreen', () =>
@@ -34,6 +35,9 @@ Navigation.registerComponent('NewPwdScreen', () =>
 );
 Navigation.registerComponent('ChangePwdScreen', () =>
   gestureHandlerRootHOC(ChangePwd),
+);
+Navigation.registerComponent('ChangeUsernameScreen', () =>
+  gestureHandlerRootHOC(ChangeUsername),
 );
 
 export const goToLogin = () =>
@@ -134,6 +138,22 @@ export const goToChangePwd = () =>
           {
             component: {
               name: 'ChangePwdScreen',
+            },
+          },
+        ],
+      },
+    },
+  });
+
+  export const goToChangeUsername = () =>
+  Navigation.setRoot({
+    root: {
+      stack: {
+        id: 'stackMain',
+        children: [
+          {
+            component: {
+              name: 'ChangeUsernameScreen',
             },
           },
         ],

@@ -18,25 +18,38 @@ class Barpage extends React.Component {
         goToTabs();
     };
 
-    
+    upCount = async () => {
+        this.setState({count: (this.state.count+1)%2});
+    }
+
     constructor(props) {
         super(props);
         
         this.state = {
+            count: 0,
             barName: '',
-            barId: ''
+            barId: '',
+            deals: [],
+            reviews: []
         };
 
         bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
+        bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
+        bar_requests.get_deals(this.props.barId).then(reviews => {this.setState({reviews: reviews})});
     }
 
     render() {
         
+        console.log(this.state.count);
+
         return (
             <View style={{flex:1}}>
                 <Header
                     containerStyle = {{ backgroundColor: '#990000' }}
-                    leftComponent = { <Button icon = {<Icon name = 'arrow-back'/> } onPress = {this.tabsPage} buttonStyle = {{backgroundColor: '#990000'}}/>}
+                    leftComponent = { <Button icon = {<Icon name = 'arrow-back'/> } 
+                        onPress = {this.tabsPage} buttonStyle = {{backgroundColor: '#990000'}}/>}
+                    rightComponent = { <Button icon = {<Icon name = {(this.state.count == 0 ? 'favorite-border' : 'favorite')}/>}
+                        onPress = {this.upCount} buttonStyle = {{backgroundColor: '#990000'}}/>}
                     centerComponent = {{ text: this.state.barName}}
                 />
                 <ScrollView style={styles.scroll}>

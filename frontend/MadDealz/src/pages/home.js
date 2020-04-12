@@ -187,7 +187,9 @@ export default class Home extends Component {
             <View style={styles.dialogeviewouter}>
               <View style={styles.dialogviewinner}>
                 <Text style={styles.dialogviewtext}>Distance</Text>
-                {dButton}
+                {/* <View style = {{paddingLeft: 100}}>
+                  {dButton}
+                </View> */}
               </View>
               {dButton}
             </View>

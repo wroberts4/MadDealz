@@ -4,6 +4,7 @@ import { Input, Button } from 'react-native-elements';
 import styles from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
+const HEADER_MAX_HEIGHT = 300;
 export default class Contact extends Component {
 
     

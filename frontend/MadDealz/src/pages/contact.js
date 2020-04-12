@@ -31,9 +31,10 @@ export default class Contact extends Component {
                         source={require('../../assets/logo.png')}
                         style={sty.image}>
                     </Image>
-                    <Text style={{color:'white', paddingBottom: 40}}>Questions? Complaints? Please let us know below and leave your email address if you would like a response.
-                        Thanks!
+                    <Text style={{color: 'white'}}>Questions? Comments? Complaints? 
+                        Please let us know below and leave your email address if you would like a response.
                     </Text>
+                    <Text style={{color: 'white', paddingBottom: 40}}>Thanks!</Text>
                     <Input 
                         placeholder='Please enter your message here.'
                         placeholderTextColor='grey'

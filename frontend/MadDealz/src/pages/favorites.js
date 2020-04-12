@@ -1,3 +1,6 @@
+// TODO: Display a message telling the user to login if they aren't logged in
+// TODO: Display a message telling the user they can favorite bars if their favorites list is empty
+
 import React, {Component} from 'react';
 import {
   Animated,

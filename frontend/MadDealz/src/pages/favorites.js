@@ -1,5 +1,5 @@
-// I reckon what we want to do for this page is make it the same as the home page but only
-// querie the user's favorite bars?
+// TODO: Display a message telling the user to login if they aren't logged in
+// TODO: Display a message telling the user they can favorite bars if their favorites list is empty
 
 import React, {Component} from 'react';
 import {

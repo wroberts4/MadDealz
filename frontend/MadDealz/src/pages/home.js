@@ -50,6 +50,7 @@ export default class Home extends Component {
       distance: false,
       distanceSwitch: false,
     };
+    this.arrayholder = []
   }
 
   filterPress = () => {
@@ -72,16 +73,27 @@ export default class Home extends Component {
   get_list_of_bars() {
     bar_requests.get_bars(43.0731, 89.4012, 30, 10000).then(bar_list => {
       this.setState({bars: bar_list});
+      this.arrayholder = bar_list;
     });
+    
   }
-  
-  updateSearch = search => {
-    this.setState({search: search});
+
+  searchFunction(text) {
+    const newData = this.arrayholder.filter(function(item) {
+      const itemData = item.name.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    console.log(newData)
+    this.setState({ 
+      bars: newData,
+      search: text
+    });
+    console.log("data ", this.state.data)
   };
 
   render() {
-    const {search} = this.state;
-
+    
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0,
@@ -159,8 +171,12 @@ export default class Home extends Component {
             <View style={styles.dialogeviewouter}>
               <View style={styles.dialogviewinner}>
                 <Text style={styles.dialogviewtext}>Distance</Text>
+                {dButton}
               </View>
               {dButton}
+            </View>
+            <View style = {styles.dialogviewinner}>
+              <Text style={styles.dialogviewtext}>Next thing</Text>
             </View>
           </DialogContent>
           <DialogFooter>
@@ -286,8 +302,10 @@ export default class Home extends Component {
             containerStyle={styles.searchbar}
             inputContainerStyle={styles.searchbarinput}
             inputStyle={styles.searchbarinputtext}
-            onChangeText={text => this.updateSearch}
-            value={search}
+            onChangeText={text => this.searchFunction(text)}
+            // onClear={text => this.searchFunction('')}
+            value={this.state.search}
+            placeholder="Type Here"
           />
         </Animated.View>
       </View>

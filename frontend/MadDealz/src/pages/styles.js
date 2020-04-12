@@ -115,11 +115,12 @@ export default StyleSheet.create({
     color: 'black',
   },
   dialogviewouter: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     paddingTop: 5,
     paddingBottom: 10,
   },
   dialogviewinner: {
+    flexDirection: 'row',
     paddingRight: 150,
     paddingTop: 10,
     elevation: 1,

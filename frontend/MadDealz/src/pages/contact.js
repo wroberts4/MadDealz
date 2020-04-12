@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Platform} from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import styles from './styles';
 import { ScrollView } from 'react-native-gesture-handler';

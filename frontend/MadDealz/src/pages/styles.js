@@ -36,6 +36,12 @@ export default StyleSheet.create({
   content: {
     flex: 1,
   },
+  contact: {
+    backgroundColor: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   header: {
     position: 'absolute',
     top: 0,

@@ -136,4 +136,12 @@ export default StyleSheet.create({
     fontSize: 18,
     paddingBottom: 8,
   },
+  hometextoverlay: {
+    fontSize: 40,
+    color: 'white',
+    // fontFamily: 'Roboto',
+    // fontWeight: 'bold',
+    marginLeft: 50,
+    marginTop: 100,
+  }
 });

@@ -14,7 +14,7 @@ import styles from './styles';
 import Dialog, {
   DialogTitle,
   DialogContent,
-  ScaleAnimation,
+  SlideAnimation,
   DialogButton,
   DialogFooter,
 } from 'react-native-popup-dialog';
@@ -34,6 +34,21 @@ function Item({name, address}) {
       <Text style={styles.address}>{address}</Text>
     </View>
   );
+}
+
+function Day() {
+  var date = new Date();
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  let current_day = weekday[date.getDay()];
+  return current_day
 }
 export default class Home extends Component {
   constructor(props) {
@@ -162,8 +177,9 @@ export default class Home extends Component {
             this.setState({filterVisible: false});
           }}
           dialogAnimation={
-            new ScaleAnimation({
+            new SlideAnimation({
               initialValue: 0,
+              slideFrom: 'bottom',
               useNativeDriver: true,
             })
           }>
@@ -284,6 +300,12 @@ export default class Home extends Component {
             ]}
             source={require('../../assets/Home-background.jpg')}
           />
+          <Animated.Text
+          style={[styles.hometextoverlay]}>
+            {Day()}
+            {"\n"}
+            {"Deals"}
+          </Animated.Text>
         </Animated.View>
 
         <Animated.View
@@ -305,7 +327,7 @@ export default class Home extends Component {
             onChangeText={text => this.searchFunction(text)}
             // onClear={text => this.searchFunction('')}
             value={this.state.search}
-            placeholder="Type Here"
+            placeholder="Search Bars Here"
           />
         </Animated.View>
       </View>

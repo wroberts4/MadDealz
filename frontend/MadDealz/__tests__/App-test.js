@@ -17,6 +17,7 @@ test('renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
+// Tests contact snapshot
 test('renders correctly', () => {
     const tree = renderer.create(<Contact />).toJSON();
     expect(tree).toMatchSnapshot();

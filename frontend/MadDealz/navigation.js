@@ -111,7 +111,7 @@ export const goToNewPwd = () =>
   });
 
 
-export const goToBarPage = (barId) =>
+export const goToBarPage = (bar) =>
   Navigation.setRoot({
     root: {
       stack: {
@@ -126,7 +126,7 @@ export const goToBarPage = (barId) =>
                 }
               },
               passProps: {
-                barId
+                bar
               }
             },
           },

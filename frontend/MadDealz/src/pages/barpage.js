@@ -27,15 +27,15 @@ class Barpage extends React.Component {
         
         this.state = {
             count: 0,
-            barName: '',
+            barName: this.props.bar.name,
             barId: '',
-            deals: [],
+            deals: this.props.bar.deals,
             reviews: []
         };
 
-        bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
-        bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
-        bar_requests.get_deals(this.props.barId).then(reviews => {this.setState({reviews: reviews})});
+        //bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
+        //bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
+        bar_requests.get_reviews(this.props.bar._id).then(reviews => {this.setState({reviews: reviews})});
         // TODO: Set count to 0 if bar is not in user's favorites list, 1 if bar is in user's favorites
     }
 

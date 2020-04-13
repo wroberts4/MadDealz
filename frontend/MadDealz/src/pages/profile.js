@@ -37,14 +37,6 @@ export default class Profile extends Component {
       <View style={styles.container}>
         <Header
           containerStyle={{backgroundColor: '#990000'}}
-          leftComponent={
-            <Button
-              icon={<Icon name="arrow-back" />}
-              onPress={this.tabsPage}
-              buttonStyle={{backgroundColor: '#990000'}}
-            />
-            <Text style={{color: 'white'}}>{userId}</Text>
-          }
           centerComponent={{text: userId}}
         />
         <ScrollView style={styles.scroll}>

@@ -135,7 +135,7 @@ export const goToBarPage = (barId) =>
     },
   });
 
-export const goToChangePwd = () =>
+export const goToChangePwd = (userId) =>
   Navigation.setRoot({
     root: {
       stack: {
@@ -144,6 +144,9 @@ export const goToChangePwd = () =>
           {
             component: {
               name: 'ChangePwdScreen',
+              passProps: {
+                userId
+              }
             },
           },
         ],

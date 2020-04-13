@@ -12,6 +12,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {goToTabs, goToLogin} from '../../navigation';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
+let user_requests = require('../requests/user_requests');
+
 export default class Signup extends Component {
   static get options() {
     return {
@@ -23,6 +27,7 @@ export default class Signup extends Component {
 
   state = {
     name: '',
+    username: '',
     email: '',
     password: '',
   };
@@ -34,6 +39,14 @@ export default class Signup extends Component {
   tabsPage = async () => {
     goToTabs();
   };
+
+  signupPress = async () => {
+    if (this.state.username && this.state.email && this.state.password) {
+      let user = await user_requests.add_user(this.state.username, this.state.password, this.state.email, 5000);
+      await AsyncStorage.setItem('@user', JSON.stringify(user));
+      goToTabs();
+    }
+  }
 
   render() {
     return (
@@ -48,7 +61,8 @@ export default class Signup extends Component {
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Username</Text>
-            <TextInput style={styles.input} returnKeyType="next"></TextInput>
+            <TextInput style={styles.input} returnKeyType="next"
+            onChangeText={ (username) => this.setState({ username }) }></TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
@@ -59,7 +73,9 @@ export default class Signup extends Component {
               returnKeyType="next"
               autoCompleteType="email"
               textContentType="emailAddress"
-              keyboardType="email-address"></TextInput>
+              keyboardType="email-address"
+              onChangeText={ (email) => this.setState({ email }) }>
+              </TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
@@ -68,11 +84,13 @@ export default class Signup extends Component {
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
-              returnKeyType="done"></TextInput>
+              returnKeyType="done"
+              onChangeText={ (password) => this.setState({ password }) }>
+              </TextInput>
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.button} onPress={this.signupPress}>
           <Text style={{fontWeight: '500', color: '#222'}}>Sign Up</Text>
         </TouchableOpacity>
 

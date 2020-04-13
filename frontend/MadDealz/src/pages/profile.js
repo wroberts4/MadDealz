@@ -21,12 +21,17 @@ export default class Profile extends Component {
     goToChangeUsername();
   };
 
+  changeImagePage = async () => {
+    goToChangeImage();
+  };
+
   changePwdPage = async () => {
     goToChangePwd();
   };
 
   render() {
     const {userId} = this.props;
+    let userImage = '../../assets/Husky.jpg';
 
     return (
       <View style={styles.container}>
@@ -38,6 +43,7 @@ export default class Profile extends Component {
               onPress={this.tabsPage}
               buttonStyle={{backgroundColor: '#990000'}}
             />
+            <Text style={{color: 'white'}}>{userId}</Text>
           }
           centerComponent={{text: userId}}
         />
@@ -51,9 +57,8 @@ export default class Profile extends Component {
             <Avatar
               rounded
               size={200}
-              source={require('../../assets/Husky.jpg')}
+              source={require(userImage)}
               resizeMode="contain"
-              showEditButton
             />
             <Text style={{color: 'white'}}>{userId}</Text>
           </View>
@@ -101,6 +106,12 @@ export default class Profile extends Component {
             </Text>
           </TouchableOpacity>
 
+          <TouchableOpacity style={styles.button} onPress={this.changeImagePage}>
+            <Text style={{fontWeight: '500', color: '#222'}}>
+              Change Profile Picture
+            </Text>
+          </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.button}
             onPress={this.changeUsernamePage}>
@@ -108,7 +119,7 @@ export default class Profile extends Component {
               Change Username
             </Text>
           </TouchableOpacity>
-          
+
         </ScrollView>
       </View>
     );

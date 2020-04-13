@@ -11,7 +11,16 @@ import {
 
 import {goToTabs} from '../../navigation';
 
-export default class ChangeUsername extends Component {
+const options = {
+  title: 'Select Avatar',
+  customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
+
+export default class ChangeImage extends Component {
   static get options() {
     return {
       topBar: {
@@ -25,47 +34,16 @@ export default class ChangeUsername extends Component {
   };
 
   render() {
+
     LayoutAnimation.easeInEaseOut();
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content"></StatusBar>
+        <StatusBar barStyle="light-content" />
 
-        <Text style={styles.greeting}>{'Change Username'}</Text>
-
-        <View style={styles.form}>
-          <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>New Username</Text>
-            <TextInput
-              style={styles.input}
-              autoCapitalize="none"
-              returnKeyType="next"></TextInput>
-          </View>
-
-          <Text style={styles.inputTitle}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                returnKeyType="next"
-                autoCompleteType="email"
-                textContentType="emailAddress"
-                keyboardType="email-address"
-              />
-
-
-          <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Password</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              returnKeyType="done"></TextInput>
-          </View>
-        </View>
+        <Text style={styles.greeting}>{'Change Profile Picture'}</Text>
 
         <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
-          <Text style={{fontWeight: '500', color: '#222'}}>
-            Change Username
-          </Text>
+          <Text style={{fontWeight: '500', color: '#222'}}>Change Image</Text>
         </TouchableOpacity>
       </View>
     );

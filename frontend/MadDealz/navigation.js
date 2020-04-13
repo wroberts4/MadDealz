@@ -10,7 +10,8 @@ import Signup from './src/pages/signup'; // Signup screen
 import ForgotPwd from './src/pages/forgotPassword'; // Forgot Password Screen
 import NewPwd from './src/pages/newPassword'; // New Password Screen
 import ChangePwd from './src/pages/changePassword'; // Change Password Screen
-import ChangeUsername from './src/pages/changeUsername'; // Change Password Screen
+import ChangeUsername from './src/pages/changeUsername'; // Change Username Screen
+import ChangeImage from './src/pages/changeImage'; // Change Avatar Screen
 
 
 Navigation.registerComponent('BarpageScreen', () =>
@@ -38,6 +39,9 @@ Navigation.registerComponent('ChangePwdScreen', () =>
 );
 Navigation.registerComponent('ChangeUsernameScreen', () =>
   gestureHandlerRootHOC(ChangeUsername),
+);
+Navigation.registerComponent('ChangeImageScreen', () =>
+  gestureHandlerRootHOC(ChangeImage),
 );
 
 export const goToLogin = () =>
@@ -154,6 +158,22 @@ export const goToChangePwd = () =>
           {
             component: {
               name: 'ChangeUsernameScreen',
+            },
+          },
+        ],
+      },
+    },
+  });
+
+  export const goToChangeImage = () =>
+  Navigation.setRoot({
+    root: {
+      stack: {
+        id: 'stackMain',
+        children: [
+          {
+            component: {
+              name: 'ChangeImageScreen',
             },
           },
         ],

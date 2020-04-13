@@ -8,12 +8,13 @@ import {
   Image,
   StatusBar,
   LayoutAnimation,
-  AsyncStorage
 } from 'react-native';
 
 import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
 
 import {getItem} from '../../getItem';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 let user_requests = require('../requests/user_requests');
 

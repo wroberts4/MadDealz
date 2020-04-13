@@ -10,8 +10,6 @@ const TIMEOUT = 10000;
 const IP = 'https://api.maddealz.software';
 jest.setTimeout(2 * TIMEOUT);
 
-//TODO: FIX RANDOM TEST RESULTS: PROBABLY CAUSED BY ASYNC CALLS.
-
 async function undefined_error(promise, var_name, value, expected_error) {
   let unexpected_error = 'Expected an error given ' + var_name + ' with value ' + value;
   try {
@@ -392,40 +390,63 @@ let address = 'test_address'
 let address2 = 'test_address2';
 let times = '3pm';
 
+beforeAll(async () => {
+  // cleanup users.
+  try {
+    await delete_user(name, TIMEOUT, IP);
+  } catch {};
+  try {
+    await delete_user(name2, TIMEOUT, IP);
+  } catch {};
+  try {
+    await delete_user('tmp', TIMEOUT, IP);
+  } catch {};
+
+  //cleanup bars. THIS TAKES TIME.
+  try {
+    let bars = await get_bars('', '', '', '', TIMEOUT, IP);
+    for (let i = 0; i < bars.length; i++) {
+      if (bars[i].name == name || bars[i].name == name2) {
+        await delete_bar(bars[i]._id, TIMEOUT, IP);
+      }
+    }
+  } catch {};
+});
+
 // USER TESTS.
-test('test add_user', async () => {return test_add_user(name, password, email)}, TIMEOUT);
-test('test add_user', async () => {return test_add_user(name2, 'tmp', 'tmp')}, TIMEOUT);
-test('test get_user', async () => {return test_get_user(name)}, TIMEOUT);
-test('test get_users', async () => {return test_get_users(name)}, TIMEOUT);
-test('test user_login', async () => {return test_user_login(name, email, password)}, TIMEOUT);
-test('test add_favorite_bar', async () => {return test_add_favorite_bar(name, address)}, TIMEOUT);
-test('test remove_favorite_bar', async () => {return test_remove_favorite_bar(name, address)}, TIMEOUT);
-test('test add_favorite_deal', async () => {return test_add_favorite_deal(name, address)}, TIMEOUT);
-test('test remove_favorite_deal', async () => {return test_remove_favorite_deal(name)}, TIMEOUT);
-test('test send_friend_request', async () => {return test_send_friend_request(name, name2)}, TIMEOUT);
-test('test accept_friend_request', async () => {return test_accept_friend_request(name, name2)}, TIMEOUT);
-test('test remove_friend', async () => {return test_remove_friend(name, name2)}, TIMEOUT);
-test('test update_user', async () => {return test_update_user({'username': name, 'password': password2, 'email': email2})}, TIMEOUT);
-test('test delete_user', async () => {return test_delete_user(name)}, TIMEOUT);
+test('test add_user', async () => {return await test_add_user(name, password, email)});
+test('test add_user', async () => {return await test_add_user(name2, 'tmp', 'tmp')});
+test('test get_user', async () => {return await test_get_user(name)});
+test('test get_users', async () => {return await test_get_users(name)});
+test('test user_login', async () => {return await test_user_login(name, email, password)});
+test('test add_favorite_bar', async () => {return await test_add_favorite_bar(name, address)});
+test('test remove_favorite_bar', async () => {return await test_remove_favorite_bar(name, address)});
+test('test add_favorite_deal', async () => {return await test_add_favorite_deal(name, address)});
+test('test remove_favorite_deal', async () => {return await test_remove_favorite_deal(name)});
+test('test send_friend_request', async () => {return await test_send_friend_request(name, name2)});
+test('test accept_friend_request', async () => {return await test_accept_friend_request(name, name2)});
+test('test remove_friend', async () => {return await test_remove_friend(name, name2)});
+test('test update_user', async () => {return await test_update_user({'username': name, 'password': password2, 'email': email2})});
+test('test delete_user', async () => {return await test_delete_user(name)});
 
 // DEAL TESTS.
-test('test create_deal', async () => {return test_create_deal(name, address, times)});
-test('test get_deal', async () => {return test_get_deal(name, address, times)});
-test('test update_deal', async () => {return test_update_deal(name, address, times)});
-test('test delete_deal', async () => {return test_delete_deal(name, address, times)});
+test('test create_deal', async () => {return await test_create_deal(name, address, times)});
+test('test get_deal', async () => {return await test_get_deal(name, address, times)});
+test('test update_deal', async () => {return await test_update_deal(name, address, times)});
+test('test delete_deal', async () => {return await test_delete_deal(name, address, times)});
 
 // REVIEW TESTS.
-test('test create_review', async () => {return test_create_review(name, address, 'tmp', -1, '')});
-test('test get_review', async () => {return test_get_review(name, address, 'tmp', -1, '')});
-test('test update_review', async () => {return test_update_review(name, address, times)});
-test('test delete_review', async () => {return test_delete_review(name, address, 'tmp', -1, '')});
+test('test create_review', async () => {return await test_create_review(name, address, 'tmp', -1, '')});
+test('test get_review', async () => {return await test_get_review(name, address, 'tmp', -1, '')});
+test('test update_review', async () => {return await test_update_review(name, address, times)});
+test('test delete_review', async () => {return await test_delete_review(name, address, 'tmp', -1, '')});
 
 // BAR TESTS.
-test('test delete_bar', async () => {return test_delete_bar(name, address)}, TIMEOUT);
-test('test create_bar', async () => {return test_create_bar(name, address)}, TIMEOUT);
-test('test get_bar', async () => {return test_get_bar(name, address)}, TIMEOUT);
-test('test get_bars', async () => {return test_get_bars(name, address)}, TIMEOUT);
-test('test update_bar', async () => {return test_update_bar(name, address, name2, address2)}, TIMEOUT);
+test('test delete_bar', async () => {return await test_delete_bar(name, address)});
+test('test create_bar', async () => {return await test_create_bar(name, address)});
+test('test get_bar', async () => {return await test_get_bar(name, address)});
+test('test get_bars', async () => {return await test_get_bars(name, address)});
+test('test update_bar', async () => {return await test_update_bar(name, address, name2, address2)});
 
 afterAll(async () => {
   // cleanup users.

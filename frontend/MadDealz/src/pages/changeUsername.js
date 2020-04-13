@@ -21,7 +21,7 @@ export default class ChangeUsername extends Component {
   }
 
   tabsPage = async () => {
-    goToTabs();
+    goToTabs('ProfileScreen');
   };
 
   render() {

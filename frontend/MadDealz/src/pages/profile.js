@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 
-import {goToLogin, goToChangePwd, goToChangeUsername} from '../../navigation';
+import {goToLogin, goToChangePwd, goToChangeUsername, goToChangeImage} from '../../navigation';
 
 export default class Profile extends Component {
   loginPage = async () => {
@@ -37,7 +37,9 @@ export default class Profile extends Component {
       <View style={styles.container}>
         <Header
           containerStyle={{backgroundColor: '#990000'}}
-          centerComponent={{text: userId}}
+          centerComponent={{text: "BeerLover", style: { color: '#ccc',
+          fontSize: 30,
+          fontWeight: 'bold', } }}
         />
         <ScrollView style={styles.scroll}>
           <View
@@ -54,52 +56,9 @@ export default class Profile extends Component {
             />
             <Text style={{color: 'white'}}>{userId}</Text>
           </View>
-          <View style={styles.form}>
-            <View>
-              <Text style={styles.inputTitle}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                returnKeyType="next"
-                autoCompleteType="email"
-                textContentType="emailAddress"
-                keyboardType="email-address"
-              />
-            </View>
-
-            <View style={{marginTop: 32}}>
-              <Text style={styles.inputTitle}>Old Password</Text>
-              <TextInput
-                style={styles.input}
-                secureTextEntry
-                autoCapitalize="none"
-                returnKeyType="done"
-              />
-            </View>
-
-            <View style={{marginTop: 32}}>
-              <Text style={styles.inputTitle}>New Password</Text>
-              <TextInput
-                style={styles.input}
-                secureTextEntry
-                autoCapitalize="none"
-                returnKeyType="done"
-              />
-            </View>
-          </View>
-
-          <TouchableOpacity style={styles.button} onPress={this.loginPage}>
-            <Text style={{fontWeight: '500', color: '#222'}}>Logout</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button} onPress={this.changePwdPage}>
-            <Text style={{fontWeight: '500', color: '#222'}}>
-              Change Password
-            </Text>
-          </TouchableOpacity>
-
+         
           <TouchableOpacity style={styles.button} onPress={this.changeImagePage}>
-            <Text style={{fontWeight: '500', color: '#222'}}>
+            <Text style={styles.inputTitle}>
               Change Profile Picture
             </Text>
           </TouchableOpacity>
@@ -107,9 +66,19 @@ export default class Profile extends Component {
           <TouchableOpacity
             style={styles.button}
             onPress={this.changeUsernamePage}>
-            <Text style={{fontWeight: '500', color: '#222'}}>
+            <Text style={styles.inputTitle}>
               Change Username
             </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={this.changePwdPage}>
+            <Text style={styles.inputTitle}>
+              Change Password
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={this.loginPage}>
+            <Text style={styles.inputTitle}>Logout</Text>
           </TouchableOpacity>
 
         </ScrollView>
@@ -134,7 +103,12 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color: '#ccc',
-    fontSize: 10,
+    fontSize: 14,
+    textTransform: 'uppercase',
+  },
+  headerTitle: {
+    color: '#ccc',
+    fontSize: 14,
     textTransform: 'uppercase',
   },
   input: {
@@ -144,12 +118,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#eee',
   },
+  bottomButton: {
+    marginHorizontal: 30, borderRadius: 4, alignItems: 'center',
+    justifyContent: 'center',
+    height: 32, fontWeight: '500', color: '#222'
+  },
   button: {
     marginHorizontal: 30,
-    backgroundColor: '#f55',
-    borderRadius: 4,
-    height: 32,
+    backgroundColor: '#990000',
+    borderRadius: 10,
+    height: 62,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 20
   },
 });

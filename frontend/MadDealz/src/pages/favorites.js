@@ -53,7 +53,7 @@ function Day() {
   let current_day = weekday[date.getDay()];
   return current_day
 }
-export default class Home extends Component {
+export default class Favorites extends Component {
   constructor(props) {
     super(props);
 

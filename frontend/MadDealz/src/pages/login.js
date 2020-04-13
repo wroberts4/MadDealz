@@ -45,10 +45,10 @@ export default class Login extends Component {
   };
 
   componentDidMount = async () => {
-    let dataToken = await getItem();
-
+    let dataToken = await AsyncStorage.getItem('@user');
+    console.log(dataToken);
     if (dataToken !== null) {
-      const {navigate} = this.props.navigation;
+      //const {navigate} = this.props.navigation;
 
       goToTabs();
     }

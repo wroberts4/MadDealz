@@ -8,11 +8,10 @@ import {
   Image,
   StatusBar,
   LayoutAnimation,
+  AsyncStorage
 } from 'react-native';
 
 import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
-
-import AsyncStorage from '@react-native-community/async-storage';
 
 import {getItem} from '../../getItem';
 

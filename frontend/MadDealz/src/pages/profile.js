@@ -7,12 +7,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  AsyncStorage
 } from 'react-native';
 import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 
 import {goToLogin, goToChangePwd, goToChangeUsername, goToChangeImage} from '../../navigation';
-
-import AsyncStorage from '@react-native-community/async-storage';
 
 let userId = "";
 

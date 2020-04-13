@@ -1,5 +1,7 @@
 
-import AsyncStorage from '@react-native-community/async-storage';
+import {
+    AsyncStorage
+  } from 'react-native';
 
 export const getItem = async() => {
 

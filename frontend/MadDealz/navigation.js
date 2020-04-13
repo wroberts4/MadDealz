@@ -12,7 +12,7 @@ import NewPwd from './src/pages/newPassword'; // New Password Screen
 import ChangePwd from './src/pages/changePassword'; // Change Password Screen
 import ChangeUsername from './src/pages/changeUsername'; // Change Username Screen
 import ChangeImage from './src/pages/changeImage'; // Change Avatar Screen
-
+import Contact from './src/pages/contact'; // Contact Screen
 
 Navigation.registerComponent('BarpageScreen', () =>
   gestureHandlerRootHOC(Barpage),
@@ -40,10 +40,12 @@ Navigation.registerComponent('ChangePwdScreen', () =>
 Navigation.registerComponent('ChangeUsernameScreen', () =>
   gestureHandlerRootHOC(ChangeUsername),
 );
+Navigation.registerComponent('ContactScreen', () => 
+  gestureHandlerRootHOC(Contact),
+);
 Navigation.registerComponent('ChangeImageScreen', () =>
   gestureHandlerRootHOC(ChangeImage),
 );
-
 export const goToLogin = () =>
   Navigation.setRoot({
     root: {
@@ -192,6 +194,7 @@ export const goToTabs = () =>
               options: {
                 bottomTab: {
                   text: 'Home',
+                  icon: require('./assets/home.png')
                 },
               },
             },
@@ -202,6 +205,7 @@ export const goToTabs = () =>
               options: {
                 bottomTab: {
                   text: 'Profile',
+                  icon: require('./assets/account.png')
                 },
               },
             },
@@ -212,6 +216,18 @@ export const goToTabs = () =>
               options: {
                 bottomTab: {
                   text: 'Favorites',
+                  icon: require('./assets/favorite.png'),
+                },
+              },
+            },
+          },
+          {
+            component: {
+              name: 'ContactScreen',
+              options: {
+                bottomTab: {
+                  text: 'Contact',
+                  icon: require('./assets/mail.png'),
                 },
               },
             },

@@ -36,6 +36,12 @@ export default StyleSheet.create({
   content: {
     flex: 1,
   },
+  contact: {
+    backgroundColor: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   header: {
     position: 'absolute',
     top: 0,
@@ -115,11 +121,12 @@ export default StyleSheet.create({
     color: 'black',
   },
   dialogviewouter: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     paddingTop: 5,
     paddingBottom: 10,
   },
   dialogviewinner: {
+    flexDirection: 'row',
     paddingRight: 150,
     paddingTop: 10,
     elevation: 1,
@@ -129,4 +136,12 @@ export default StyleSheet.create({
     fontSize: 18,
     paddingBottom: 8,
   },
+  hometextoverlay: {
+    fontSize: 40,
+    color: 'white',
+    // fontFamily: 'Roboto',
+    // fontWeight: 'bold',
+    marginLeft: 50,
+    marginTop: 100,
+  }
 });

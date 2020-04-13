@@ -4,6 +4,7 @@ import {
     Text,
     ScrollView,
     Dimensions,
+    Platform
 } from 'react-native';
 import {Card, Image, Button, Icon, Header} from 'react-native-elements';
 import { goToTabs } from '../../navigation';

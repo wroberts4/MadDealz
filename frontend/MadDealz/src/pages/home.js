@@ -14,7 +14,7 @@ import styles from './styles';
 import Dialog, {
   DialogTitle,
   DialogContent,
-  ScaleAnimation,
+  SlideAnimation,
   DialogButton,
   DialogFooter,
 } from 'react-native-popup-dialog';
@@ -35,6 +35,21 @@ function Item({name, address}) {
     </View>
   );
 }
+
+function Day() {
+  var date = new Date();
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  let current_day = weekday[date.getDay()];
+  return current_day
+}
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -50,6 +65,7 @@ export default class Home extends Component {
       distance: false,
       distanceSwitch: false,
     };
+    this.arrayholder = []
   }
 
   filterPress = () => {
@@ -72,16 +88,27 @@ export default class Home extends Component {
   get_list_of_bars() {
     bar_requests.get_bars(43.0731, 89.4012, 30, 10000).then(bar_list => {
       this.setState({bars: bar_list});
+      this.arrayholder = bar_list;
     });
+    
   }
-  
-  updateSearch = search => {
-    this.setState({search: search});
+
+  searchFunction(text) {
+    const newData = this.arrayholder.filter(function(item) {
+      const itemData = item.name.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    console.log(newData)
+    this.setState({ 
+      bars: newData,
+      search: text
+    });
+    console.log("data ", this.state.data)
   };
 
   render() {
-    const {search} = this.state;
-
+    
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0,
@@ -150,8 +177,9 @@ export default class Home extends Component {
             this.setState({filterVisible: false});
           }}
           dialogAnimation={
-            new ScaleAnimation({
+            new SlideAnimation({
               initialValue: 0,
+              slideFrom: 'bottom',
               useNativeDriver: true,
             })
           }>
@@ -159,8 +187,14 @@ export default class Home extends Component {
             <View style={styles.dialogeviewouter}>
               <View style={styles.dialogviewinner}>
                 <Text style={styles.dialogviewtext}>Distance</Text>
+                {/* <View style = {{paddingLeft: 100}}>
+                  {dButton}
+                </View> */}
               </View>
               {dButton}
+            </View>
+            <View style = {styles.dialogviewinner}>
+              <Text style={styles.dialogviewtext}>Next thing</Text>
             </View>
           </DialogContent>
           <DialogFooter>
@@ -268,6 +302,12 @@ export default class Home extends Component {
             ]}
             source={require('../../assets/Home-background.jpg')}
           />
+          <Animated.Text
+          style={[styles.hometextoverlay]}>
+            {Day()}
+            {"\n"}
+            {"Deals"}
+          </Animated.Text>
         </Animated.View>
 
         <Animated.View
@@ -286,8 +326,10 @@ export default class Home extends Component {
             containerStyle={styles.searchbar}
             inputContainerStyle={styles.searchbarinput}
             inputStyle={styles.searchbarinputtext}
-            onChangeText={text => this.updateSearch}
-            value={search}
+            onChangeText={text => this.searchFunction(text)}
+            // onClear={text => this.searchFunction('')}
+            value={this.state.search}
+            placeholder="Search Bars Here"
           />
         </Animated.View>
       </View>

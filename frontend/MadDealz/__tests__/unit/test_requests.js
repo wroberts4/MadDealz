@@ -6,8 +6,11 @@ import {create_bar, delete_bar, get_bar, get_bars, update_bar,
         get_deals, get_reviews, update_favorites} from '../../src/requests/bar_requests';
 import {create_review, get_review, delete_review, update_review} from '../../src/requests/review_requests';
 
-const TIMEOUT = 3000;
+const TIMEOUT = 10000;
 const IP = 'https://api.maddealz.software';
+jest.setTimeout(2 * TIMEOUT);
+
+//TODO: FIX RANDOM TEST RESULTS: PROBABLY CAUSED BY ASYNC CALLS.
 
 async function undefined_error(promise, var_name, value, expected_error) {
   let unexpected_error = 'Expected an error given ' + var_name + ' with value ' + value;
@@ -74,10 +77,6 @@ expect.extend({
 
 ///////////////////////////////////// USER TESTS /////////////////////////////////////
 async function test_delete_user(username, password, email) {
-//  const users = await get_users(TIMEOUT, IP);
-//  for (let i = 0; i < users.length; i++) {
-//      await delete_user(users[i].username, TIMEOUT, IP)
-//  }
   let res = await delete_user(username, TIMEOUT, IP);
   expect(res).toBe("User deleted successfully");
 
@@ -440,7 +439,7 @@ afterAll(async () => {
     await delete_user('tmp', TIMEOUT, IP);
   } catch {};
 
-  //cleanup bars.
+  //cleanup bars. THIS TAKES TIME.
   try {
     let bars = await get_bars('', '', '', '', TIMEOUT, IP);
     for (let i = 0; i < bars.length; i++) {

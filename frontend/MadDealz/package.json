@@ -6,7 +6,7 @@
         "android": "react-native run-android",
         "ios": "react-native run-ios",
         "start": "react-native start",
-        "test": "jest",
+        "test": "jest --coverage --coverageDirectory=coverage",
         "lint": "eslint ."
     },
     "dependencies": {
@@ -42,6 +42,10 @@
         ],
         "transformIgnorePatterns": [
             "node_modules/?!(react-native-root-siblings)"
+        ],
+        "coverageReporters": [
+            "text",
+            "html"
         ]
     }
 }

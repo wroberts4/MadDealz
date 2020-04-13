@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">32% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/25</span>
+                <span class='fraction'>8/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.29% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">32% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/25</span>
+                <span class='fraction'>8/28</span>
             </div>
         
             
@@ -231,7 +231,13 @@
 <a name='L172'></a><a href='#L172'>172</a>
 <a name='L173'></a><a href='#L173'>173</a>
 <a name='L174'></a><a href='#L174'>174</a>
-<a name='L175'></a><a href='#L175'>175</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,6 +298,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -316,6 +324,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -326,6 +335,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -415,12 +425,13 @@ import {
   Image,
   StatusBar,
   LayoutAnimation,
-  AsyncStorage
 } from 'react-native';
 &nbsp;
 import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
 &nbsp;
 import {getItem} from '../../getItem';
+&nbsp;
+import AsyncStorage from '@react-native-community/async-storage';
 &nbsp;
 let user_requests = require('../requests/user_requests');
 &nbsp;
@@ -462,10 +473,12 @@ export default class Login extends Component {
 &nbsp;
   userLogin = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
 <span class="cstat-no" title="statement not covered" >    try {</span>
-      let user = <span class="cstat-no" title="statement not covered" >await user_requests.user_login("test@gmail.com", "password", 5000);</span>
-<span class="cstat-no" title="statement not covered" >      console.log(user);</span>
-<span class="cstat-no" title="statement not covered" >      await AsyncStorage.setItem('@user', JSON.stringify(user));</span>
-<span class="cstat-no" title="statement not covered" >      this.tabsPage();</span>
+<span class="cstat-no" title="statement not covered" >      if (this.state.email &amp;&amp; this.state.password) {</span>
+        let user = <span class="cstat-no" title="statement not covered" >await user_requests.user_login(this.state.email, this.state.password, 5000);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(user);</span>
+<span class="cstat-no" title="statement not covered" >        await AsyncStorage.setItem('@user', JSON.stringify(user));</span>
+<span class="cstat-no" title="statement not covered" >        this.tabsPage();</span>
+      }
     } catch (err) {
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
     }
@@ -490,6 +503,7 @@ export default class Login extends Component {
               autoCompleteType="email"
               textContentType="emailAddress"
               keyboardType="email-address"
+              onChangeText={ <span class="fstat-no" title="function not covered" >(e</span>mail) =&gt; <span class="cstat-no" title="statement not covered" >this.setState({ email }) </span>}
             /&gt;
           &lt;/View&gt;
 &nbsp;
@@ -500,6 +514,7 @@ export default class Login extends Component {
               secureTextEntry
               autoCapitalize="none"
               returnKeyType="done"
+              onChangeText={ <span class="fstat-no" title="function not covered" >(p</span>assword) =&gt; <span class="cstat-no" title="statement not covered" >this.setState({ password }) </span>}
             /&gt;
           &lt;/View&gt;
         &lt;/View&gt;
@@ -586,7 +601,7 @@ const styles = StyleSheet.create({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Apr 13 2020 18:02:08 GMT-0500 (Central Daylight Time)
+                at Mon Apr 13 2020 18:59:26 GMT-0500 (Central Daylight Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

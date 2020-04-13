@@ -12,6 +12,8 @@ import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 
 import {goToLogin, goToChangePwd, goToChangeUsername, goToChangeImage} from '../../navigation';
 
+let userId = "";
+
 export default class Profile extends Component {
   loginPage = async () => {
     goToLogin();
@@ -29,15 +31,27 @@ export default class Profile extends Component {
     goToChangePwd();
   };
 
+  _retrieveData = async () => {
+    try {
+      userId = await AsyncStorage.getItem('TASKS');
+      console.log("This is the userId: " + userId);
+      if (userId !== null) {
+        // We have data!!
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+
   render() {
-    const {userId} = this.props;
+    this._retrieveData();
     let userImage = '../../assets/Husky.jpg';
 
     return (
       <View style={styles.container}>
         <Header
           containerStyle={{backgroundColor: '#990000'}}
-          centerComponent={{text: "BeerLover", style: { color: '#ccc',
+          centerComponent={{text: userId, style: { color: '#ccc',
           fontSize: 30,
           fontWeight: 'bold', } }}
         />

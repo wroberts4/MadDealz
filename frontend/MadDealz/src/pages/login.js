@@ -12,6 +12,8 @@ import {
 
 import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
 
+import {getItem} from '../../getItem';
+
 export default class Login extends Component {
   static get options() {
     return {
@@ -30,17 +32,30 @@ export default class Login extends Component {
   };
 
   tabsPage = async () => {
+    try {
+      await AsyncStorage.setItem('Hello World');
+    } catch (error) {
+      // Error saving data
+    }
     goToTabs();
+  };
+
+  componentDidMount = async () => {
+    let dataToken = await getItem();
+
+    if (dataToken !== null) {
+      const {navigate} = this.props.navigation;
+
+      goToTabs();
+    }
   };
 
   render() {
     LayoutAnimation.easeInEaseOut();
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content"></StatusBar>
-        <Image
-          source={require('../../assets/logo.png')}
-          style={styles.image}></Image>
+        <StatusBar barStyle="light-content" />
+        <Image source={require('../../assets/logo.png')} style={styles.image} />
 
         <Text style={styles.greeting}>{'Login'}</Text>
 
@@ -53,7 +68,8 @@ export default class Login extends Component {
               returnKeyType="next"
               autoCompleteType="email"
               textContentType="emailAddress"
-              keyboardType="email-address"></TextInput>
+              keyboardType="email-address"
+            />
           </View>
 
           <View style={{marginTop: 32}}>
@@ -62,7 +78,8 @@ export default class Login extends Component {
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
-              returnKeyType="done"></TextInput>
+              returnKeyType="done"
+            />
           </View>
         </View>
 

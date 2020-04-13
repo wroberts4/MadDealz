@@ -18,43 +18,43 @@ import Signup from '../src/pages/signup';
 import renderer from 'react-test-renderer';
 
 // Tests barpage snapshot
-test('renders correctly', () => {
+test('bar page renders correctly', () => {
     const tree = renderer.create(<Barpage />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 // Tests contact snapshot
-test('renders correctly', () => {
+test('contact page renders correctly', () => {
     const tree = renderer.create(<Contact />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 // Tests favorite snapshot
-test('renders correctly', () => {
+test('favorite page renders correctly', () => {
     const tree = renderer.create(<Favorites />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 // Tests profile snapshot
-test('renders correctly', () => {
+test('profile page renders correctly', () => {
     const tree = renderer.create(<Profile />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 // Tests home page snapshot
-test('renders correctly', () => {
+test('home page renders correctly', () => {
     const tree = renderer.create(<Home />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 // Tests login snapshot
-test('renders correctly', () => {
+test('login page renders correctly', () => {
     const tree = renderer.create(<Login />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
 // Tests signup snapshot
-test('renders correctly', () => {
+test('signup page renders correctly', () => {
     const tree = renderer.create(<Signup />).toJSON();
     expect(tree).toMatchSnapshot();
 });

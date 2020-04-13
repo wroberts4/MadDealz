@@ -12,7 +12,11 @@ import {
 
 import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {getItem} from '../../getItem';
+
+let user_requests = require('../requests/user_requests');
 
 export default class Login extends Component {
   static get options() {
@@ -50,6 +54,17 @@ export default class Login extends Component {
     }
   };
 
+  userLogin = async () => {
+    try {
+      let user = await user_requests.user_login("test@gmail.com", "password", 5000);
+      console.log(user);
+      await AsyncStorage.setItem('@user', JSON.stringify(user));
+      this.tabsPage();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     LayoutAnimation.easeInEaseOut();
     return (
@@ -83,7 +98,7 @@ export default class Login extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.button} onPress={this.userLogin}>
           <Text style={{fontWeight: '500', color: '#222'}}>Login</Text>
         </TouchableOpacity>
 

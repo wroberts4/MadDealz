@@ -12,6 +12,8 @@ import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 
 import {goToLogin, goToChangePwd, goToChangeUsername, goToChangeImage} from '../../navigation';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 let userId = "";
 
 export default class Profile extends Component {
@@ -33,9 +35,9 @@ export default class Profile extends Component {
 
   _retrieveData = async () => {
     try {
-      userId = await AsyncStorage.getItem('TASKS');
-      console.log("This is the userId: " + userId);
-      if (userId !== null) {
+      user = await AsyncStorage.getItem('@user');
+      console.log("This is the user: " + JSON.parse(user).username);
+      if (user !== null) {
         // We have data!!
       }
     } catch (error) {
@@ -43,8 +45,11 @@ export default class Profile extends Component {
     }
   };
 
-  render() {
+  componentDidMount = async () => {
     this._retrieveData();
+  };
+
+  render() {
     let userImage = '../../assets/Husky.jpg';
 
     return (

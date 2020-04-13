@@ -56,10 +56,12 @@ export default class Login extends Component {
 
   userLogin = async () => {
     try {
-      let user = await user_requests.user_login("test@gmail.com", "password", 5000);
-      console.log(user);
-      await AsyncStorage.setItem('@user', JSON.stringify(user));
-      this.tabsPage();
+      if (this.state.email && this.state.password) {
+        let user = await user_requests.user_login(this.state.email, this.state.password, 5000);
+        console.log(user);
+        await AsyncStorage.setItem('@user', JSON.stringify(user));
+        this.tabsPage();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -84,6 +86,7 @@ export default class Login extends Component {
               autoCompleteType="email"
               textContentType="emailAddress"
               keyboardType="email-address"
+              onChangeText={ (email) => this.setState({ email }) }
             />
           </View>
 
@@ -94,6 +97,7 @@ export default class Login extends Component {
               secureTextEntry
               autoCapitalize="none"
               returnKeyType="done"
+              onChangeText={ (password) => this.setState({ password }) }
             />
           </View>
         </View>

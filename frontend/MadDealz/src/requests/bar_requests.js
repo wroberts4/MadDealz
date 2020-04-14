@@ -200,7 +200,7 @@ async function update_favorites(id, value, fetch_timeout, ip) {
     id = falsy_to_empty(id);
     value = falsy_to_empty(value);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/bar/favorites';
+    let url = ip + '/bar/update_favorites';
     let data = {'id': id, 'value': value};
     const response = await fetchWithTimeout(
         url,

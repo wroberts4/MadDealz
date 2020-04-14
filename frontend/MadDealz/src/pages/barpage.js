@@ -11,7 +11,10 @@ import {Card, Image, Button, Icon, Header, ListItem} from 'react-native-elements
 import { goToTabs } from '../../navigation';
 import styles from './styles';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 bar_requests = require('../requests/bar_requests');
+user_requests = require('../requests/user_requests');
 
 class Barpage extends React.Component {
 
@@ -21,6 +24,13 @@ class Barpage extends React.Component {
 
     upCount = async () => {
         this.setState({count: (this.state.count+1)%2});
+        try {
+            let user = JSON.parse(await AsyncStorage.getItem('@user'));
+            await user_requests.add_favorite_bar(user.username, this.props.bar._id, 5000);
+            await bar_requests.update_favorites(this.props.bar._id, 1, 5000);
+        } catch (err) {
+            console.log("Error adding favorite: ", err);
+        }
     }
 
     constructor(props) {

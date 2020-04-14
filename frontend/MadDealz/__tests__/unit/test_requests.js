@@ -7,7 +7,7 @@ import {create_bar, delete_bar, get_bar, get_bars, update_bar,
 import {create_review, get_review, delete_review, update_review} from '../../src/requests/review_requests';
 
 const TIMEOUT = 5000;
-const IP = 'https://api.maddealz.software';
+const IP = 'https://testapi.maddealz.software';
 jest.setTimeout(3 * TIMEOUT);
 
 async function undefined_error(promise, var_name, value, expected_error) {

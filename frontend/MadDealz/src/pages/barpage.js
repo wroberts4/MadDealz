@@ -4,9 +4,10 @@ import {
     Text,
     ScrollView,
     Dimensions,
-    Platform
+    Platform,
+    FlatList,
 } from 'react-native';
-import {Card, Image, Button, Icon, Header} from 'react-native-elements';
+import {Card, Image, Button, Icon, Header, ListItem} from 'react-native-elements';
 import { goToTabs } from '../../navigation';
 import styles from './styles';
 
@@ -35,13 +36,21 @@ class Barpage extends React.Component {
 
         //bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
         //bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
-        bar_requests.get_reviews(this.props.bar._id).then(reviews => {this.setState({reviews: reviews})});
+        
+        
         // TODO: Set count to 0 if bar is not in user's favorites list, 1 if bar is in user's favorites
     }
 
+    _getReviews = async () => {
+        let reviews = await bar_requests.get_reviews(this.props.bar._id);
+        this.setState({reviews: reviews});
+    }
+
+    componentDidMount() {
+        this._getReviews();
+    }
+
     render() {
-        
-        console.log(this.state.count);
 
         //TODO: onPress on favorites button, add/remove bar from favorites
 
@@ -81,6 +90,20 @@ class Barpage extends React.Component {
                         }}>
                         <Text>Sunday</Text>
                         <Text>Monday</Text>
+                        {/* {
+                            this.state.deals.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.info}
+                                subtitle={item.times}
+                            />
+                            ))
+                        }    */}
                         <Text>Tuesday</Text>
                         <Text>Wednesday</Text>
                         <Text>Thursday</Text>
@@ -91,9 +114,21 @@ class Barpage extends React.Component {
                         title="Reviews"
                         containerStyle={{
                             borderRadius: 10,
-                            alignItems: 'center',
                         }}>
-                        <Text>Reviews here</Text>
+                        {
+                            this.state.reviews.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.content}
+                                subtitle={item.user}
+                            />
+                            ))
+                        }   
                     </Card>
                     <Card
                         title="Contact Us"

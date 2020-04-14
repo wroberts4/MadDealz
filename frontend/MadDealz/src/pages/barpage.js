@@ -28,6 +28,9 @@ class Barpage extends React.Component {
             let user = JSON.parse(await AsyncStorage.getItem('@user'));
             await user_requests.add_favorite_bar(user.username, this.props.bar._id, 5000);
             await bar_requests.update_favorites(this.props.bar._id, 1, 5000);
+            user.favorites.bars.push(this.props.bar._id);
+            await AsyncStorage.setItem('@user', JSON.stringify(user));
+            this.setState({count: 1});
         } catch (err) {
             console.log("Error adding favorite: ", err);
         }
@@ -56,7 +59,14 @@ class Barpage extends React.Component {
         this.setState({reviews: reviews});
     }
 
+    _checkFavorite = async () => {
+        let user = JSON.parse(await AsyncStorage.getItem('@user'));
+        if (user.favorites.bars.includes(this.props.bar._id))
+            this.setState({count: 1});
+    }
+
     componentDidMount() {
+        this._checkFavorite();
         this._getReviews();
     }
 

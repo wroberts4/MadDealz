@@ -62,7 +62,7 @@ export default class Contact extends Component {
 // TODO: Center image
 const sty = StyleSheet.create({
     image: {
-        alignSelf: 'center',
+        // alignSelf: 'center',
         width: 400,
         height: 128,
         marginTop: 64,

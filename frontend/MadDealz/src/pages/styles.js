@@ -32,6 +32,7 @@ export default StyleSheet.create({
   },
   fill: {
     flex: 1,
+    backgroundColor: 'black',
   },
   content: {
     flex: 1,

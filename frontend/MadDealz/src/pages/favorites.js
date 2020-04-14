@@ -23,6 +23,7 @@ import Dialog, {
 } from 'react-native-popup-dialog';
 import ToggleSwitch from 'toggle-switch-react-native';
 import { goToBarPage } from '../../navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 
 bar_requests = require('../requests/bar_requests');
 
@@ -88,11 +89,17 @@ export default class Favorites extends Component {
     this.get_list_of_bars();
   }
 
-  get_list_of_bars() {
-    bar_requests.get_bars(43.0731, 89.4012, 30, 10000).then(bar_list => {
-      this.setState({bars: bar_list});
-      this.arrayholder = bar_list;
-    });
+  get_list_of_bars = async () => {
+    try {
+      let user = JSON.parse(await AsyncStorage.getItem('@user'));
+      let bars = [];
+      for (let bar of user.favorites.bars) {
+        bars.push(await bar_requests.get_bar(bar, 5000));
+      }
+      this.setState({bars: bars});
+    } catch (err) {
+      console.log(err);
+    }
     
   }
 

@@ -22,17 +22,29 @@ class Barpage extends React.Component {
         goToTabs();
     };
 
-    upCount = async () => {
-        this.setState({count: (this.state.count+1)%2});
-        try {
-            let user = JSON.parse(await AsyncStorage.getItem('@user'));
-            await user_requests.add_favorite_bar(user.username, this.props.bar._id, 5000);
-            await bar_requests.update_favorites(this.props.bar._id, 1, 5000);
-            user.favorites.bars.push(this.props.bar._id);
-            await AsyncStorage.setItem('@user', JSON.stringify(user));
-            this.setState({count: 1});
-        } catch (err) {
-            console.log("Error adding favorite: ", err);
+    handleFavorite = async () => {
+        if (this.state.count) {
+            try {
+                let user = JSON.parse(await AsyncStorage.getItem('@user'));
+                await user_requests.remove_favorite_bar(user.username, this.props.bar._id, 5000);
+                await bar_requests.update_favorites(this.props.bar._id, -1, 5000);
+                user.favorites.bars.splice(user.favorites.bars.indexOf(this.props.bar._id), 1);
+                await AsyncStorage.setItem('@user', JSON.stringify(user));
+                this.setState({count: 0});
+            } catch (err) {
+                console.log("Error removing favorite: ", err);
+            }
+        } else {
+            try {
+                let user = JSON.parse(await AsyncStorage.getItem('@user'));
+                await user_requests.add_favorite_bar(user.username, this.props.bar._id, 5000);
+                await bar_requests.update_favorites(this.props.bar._id, 1, 5000);
+                user.favorites.bars.push(this.props.bar._id);
+                await AsyncStorage.setItem('@user', JSON.stringify(user));
+                this.setState({count: 1});
+            } catch (err) {
+                console.log("Error adding favorite: ", err);
+            }
         }
     }
 
@@ -81,7 +93,7 @@ class Barpage extends React.Component {
                     leftComponent = { <Button icon = {<Icon name = 'arrow-back'/> } 
                         onPress = {this.tabsPage} buttonStyle = {{backgroundColor: '#990000'}}/>}
                     rightComponent = { <Button icon = {<Icon name = {(this.state.count == 0 ? 'favorite-border' : 'favorite')}/>}
-                        onPress = {this.upCount} buttonStyle = {{backgroundColor: '#990000'}}/>}
+                        onPress = {this.handleFavorite} buttonStyle = {{backgroundColor: '#990000'}}/>}
                     centerComponent = {{ text: this.state.barName}}
                 />
                 <ScrollView style={styles.scroll}>

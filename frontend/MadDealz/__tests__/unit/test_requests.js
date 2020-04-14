@@ -371,13 +371,31 @@ async function test_update_bar(name1, address1, name2, address2) {
   await undefined_error(update_bar({}, TIMEOUT, IP), 'bar', {}, "Must specify a bar id");
 };
 
-async function test_get_deals(bar_id) {
+async function test_get_deals(name, address, times) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let deal = await create_deal(name, bar._id, times, TIMEOUT, IP);
+  let deals = await get_deals(bar._id, TIMEOUT, IP);
+  expect(deals).toContainObject(deal);
+
+  // Error cases.
 };
 
-async function test_get_reviews(bar_id) {
+async function test_get_reviews(name, address, content, score, user) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let review = await create_review(content, bar._id, score, user, TIMEOUT, IP);
+  let reviews = await get_reviews(bar._id, TIMEOUT, IP);
+  expect(reviews).toContainObject(review);
+
+  // Error cases.
 };
 
-async function test_update_favorites(id, value) {
+async function test_update_favorites(name, address, times) {
+  let bar = await create_bar(name, address, TIMEOUT, IP);
+  let res = await update_favorites(bar._id, 1, TIMEOUT, IP);
+  expect(res).toBe('Bar favorites updated successfully');
+
+  // Error cases.
+  undefined_error(update_favorites(bar._id, 0, TIMEOUT, IP), 'value', 0, "value must be -1 or 1");
 };
 
 let name = 'test_name';
@@ -447,6 +465,8 @@ test('test create_bar', async () => {return await test_create_bar(name, address)
 test('test get_bar', async () => {return await test_get_bar(name, address)});
 test('test get_bars', async () => {return await test_get_bars(name, address)});
 test('test update_bar', async () => {return await test_update_bar(name, address, name2, address2)});
+test('test get_deals', async () => {return await test_get_deals(name, address, times)});
+test('test update_favorites', async () => {return await test_update_favorites(name, address, times)});
 
 afterAll(async () => {
   // cleanup users.

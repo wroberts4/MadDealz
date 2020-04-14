@@ -18,6 +18,12 @@ let userId = "";
 
 export default class Profile extends Component {
   loginPage = async () => {
+    try {
+      await AsyncStorage.removeItem('@user');
+    } catch (error) {
+      // Error retrieving data
+      console.log(error.message);
+    }
     goToLogin();
   };
 

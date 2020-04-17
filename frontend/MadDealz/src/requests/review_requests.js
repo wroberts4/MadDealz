@@ -6,7 +6,7 @@ async function create_review(content, bar_id, score, user, fetch_timeout, ip) {
     bar_id = falsy_to_empty(bar_id);
     score = falsy_to_empty(score);
     user = falsy_to_empty(user);
-    data = {'content': content, 'bar_id': bar_id, 'score': score, 'user': user};
+    let data = {'content': content, 'bar_id': bar_id, 'score': score, 'user': user};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/review/create';
     const response = await fetchWithTimeout(
@@ -73,7 +73,7 @@ async function update_review(id, content, score, fetch_timeout, ip) {
     id = falsy_to_empty(id);
     content = falsy_to_empty(content);
     score = falsy_to_empty(score);
-    data = {'id': id, 'content': content, 'score': score};
+    let data = {'id': id, 'content': content, 'score': score};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/review/update';
     const response = await fetchWithTimeout(

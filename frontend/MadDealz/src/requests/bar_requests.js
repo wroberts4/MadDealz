@@ -13,7 +13,7 @@ const falsy_to_empty = require('../utils/requests').falsy_to_empty;
 async function create_bar(name, address, fetch_timeout, ip) {
     name = falsy_to_empty(name);
     address = falsy_to_empty(address);
-    data = {name: name, address: address};
+    let data = {name: name, address: address};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/bar/create';
     const response = await fetchWithTimeout(

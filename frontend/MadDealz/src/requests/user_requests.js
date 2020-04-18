@@ -345,10 +345,8 @@ async function upload_image(username, image, fetch_timeout, ip) {
     function createFormData(username, image) {
         const data = new FormData();
         data.append("image", JSON.stringify({
-            username: username,
             name: username + '.png',
-            mimetype: image.mime,
-            uri: image.path
+            uri: image
         }));
         return data
     }

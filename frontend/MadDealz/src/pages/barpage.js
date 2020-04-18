@@ -30,6 +30,8 @@ class Barpage extends React.Component {
             barName: this.props.bar.name,
             barId: this.props.bar._id,
             deals: this.props.bar.deals,
+            img: 'https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png',
+            fail: false,
             reviews: []
         };
 
@@ -77,11 +79,20 @@ class Barpage extends React.Component {
     componentDidMount() {
         this._checkFavorite();
         this._getReviews();
+        this._checkImageURL(this.state.img);
+    }
+
+    _checkImageURL(url) {
+        fetch(url).then(res => {
+           if(res.status == 404) {
+            this.setState({fail: true})
+           } else{
+                return false
+          }
+        }).catch(err=>{this.setState({fail: true})})
     }
 
     render() {
-        
-        console.log('https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png');
 
         return (
             <View style={{flex:1}}>
@@ -109,7 +120,8 @@ class Barpage extends React.Component {
                                 borderRadius: 100/2
                             }}
                             //source={require('../../assets/UU.jpg')}
-                            source={{uri: 'https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png'}}
+                            // TODO: Add image coming soon picture for default
+                            source={this.state.fail ? require('../../assets/notfound.png') : {uri: this.state.img}}
                             resizeMode="contain"
                         />
                     </View>

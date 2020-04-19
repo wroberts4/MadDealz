@@ -227,10 +227,10 @@ export default class Favorites extends Component {
           style={{
             backgroundColor: '#242020',
             transform: [{translateY: filterTranslate}],
-            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
+            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : HEADER_MAX_HEIGHT,
             height: 75,
             elevation: 1,
-            zIndex: 1,
+            // zIndex: 1,
           }}>
           <View
             style={{

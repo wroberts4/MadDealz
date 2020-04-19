@@ -335,12 +335,18 @@ export default class Home extends Component {
     }
 
     return (
-      <View style={styles.fill}>
-         <GestureRecognizer
+      <GestureRecognizer
+      onSwipeLeft={(state) => this.onSwipeLeft(state)}
+      onSwipeRight={(state) => this.onSwipeRight(state)}
+      config={config}
+      style = {{backgroundColor: 'transparent', flex: 1}}
+      >
+        <View style={styles.fill}>
+         {/* <GestureRecognizer
         onSwipeLeft={(state) => this.onSwipeLeft(state)}
         onSwipeRight={(state) => this.onSwipeRight(state)}
         config={config}
-        >
+        > */}
         {/* <Dialog
           rounded
           width={Dimensions.get('screen').width * 0.75}
@@ -439,10 +445,10 @@ export default class Home extends Component {
           style={{
             backgroundColor: '#242020',
             transform: [{translateY: filterTranslate}],
-            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 30,
+            top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : HEADER_MAX_HEIGHT,
             height: 75,
             elevation: 1,
-            zIndex: 1,
+            // zIndex: 1,
           }}>
           <View
             style={{
@@ -552,8 +558,9 @@ export default class Home extends Component {
             placeholder="Search Bars Here"
           />
         </Animated.View>
-        </GestureRecognizer>
-      </View>
+        {/* </GestureRecognizer> */}
+        </View>
+      </GestureRecognizer>
     );
   }
 }

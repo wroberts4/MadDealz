@@ -1,10 +1,22 @@
 import React, {Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, Platform} from 'react-native';
+import { 
+    View, 
+    Text, 
+    Image, 
+    StyleSheet, 
+    Dimensions, 
+    Platform,
+    TouchableOpacity 
+} from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import styles from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import Slack from 'react-native-slack-webhook';
+import {first, second, third, fourth} from '../../env';
 
 const HEADER_MAX_HEIGHT = 300;
+const def = 'https://hooks.slack.com/services/';
+
 export default class Contact extends Component {
 
     
@@ -12,8 +24,19 @@ export default class Contact extends Component {
         console.log(this.state.message);
     };
 
-    onChangeText = (key, val) => {
+    onChangeText = async (key, val) => {
         this.setState({[key]: val});
+    }
+
+    slackMessage = async () => {
+        const slck = new Slack(def+first+second+third+fourth);
+        slck.post(this.state.message, '#feedback').then(res => {
+            if(res.status == 200) {
+                console.log(res.status)
+            } else {
+                console.log(res);
+            }
+        }).catch(err=>{console.log(err)})
     }
     
     constructor(props) {
@@ -27,7 +50,7 @@ export default class Contact extends Component {
     render() {
         return(
             <View style={{flex: 1}}>
-                <ScrollView style={sty.scroll} contentContainerStyle={sty.container}>
+                <ScrollView style={sty.scroll} contentContainerStyle={sty.container} keyboardShouldPersistTaps='handled'>
                     <Image
                         source={require('../../assets/logo.png')}
                         style={sty.image}>
@@ -46,13 +69,9 @@ export default class Contact extends Component {
                         onChangeText={val => this.onChangeText('message', val)}
                     />
                     <View style={{padding: 10}}></View>
-                    <Button
-                        title="Submit"
-                        raised={true}
-                        titleStyle={{color:'black'}}
-                        buttonStyle={{backgroundColor:'#990000'}}
-                        onPress={this.formPress}
-                    />
+                    <TouchableOpacity style={sty.butt} onPress={this.slackMessage}>
+                        <Text style={{color: 'black', fontSize: 30}}>Submit</Text>
+                    </TouchableOpacity>
                 </ScrollView>
             </View>
         );
@@ -78,4 +97,14 @@ const sty = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    butt: {
+        marginHorizontal: 30,
+        backgroundColor: '#990000',
+        borderRadius: 10,
+        height: 50,
+        width: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20
+      },
 });

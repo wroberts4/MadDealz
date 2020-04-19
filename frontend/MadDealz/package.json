@@ -21,6 +21,7 @@
         "react-native-modals": "^0.19.9",
         "react-native-navigation": "^6.3.1",
         "react-native-popup-dialog": "^0.18.3",
+        "react-native-slack-webhook": "0.0.5",
         "react-native-swipe-gestures": "^1.0.5",
         "react-native-vector-icons": "^6.6.0",
         "redux": "^4.0.5",

@@ -143,7 +143,6 @@ export default class Home extends Component {
           Sunday.push(this.state.bars[i])
         }
       }
-      // console.log("Monday ", Monday)
       this.weekdays.push(Sunday);
       this.weekdays.push(Monday);
       this.weekdays.push(Tuesday);
@@ -152,17 +151,18 @@ export default class Home extends Component {
       this.weekdays.push(Friday);
       this.weekdays.push(Saturday);
 
-      console.log("Wednesday", this.Wed)
     }
     if(Day()===("Sunday")) {
       this.setState({current:  this.weekdays[0]});
-      this.arrayholder =  this.weekdays[0];
+      this.arrayholder = this.weekdays[0];
+      console.log("sunday ", this.arrayholder)
       position = 0;
     }
     if(Day()===("Monday")) {
       console.log("this.mon", this.Mon)
       this.setState({current: this.weekdays[1]});
       this.arrayholder = this.weekdays[1];
+      console.log("monday ", this.arrayholder)
       position = 1;
     }
     if(Day()===("Tuesday")) {
@@ -190,7 +190,7 @@ export default class Home extends Component {
       this.arrayholder =  this.weekdays[6];
       position = 6;
     }
-    console.log("current", this.state.current)
+    console.log("current", this.arrayholder)
   }
   // alphaSort() {
   //   const sorted = this.arrayholder.sort(function(a, b) {
@@ -202,6 +202,7 @@ export default class Home extends Component {
   // }
 
   searchFunction(text) {
+    console.log("hello", this.arrayholder);
     const newData = this.arrayholder.filter(function(item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
@@ -209,21 +210,23 @@ export default class Home extends Component {
     });
     console.log(newData)
     this.setState({ 
-      bars: newData,
+      current: newData,
       search: text
     });
-    console.log("data ", this.state.data)
+    console.log("data ", this.state.current)
   };
 
   onSwipeRight(gestureState) {
     if(position-1 < 0) {
       position = 6;
-      this.setState({current: this.weekdays[position]})
-      this.setState({c_day: weekday[position]})
+      this.setState({current: this.weekdays[position]});
+      this.arrayholder = this.weekdays[position];
+      this.setState({c_day: weekday[position]});
     }
     else {
       position = position-1;
       this.setState({current: this.weekdays[position]})
+      this.arrayholder = this.weekdays[position];
       this.setState({c_day: weekday[position]})
     }
   }
@@ -232,11 +235,13 @@ export default class Home extends Component {
     if(position+1 > 6) {
       position = 0;
       this.setState({current: this.weekdays[position]})
+      this.arrayholder = this.weekdays[position];
       this.setState({c_day: weekday[position]})
     }
     else {
       position = position+1;
       this.setState({current: this.weekdays[position]})
+      this.arrayholder = this.weekdays[position];
       this.setState({c_day: weekday[position]})
     }
   }

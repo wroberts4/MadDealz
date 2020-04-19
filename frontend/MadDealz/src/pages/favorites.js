@@ -97,6 +97,7 @@ export default class Favorites extends Component {
         bars.push(await bar_requests.get_bar(bar, 5000));
       }
       this.setState({bars: bars});
+      this.arrayholder = bars;
     } catch (err) {
       console.log(err);
     }
@@ -114,7 +115,7 @@ export default class Favorites extends Component {
       bars: newData,
       search: text
     });
-    console.log("data ", this.state.data)
+    console.log("data ", this.state.bars)
   };
 
   render() {

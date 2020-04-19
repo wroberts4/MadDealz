@@ -13,7 +13,7 @@ async function create_deal(info, bar_id, times, fetch_timeout, ip) {
     info = falsy_to_empty(info);
     bar_id = falsy_to_empty(bar_id);
     times = falsy_to_empty(times);
-    data = {'info': info, 'bar_id': bar_id, 'times': times};
+    let data = {'info': info, 'bar_id': bar_id, 'times': times};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/deal/create';
     const response = await fetchWithTimeout(
@@ -80,7 +80,7 @@ async function update_deal(id, info, times, fetch_timeout, ip) {
     id = falsy_to_empty(id);
     info = falsy_to_empty(info);
     times = falsy_to_empty(times);
-    data = {'id': id, 'info': info, 'times': times};
+    let data = {'id': id, 'info': info, 'times': times};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/deal/update';
     const response = await fetchWithTimeout(

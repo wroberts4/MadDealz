@@ -1,5 +1,6 @@
 const fetchWithTimeout = require('../utils/requests').fetchWithTimeout;
 const falsy_to_empty = require('../utils/requests').falsy_to_empty;
+const FormData = require('form-data');
 
 //TODO: add_review
 /**
@@ -16,7 +17,7 @@ async function add_user(username, password, email, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     password = falsy_to_empty(password);
     email = falsy_to_empty(email);
-    data = {username: username, password: password, email: email};
+    let data = {username: username, password: password, email: email};
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/create';
     const response = await fetchWithTimeout(
@@ -180,7 +181,7 @@ async function add_favorite_bar(username, bar_id, fetch_timeout, ip) {
     bar_id = falsy_to_empty(bar_id);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/add_favorite_bar';
-    data = {'username': username, 'bar_id': bar_id}
+    let data = {'username': username, 'bar_id': bar_id}
     const response = await fetchWithTimeout(
         url,
         {
@@ -203,7 +204,7 @@ async function remove_favorite_bar(username, bar_id, fetch_timeout, ip) {
     bar_id = falsy_to_empty(bar_id);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/remove_favorite_bar';
-    data = {'username': username, 'bar_id': bar_id}
+    let data = {'username': username, 'bar_id': bar_id}
     const response = await fetchWithTimeout(
         url,
         {
@@ -226,7 +227,7 @@ async function add_favorite_deal(username, deal_id, fetch_timeout, ip) {
     deal_id = falsy_to_empty(deal_id);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/add_favorite_deal';
-    data = {'username': username, 'deal_id': deal_id}
+    let data = {'username': username, 'deal_id': deal_id}
     const response = await fetchWithTimeout(
         url,
         {
@@ -249,7 +250,7 @@ async function remove_favorite_deal(username, deal_id, fetch_timeout, ip) {
     deal_id = falsy_to_empty(deal_id);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/remove_favorite_deal';
-    data = {'username': username, 'deal_id': deal_id}
+    let data = {'username': username, 'deal_id': deal_id}
     const response = await fetchWithTimeout(
         url,
         {
@@ -272,7 +273,7 @@ async function send_friend_request(requester, requestee, fetch_timeout, ip) {
     requestee = falsy_to_empty(requestee);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/friend_request';
-    data = {'requester': requester, 'requestee': requestee}
+    let data = {'requester': requester, 'requestee': requestee}
     const response = await fetchWithTimeout(
         url,
         {
@@ -295,7 +296,7 @@ async function accept_friend_request(requester, requestee, fetch_timeout, ip) {
     requestee = falsy_to_empty(requestee);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/accept_friend';
-    data = {'requester': requester, 'requestee': requestee}
+    let data = {'requester': requester, 'requestee': requestee}
     const response = await fetchWithTimeout(
         url,
         {
@@ -318,7 +319,7 @@ async function remove_friend(user1, user2, fetch_timeout, ip) {
     user2 = falsy_to_empty(user2);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/remove_friend';
-    data = {'user1': user1, 'user2': user2}
+    let data = {'user1': user1, 'user2': user2}
     const response = await fetchWithTimeout(
         url,
         {
@@ -336,6 +337,39 @@ async function remove_friend(user1, user2, fetch_timeout, ip) {
     return (await response.json()).message;
 }
 
+async function upload_image(username, image, fetch_timeout, ip) {
+    username = falsy_to_empty(username);
+    image = falsy_to_empty(image);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/user/uploadimage?username=' + username;
+    function createFormData(username, image) {
+        const data = new FormData();
+        data.append("image", JSON.stringify({
+            name: username + '.png',
+            uri: image
+        }));
+        return data
+    }
+    let data = createFormData(username, image);
+    console.log(data);
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: JSON.stringify(data),
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    // Returns a new user object.
+    return (await response.json()).message;
+}
+
 module.exports = {
     add_user,
     delete_user,
@@ -350,4 +384,5 @@ module.exports = {
     send_friend_request,
     accept_friend_request,
     remove_friend,
+    upload_image,
 };

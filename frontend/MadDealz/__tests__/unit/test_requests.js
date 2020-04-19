@@ -1,6 +1,6 @@
 import {add_user, delete_user, get_user, get_users, update_user, user_login,
         add_favorite_bar, remove_favorite_bar, add_favorite_deal, remove_favorite_deal,
-        send_friend_request, accept_friend_request, remove_friend} from '../../src/requests/user_requests.js';
+        send_friend_request, accept_friend_request, remove_friend, upload_image} from '../../src/requests/user_requests.js';
 import {create_deal, get_deal, delete_deal, update_deal} from '../../src/requests/deal_requests';
 import {create_bar, delete_bar, get_bar, get_bars, update_bar,
         get_deals, get_reviews, update_favorites} from '../../src/requests/bar_requests';
@@ -244,6 +244,16 @@ async function test_remove_friend(requester, requestee) {
                         undefined, 'Must specify two users');
 };
 
+async function test_upload_image(username, image) {
+  let res = await upload_image(username, image, TIMEOUT, IP);
+  console.log(res)
+  expect(res).toBe('Image uploaded successfully');
+
+  // Error cases.
+  await undefined_error(upload_image(username, undefined, TIMEOUT, IP), 'image', undefined,
+                        'Image failed to upload');
+}
+
 ///////////////////////////////////// DEAL TESTS /////////////////////////////////////
 async function test_create_deal(name, address, times) {
   let bar = await create_bar(name, address, TIMEOUT, IP);
@@ -471,6 +481,7 @@ test('test send_friend_request', async () => {await test_send_friend_request(nam
 test('test accept_friend_request', async () => {await test_accept_friend_request(name, name2)});
 test('test remove_friend', async () => {await test_remove_friend(name, name2)});
 test('test update_user', async () => {await test_update_user({'username': name, 'password': password2, 'email': email2})});
+test('test upload_image', async () => {await test_upload_image(name, 'earth.png')});
 test('test delete_user', async () => {await test_delete_user(name)});
 
 // DEAL TESTS.

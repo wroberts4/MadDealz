@@ -22,6 +22,23 @@ class Barpage extends React.Component {
         goToTabs();
     };
 
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            count: 0,
+            barName: this.props.bar.name,
+            barId: this.props.bar._id,
+            deals: this.props.bar.deals,
+            img: 'https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png',
+            fail: false,
+            reviews: []
+        };
+
+        //bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
+        //bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
+    }
+
     handleFavorite = async () => {
         if (this.state.count) {
             try {
@@ -48,24 +65,6 @@ class Barpage extends React.Component {
         }
     }
 
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            count: 0,
-            barName: this.props.bar.name,
-            barId: '',
-            deals: this.props.bar.deals,
-            reviews: []
-        };
-
-        //bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
-        //bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
-        
-        
-        // TODO: Set count to 0 if bar is not in user's favorites list, 1 if bar is in user's favorites
-    }
-
     _getReviews = async () => {
         let reviews = await bar_requests.get_reviews(this.props.bar._id);
         this.setState({reviews: reviews});
@@ -80,11 +79,20 @@ class Barpage extends React.Component {
     componentDidMount() {
         this._checkFavorite();
         this._getReviews();
+        this._checkImageURL(this.state.img);
+    }
+
+    _checkImageURL(url) {
+        fetch(url).then(res => {
+           if(res.status == 404) {
+            this.setState({fail: true})
+           } else{
+                return false
+          }
+        }).catch(err=>{this.setState({fail: true})})
     }
 
     render() {
-
-        //TODO: onPress on favorites button, add/remove bar from favorites
 
         return (
             <View style={{flex:1}}>
@@ -107,10 +115,13 @@ class Barpage extends React.Component {
                             // TODO: Figure out how to make the whole image appear regardless of image size
                             // TODO: Get the image pulled from the database
                             style={{
-                                height: 200,
-                                width: Dimensions.get('screen').width - 20,
+                                height: 100,
+                                width: 100,
+                                borderRadius: 100/2
                             }}
-                            source={require('../../assets/UU.jpg')}
+                            //source={require('../../assets/UU.jpg')}
+                            // TODO: Add image coming soon picture for default
+                            source={this.state.fail ? require('../../assets/notfound.png') : {uri: this.state.img}}
                             resizeMode="contain"
                         />
                     </View>

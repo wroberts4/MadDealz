@@ -12,9 +12,10 @@ import { Input, Button } from 'react-native-elements';
 import styles from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import Slack from 'react-native-slack-webhook';
-import {WEBHOOK_URL} from '../../env';
+import {first, second, third, fourth} from '../../env';
 
 const HEADER_MAX_HEIGHT = 300;
+const def = 'https://hooks.slack.com/services/';
 
 export default class Contact extends Component {
 
@@ -23,12 +24,12 @@ export default class Contact extends Component {
         console.log(this.state.message);
     };
 
-    onChangeText = (key, val) => {
+    onChangeText = async (key, val) => {
         this.setState({[key]: val});
     }
 
     slackMessage = () => {
-        const slck = new Slack(WEBHOOK_URL);
+        const slck = new Slack(def+first+second+third+fourth);
         slck.post(this.state.message, '#feedback').then(res => {
             if(res.status == 200) {
                 console.log(res.status)

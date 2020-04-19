@@ -1,10 +1,21 @@
 import React, {Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, Platform} from 'react-native';
+import { 
+    View, 
+    Text, 
+    Image, 
+    StyleSheet, 
+    Dimensions, 
+    Platform,
+    TouchableOpacity 
+} from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import styles from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import Slack from 'react-native-slack-webhook';
+import {WEBHOOK_URL} from '../../env';
 
 const HEADER_MAX_HEIGHT = 300;
+
 export default class Contact extends Component {
 
     
@@ -14,6 +25,17 @@ export default class Contact extends Component {
 
     onChangeText = (key, val) => {
         this.setState({[key]: val});
+    }
+
+    slackMessage = () => {
+        const slck = new Slack(WEBHOOK_URL);
+        slck.post(this.state.message, '#feedback').then(res => {
+            if(res.status == 200) {
+                console.log(res.status)
+            } else {
+                console.log(res);
+            }
+        }).catch(err=>{console.log(err)})
     }
     
     constructor(props) {
@@ -51,7 +73,7 @@ export default class Contact extends Component {
                         raised={true}
                         titleStyle={{color:'black'}}
                         buttonStyle={{backgroundColor:'#990000'}}
-                        onPress={this.formPress}
+                        onPress={this.slackMessage}
                     />
                 </ScrollView>
             </View>

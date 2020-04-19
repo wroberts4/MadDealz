@@ -259,7 +259,7 @@ export default class Favorites extends Component {
         <Animated.FlatList
           data={this.state.bars}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => this.barPage(item._id)}>
+            <TouchableOpacity onPress={() => this.barPage(item)}>
               <Item name={item.name} address={item.address} />
             </TouchableOpacity>
           )}

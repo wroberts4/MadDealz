@@ -28,7 +28,7 @@ export default class Contact extends Component {
         this.setState({[key]: val});
     }
 
-    slackMessage = () => {
+    slackMessage = async () => {
         const slck = new Slack(def+first+second+third+fourth);
         slck.post(this.state.message, '#feedback').then(res => {
             if(res.status == 200) {
@@ -50,7 +50,7 @@ export default class Contact extends Component {
     render() {
         return(
             <View style={{flex: 1}}>
-                <ScrollView style={sty.scroll} contentContainerStyle={sty.container}>
+                <ScrollView style={sty.scroll} contentContainerStyle={sty.container} keyboardShouldPersistTaps='handled'>
                     <Image
                         source={require('../../assets/logo.png')}
                         style={sty.image}>
@@ -69,13 +69,9 @@ export default class Contact extends Component {
                         onChangeText={val => this.onChangeText('message', val)}
                     />
                     <View style={{padding: 10}}></View>
-                    <Button
-                        title="Submit"
-                        raised={true}
-                        titleStyle={{color:'black'}}
-                        buttonStyle={{backgroundColor:'#990000'}}
-                        onPress={this.slackMessage}
-                    />
+                    <TouchableOpacity style={sty.butt} onPress={this.slackMessage}>
+                        <Text style={{color: 'black', fontSize: 30}}>Submit</Text>
+                    </TouchableOpacity>
                 </ScrollView>
             </View>
         );
@@ -101,4 +97,14 @@ const sty = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    butt: {
+        marginHorizontal: 30,
+        backgroundColor: '#990000',
+        borderRadius: 10,
+        height: 50,
+        width: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20
+      },
 });

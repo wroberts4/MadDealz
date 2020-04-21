@@ -453,7 +453,7 @@ export default class Home extends Component {
             top: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : HEADER_MAX_HEIGHT,
             height: 75,
             elevation: 1,
-            // zIndex: 1,
+            zIndex: 1,
           }}>
           <View
             style={{

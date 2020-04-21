@@ -3,9 +3,6 @@ import {
     View,
     Text,
     ScrollView,
-    Dimensions,
-    Platform,
-    FlatList,
 } from 'react-native';
 import {Card, Image, Button, Icon, Header, ListItem} from 'react-native-elements';
 import { goToTabs } from '../../navigation';
@@ -32,11 +29,8 @@ class Barpage extends React.Component {
             deals: this.props.bar.deals,
             img: 'https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png',
             fail: false,
-            reviews: []
+            //reviews: []
         };
-
-        //bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
-        //bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
     }
 
     handleFavorite = async () => {
@@ -65,10 +59,12 @@ class Barpage extends React.Component {
         }
     }
 
+    /*
     _getReviews = async () => {
         let reviews = await bar_requests.get_reviews(this.props.bar._id);
         this.setState({reviews: reviews});
     }
+    */
 
     _checkFavorite = async () => {
         let user = JSON.parse(await AsyncStorage.getItem('@user'));
@@ -78,7 +74,7 @@ class Barpage extends React.Component {
 
     componentDidMount() {
         this._checkFavorite();
-        this._getReviews();
+        //this._getReviews();
         this._checkImageURL(this.state.img);
     }
 
@@ -93,8 +89,6 @@ class Barpage extends React.Component {
     }
 
     render() {
-
-        console.log(this.state.deals);
 
         return (
             <View style={{flex:1}}>
@@ -114,28 +108,20 @@ class Barpage extends React.Component {
                             paddingTop: 5
                         }}>
                         <Image
-                            // TODO: Figure out how to make the whole image appear regardless of image size
-                            // TODO: Get the image pulled from the database
                             style={{
                                 height: 100,
                                 width: 100,
                                 borderRadius: 100/2
                             }}
-                            //source={require('../../assets/UU.jpg')}
-                            // TODO: Add image coming soon picture for default
                             source={this.state.fail ? require('../../assets/notfound.png') : {uri: this.state.img}}
                             resizeMode="contain"
                         />
                     </View>
                     <Card
-                        title="Deals"
-                        containerStyle={{
-                            borderRadius: 10,
-                            alignItems: 'center',
-                        }}>
-                        <Text>Sunday</Text>
-                        <Text>Monday</Text>
-                        {/* {
+                        title = "Sunday"
+                        containerStyle={{ borderRadius: 10 }}
+                    >
+                        {
                             this.state.deals.map((item, i) => (
                             <ListItem
                                 containerStyle={{
@@ -144,24 +130,18 @@ class Barpage extends React.Component {
                                     alignItems: 'center'
                                 }}
                                 key={i}
-                                title={item.info}
-                                subtitle={item.times}
+                                title={item.times["Sunday"] ? item.info : null}
+                                subtitle={item.times["Sunday"] ? item.times["Sunday"]["start"]+" - "+item.times["Sunday"]["end"] : null}
                             />
                             ))
-                        }    */}
-                        <Text>Tuesday</Text>
-                        <Text>Wednesday</Text>
-                        <Text>Thursday</Text>
-                        <Text>Friday</Text>
-                        <Text>Saturday</Text>
+                        }
                     </Card>
                     <Card
-                        title="Reviews"
-                        containerStyle={{
-                            borderRadius: 10,
-                        }}>
+                        title = "Monday"
+                        containerStyle={{ borderRadius:10 }}
+                    >    
                         {
-                            this.state.reviews.map((item, i) => (
+                            this.state.deals.map((item, i) => (
                             <ListItem
                                 containerStyle={{
                                     width: '100%',
@@ -169,18 +149,111 @@ class Barpage extends React.Component {
                                     alignItems: 'center'
                                 }}
                                 key={i}
-                                title={'"'+item.content+'"'}
-                                subtitle={"-"+item.user}
+                                title={item.times["Monday"] ? item.info : null}
+                                subtitle={item.times["Monday"] ? item.times["Monday"]["start"]+" - "+item.times["Monday"]["end"] : null}
                             />
                             ))
-                        }   
+                        }
+                    </Card>
+                    <Card
+                        title = "Tuesday"
+                        containerStyle={{ borderRadius: 10 }}
+                    >
+                        {
+                            this.state.deals.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.times["Tuesday"] ? item.info : null}
+                                subtitle={item.times["Tuesday"] ? item.times["Tuesday"]["start"]+" - "+item.times["Tuesday"]["end"] : null}
+                            />
+                            ))
+                        }
+                    </Card>
+                    <Card
+                        title = "Wednesday"
+                        containerStyle={{ borderRadius: 10 }}
+                    >   
+                        {
+                            this.state.deals.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.times["Wednesday"] ? item.info : null}
+                                subtitle={item.times["Wednesday"] ? item.times["Wednesday"]["start"]+" - "+item.times["Wednesday"]["end"] : null}
+                            />
+                            ))
+                        } 
+                    </Card>
+                    <Card
+                        title = "Thursday"
+                        containerStyle={{ borderRadius: 10 }}
+                    >   
+                        {
+                            this.state.deals.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.times["Thursday"] ? item.info : null}
+                                subtitle={item.times["Thursday"] ? item.times["Thursday"]["start"]+" - "+item.times["Thursday"]["end"] : null}
+                            />
+                            ))
+                        } 
+                    </Card>
+                    <Card
+                        title = "Friday"
+                        containerStyle={{ borderRadius: 10 }}
+                    >   
+                        {
+                            this.state.deals.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.times["Friday"] ? item.info : null}
+                                subtitle={item.times["Friday"] ? item.times["Friday"]["start"]+" - "+item.times["Friday"]["end"] : null}
+                            />
+                            ))
+                        }
+                    </Card>
+                    <Card
+                        title = "Saturday"
+                        containerStyle={{ borderRadius: 10 }}
+                    >   
+                        {
+                            this.state.deals.map((item, i) => (
+                            <ListItem
+                                containerStyle={{
+                                    width: '100%',
+                                    padding: 5,
+                                    alignItems: 'center'
+                                }}
+                                key={i}
+                                title={item.times["Saturday"] ? item.info : null}
+                                subtitle={item.times["Saturday"] ? item.times["Saturday"]["start"]+" - "+item.times["Saturday"]["end"] : null}
+                            />
+                            ))
+                        }
                     </Card>
                     <Card
                         title="Contact Us"
-                        containerStyle={{
-                            borderRadius: 10,
-                            alignItems: 'center',
-                        }}>
+                        containerStyle={{ borderRadius: 10 }}
+                    >
                         <Text>Hours</Text>
                         <Text>Phone Number</Text>
                         <Text>Email Address?</Text>
@@ -190,5 +263,27 @@ class Barpage extends React.Component {
         );
     }
 }
+
+/*
+<Card
+    title="Reviews"
+    containerStyle={{ borderRadius: 10 }}
+>
+    {
+        this.state.reviews.map((item, i) => (
+        <ListItem
+            containerStyle={{
+                width: '100%',
+                padding: 5,
+                alignItems: 'center'
+            }}
+            key={i}
+            title={'"'+item.content+'"'}
+            subtitle={"-"+item.user}
+        />
+        ))
+    }   
+</Card>
+*/
 
 export default Barpage;

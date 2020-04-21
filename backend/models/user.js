@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const fs = require('fs');
 import * as db_util from '../db';
 
 //  DB SCHEMA FOR USER OBJECTS
@@ -71,6 +72,22 @@ export async function get_user(username) {
   delete user.email;
   
   return {status: 200, message: "User successfully retrieved", user: user};
+}
+
+export async function delete_image(username) {
+  let uuid = (await get_user(username)).user.image;
+
+  if (!uuid)
+    return;
+
+  let path = './public/images/user/' + uuid + '.png';
+
+  fs.unlink(path, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+  });
 }
 
 export async function get_users() {

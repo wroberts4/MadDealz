@@ -7,6 +7,7 @@ import App from './src/pages/App';
 import {name as appName} from './app.json';
 import {Navigation} from 'react-native-navigation';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import 'react-native-get-random-values'
 
 import Loading from './src/pages/loading'; // Loading screen
 

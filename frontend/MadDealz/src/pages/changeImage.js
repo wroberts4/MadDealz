@@ -62,6 +62,10 @@ export default class ChangeImage extends Component {
         <TouchableOpacity style={styles.button} onPress={this.openImagePicker}>
           <Text style={{fontWeight: '500', color: '#222'}}>Change Image</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+          <Text style={{fontWeight: '500', color: '#222'}}>Return</Text>
+        </TouchableOpacity>
       </View>
     );
   }

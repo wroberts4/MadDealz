@@ -104,8 +104,14 @@ export default class Home extends Component {
   }
 
   compare_item_ratings(a, b) {
-    if(a.rating < b.rating) { return -1; }
-    if(a.rating < b.rating) { return 1; }
+    if(a.rating > b.rating) {
+      console.log("a.rating",a.rating);
+      console.log("b.rating",b.rating);
+      return -1; }
+    if(a.rating < b.rating) { 
+      console.log("a.rating",a.rating);
+      console.log("b.rating",b.rating);
+      return 1; }
     return 0;
   }
  
@@ -157,6 +163,8 @@ export default class Home extends Component {
       this.arrayholder = this.weekdays[0];
       this.alpha = [...this.weekdays[0]];
       this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[0]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 0;
     }
     if(Day()===("Monday")) {
@@ -214,6 +222,7 @@ export default class Home extends Component {
       this.rating = this.rating.sort(this.compare_item_ratings);
       position = 6;
     }
+    console.log("this is weekday 3 ",this.weekdays[3])
   }
   
 

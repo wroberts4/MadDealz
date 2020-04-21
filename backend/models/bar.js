@@ -1,6 +1,7 @@
 import * as db_util from '../db';
 import { delete_deal } from './deal';
 import { delete_review } from './review';
+const fs = require('fs');
 
 const fetch = require('node-fetch');
 

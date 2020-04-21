@@ -75,7 +75,8 @@ export async function get_user(username) {
 }
 
 export async function delete_image(username) {
-  let uuid = await get_user(username).user.image;
+  let uuid = (await get_user(username)).user.image;
+  console.log('uuid to be deleted:' + uuid);
 
   if (!uuid)
     return;

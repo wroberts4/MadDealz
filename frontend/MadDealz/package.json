@@ -18,6 +18,8 @@
         "react-native-bootsplash": "^2.1.0",
         "react-native-elements": "^1.2.7",
         "react-native-gesture-handler": "^1.6.1",
+        "react-native-image-crop-picker": "^0.28.0",
+        "react-native-image-placeholder": "^1.0.14",
         "react-native-modals": "^0.19.9",
         "react-native-navigation": "^6.3.1",
         "react-native-popup-dialog": "^0.18.3",
@@ -27,6 +29,7 @@
         "redux": "^4.0.5",
         "redux-persist": "^6.0.0",
         "toggle-switch-react-native": "^2.1.0",
+        "uuid": "^7.0.3",
         "watchman": "^1.0.0"
     },
     "devDependencies": {

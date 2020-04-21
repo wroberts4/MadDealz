@@ -337,21 +337,24 @@ async function remove_friend(user1, user2, fetch_timeout, ip) {
     return (await response.json()).message;
 }
 
-async function upload_image(username, image, fetch_timeout, ip) {
+async function upload_image(username, image, uuid, fetch_timeout, ip) {
     username = falsy_to_empty(username);
     image = falsy_to_empty(image);
     ip = ip ? ip : 'https://api.maddealz.software';
-    let url = ip + '/user/uploadimage?username=' + username;
+    let url = ip + '/user/uploadimage?username=' + username + '&uuid=' + uuid;
     function createFormData(username, image) {
         const data = new FormData();
-        data.append("image", JSON.stringify({
-            name: username + '.png',
-            uri: image
-        }));
-        return data
+  
+        data.append("image", {
+          name: username + '.png',
+          type: image.mime,
+          uri: image.path
+        });
+      
+        return data;
     }
     let data = createFormData(username, image);
-    console.log(data);
+    //console.log(data);
     const response = await fetchWithTimeout(
         url,
         {
@@ -359,7 +362,7 @@ async function upload_image(username, image, fetch_timeout, ip) {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-            body: JSON.stringify(data),
+            body: data,
         },
         fetch_timeout
     );

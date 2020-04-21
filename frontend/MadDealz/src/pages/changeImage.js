@@ -8,6 +8,9 @@ import {
   StatusBar,
   LayoutAnimation,
 } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
+import AsyncStorage from '@react-native-community/async-storage';
+import { v4 as uuidv4 } from 'uuid';
 
 import {goToTabs} from '../../navigation';
 
@@ -33,6 +36,19 @@ export default class ChangeImage extends Component {
     goToTabs();
   };
 
+  openImagePicker = async () => {
+    let image = await ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true
+    });
+    let user = await AsyncStorage.getItem('@user');
+    let uuid = uuidv4().replace('-', '_');
+    user.image = uuid;
+    await AsyncStorage.setItem('@user', JSON.stringify(user));
+    await user_requests.upload_image(JSON.parse(user).username, image, uuid, 5000);
+  }
+
   render() {
 
     LayoutAnimation.easeInEaseOut();
@@ -42,7 +58,7 @@ export default class ChangeImage extends Component {
 
         <Text style={styles.greeting}>{'Change Profile Picture'}</Text>
 
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.button} onPress={this.openImagePicker}>
           <Text style={{fontWeight: '500', color: '#222'}}>Change Image</Text>
         </TouchableOpacity>
       </View>

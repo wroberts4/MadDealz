@@ -13,10 +13,20 @@ import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 import {goToLogin, goToChangePwd, goToChangeUsername, goToChangeImage} from '../../navigation';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import ImageLoad from 'react-native-image-placeholder';
 
 let userId = "";
+let ip = "https://api.maddealz.software/images/user/";
 
 export default class Profile extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: '',
+    }
+  }
+
   loginPage = async () => {
     try {
       await AsyncStorage.removeItem('@user');
@@ -44,7 +54,10 @@ export default class Profile extends Component {
       user = await AsyncStorage.getItem('@user');
       console.log("This is the user: " + JSON.parse(user).username);
       if (user !== null) {
-        // We have data!!
+        this.setState({user: JSON.parse(user)});
+        this.setState({image_uri: ip + this.state.user.image + '.png'})
+        console.log("User found: " + this.state.user.username)
+        console.log('image: ' + this.state.image_uri);
       }
     } catch (error) {
       // Error retrieving data
@@ -56,8 +69,6 @@ export default class Profile extends Component {
   };
 
   render() {
-    let userImage = '../../assets/Husky.jpg';
-
     return (
       <View style={styles.container}>
         <Header
@@ -72,14 +83,22 @@ export default class Profile extends Component {
               justifyContent: 'center',
               alignItems: 'center',
               paddingTop: 5,
+              borderRadius: 75,
             }}>
-            <Avatar
-              rounded
-              size={200}
-              source={require(userImage)}
-              resizeMode="contain"
+            <ImageLoad
+                style={{ borderRadius: 75, width: 150, height: 150 }}
+                source={{
+                  uri: this.state.image_uri,
+                  method: 'POST',
+                  cache: 'default'
+                }}
+                resizeMode={'cover'}
+                borderRadius={75}
+                loadingStyle={{ size: 'large', color: 'gray' }}
+                placeholderSource={require('../../assets/blank-profile.png')}
+                placeholderStyle={{borderRadius: 75, width: 150, height: 150}}
             />
-            <Text style={{color: 'white'}}>{userId}</Text>
+             <Text style={{color: 'white'}}>{this.state.user.username}</Text>
           </View>
          
           <TouchableOpacity style={styles.button} onPress={this.changeImagePage}>

@@ -51,7 +51,7 @@ router.post('/uploadimage', upload.single('image'), async (req, res) => {
 
     await Bar.update_bar({
         _id: req.query.bar_id,
-        image: req.query.uuid
+        image: req.query.uuid + '.png'
     });
 
     if (req.image) {

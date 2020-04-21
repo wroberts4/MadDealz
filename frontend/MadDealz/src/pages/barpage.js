@@ -3,9 +3,6 @@ import {
     View,
     Text,
     ScrollView,
-    Dimensions,
-    Platform,
-    FlatList,
 } from 'react-native';
 import {Card, Image, Button, Icon, Header, ListItem} from 'react-native-elements';
 import { goToTabs } from '../../navigation';
@@ -32,11 +29,8 @@ class Barpage extends React.Component {
             deals: this.props.bar.deals,
             img: 'https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png',
             fail: false,
-            reviews: []
+            //reviews: []
         };
-
-        //bar_requests.get_bar(this.props.barId).then(name => {this.setState({barName: name.name})});
-        //bar_requests.get_deals(this.props.barId).then(deals => {this.setState({deals: deals})});
     }
 
     handleFavorite = async () => {
@@ -65,10 +59,12 @@ class Barpage extends React.Component {
         }
     }
 
+    /*
     _getReviews = async () => {
         let reviews = await bar_requests.get_reviews(this.props.bar._id);
         this.setState({reviews: reviews});
     }
+    */
 
     _checkFavorite = async () => {
         let user = JSON.parse(await AsyncStorage.getItem('@user'));
@@ -78,7 +74,7 @@ class Barpage extends React.Component {
 
     componentDidMount() {
         this._checkFavorite();
-        this._getReviews();
+        //this._getReviews();
         this._checkImageURL(this.state.img);
     }
 
@@ -255,25 +251,6 @@ class Barpage extends React.Component {
                         }
                     </Card>
                     <Card
-                        title="Reviews"
-                        containerStyle={{ borderRadius: 10 }}
-                    >
-                        {
-                            this.state.reviews.map((item, i) => (
-                            <ListItem
-                                containerStyle={{
-                                    width: '100%',
-                                    padding: 5,
-                                    alignItems: 'center'
-                                }}
-                                key={i}
-                                title={'"'+item.content+'"'}
-                                subtitle={"-"+item.user}
-                            />
-                            ))
-                        }   
-                    </Card>
-                    <Card
                         title="Contact Us"
                         containerStyle={{ borderRadius: 10 }}
                     >
@@ -286,5 +263,27 @@ class Barpage extends React.Component {
         );
     }
 }
+
+/*
+<Card
+    title="Reviews"
+    containerStyle={{ borderRadius: 10 }}
+>
+    {
+        this.state.reviews.map((item, i) => (
+        <ListItem
+            containerStyle={{
+                width: '100%',
+                padding: 5,
+                alignItems: 'center'
+            }}
+            key={i}
+            title={'"'+item.content+'"'}
+            subtitle={"-"+item.user}
+        />
+        ))
+    }   
+</Card>
+*/
 
 export default Barpage;

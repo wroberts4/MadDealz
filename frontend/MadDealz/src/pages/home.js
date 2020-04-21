@@ -11,13 +11,6 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {SearchBar} from 'react-native-elements';
 import styles from './styles';
-// import Dialog, {
-//   DialogTitle,
-//   DialogContent,
-//   SlideAnimation,
-//   DialogButton,
-//   DialogFooter,
-// } from 'react-native-popup-dialog';
 import Modal, { SlideAnimation, ModalTitle, ModalContent, ModalFooter, ModalButton, } from 'react-native-modals';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import ToggleSwitch from 'toggle-switch-react-native';
@@ -70,6 +63,7 @@ export default class Home extends Component {
       filterVisible: false,
       distance: false,
       distanceSwitch: false,
+      ratingSwitch: false,
       alpha: false,
       alphaSwitch: false,
       current: undefined,
@@ -78,19 +72,13 @@ export default class Home extends Component {
     };
     this.arrayholder = []
     this.weekdays = []
+    this.alpha = []
+    this.rating = []
   }
 
   filterPress = () => {
     this.setState({filterVisible: true});
   };
-
-  // distancePress = () => {
-  //   this.setState({distance: true});
-  // };
-
-  // alphabeticalPress = () => {
-  //   this.setState({alpha: true});
-  // };
 
   barPage = async bar => {
     const barId  = bar;
@@ -109,6 +97,18 @@ export default class Home extends Component {
     });
   }
 
+  compare_item_names(a, b) {
+    if(a.name < b.name) { return -1; }
+    if(a.name < b.name) { return 1; }
+    return 0;
+  }
+
+  compare_item_ratings(a, b) {
+    if(a.rating < b.rating) { return -1; }
+    if(a.rating < b.rating) { return 1; }
+    return 0;
+  }
+ 
   sort_bars() {
     let Monday = [];
     let Tuesday = [];
@@ -155,51 +155,67 @@ export default class Home extends Component {
     if(Day()===("Sunday")) {
       this.setState({current:  this.weekdays[0]});
       this.arrayholder = this.weekdays[0];
-      console.log("sunday ", this.arrayholder)
+      this.alpha = [...this.weekdays[0]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
       position = 0;
     }
     if(Day()===("Monday")) {
       console.log("this.mon", this.Mon)
       this.setState({current: this.weekdays[1]});
       this.arrayholder = this.weekdays[1];
-      console.log("monday ", this.arrayholder)
+      this.alpha = [...this.weekdays[1]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[1]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 1;
     }
     if(Day()===("Tuesday")) {
       this.setState({current: this.weekdays[2]});
       this.arrayholder =  this.weekdays[2];
+      this.alpha = [...this.weekdays[2]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[2]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 2;
     }
     if(Day()===("Wednesday")) {
       this.setState({current:  this.weekdays[3]});
       this.arrayholder =  this.weekdays[3];
+      this.alpha = [...this.weekdays[3]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[3]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 3;
     }
     if(Day()===("Thursday")) {
       this.setState({current:  this.weekdays[4]});
       this.arrayholder =  this.weekdays[4];
+      this.alpha = [...this.weekdays[4]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[4]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 4;
     }
     if(Day()===("Friday")) {
       this.setState({current:  this.weekdays[5]});
       this.arrayholder =  this.weekdays[5];
+      this.alpha = [...this.weekdays[5]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[5]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 5;
     }
     if(Day()===("Saturday")) {
       this.setState({current:  this.weekdays[6]});
       this.arrayholder =  this.weekdays[6];
+      this.alpha = [...this.weekdays[6]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[6]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       position = 6;
     }
-    console.log("current", this.arrayholder)
   }
-  // alphaSort() {
-  //   const sorted = this.arrayholder.sort(function(a, b) {
-  //     if(a.name < b.name) { return -1; }
-  //     if(a.name < b.name) { return 1; }
-  //     return 0;
-  //   })
-  //   this.setState({ bars: sorted });
-  // }
+  
 
   searchFunction(text) {
     console.log("hello", this.arrayholder);
@@ -217,31 +233,49 @@ export default class Home extends Component {
   };
 
   onSwipeRight(gestureState) {
+    this.setState({alphaSwitch: false, dSwitch: false});
     if(position-1 < 0) {
       position = 6;
       this.setState({current: this.weekdays[position]});
       this.arrayholder = this.weekdays[position];
+      this.alpha = [...this.weekdays[position]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[position]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       this.setState({c_day: weekday[position]});
     }
     else {
       position = position-1;
       this.setState({current: this.weekdays[position]})
       this.arrayholder = this.weekdays[position];
+      this.alpha = [...this.weekdays[position]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[position]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       this.setState({c_day: weekday[position]})
     }
   }
 
   onSwipeLeft(gestureState) {
+    this.setState({alphaSwitch: false, dSwitch: false});
     if(position+1 > 6) {
       position = 0;
       this.setState({current: this.weekdays[position]})
       this.arrayholder = this.weekdays[position];
+      this.alpha = [...this.weekdays[position]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[position]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       this.setState({c_day: weekday[position]})
     }
     else {
       position = position+1;
       this.setState({current: this.weekdays[position]})
       this.arrayholder = this.weekdays[position];
+      this.alpha = [...this.weekdays[position]];
+      this.alpha = this.alpha.sort(this.compare_item_names);
+      this.rating = [...this.weekdays[position]];
+      this.rating = this.rating.sort(this.compare_item_ratings);
       this.setState({c_day: weekday[position]})
     }
   }
@@ -301,7 +335,10 @@ export default class Home extends Component {
           isOn={this.state.distanceSwitch}
           offColor="grey"
           onColor="skyblue"
-          onToggle={() => this.setState({distanceSwitch: true})}
+          onToggle={() => this.setState({
+            distanceSwitch: true,
+            
+          })}
         />
       );
     } else {
@@ -325,7 +362,11 @@ export default class Home extends Component {
           isOn={this.state.alphaSwitch}
           offColor="grey"
           onColor="skyblue"
-          onToggle={() => this.setState({alphaSwitch: true})}
+          onToggle={() => this.setState({
+            alphaSwitch: true,
+            current: this.alpha,
+            ratingSwitch: false,
+          })}
         />
       )
     } else {
@@ -334,7 +375,41 @@ export default class Home extends Component {
           isOn={this.state.alphaSwitch}
           offColor="grey"
           onColor="skyblue"
-          onToggle={() => this.setState({alphaSwitch: false})}
+          onToggle={() => this.setState({
+            alphaSwitch: false,
+            current: this.arrayholder
+          })}
+        />
+      );
+    }
+
+    const rSwitch = this.state.ratingSwitch;
+
+    let rButton;
+
+    if (rSwitch == false) {
+      rButton = (
+        <ToggleSwitch
+          isOn={this.state.ratingSwitch}
+          offColor="grey"
+          onColor="skyblue"
+          onToggle={() => this.setState({
+            ratingSwitch: true,
+            current: this.rating,
+            alphaSwitch: false
+          })}
+        />
+      )
+    } else {
+      rButton = (
+        <ToggleSwitch
+          isOn={this.state.ratingSwitch}
+          offColor="grey"
+          onColor="skyblue"
+          onToggle={() => this.setState({
+            ratingSwitch: false,
+            current: this.arrayholder
+          })}
         />
       );
     }
@@ -347,51 +422,6 @@ export default class Home extends Component {
       style = {{backgroundColor: 'transparent', flex: 1}}
       >
         <View style={styles.fill}>
-         {/* <GestureRecognizer
-        onSwipeLeft={(state) => this.onSwipeLeft(state)}
-        onSwipeRight={(state) => this.onSwipeRight(state)}
-        config={config}
-        > */}
-        {/* <Dialog
-          rounded
-          width={Dimensions.get('screen').width * 0.75}
-          visible={this.state.filterVisible}
-          dialogTitle={<DialogTitle title="Filter" />}
-          onTouchOutside={() => {
-            this.setState({filterVisible: false});
-          }}
-          dialogAnimation={
-            new SlideAnimation({
-              initialValue: 0,
-              slideFrom: 'bottom',
-              useNativeDriver: true,
-            })
-          }>
-          <DialogContent>
-            <View style={styles.dialogeviewouter}>
-              <View style={styles.dialogviewinner}>
-                <Text style={styles.dialogviewtext}>Distance</Text>
-                <View style = {{paddingLeft: 100}}>
-                  {dButton}
-                </View>
-              </View>
-              {dButton}
-            </View>
-            <View style = {styles.dialogviewinner}>
-              <Text style={styles.dialogviewtext}>Next thing</Text>
-            </View>
-          </DialogContent>
-          <DialogFooter>
-            <DialogButton
-              text="Cancel"
-              onPress={() => this.setState({filterVisible: false})}
-            />
-            <DialogButton
-              text="Search"
-              onPress={() => this.setState({filterVisible: false})}
-            />
-          </DialogFooter>
-        </Dialog> */}
         <Modal
           modalTitle={<ModalTitle title = "Filters" />}
           width={Dimensions.get('screen').width * 0.75}
@@ -402,24 +432,29 @@ export default class Home extends Component {
           })}
           swipeThreshold={100}
           onSwipeOut={(event) => {
-            this.setState({ filterVisible: false});
+            this.setState({ filterVisible: false, alphaSwitch: false, ratingSwitch: false, current: this.arrayholder});
           }}
           onTouchOutside={() => {
-            this.setState({ filterVisible: false })
+            this.setState({ filterVisible: false, alphaSwitch: false, ratingSwitch: false, current: this.arrayholder});
           }}
           >
           <ModalContent>
             <View style={styles.dialogeviewouter}>
-              <View style={styles.dialogviewinner}>
-                <Text style={styles.dialogviewtext}>Distance</Text>
-                <View style = {{paddingLeft: 100}}>
-                  {dButton}
-                </View>
-              </View>
               <View style = {styles.dialogviewinner}>
                 <Text style={styles.dialogviewtext}>Alphabetical</Text>
-                <View style = {{paddingLeft: 100}}>
+                <View style = {{
+                  alignItems:'flex-end',
+                  left: 120
+                  }}>
                   {aButton}
+                </View>
+              </View>
+              <View style={styles.dialogviewinner}>
+                <Text style={styles.dialogviewtext}>Rating</Text>
+                <View style = {{
+                  left: 168
+                  }}>
+                  {rButton}
                 </View>
               </View>
             </View>
@@ -429,10 +464,12 @@ export default class Home extends Component {
               text="Cancel"
               onPress={() => this.setState({
                 filterVisible: false,
+                alphaSwitch: false,
+                dSwitch: false
               })}
             />
             <ModalButton
-              text="Search"
+              text="Apply"
               onPress={() => this.setState({
                 filterVisible: false
               })}
@@ -558,12 +595,10 @@ export default class Home extends Component {
             inputContainerStyle={styles.searchbarinput}
             inputStyle={styles.searchbarinputtext}
             onChangeText={text => this.searchFunction(text)}
-            // onClear={text => this.searchFunction('')}
             value={this.state.search}
             placeholder="Search Bars Here"
           />
         </Animated.View>
-        {/* </GestureRecognizer> */}
         </View>
       </GestureRecognizer>
     );

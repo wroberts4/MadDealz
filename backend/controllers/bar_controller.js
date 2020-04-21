@@ -15,7 +15,7 @@ const Storage = multer.diskStorage({
       callback(null, './public/images/bar/')
     },
     filename(req, file, callback) {
-      callback(null, `${req.query.id}` + '.png')
+      callback(null, `${req.query.uuid}` + '.png')
     },
   });
 
@@ -42,10 +42,18 @@ router.get('/', async (req, res) => {
     return res.status(rc.status).json({ message: rc.message, bar: rc.bar });
 });
 
-router.post('/uploadimage', upload.single('image'), (req, res) => {
+router.post('/uploadimage', upload.single('image'), async (req, res) => {
     console.log("/bar/uploadimage POST request received");
     let status = 200;
     let message = "Image uploaded successfully"
+
+    await Bar.delete_image(req.query.bar_id);
+
+    await Bar.update_bar({
+        _id: req.query.bar_id,
+        image: req.query.uuid + '.png'
+    });
+
     if (req.image) {
         status = 404;
         message = "Image failed to upload"
@@ -68,7 +76,8 @@ router.post('/create', async (req, res) => {
         deals: req.body.deals ? req.body.deals : [],
         favorites: 0,
         rating: null,
-        reviews: []
+        reviews: [],
+        image: ''
     });
 
     return res.status(rc.status).json({ message: rc.message, bar: rc.bar });

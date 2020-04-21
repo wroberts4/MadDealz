@@ -1,6 +1,7 @@
 import * as db_util from '../db';
 import { delete_deal } from './deal';
 import { delete_review } from './review';
+const fs = require('fs');
 
 const fetch = require('node-fetch');
 
@@ -67,6 +68,22 @@ export async function get_bar(id) {
     con.close();
 
     return {status: 200, message: "Bar successfully retrieved", bar: bar};
+  }
+
+  export async function delete_image(id) {
+    let uuid = (await get_bar(id)).bar.image;
+  
+    if (!uuid)
+      return;
+  
+    let path = './public/images/bar/' + uuid + '.png';
+  
+    fs.unlink(path, (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+    });
   }
 
   export async function get_bars(loc, limit, distance) {

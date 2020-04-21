@@ -15,7 +15,7 @@ const Storage = multer.diskStorage({
       callback(null, './public/images/user/')
     },
     filename(req, file, callback) {
-      callback(null, `${req.query.username}` + '.png')
+      callback(null, `${req.query.uuid}` + '.png')
     },
   });
 
@@ -44,10 +44,16 @@ router.get('/', async (req, res) => {
 router.post('/uploadimage', upload.single('image'), (req, res) => {
     console.log("/user/uploadimage POST request received");
     let status = 200;
-    let message = "Image uploaded successfully"
+    let message = "Image uploaded successfully";
+
+    await User.update_user({
+        username: req.query.username,
+        image: req.query.uuid
+    });
+
     if (req.image) {
       status = 404;
-      message = "Image failed to upload"
+      message = "Image failed to upload";
     }
 
     return res.status(status).json({ message: message });
@@ -73,7 +79,8 @@ router.post('/create', async (req, res) => {
             outgoing: []
         },
         comments: [],
-        bars_owned: []
+        bars_owned: [],
+        image: ''
     });
 
     return res.status(rc.status).json({ message: rc.message, user: rc.user });

@@ -83,11 +83,12 @@ export async function delete_image(username) {
 
   let path = '../public/images/user/' + uuid + '.png';
 
-  try {
-    fs.unlink(path)
-  } catch(err) {
-    console.error(err)
-  }
+  fs.unlink(path, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+  });
 }
 
 export async function get_users() {

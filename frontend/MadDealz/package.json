@@ -21,6 +21,7 @@
         "react-native-get-random-values": "^1.4.0",
         "react-native-image-crop-picker": "^0.28.0",
         "react-native-image-placeholder": "^1.0.14",
+        "react-native-maps": "0.27.1",
         "react-native-modals": "^0.19.9",
         "react-native-navigation": "^6.3.1",
         "react-native-popup-dialog": "^0.18.3",

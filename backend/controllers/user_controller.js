@@ -46,6 +46,8 @@ router.post('/uploadimage', upload.single('image'), async (req, res) => {
     let status = 200;
     let message = "Image uploaded successfully";
 
+    await User.delete_image(req.query.username);
+
     await User.update_user({
         username: req.query.username,
         image: req.query.uuid

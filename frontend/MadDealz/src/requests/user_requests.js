@@ -342,18 +342,18 @@ async function upload_image(username, image, uuid, fetch_timeout, ip) {
     image = falsy_to_empty(image);
     ip = ip ? ip : 'https://api.maddealz.software';
     let url = ip + '/user/uploadimage?username=' + username + '&uuid=' + uuid;
-    function createFormData(username, image) {
+    function createFormData(uuid, image) {
         const data = new FormData();
   
         data.append("image", {
-          name: username + '.png',
+          name: uuid + '.png',
           type: image.mime,
           uri: image.path
         });
       
         return data;
     }
-    let data = createFormData(username, image);
+    let data = createFormData(uuid, image);
     //console.log(data);
     const response = await fetchWithTimeout(
         url,

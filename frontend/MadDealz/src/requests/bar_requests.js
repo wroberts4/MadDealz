@@ -219,6 +219,42 @@ async function update_favorites(id, value, fetch_timeout, ip) {
     return (await response.json()).message;
 }
 
+async function upload_image(bar_id, image, uuid, fetch_timeout, ip) {
+    bar_id = falsy_to_empty(bar_id);
+    image = falsy_to_empty(image);
+    ip = ip ? ip : 'https://api.maddealz.software';
+    let url = ip + '/bar/uploadimage?bar_id=' + bar_id + '&uuid=' + uuid;
+    function createFormData(uuid, image) {
+        const data = new FormData();
+  
+        data.append("image", {
+          name: uuid + '.png',
+          type: image.mime,
+          uri: image.path
+        });
+      
+        return data;
+    }
+    let data = createFormData(uuid, image);
+    //console.log(data);
+    const response = await fetchWithTimeout(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: data,
+        },
+        fetch_timeout
+    );
+    if (response.status != 200) {
+        throw (await response.json()).message;
+    }
+    // Returns a new user object.
+    return (await response.json()).message;
+}
+
 module.exports = {
     create_bar,
     delete_bar,
@@ -228,4 +264,5 @@ module.exports = {
     get_deals,
     get_reviews,
     update_favorites,
+    upload_image
 };

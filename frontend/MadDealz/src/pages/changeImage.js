@@ -42,11 +42,12 @@ export default class ChangeImage extends Component {
       height: 300,
       cropping: true
     });
-    let user = await AsyncStorage.getItem('@user');
+    let user = JSON.parse(await AsyncStorage.getItem('@user'));
     let uuid = uuidv4().replace('-', '_');
     user.image = uuid;
+    console.log('uwu: ' + JSON.stringify(user));
     await AsyncStorage.setItem('@user', JSON.stringify(user));
-    await user_requests.upload_image(JSON.parse(user).username, image, uuid, 5000);
+    await user_requests.upload_image(user.username, image, uuid, 5000);
   }
 
   render() {

@@ -94,6 +94,8 @@ class Barpage extends React.Component {
 
     render() {
 
+        console.log(this.state.deals);
+
         return (
             <View style={{flex:1}}>
                 <Header
@@ -126,7 +128,7 @@ class Barpage extends React.Component {
                         />
                     </View>
                     <Card
-                        title="Dealz"
+                        title="Deals"
                         containerStyle={{
                             borderRadius: 10,
                             alignItems: 'center',
@@ -167,8 +169,8 @@ class Barpage extends React.Component {
                                     alignItems: 'center'
                                 }}
                                 key={i}
-                                title={item.content}
-                                subtitle={item.user}
+                                title={'"'+item.content+'"'}
+                                subtitle={"-"+item.user}
                             />
                             ))
                         }   

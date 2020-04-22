@@ -12,11 +12,13 @@
 #import <React/RCTRootView.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 #import "RNBootSplash.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [GMSServices provideAPIKey:@"AIzaSyAXAmIPT3zYUdrX-VTbtnb4ctXbpVgsucA"];
   UIViewController *rootViewController = [UIViewController new];
   NSURL *jsCodeLocation;
   

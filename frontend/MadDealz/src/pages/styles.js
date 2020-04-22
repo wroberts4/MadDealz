@@ -144,5 +144,11 @@ export default StyleSheet.create({
     // fontWeight: 'bold',
     marginLeft: 50,
     marginTop: 100,
-  }
+  },
+  map: {
+    height: 400,
+   width: 400,
+   justifyContent: 'center',
+   alignItems: 'center',
+  },
 });

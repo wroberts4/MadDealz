@@ -34,6 +34,12 @@ target 'MadDealz' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  # react-native-maps dependencies
+  pod 'react-native-maps', path: rn_maps_path
+  pod 'react-native-google-maps', path: rn_maps_path 
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+
   target 'MadDealzTests' do
     inherit! :search_paths
     # Pods for testing

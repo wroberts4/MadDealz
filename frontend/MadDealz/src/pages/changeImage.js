@@ -103,10 +103,11 @@ const styles = StyleSheet.create({
   button: {
     marginHorizontal: 30,
     backgroundColor: '#f55',
-    borderRadius: 4,
+    borderRadius: 10,
     height: 52,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 20
   },
   image: {
     alignSelf: 'center',

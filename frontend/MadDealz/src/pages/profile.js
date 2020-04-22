@@ -73,7 +73,7 @@ export default class Profile extends Component {
       <View style={styles.container}>
         <Header
           containerStyle={{backgroundColor: '#990000'}}
-          centerComponent={{text: userId, style: { color: '#ccc',
+          centerComponent={{text: this.state.user.username, style: { color: '#ccc',
           fontSize: 30,
           fontWeight: 'bold', } }}
         />
@@ -98,7 +98,6 @@ export default class Profile extends Component {
                 placeholderSource={require('../../assets/blank-profile.png')}
                 placeholderStyle={{borderRadius: 75, width: 150, height: 150}}
             />
-             <Text style={{color: 'white'}}>{this.state.user.username}</Text>
           </View>
          
           <TouchableOpacity style={styles.button} onPress={this.changeImagePage}>

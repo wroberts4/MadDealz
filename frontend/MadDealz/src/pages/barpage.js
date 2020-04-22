@@ -13,7 +13,7 @@ import {goToTabs} from '../../navigation';
 import styles from './styles';
 
 import AsyncStorage from '@react-native-community/async-storage';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
 bar_requests = require('../requests/bar_requests');
 user_requests = require('../requests/user_requests');
@@ -31,8 +31,8 @@ class Barpage extends React.Component {
       barName: this.props.bar.name,
       barId: this.props.bar._id,
       deals: this.props.bar.deals,
-      barLongitude: this.props.bar.location.lat, 
-      barLatitude: this.props.bar.location.lon,
+      barLongitude: this.props.bar.location.lon, 
+      barLatitude: this.props.bar.location.lat,
       img: 'https://api.maddealz.software/images/bar/' + this.props.bar.image,
       fail: false,
       //reviews: []
@@ -300,16 +300,25 @@ class Barpage extends React.Component {
             <Text>Phone Number</Text>
             <Text>Email Address?</Text>
           </Card>
-          <MapView
-            provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-            style={styles.map}
-            region={{
-              latitude: (this.state.barLatitude == null) ? this.state.barLatitude : 37.78825,
-              longitude: (this.state.barLongitude == null) ? this.state.barLatitude : -122.4324,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121,
-            }}
-          />
+          <View style={styles.mapContainer}>
+            <MapView
+                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                style={styles.map}
+                initialRegion={{
+                    latitude: this.state.barLatitude,
+                    longitude: this.state.barLongitude,
+                    latitudeDelta: 0.015,
+                    longitudeDelta: 0.0121,
+                }}
+            >
+                <Marker
+                    coordinate={{latitude: this.state.barLatitude, 
+                    longitude: this.state.barLongitude}}
+                    title={this.state.barName}
+                    pinColor={"red"}
+                />
+            </MapView>
+          </View>
         </ScrollView>
       </View>
     );
@@ -337,6 +346,5 @@ class Barpage extends React.Component {
     }   
 </Card>
 */
-
 
 export default Barpage;

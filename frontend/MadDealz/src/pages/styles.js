@@ -146,9 +146,15 @@ export default StyleSheet.create({
     marginTop: 100,
   },
   map: {
-    height: 400,
-   width: 400,
-   justifyContent: 'center',
-   alignItems: 'center',
+    height: 375,
+    width: 375,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  mapContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
+  }
 });

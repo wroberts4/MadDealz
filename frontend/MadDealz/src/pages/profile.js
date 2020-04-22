@@ -86,7 +86,7 @@ export default class Profile extends Component {
               borderRadius: 75,
             }}>
             <ImageLoad
-                style={{ borderRadius: 75, width: 150, height: 150 }}
+                style={{ borderRadius: 75, width: 150, height: 150, marginBottom: 15, marginTop: 10 }}
                 source={{
                   uri: this.state.image_uri,
                   method: 'POST',

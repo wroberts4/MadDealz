@@ -27,7 +27,7 @@ class Barpage extends React.Component {
             barName: this.props.bar.name,
             barId: this.props.bar._id,
             deals: this.props.bar.deals,
-            img: 'https://api.maddealz.software/images/bar/'+this.props.bar._id+'.png',
+            img: 'https://api.maddealz.software/images/bar/'+this.props.bar.image,
             fail: false,
             //reviews: []
         };

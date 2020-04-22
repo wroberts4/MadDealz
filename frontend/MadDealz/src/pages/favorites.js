@@ -1,6 +1,3 @@
-// TODO: Display a message telling the user to login if they aren't logged in
-// TODO: Display a message telling the user they can favorite bars if their favorites list is empty
-
 import React, {Component} from 'react';
 import {
   Animated,
@@ -14,22 +11,21 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {SearchBar} from 'react-native-elements';
 import styles from './styles';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  SlideAnimation,
-  DialogButton,
-  DialogFooter,
-} from 'react-native-popup-dialog';
+import Modal, { SlideAnimation, ModalTitle, ModalContent, ModalFooter, ModalButton, } from 'react-native-modals';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import ToggleSwitch from 'toggle-switch-react-native';
-import { goToBarPage } from '../../navigation';
 import AsyncStorage from '@react-native-community/async-storage';
+
+import { goToBarPage } from '../../navigation';
 
 bar_requests = require('../requests/bar_requests');
 
 const HEADER_MAX_HEIGHT = 300;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+var position = 0;
+var weekday = new Array(7);
+var w_position = 0;
 
 function Item({name, address}) {
   return (
@@ -40,21 +36,7 @@ function Item({name, address}) {
   );
 }
 
-function Day() {
-  var date = new Date();
-  var weekday = new Array(7);
-  weekday[0] = "Sunday";
-  weekday[1] = "Monday";
-  weekday[2] = "Tuesday";
-  weekday[3] = "Wednesday";
-  weekday[4] = "Thursday";
-  weekday[5] = "Friday";
-  weekday[6] = "Saturday";
-
-  let current_day = weekday[date.getDay()];
-  return current_day
-}
-export default class Favorites extends Component {
+export default class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -66,18 +48,18 @@ export default class Favorites extends Component {
       bars: [],
       search: '',
       filterVisible: false,
-      distance: false,
       distanceSwitch: false,
+      ratingSwitch: false,
+      alphaSwitch: false,
+      current: undefined,
     };
     this.arrayholder = []
+    this.alpha = []
+    this.rating = []
   }
 
   filterPress = () => {
     this.setState({filterVisible: true});
-  };
-
-  distancePress = () => {
-    this.setState({distance: true});
   };
 
   barPage = async bar => {
@@ -101,10 +83,28 @@ export default class Favorites extends Component {
     } catch (err) {
       console.log(err);
     }
-    
   }
 
+  compare_item_names(a, b) {
+    if(a.name < b.name) { return -1; }
+    if(a.name < b.name) { return 1; }
+    return 0;
+  }
+
+  compare_item_ratings(a, b) {
+    if(a.rating > b.rating) {
+      console.log("a.rating",a.rating);
+      console.log("b.rating",b.rating);
+      return -1; }
+    if(a.rating < b.rating) { 
+      console.log("a.rating",a.rating);
+      console.log("b.rating",b.rating);
+      return 1; }
+    return 0;
+  }
+ 
   searchFunction(text) {
+    console.log("hello", this.arrayholder);
     const newData = this.arrayholder.filter(function(item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
@@ -119,7 +119,6 @@ export default class Favorites extends Component {
   };
 
   render() {
-    
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0,
@@ -131,7 +130,7 @@ export default class Favorites extends Component {
     });
 
     const filterTranslate = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
+      inputRange: [0, HEADER_SCROLL_DISTANCE + 5],
       outputRange: [0, -HEADER_SCROLL_DISTANCE - 10],
       extrapolate: 'clamp',
     });
@@ -153,70 +152,124 @@ export default class Favorites extends Component {
       extrapolate: 'clamp',
     });
 
-    const dSwitch = this.state.distanceSwitch;
+    const aSwitch = this.state.alphaSwitch;
 
-    let dButton;
+    let aButton;
 
-    if (dSwitch == false) {
-      dButton = (
+    if (aSwitch == false) {
+      aButton = (
         <ToggleSwitch
-          isOn={this.state.distanceSwitch}
+          isOn={this.state.alphaSwitch}
           offColor="grey"
           onColor="skyblue"
-          onToggle={() => this.setState({distanceSwitch: true})}
+          onToggle={() => this.setState({
+            alphaSwitch: true,
+            current: this.alpha,
+            ratingSwitch: false,
+          })}
+        />
+      )
+    } else {
+      aButton = (
+        <ToggleSwitch
+          isOn={this.state.alphaSwitch}
+          offColor="grey"
+          onColor="skyblue"
+          onToggle={() => this.setState({
+            alphaSwitch: false,
+            current: this.arrayholder
+          })}
         />
       );
-    } else {
-      dButton = (
+    }
+
+    const rSwitch = this.state.ratingSwitch;
+
+    let rButton;
+
+    if (rSwitch == false) {
+      rButton = (
         <ToggleSwitch
-          isOn={this.state.distanceSwitch}
+          isOn={this.state.ratingSwitch}
           offColor="grey"
           onColor="skyblue"
-          onToggle={() => this.setState({distanceSwitch: false})}
+          onToggle={() => this.setState({
+            ratingSwitch: true,
+            current: this.rating,
+            alphaSwitch: false
+          })}
+        />
+      )
+    } else {
+      rButton = (
+        <ToggleSwitch
+          isOn={this.state.ratingSwitch}
+          offColor="grey"
+          onColor="skyblue"
+          onToggle={() => this.setState({
+            ratingSwitch: false,
+            current: this.arrayholder
+          })}
         />
       );
     }
 
     return (
       <View style={styles.fill}>
-        <Dialog
-          rounded
+        <Modal
+          modalTitle={<ModalTitle title = "Filter" />}
           width={Dimensions.get('screen').width * 0.75}
           visible={this.state.filterVisible}
-          dialogTitle={<DialogTitle title="Filter" />}
-          onTouchOutside={() => {
-            this.setState({filterVisible: false});
+          swipeDirection={['up', 'down']}
+          modalAnimation={new SlideAnimation({
+            slideFrom: 'bottom',
+          })}
+          swipeThreshold={100}
+          onSwipeOut={(event) => {
+            this.setState({ filterVisible: false, alphaSwitch: false, ratingSwitch: false, current: this.arrayholder});
           }}
-          dialogAnimation={
-            new SlideAnimation({
-              initialValue: 0,
-              slideFrom: 'bottom',
-              useNativeDriver: true,
-            })
-          }>
-          <DialogContent>
+          onTouchOutside={() => {
+            this.setState({ filterVisible: false, alphaSwitch: false, ratingSwitch: false, current: this.arrayholder});
+          }}
+          >
+          <ModalContent>
             <View style={styles.dialogeviewouter}>
-              <View style={styles.dialogviewinner}>
-                <Text style={styles.dialogviewtext}>Distance</Text>
-                {dButton}
+              <View style = {styles.dialogviewinner}>
+                <Text style={styles.dialogviewtext}>Alphabetical</Text>
+                <View style = {{
+                  alignItems:'flex-end',
+                  left: 120
+                  }}>
+                  {aButton}
+                </View>
               </View>
-              {dButton}
+              <View style={styles.dialogviewinner}>
+                <Text style={styles.dialogviewtext}>Rating</Text>
+                <View style = {{
+                  left: 168
+                  }}>
+                  {rButton}
+                </View>
+              </View>
             </View>
-            <View style = {styles.dialogviewinner}>
-              <Text style={styles.dialogviewtext}>Next thing</Text>
-            </View>
-          </DialogContent>
-          <DialogFooter>
-            <DialogButton
+          </ModalContent>
+          <ModalFooter>
+            <ModalButton
               text="Cancel"
-              onPress={() => this.setState({filterVisible: false})}
+              onPress={() => this.setState({
+                filterVisible: false,
+                alphaSwitch: false,
+                dSwitch: false
+              })}
             />
-            <DialogButton
-              text="Search"
-              onPress={() => this.setState({filterVisible: false})}
+            <ModalButton
+              text="Apply"
+              onPress={() => this.setState({
+                filterVisible: false
+              })}
             />
-          </DialogFooter>
-        </Dialog>
+            </ModalFooter>
+        </Modal>
         <StatusBar
           translucent
           barStyle="light-content"
@@ -334,7 +387,6 @@ export default class Favorites extends Component {
             inputContainerStyle={styles.searchbarinput}
             inputStyle={styles.searchbarinputtext}
             onChangeText={text => this.searchFunction(text)}
-            // onClear={text => this.searchFunction('')}
             value={this.state.search}
             placeholder="Search Bars Here"
           />

@@ -334,32 +334,32 @@ export default class Home extends Component {
       extrapolate: 'clamp',
     });
 
-    const dSwitch = this.state.distanceSwitch;
+    // const dSwitch = this.state.distanceSwitch;
 
-    let dButton;
+    // let dButton;
 
-    if (dSwitch == false) {
-      dButton = (
-        <ToggleSwitch
-          isOn={this.state.distanceSwitch}
-          offColor="grey"
-          onColor="skyblue"
-          onToggle={() => this.setState({
-            distanceSwitch: true,
+    // if (dSwitch == false) {
+    //   dButton = (
+    //     <ToggleSwitch
+    //       isOn={this.state.distanceSwitch}
+    //       offColor="grey"
+    //       onColor="skyblue"
+    //       onToggle={() => this.setState({
+    //         distanceSwitch: true,
             
-          })}
-        />
-      );
-    } else {
-      dButton = (
-        <ToggleSwitch
-          isOn={this.state.distanceSwitch}
-          offColor="grey"
-          onColor="skyblue"
-          onToggle={() => this.setState({distanceSwitch: false})}
-        />
-      );
-    }
+    //       })}
+    //     />
+    //   );
+    // } else {
+    //   dButton = (
+    //     <ToggleSwitch
+    //       isOn={this.state.distanceSwitch}
+    //       offColor="grey"
+    //       onColor="skyblue"
+    //       onToggle={() => this.setState({distanceSwitch: false})}
+    //     />
+    //   );
+    // }
 
     const aSwitch = this.state.alphaSwitch;
 
@@ -432,7 +432,7 @@ export default class Home extends Component {
       >
         <View style={styles.fill}>
         <Modal
-          modalTitle={<ModalTitle title = "Filters" />}
+          modalTitle={<ModalTitle title = "Filter" />}
           width={Dimensions.get('screen').width * 0.75}
           visible={this.state.filterVisible}
           swipeDirection={['up', 'down']}

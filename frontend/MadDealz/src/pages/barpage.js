@@ -143,9 +143,8 @@ class Barpage extends React.Component {
             }}>
             <Image
               style={{
-                height: 100,
-                width: 100,
-                borderRadius: 100 / 2,
+                height: 350,
+                width: 350,
               }}
               source={
                 this.state.fail

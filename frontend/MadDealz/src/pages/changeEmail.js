@@ -63,11 +63,14 @@ export default class ChangeEmail extends Component {
 
         <View style={styles.form}>
           <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>New Username</Text>
+            <Text style={styles.inputTitle}>New Email Address</Text>
             <TextInput
               style={styles.input}
               autoCapitalize="none"
               returnKeyType="next"
+              autoCompleteType="email"
+              textContentType="emailAddress"
+              keyboardType="email-address"
               onChangeText={newEmail => this.setState({newEmail})}
             />
 

@@ -49,6 +49,7 @@ export default class ChangePassword extends Component {
           console.log(user);
           await AsyncStorage.setItem('@user', JSON.stringify(user));
           user.password = this.state.newPassword;
+          user.email = "";
           console.log(user);
           let newusername = await user_requests.update_user(user, 5000);
           console.log(user.password);

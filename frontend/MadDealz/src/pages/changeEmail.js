@@ -59,7 +59,7 @@ export default class ChangeEmail extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
 
-        <Text style={styles.greeting}>{'Change Username'}</Text>
+        <Text style={styles.greeting}>{'Change Email'}</Text>
 
         <View style={styles.form}>
           <View style={{marginTop: 32}}>

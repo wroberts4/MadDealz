@@ -7,6 +7,7 @@ import {
   Icon,
   Header,
   ListItem,
+  ThemeConsumer,
 } from 'react-native-elements';
 import {goToTabs} from '../../navigation';
 import styles from './styles';
@@ -30,6 +31,8 @@ class Barpage extends React.Component {
       barName: this.props.bar.name,
       barId: this.props.bar._id,
       deals: this.props.bar.deals,
+      barLongitude: this.props.bar.location.lat, 
+      barLatitude: this.props.bar.location.lon,
       img: 'https://api.maddealz.software/images/bar/' + this.props.bar.image,
       fail: false,
       //reviews: []
@@ -301,8 +304,8 @@ class Barpage extends React.Component {
             provider={PROVIDER_GOOGLE} // remove if not using Google Maps
             style={styles.map}
             region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: (this.state.barLatitude == null) ? this.state.barLatitude : 37.78825,
+              longitude: (this.state.barLongitude == null) ? this.state.barLatitude : -122.4324,
               latitudeDelta: 0.015,
               longitudeDelta: 0.0121,
             }}

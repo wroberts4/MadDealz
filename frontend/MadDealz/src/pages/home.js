@@ -313,12 +313,12 @@ export default class Home extends Component {
 
     const filterTranslate = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE + 5],
-      outputRange: [0, -HEADER_SCROLL_DISTANCE - 10],
+      outputRange: [0, -HEADER_SCROLL_DISTANCE - 5],
       extrapolate: 'clamp',
     });
     const searchTranslate = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE + 35],
-      outputRange: [0, -(HEADER_SCROLL_DISTANCE + 35)],
+      outputRange: [0, -(HEADER_SCROLL_DISTANCE + 30)],
       extrapolate: 'clamp',
     });
 
@@ -333,33 +333,6 @@ export default class Home extends Component {
       outputRange: [0, 100],
       extrapolate: 'clamp',
     });
-
-    // const dSwitch = this.state.distanceSwitch;
-
-    // let dButton;
-
-    // if (dSwitch == false) {
-    //   dButton = (
-    //     <ToggleSwitch
-    //       isOn={this.state.distanceSwitch}
-    //       offColor="grey"
-    //       onColor="skyblue"
-    //       onToggle={() => this.setState({
-    //         distanceSwitch: true,
-            
-    //       })}
-    //     />
-    //   );
-    // } else {
-    //   dButton = (
-    //     <ToggleSwitch
-    //       isOn={this.state.distanceSwitch}
-    //       offColor="grey"
-    //       onColor="skyblue"
-    //       onToggle={() => this.setState({distanceSwitch: false})}
-    //     />
-    //   );
-    // }
 
     const aSwitch = this.state.alphaSwitch;
 

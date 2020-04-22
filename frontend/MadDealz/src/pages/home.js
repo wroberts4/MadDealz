@@ -25,11 +25,13 @@ var position = 0;
 var weekday = new Array(7);
 var w_position = 0;
 
-function Item({name, address}) {
+function Item({name, address, deal_0, deal_1, time}) {
   return (
     <View style={styles.item}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.address}>{address}</Text>
+      {/* <Text style={styles.address}>{deal_0 + ': '}{time}</Text>
+      <Text style={styles.address}>{deal_1 + ': '}{time}</Text> */}
     </View>
   );
 }
@@ -127,7 +129,6 @@ export default class Home extends Component {
       let temp = this.state.bars[i].deals[0];
       if(temp != undefined) {
         if(typeof temp.times.Monday != "undefined") {
-          console.log("right here")
           Monday.push(this.state.bars[i])
         }
         if(typeof temp.times.Tuesday != "undefined") {
@@ -222,7 +223,7 @@ export default class Home extends Component {
       this.rating = this.rating.sort(this.compare_item_ratings);
       position = 6;
     }
-    console.log("this is weekday 3 ",this.weekdays[3])
+    console.log(this.state.current[0].deals[1].info);
   }
   
 
@@ -502,7 +503,20 @@ export default class Home extends Component {
           data={this.state.current}
           renderItem={({item}) => (
             <TouchableOpacity onPress={() => this.barPage(item)}>
-              <Item name={item.name} address={item.address} />
+              <Item 
+                name={item.name} 
+                address={item.address}
+                // deal_0 = {item.deals.info != undefined ? item.deals[0].info : 'No Deals'}
+                // deal_1 = {item.deals[0].info != undefined ? item.deals.info : 'No Deals'}
+                // time = {(item.deals[0].times['Tuesday'] != undefined) ? item.deals[0].times['Tuesday']['start'] + '-' + item.deals[0].times['Tuesday']['end']: 
+                // (item.deals[0].times['Wednesday'] != undefined) ? item.deals[0].times['Wednesday']['start'] + '-' + item.deals[0].times['Wednesday']['end']: 
+                // (item.deals[0].times['Thursday'] != undefined) ? item.deals[0].times['Thursday']['start'] + '-' + item.deals[0].times['Thursday']['end'] : 
+                // (item.deals[0].times['Friday'] != undefined) ? item.deals[0].times['Friday']['start'] + '-' + item.deals[0].times['Friday']['end'] :
+                // (item.deals[0].times['Saturday'] != undefined) ? item.deals[0].times['Saturday']['start'] + '-' + item.deals[0].times['Saturday']['end'] :
+                // (item.deals[0].times['Sunday'] != undefined) ? item.deals[0].times['Sunday']['start'] + '-' + item.deals[0].times['Sunday']['end'] :
+                // (item.deals[0].times['Monday'] != undefined) ? item.deals[0].times['Monday']['start'] + '-' + item.deals[0].times['Monday']['end'] : 'No Time'} 
+
+              />
             </TouchableOpacity>
           )}
           keyExtractor={item => item._id}
@@ -569,6 +583,7 @@ export default class Home extends Component {
             marginLeft: Dimensions.get('screen').width * 0.1,
             transform: [{translateY: searchTranslate}],
             elevation: 5,
+            zIndex: 2
           }}>
           <SearchBar
             platfrom="android"

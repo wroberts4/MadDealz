@@ -379,6 +379,7 @@ export default class Home extends Component {
             marginLeft: Dimensions.get('screen').width * 0.1,
             transform: [{translateY: searchTranslate}],
             elevation: 5,
+            zIndex: 2
           }}>
           <SearchBar
             platfrom="android"

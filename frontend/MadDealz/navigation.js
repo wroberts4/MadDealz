@@ -10,7 +10,7 @@ import Signup from './src/pages/signup'; // Signup screen
 import ForgotPwd from './src/pages/forgotPassword'; // Forgot Password Screen
 import NewPwd from './src/pages/newPassword'; // New Password Screen
 import ChangePwd from './src/pages/changePassword'; // Change Password Screen
-import ChangeUsername from './src/pages/changeUsername'; // Change Username Screen
+import ChangeEmail from './src/pages/changeEmail'; // Change Email Screen
 import ChangeImage from './src/pages/changeImage'; // Change Avatar Screen
 import Contact from './src/pages/contact'; // Contact Screen
 
@@ -37,8 +37,8 @@ Navigation.registerComponent('NewPwdScreen', () =>
 Navigation.registerComponent('ChangePwdScreen', () =>
   gestureHandlerRootHOC(ChangePwd),
 );
-Navigation.registerComponent('ChangeUsernameScreen', () =>
-  gestureHandlerRootHOC(ChangeUsername),
+Navigation.registerComponent('ChangeEmailScreen', () =>
+  gestureHandlerRootHOC(ChangeEmail),
 );
 Navigation.registerComponent('ContactScreen', () => 
   gestureHandlerRootHOC(Contact),
@@ -154,7 +154,7 @@ export const goToChangePwd = (userId) =>
     },
   });
 
-  export const goToChangeUsername = () =>
+  export const goToChangeEmail = () =>
   Navigation.setRoot({
     root: {
       stack: {
@@ -162,7 +162,7 @@ export const goToChangePwd = (userId) =>
         children: [
           {
             component: {
-              name: 'ChangeUsernameScreen',
+              name: 'ChangeEmailScreen',
             },
           },
         ],

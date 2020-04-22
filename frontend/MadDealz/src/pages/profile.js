@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {Card, Image, Button, Icon, Header, Avatar} from 'react-native-elements';
 
-import {goToLogin, goToChangePwd, goToChangeUsername, goToChangeImage} from '../../navigation';
+import {goToLogin, goToChangePwd, goToChangeEmail, goToChangeImage} from '../../navigation';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import ImageLoad from 'react-native-image-placeholder';
@@ -37,8 +37,8 @@ export default class Profile extends Component {
     goToLogin();
   };
 
-  changeUsernamePage = async () => {
-    goToChangeUsername();
+  changeEmailPage = async () => {
+    goToChangeEmail();
   };
 
   changeImagePage = async () => {
@@ -108,9 +108,9 @@ export default class Profile extends Component {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={this.changeUsernamePage}>
+            onPress={this.changeEmailPage}>
             <Text style={styles.inputTitle}>
-              Change Username
+              Change Email
             </Text>
           </TouchableOpacity>
 

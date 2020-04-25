@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   StatusBar,
   LayoutAnimation,
@@ -77,7 +76,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   greeting: {
-    marginTop: 28,
+    marginTop: 50,
+    marginBottom: 15,
     color: '#ccc',
     fontSize: 28,
     fontWeight: '400',

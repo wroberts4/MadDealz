@@ -17,6 +17,7 @@ exports[`Test contact page 1`] = `
         "justifyContent": "center",
       }
     }
+    keyboardShouldPersistTaps="handled"
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     style={
@@ -37,7 +38,6 @@ exports[`Test contact page 1`] = `
         }
         style={
           Object {
-            "alignSelf": "center",
             "height": 128,
             "marginTop": 64,
             "width": 400,
@@ -117,66 +117,40 @@ exports[`Test contact page 1`] = `
         }
       />
       <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "backgroundColor": "#fff",
-            "borderRadius": 3,
-            "shadowColor": "rgba(0,0,0, .4)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
+            "alignItems": "center",
+            "backgroundColor": "#990000",
+            "borderRadius": 10,
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 20,
+            "marginHorizontal": 30,
+            "opacity": 1,
+            "width": 100,
           }
         }
       >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <Text
           style={
             Object {
-              "opacity": 1,
+              "color": "black",
+              "fontSize": 30,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#990000",
-                "borderColor": "#2089dc",
-                "borderRadius": 3,
-                "borderWidth": 0,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "padding": 8,
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
-                  "color": "black",
-                  "fontSize": 18,
-                  "paddingBottom": 1,
-                  "paddingTop": 2,
-                  "textAlign": "center",
-                }
-              }
-            >
-              Submit
-            </Text>
-          </View>
-        </View>
+          Submit
+        </Text>
       </View>
     </View>
   </RCTScrollView>
@@ -187,6 +161,7 @@ exports[`Test favorite page 1`] = `
 <View
   style={
     Object {
+      "backgroundColor": "black",
       "flex": 1,
     }
   }
@@ -198,7 +173,7 @@ exports[`Test favorite page 1`] = `
         "backgroundColor": "#242020",
         "elevation": 1,
         "height": 75,
-        "top": 30,
+        "top": 300,
         "transform": Array [
           Object {
             "translateY": 0,
@@ -405,6 +380,7 @@ exports[`Test favorite page 1`] = `
             "translateY": 0,
           },
         ],
+        "zIndex": 2,
       }
     }
   >
@@ -587,271 +563,281 @@ exports[`Test favorite page 1`] = `
 
 exports[`Test home page 1`] = `
 <View
+  config={
+    Object {
+      "directionalOffsetThreshold": 80,
+      "velocityThreshold": 0.3,
+    }
+  }
+  onMoveShouldSetResponder={[Function]}
+  onMoveShouldSetResponderCapture={[Function]}
+  onResponderEnd={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderReject={[Function]}
+  onResponderRelease={[Function]}
+  onResponderStart={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onStartShouldSetResponderCapture={[Function]}
+  onSwipeLeft={[Function]}
+  onSwipeRight={[Function]}
   style={
     Object {
+      "backgroundColor": "transparent",
       "flex": 1,
     }
   }
 >
   <View
-    pointerEvents="auto"
     style={
       Object {
-        "backgroundColor": "#242020",
-        "elevation": 1,
-        "height": 75,
-        "top": 30,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-        "zIndex": 1,
+        "backgroundColor": "black",
+        "flex": 1,
       }
     }
   >
     <View
+      pointerEvents="auto"
       style={
         Object {
+          "backgroundColor": "#242020",
           "elevation": 1,
-          "flexDirection": "row",
-          "paddingLeft": 15,
-          "paddingTop": 25,
-          "zIndex": 1,
-        }
-      }
-    >
-      <RNGestureHandlerButton
-        collapsable={false}
-        onGestureEvent={[Function]}
-        onGestureHandlerEvent={[Function]}
-        onGestureHandlerStateChange={[Function]}
-        onHandlerStateChange={[Function]}
-        rippleColor={0}
-        style={
-          Array [
-            Object {
-              "overflow": "hidden",
-            },
-            undefined,
-          ]
-        }
-      >
-        <View
-          accessible={true}
-          style={
-            Object {
-              "backgroundColor": "#990000",
-              "borderBottomLeftRadius": 10,
-              "borderBottomRightRadius": 10,
-              "borderTopLeftRadius": 10,
-              "borderTopRightRadius": 10,
-              "elevation": 1,
-              "marginRight": 15,
-              "opacity": 1,
-              "zIndex": 1,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "white",
-                "fontSize": 14,
-                "paddingBottom": 8,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 8,
-              }
-            }
-          >
-            FILTER
-          </Text>
-        </View>
-      </RNGestureHandlerButton>
-    </View>
-  </View>
-  <RCTScrollView
-    contentContainerStyle={
-      Object {
-        "backgroundColor": "black",
-        "elevation": 20,
-        "paddingBottom": 15,
-        "paddingTop": 30,
-      }
-    }
-    contentInset={
-      Object {
-        "top": 300,
-      }
-    }
-    contentOffset={
-      Object {
-        "y": -300,
-      }
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={300}
-        refreshing={false}
-      />
-    }
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={16}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "elevation": 1,
-      }
-    }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View />
-  </RCTScrollView>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "backgroundColor": "#990000",
-        "elevation": 4,
-        "height": 300,
-        "left": 0,
-        "overflow": "hidden",
-        "position": "absolute",
-        "right": 0,
-        "shadowColor": "black",
-        "shadowOffset": Object {
-          "height": 5,
-          "width": 5,
-        },
-        "shadowOpacity": 1,
-        "shadowRadius": 10,
-        "top": 0,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-      }
-    }
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../assets/Home-background.jpg",
-        }
-      }
-      style={
-        Object {
-          "height": 300,
-          "left": 0,
-          "opacity": 1,
-          "position": "absolute",
-          "resizeMode": "cover",
-          "right": 0,
-          "top": 0,
+          "height": 75,
+          "top": 300,
           "transform": Array [
             Object {
               "translateY": 0,
             },
           ],
-          "width": null,
-        }
-      }
-    />
-    <Text
-      style={
-        Object {
-          "color": "white",
-          "fontSize": 40,
-          "marginLeft": 50,
-          "marginTop": 100,
-        }
-      }
-    >
-      Monday
-      
-
-      Deals
-    </Text>
-  </View>
-  <View
-    pointerEvents="auto"
-    style={
-      Object {
-        "elevation": 5,
-        "height": 60,
-        "marginLeft": 75,
-        "position": "absolute",
-        "top": 265,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "transparent",
-          "borderBottomColor": "transparent",
-          "borderBottomWidth": 1,
-          "borderTopColor": "transparent",
-          "borderTopWidth": 1,
-          "padding": 8,
-          "top": 0,
-          "width": 562.5,
+          "zIndex": 1,
         }
       }
     >
       <View
         style={
           Object {
-            "paddingHorizontal": 0,
-            "width": "100%",
+            "elevation": 1,
+            "flexDirection": "row",
+            "paddingLeft": 15,
+            "paddingTop": 25,
+            "zIndex": 1,
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            style={
+              Object {
+                "backgroundColor": "#990000",
+                "borderBottomLeftRadius": 10,
+                "borderBottomRightRadius": 10,
+                "borderTopLeftRadius": 10,
+                "borderTopRightRadius": 10,
+                "elevation": 1,
+                "marginRight": 15,
+                "opacity": 1,
+                "zIndex": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": 14,
+                  "paddingBottom": 8,
+                  "paddingLeft": 10,
+                  "paddingRight": 10,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              FILTER
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
+      </View>
+    </View>
+    <RCTScrollView
+      contentContainerStyle={
+        Object {
+          "backgroundColor": "black",
+          "elevation": 20,
+          "paddingBottom": 15,
+          "paddingTop": 30,
+        }
+      }
+      contentInset={
+        Object {
+          "top": 300,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -300,
+        }
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={300}
+          refreshing={false}
+        />
+      }
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={16}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "elevation": 1,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View />
+    </RCTScrollView>
+    <View
+      pointerEvents="none"
+      style={
+        Object {
+          "backgroundColor": "#990000",
+          "elevation": 4,
+          "height": 300,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 5,
+            "width": 5,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 10,
+          "top": 0,
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../assets/Home-background.jpg",
+          }
+        }
+        style={
+          Object {
+            "height": 300,
+            "left": 0,
+            "opacity": 1,
+            "position": "absolute",
+            "resizeMode": "cover",
+            "right": 0,
+            "top": 0,
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+            "width": null,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 40,
+            "marginLeft": 50,
+            "marginTop": 100,
+          }
+        }
+      >
+        Sunday
+        
+
+        Deals
+      </Text>
+    </View>
+    <View
+      pointerEvents="auto"
+      style={
+        Object {
+          "elevation": 5,
+          "height": 60,
+          "marginLeft": 75,
+          "position": "absolute",
+          "top": 265,
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+          "zIndex": 2,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "borderBottomColor": "transparent",
+            "borderBottomWidth": 1,
+            "borderTopColor": "transparent",
+            "borderTopWidth": 1,
+            "padding": 8,
+            "top": 0,
+            "width": 562.5,
           }
         }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderBottomWidth": 0,
-              "borderColor": "#86939e",
-              "borderRadius": 15,
-              "flexDirection": "row",
-              "minHeight": 30,
-              "overflow": "hidden",
-              "transform": Array [
-                Object {
-                  "translateX": 0,
-                },
-              ],
+              "paddingHorizontal": 0,
+              "width": "100%",
             }
           }
         >
@@ -859,129 +845,149 @@ exports[`Test home page 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "marginLeft": 8,
-              }
-            }
-          >
-            <View>
-              <View
-                style={
+                "backgroundColor": "white",
+                "borderBottomWidth": 0,
+                "borderColor": "#86939e",
+                "borderRadius": 15,
+                "flexDirection": "row",
+                "minHeight": 30,
+                "overflow": "hidden",
+                "transform": Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "transparent",
-                    "justifyContent": "center",
-                  }
-                }
-                theme={
-                  Object {
-                    "colors": Object {
-                      "disabled": "hsl(208, 8%, 90%)",
-                      "divider": "#bcbbc1",
-                      "error": "#ff190c",
-                      "grey0": "#393e42",
-                      "grey1": "#43484d",
-                      "grey2": "#5e6977",
-                      "grey3": "#86939e",
-                      "grey4": "#bdc6cf",
-                      "grey5": "#e1e8ee",
-                      "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
-                          "error": "#f44336",
-                          "primary": "#2196f3",
-                          "secondary": "#9C27B0",
-                          "success": "#4caf50",
-                          "warning": "#ffeb3b",
-                        },
-                        "ios": Object {
-                          "error": "#ff3b30",
-                          "primary": "#007aff",
-                          "secondary": "#5856d6",
-                          "success": "#4cd964",
-                          "warning": "#ffcc00",
-                        },
-                      },
-                      "primary": "#2089dc",
-                      "searchBg": "#303337",
-                      "secondary": "#8F0CE8",
-                      "success": "#52c41a",
-                      "warning": "#faad14",
-                    },
-                  }
-                }
-                underlayColor="white"
-              >
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#86939e",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      Object {
-                        "fontFamily": "Material Icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                  testID="iconIcon"
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-          <TextInput
-            allowFontScaling={true}
-            editable={true}
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Search Bars Here"
-            placeholderTextColor="#86939e"
-            platform="default"
-            platfrom="android"
-            rejectResponderTermination={true}
-            style={
-              Object {
-                "alignSelf": "center",
-                "color": "black",
-                "flex": 1,
-                "fontSize": 18,
-                "marginLeft": 10,
-                "minHeight": 40,
-              }
-            }
-            testID="searchInput"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "marginLeft": 15,
-                "marginRight": 8,
+                    "translateX": 0,
+                  },
+                ],
               }
             }
           >
             <View
               style={
                 Object {
-                  "flexDirection": "row",
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginLeft": 8,
                 }
               }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "primary": "#2196f3",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "primary": "#007aff",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#8F0CE8",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                      },
+                    }
+                  }
+                  underlayColor="white"
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#86939e",
+                          "fontSize": 18,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                        Object {
+                          "fontFamily": "Material Icons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="iconIcon"
+                  >
+                    
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <TextInput
+              allowFontScaling={true}
+              editable={true}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              placeholder="Search Bars Here"
+              placeholderTextColor="#86939e"
+              platform="default"
+              platfrom="android"
+              rejectResponderTermination={true}
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "color": "black",
+                  "flex": 1,
+                  "fontSize": 18,
+                  "marginLeft": 10,
+                  "minHeight": 40,
+                }
+              }
+              testID="searchInput"
+              underlineColorAndroid="transparent"
+              value=""
             />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginLeft": 15,
+                  "marginRight": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                  }
+                }
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -1060,7 +1066,6 @@ exports[`Test profile page 1`] = `
             "fontWeight": "bold",
           }
         }
-        text=""
         theme={
           Object {
             "colors": Object {
@@ -1117,181 +1122,102 @@ exports[`Test profile page 1`] = `
         style={
           Object {
             "alignItems": "center",
+            "borderRadius": 75,
             "justifyContent": "center",
             "paddingTop": 5,
           }
         }
       >
         <View
-          resizeMode="contain"
+          accessibilityIgnoresInvertColors={true}
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "borderRadius": 100,
-              "height": 200,
-              "width": 200,
-            }
-          }
-          theme={
-            Object {
-              "colors": Object {
-                "disabled": "hsl(208, 8%, 90%)",
-                "divider": "#bcbbc1",
-                "error": "#ff190c",
-                "grey0": "#393e42",
-                "grey1": "#43484d",
-                "grey2": "#5e6977",
-                "grey3": "#86939e",
-                "grey4": "#bdc6cf",
-                "grey5": "#e1e8ee",
-                "greyOutline": "#bbb",
-                "platform": Object {
-                  "android": Object {
-                    "error": "#f44336",
-                    "primary": "#2196f3",
-                    "secondary": "#9C27B0",
-                    "success": "#4caf50",
-                    "warning": "#ffeb3b",
-                  },
-                  "ios": Object {
-                    "error": "#ff3b30",
-                    "primary": "#007aff",
-                    "secondary": "#5856d6",
-                    "success": "#4cd964",
-                    "warning": "#ffcc00",
-                  },
-                },
-                "primary": "#2089dc",
-                "searchBg": "#303337",
-                "secondary": "#8F0CE8",
-                "success": "#52c41a",
-                "warning": "#faad14",
+            Array [
+              Object {
+                "position": "relative",
               },
-            }
+              Object {
+                "borderRadius": 75,
+                "height": 150,
+                "marginBottom": 15,
+                "marginTop": 10,
+                "width": 150,
+              },
+            ]
           }
         >
-          <View
-            accessibilityIgnoresInvertColors={true}
-            style={
+          <Image
+            borderRadius={75}
+            onError={[Function]}
+            onLoadEnd={[Function]}
+            resizeMode="cover"
+            source={
               Object {
-                "backgroundColor": "#bdbdbd",
-                "borderRadius": 100,
-                "flex": 1,
-                "overflow": "hidden",
-                "position": "relative",
+                "cache": "default",
+                "uri": undefined,
               }
             }
-          >
-            <Image
-              onLoad={[Function]}
-              source={
-                Object {
-                  "testUri": "../../../assets/Husky.jpg",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "height": null,
-                    "width": null,
-                  },
-                ]
-              }
-              testID="RNE__Image"
-              theme={
-                Object {
-                  "colors": Object {
-                    "disabled": "hsl(208, 8%, 90%)",
-                    "divider": "#bcbbc1",
-                    "error": "#ff190c",
-                    "grey0": "#393e42",
-                    "grey1": "#43484d",
-                    "grey2": "#5e6977",
-                    "grey3": "#86939e",
-                    "grey4": "#bdc6cf",
-                    "grey5": "#e1e8ee",
-                    "greyOutline": "#bbb",
-                    "platform": Object {
-                      "android": Object {
-                        "error": "#f44336",
-                        "primary": "#2196f3",
-                        "secondary": "#9C27B0",
-                        "success": "#4caf50",
-                        "warning": "#ffeb3b",
-                      },
-                      "ios": Object {
-                        "error": "#ff3b30",
-                        "primary": "#007aff",
-                        "secondary": "#5856d6",
-                        "success": "#4cd964",
-                        "warning": "#ffcc00",
-                      },
-                    },
-                    "primary": "#2089dc",
-                    "searchBg": "#303337",
-                    "secondary": "#8F0CE8",
-                    "success": "#52c41a",
-                    "warning": "#faad14",
-                  },
-                }
-              }
-            />
-            <View
-              accessibilityElementsHidden={true}
-              importantForAccessibility="no-hide-descendants"
-              pointerEvents="none"
-              style={
+            style={
+              Array [
                 Object {
                   "bottom": 0,
                   "left": 0,
-                  "opacity": 1,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#bdbdbd",
-                    "flex": 1,
-                    "height": null,
-                    "justifyContent": "center",
-                    "width": null,
-                  }
-                }
-                testID="RNE__Image__placeholder"
-              />
-            </View>
-            <View
+                },
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#e9eef1",
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "borderRadius": 75,
+                },
+                Object {},
+              ]
+            }
+          >
+            <ActivityIndicator
+              animating={true}
+              color="gray"
+              hidesWhenStopped={true}
+              size="large"
               style={
                 Object {
-                  "flex": 1,
-                  "height": null,
-                  "width": null,
+                  "margin": "auto",
+                  "position": "absolute",
+                  "zIndex": 9,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../assets/blank-profile.png",
+                }
+              }
+              style={
+                Object {
+                  "borderRadius": 75,
+                  "height": 150,
+                  "width": 150,
                 }
               }
             />
           </View>
         </View>
-        <Text
-          style={
-            Object {
-              "color": "white",
-            }
-          }
-        >
-          
-        </Text>
       </View>
       <View
         accessible={true}
@@ -1362,7 +1288,7 @@ exports[`Test profile page 1`] = `
             }
           }
         >
-          Change Username
+          Change Email
         </Text>
       </View>
       <View
@@ -1502,6 +1428,7 @@ exports[`Test signup page 1`] = `
       </Text>
       <TextInput
         allowFontScaling={true}
+        onChangeText={[Function]}
         rejectResponderTermination={true}
         returnKeyType="next"
         style={
@@ -1539,6 +1466,7 @@ exports[`Test signup page 1`] = `
         autoCapitalize="none"
         autoCompleteType="email"
         keyboardType="email-address"
+        onChangeText={[Function]}
         rejectResponderTermination={true}
         returnKeyType="next"
         style={
@@ -1575,2748 +1503,7 @@ exports[`Test signup page 1`] = `
       <TextInput
         allowFontScaling={true}
         autoCapitalize="none"
-        rejectResponderTermination={true}
-        returnKeyType="done"
-        secureTextEntry={true}
-        style={
-          Object {
-            "borderBottomColor": "#ccc",
-            "borderBottomWidth": 0.5,
-            "color": "#eee",
-            "fontSize": 15,
-            "height": 40,
-          }
-        }
-        underlineColorAndroid="transparent"
-      />
-    </View>
-  </View>
-  <View
-    accessible={true}
-    focusable={true}
-    isTVSelectable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#f55",
-        "borderRadius": 4,
-        "height": 52,
-        "justifyContent": "center",
-        "marginHorizontal": 30,
-        "opacity": 1,
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "color": "#222",
-          "fontWeight": "500",
-        }
-      }
-    >
-      Sign Up
-    </Text>
-  </View>
-  <View
-    accessible={true}
-    focusable={true}
-    isTVSelectable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "alignSelf": "center",
-        "marginTop": 32,
-        "opacity": 1,
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "color": "#777",
-          "fontSize": 13,
-        }
-      }
-    >
-      Already have an account?
-       
-      <Text
-        style={
-          Object {
-            "color": "#f55",
-            "fontWeight": "500",
-          }
-        }
-      >
-        Login
-      </Text>
-    </Text>
-  </View>
-</View>
-`;
-
-exports[`renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    accessibilityIgnoresInvertColors={true}
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#990000",
-        "borderBottomColor": "#f2f2f2",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "height": 64,
-        "justifyContent": "space-between",
-        "paddingHorizontal": 10,
-        "paddingTop": 20,
-      }
-    }
-  >
-    <Image
-      style={
-        Array [
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          Object {
-            "height": 64,
-            "width": undefined,
-          },
-          undefined,
-        ]
-      }
-      testID="headerContainer"
-    />
-    <View
-      style={
-        Object {
-          "alignItems": "flex-start",
-          "flex": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "borderRadius": 3,
-          }
-        }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#990000",
-                "borderColor": "#2089dc",
-                "borderRadius": 3,
-                "borderWidth": 0,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "padding": 8,
-              }
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "transparent",
-                    "justifyContent": "center",
-                  }
-                }
-                theme={
-                  Object {
-                    "colors": Object {
-                      "disabled": "hsl(208, 8%, 90%)",
-                      "divider": "#bcbbc1",
-                      "error": "#ff190c",
-                      "grey0": "#393e42",
-                      "grey1": "#43484d",
-                      "grey2": "#5e6977",
-                      "grey3": "#86939e",
-                      "grey4": "#bdc6cf",
-                      "grey5": "#e1e8ee",
-                      "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
-                          "error": "#f44336",
-                          "primary": "#2196f3",
-                          "secondary": "#9C27B0",
-                          "success": "#4caf50",
-                          "warning": "#ffeb3b",
-                        },
-                        "ios": Object {
-                          "error": "#ff3b30",
-                          "primary": "#007aff",
-                          "secondary": "#5856d6",
-                          "success": "#4cd964",
-                          "warning": "#ffcc00",
-                        },
-                      },
-                      "primary": "#2089dc",
-                      "searchBg": "#303337",
-                      "secondary": "#8F0CE8",
-                      "success": "#52c41a",
-                      "warning": "#faad14",
-                    },
-                  }
-                }
-                underlayColor="white"
-              >
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "black",
-                        "fontSize": 24,
-                      },
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      Object {
-                        "fontFamily": "Material Icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                  testID="iconIcon"
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 3,
-        }
-      }
-    >
-      <Text
-        style={Object {}}
-        text=""
-        theme={
-          Object {
-            "colors": Object {
-              "disabled": "hsl(208, 8%, 90%)",
-              "divider": "#bcbbc1",
-              "error": "#ff190c",
-              "grey0": "#393e42",
-              "grey1": "#43484d",
-              "grey2": "#5e6977",
-              "grey3": "#86939e",
-              "grey4": "#bdc6cf",
-              "grey5": "#e1e8ee",
-              "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
-                  "error": "#f44336",
-                  "primary": "#2196f3",
-                  "secondary": "#9C27B0",
-                  "success": "#4caf50",
-                  "warning": "#ffeb3b",
-                },
-                "ios": Object {
-                  "error": "#ff3b30",
-                  "primary": "#007aff",
-                  "secondary": "#5856d6",
-                  "success": "#4cd964",
-                  "warning": "#ffcc00",
-                },
-              },
-              "primary": "#2089dc",
-              "searchBg": "#303337",
-              "secondary": "#8F0CE8",
-              "success": "#52c41a",
-              "warning": "#faad14",
-            },
-          }
-        }
-      >
-        
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "flex-end",
-          "flex": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "borderRadius": 3,
-          }
-        }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#990000",
-                "borderColor": "#2089dc",
-                "borderRadius": 3,
-                "borderWidth": 0,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "padding": 8,
-              }
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "transparent",
-                    "justifyContent": "center",
-                  }
-                }
-                theme={
-                  Object {
-                    "colors": Object {
-                      "disabled": "hsl(208, 8%, 90%)",
-                      "divider": "#bcbbc1",
-                      "error": "#ff190c",
-                      "grey0": "#393e42",
-                      "grey1": "#43484d",
-                      "grey2": "#5e6977",
-                      "grey3": "#86939e",
-                      "grey4": "#bdc6cf",
-                      "grey5": "#e1e8ee",
-                      "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
-                          "error": "#f44336",
-                          "primary": "#2196f3",
-                          "secondary": "#9C27B0",
-                          "success": "#4caf50",
-                          "warning": "#ffeb3b",
-                        },
-                        "ios": Object {
-                          "error": "#ff3b30",
-                          "primary": "#007aff",
-                          "secondary": "#5856d6",
-                          "success": "#4cd964",
-                          "warning": "#ffcc00",
-                        },
-                      },
-                      "primary": "#2089dc",
-                      "searchBg": "#303337",
-                      "secondary": "#8F0CE8",
-                      "success": "#52c41a",
-                      "warning": "#faad14",
-                    },
-                  }
-                }
-                underlayColor="white"
-              >
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "black",
-                        "fontSize": 24,
-                      },
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      Object {
-                        "fontFamily": "Material Icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                  testID="iconIcon"
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-  <RCTScrollView
-    style={
-      Object {
-        "backgroundColor": "black",
-        "height": 1334,
-      }
-    }
-  >
-    <View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "justifyContent": "center",
-            "paddingTop": 5,
-          }
-        }
-      >
-        <View
-          accessibilityIgnoresInvertColors={true}
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "position": "relative",
-            }
-          }
-        >
-          <Image
-            onLoad={[Function]}
-            resizeMode="contain"
-            source={
-              Object {
-                "testUri": "../../../assets/UU.jpg",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                },
-                Object {
-                  "height": 200,
-                  "width": 730,
-                },
-              ]
-            }
-            testID="RNE__Image"
-            theme={
-              Object {
-                "colors": Object {
-                  "disabled": "hsl(208, 8%, 90%)",
-                  "divider": "#bcbbc1",
-                  "error": "#ff190c",
-                  "grey0": "#393e42",
-                  "grey1": "#43484d",
-                  "grey2": "#5e6977",
-                  "grey3": "#86939e",
-                  "grey4": "#bdc6cf",
-                  "grey5": "#e1e8ee",
-                  "greyOutline": "#bbb",
-                  "platform": Object {
-                    "android": Object {
-                      "error": "#f44336",
-                      "primary": "#2196f3",
-                      "secondary": "#9C27B0",
-                      "success": "#4caf50",
-                      "warning": "#ffeb3b",
-                    },
-                    "ios": Object {
-                      "error": "#ff3b30",
-                      "primary": "#007aff",
-                      "secondary": "#5856d6",
-                      "success": "#4cd964",
-                      "warning": "#ffcc00",
-                    },
-                  },
-                  "primary": "#2089dc",
-                  "searchBg": "#303337",
-                  "secondary": "#8F0CE8",
-                  "success": "#52c41a",
-                  "warning": "#faad14",
-                },
-              }
-            }
-          />
-          <View
-            accessibilityElementsHidden={true}
-            importantForAccessibility="no-hide-descendants"
-            pointerEvents="none"
-            style={
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 1,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#bdbdbd",
-                  "height": 200,
-                  "justifyContent": "center",
-                  "width": 730,
-                }
-              }
-              testID="RNE__Image__placeholder"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "height": 200,
-                "width": 730,
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#e1e8ee",
-            "borderRadius": 10,
-            "borderWidth": 1,
-            "margin": 15,
-            "marginBottom": 0,
-            "padding": 15,
-            "shadowColor": "rgba(0,0,0, .2)",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "transparent",
-            }
-          }
-        >
-          <View>
-            <Text
-              style={
-                Object {
-                  "color": "#43484d",
-                  "fontSize": 17.5,
-                  "fontWeight": "bold",
-                  "marginBottom": 15,
-                  "textAlign": "center",
-                }
-              }
-              testID="cardTitle"
-              theme={
-                Object {
-                  "colors": Object {
-                    "disabled": "hsl(208, 8%, 90%)",
-                    "divider": "#bcbbc1",
-                    "error": "#ff190c",
-                    "grey0": "#393e42",
-                    "grey1": "#43484d",
-                    "grey2": "#5e6977",
-                    "grey3": "#86939e",
-                    "grey4": "#bdc6cf",
-                    "grey5": "#e1e8ee",
-                    "greyOutline": "#bbb",
-                    "platform": Object {
-                      "android": Object {
-                        "error": "#f44336",
-                        "primary": "#2196f3",
-                        "secondary": "#9C27B0",
-                        "success": "#4caf50",
-                        "warning": "#ffeb3b",
-                      },
-                      "ios": Object {
-                        "error": "#ff3b30",
-                        "primary": "#007aff",
-                        "secondary": "#5856d6",
-                        "success": "#4cd964",
-                        "warning": "#ffcc00",
-                      },
-                    },
-                    "primary": "#2089dc",
-                    "searchBg": "#303337",
-                    "secondary": "#8F0CE8",
-                    "success": "#52c41a",
-                    "warning": "#faad14",
-                  },
-                }
-              }
-            >
-              Dealz
-            </Text>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#bcbbc1",
-                  "height": 0.5,
-                  "marginBottom": 15,
-                }
-              }
-            />
-          </View>
-          <Text>
-            Sunday
-          </Text>
-          <Text>
-            Monday
-          </Text>
-          <Text>
-            Tuesday
-          </Text>
-          <Text>
-            Wednesday
-          </Text>
-          <Text>
-            Thursday
-          </Text>
-          <Text>
-            Friday
-          </Text>
-          <Text>
-            Saturday
-          </Text>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#e1e8ee",
-            "borderRadius": 10,
-            "borderWidth": 1,
-            "margin": 15,
-            "marginBottom": 0,
-            "padding": 15,
-            "shadowColor": "rgba(0,0,0, .2)",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "transparent",
-            }
-          }
-        >
-          <View>
-            <Text
-              style={
-                Object {
-                  "color": "#43484d",
-                  "fontSize": 17.5,
-                  "fontWeight": "bold",
-                  "marginBottom": 15,
-                  "textAlign": "center",
-                }
-              }
-              testID="cardTitle"
-              theme={
-                Object {
-                  "colors": Object {
-                    "disabled": "hsl(208, 8%, 90%)",
-                    "divider": "#bcbbc1",
-                    "error": "#ff190c",
-                    "grey0": "#393e42",
-                    "grey1": "#43484d",
-                    "grey2": "#5e6977",
-                    "grey3": "#86939e",
-                    "grey4": "#bdc6cf",
-                    "grey5": "#e1e8ee",
-                    "greyOutline": "#bbb",
-                    "platform": Object {
-                      "android": Object {
-                        "error": "#f44336",
-                        "primary": "#2196f3",
-                        "secondary": "#9C27B0",
-                        "success": "#4caf50",
-                        "warning": "#ffeb3b",
-                      },
-                      "ios": Object {
-                        "error": "#ff3b30",
-                        "primary": "#007aff",
-                        "secondary": "#5856d6",
-                        "success": "#4cd964",
-                        "warning": "#ffcc00",
-                      },
-                    },
-                    "primary": "#2089dc",
-                    "searchBg": "#303337",
-                    "secondary": "#8F0CE8",
-                    "success": "#52c41a",
-                    "warning": "#faad14",
-                  },
-                }
-              }
-            >
-              Reviews
-            </Text>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#bcbbc1",
-                  "height": 0.5,
-                  "marginBottom": 15,
-                }
-              }
-            />
-          </View>
-          <Text>
-            Reviews here
-          </Text>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#e1e8ee",
-            "borderRadius": 10,
-            "borderWidth": 1,
-            "margin": 15,
-            "marginBottom": 0,
-            "padding": 15,
-            "shadowColor": "rgba(0,0,0, .2)",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "transparent",
-            }
-          }
-        >
-          <View>
-            <Text
-              style={
-                Object {
-                  "color": "#43484d",
-                  "fontSize": 17.5,
-                  "fontWeight": "bold",
-                  "marginBottom": 15,
-                  "textAlign": "center",
-                }
-              }
-              testID="cardTitle"
-              theme={
-                Object {
-                  "colors": Object {
-                    "disabled": "hsl(208, 8%, 90%)",
-                    "divider": "#bcbbc1",
-                    "error": "#ff190c",
-                    "grey0": "#393e42",
-                    "grey1": "#43484d",
-                    "grey2": "#5e6977",
-                    "grey3": "#86939e",
-                    "grey4": "#bdc6cf",
-                    "grey5": "#e1e8ee",
-                    "greyOutline": "#bbb",
-                    "platform": Object {
-                      "android": Object {
-                        "error": "#f44336",
-                        "primary": "#2196f3",
-                        "secondary": "#9C27B0",
-                        "success": "#4caf50",
-                        "warning": "#ffeb3b",
-                      },
-                      "ios": Object {
-                        "error": "#ff3b30",
-                        "primary": "#007aff",
-                        "secondary": "#5856d6",
-                        "success": "#4cd964",
-                        "warning": "#ffcc00",
-                      },
-                    },
-                    "primary": "#2089dc",
-                    "searchBg": "#303337",
-                    "secondary": "#8F0CE8",
-                    "success": "#52c41a",
-                    "warning": "#faad14",
-                  },
-                }
-              }
-            >
-              Contact Us
-            </Text>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#bcbbc1",
-                  "height": 0.5,
-                  "marginBottom": 15,
-                }
-              }
-            />
-          </View>
-          <Text>
-            Hours
-          </Text>
-          <Text>
-            Phone Number
-          </Text>
-          <Text>
-            Email Address?
-          </Text>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
-</View>
-`;
-
-exports[`renders correctly 2`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <RCTScrollView
-    collapsable={false}
-    contentContainerStyle={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
-    style={
-      Object {
-        "backgroundColor": "black",
-        "height": 1334,
-        "paddingBottom": 30,
-        "paddingTop": 20,
-      }
-    }
-  >
-    <View>
-      <Image
-        source={
-          Object {
-            "testUri": "../../../assets/logo.png",
-          }
-        }
-        style={
-          Object {
-            "alignSelf": "center",
-            "height": 128,
-            "marginTop": 64,
-            "width": 400,
-          }
-        }
-      />
-      <Text
-        style={
-          Object {
-            "color": "white",
-          }
-        }
-      >
-        Questions? Comments? Complaints? Please let us know below and leave your email address if you would like a response.
-      </Text>
-      <Text
-        style={
-          Object {
-            "color": "white",
-            "paddingBottom": 40,
-          }
-        }
-      >
-        Thanks!
-      </Text>
-      <View
-        style={
-          Object {
-            "paddingHorizontal": 10,
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "borderBottomWidth": 1,
-              "borderColor": "#990000",
-              "flexDirection": "row",
-              "transform": Array [
-                Object {
-                  "translateX": 0,
-                },
-              ],
-            }
-          }
-        >
-          <TextInput
-            allowFontScaling={true}
-            autoCorrect={true}
-            editable={true}
-            multiline={true}
-            onChangeText={[Function]}
-            placeholder="Please enter your message here."
-            placeholderTextColor="grey"
-            rejectResponderTermination={true}
-            style={
-              Object {
-                "alignSelf": "center",
-                "color": "#990000",
-                "flex": 1,
-                "fontSize": 18,
-                "minHeight": 40,
-              }
-            }
-            testID="RNE__Input__text-input"
-            underlineColorAndroid="transparent"
-          />
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "padding": 10,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "backgroundColor": "#fff",
-            "borderRadius": 3,
-            "shadowColor": "rgba(0,0,0, .4)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-          }
-        }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#990000",
-                "borderColor": "#2089dc",
-                "borderRadius": 3,
-                "borderWidth": 0,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "padding": 8,
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
-                  "color": "black",
-                  "fontSize": 18,
-                  "paddingBottom": 1,
-                  "paddingTop": 2,
-                  "textAlign": "center",
-                }
-              }
-            >
-              Submit
-            </Text>
-          </View>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
-</View>
-`;
-
-exports[`renders correctly 3`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    pointerEvents="auto"
-    style={
-      Object {
-        "backgroundColor": "#242020",
-        "elevation": 1,
-        "height": 75,
-        "top": 30,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-        "zIndex": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "elevation": 1,
-          "flexDirection": "row",
-          "paddingLeft": 15,
-          "paddingTop": 25,
-          "zIndex": 1,
-        }
-      }
-    >
-      <RNGestureHandlerButton
-        collapsable={false}
-        onGestureEvent={[Function]}
-        onGestureHandlerEvent={[Function]}
-        onGestureHandlerStateChange={[Function]}
-        onHandlerStateChange={[Function]}
-        rippleColor={0}
-        style={
-          Array [
-            Object {
-              "overflow": "hidden",
-            },
-            undefined,
-          ]
-        }
-      >
-        <View
-          accessible={true}
-          style={
-            Object {
-              "backgroundColor": "#990000",
-              "borderBottomLeftRadius": 10,
-              "borderBottomRightRadius": 10,
-              "borderTopLeftRadius": 10,
-              "borderTopRightRadius": 10,
-              "elevation": 1,
-              "marginRight": 15,
-              "opacity": 1,
-              "zIndex": 1,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "white",
-                "fontSize": 14,
-                "paddingBottom": 8,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 8,
-              }
-            }
-          >
-            FILTER
-          </Text>
-        </View>
-      </RNGestureHandlerButton>
-    </View>
-  </View>
-  <RCTScrollView
-    contentContainerStyle={
-      Object {
-        "backgroundColor": "black",
-        "elevation": 20,
-        "paddingBottom": 15,
-        "paddingTop": 30,
-      }
-    }
-    contentInset={
-      Object {
-        "top": 300,
-      }
-    }
-    contentOffset={
-      Object {
-        "y": -300,
-      }
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={300}
-        refreshing={false}
-      />
-    }
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={16}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "elevation": 1,
-      }
-    }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View />
-  </RCTScrollView>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "backgroundColor": "#990000",
-        "elevation": 4,
-        "height": 300,
-        "left": 0,
-        "overflow": "hidden",
-        "position": "absolute",
-        "right": 0,
-        "shadowColor": "black",
-        "shadowOffset": Object {
-          "height": 5,
-          "width": 5,
-        },
-        "shadowOpacity": 1,
-        "shadowRadius": 10,
-        "top": 0,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-      }
-    }
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../assets/Home-background.jpg",
-        }
-      }
-      style={
-        Object {
-          "height": 300,
-          "left": 0,
-          "opacity": 1,
-          "position": "absolute",
-          "resizeMode": "cover",
-          "right": 0,
-          "top": 0,
-          "transform": Array [
-            Object {
-              "translateY": 0,
-            },
-          ],
-          "width": null,
-        }
-      }
-    />
-    <Text
-      style={
-        Object {
-          "color": "white",
-          "fontSize": 40,
-          "marginLeft": 50,
-          "marginTop": 100,
-        }
-      }
-    >
-      Favorites
-    </Text>
-  </View>
-  <View
-    pointerEvents="auto"
-    style={
-      Object {
-        "elevation": 5,
-        "height": 60,
-        "marginLeft": 75,
-        "position": "absolute",
-        "top": 265,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "transparent",
-          "borderBottomColor": "transparent",
-          "borderBottomWidth": 1,
-          "borderTopColor": "transparent",
-          "borderTopWidth": 1,
-          "padding": 8,
-          "top": 0,
-          "width": 562.5,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "paddingHorizontal": 0,
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderBottomWidth": 0,
-              "borderColor": "#86939e",
-              "borderRadius": 15,
-              "flexDirection": "row",
-              "minHeight": 30,
-              "overflow": "hidden",
-              "transform": Array [
-                Object {
-                  "translateX": 0,
-                },
-              ],
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "marginLeft": 8,
-              }
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "transparent",
-                    "justifyContent": "center",
-                  }
-                }
-                theme={
-                  Object {
-                    "colors": Object {
-                      "disabled": "hsl(208, 8%, 90%)",
-                      "divider": "#bcbbc1",
-                      "error": "#ff190c",
-                      "grey0": "#393e42",
-                      "grey1": "#43484d",
-                      "grey2": "#5e6977",
-                      "grey3": "#86939e",
-                      "grey4": "#bdc6cf",
-                      "grey5": "#e1e8ee",
-                      "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
-                          "error": "#f44336",
-                          "primary": "#2196f3",
-                          "secondary": "#9C27B0",
-                          "success": "#4caf50",
-                          "warning": "#ffeb3b",
-                        },
-                        "ios": Object {
-                          "error": "#ff3b30",
-                          "primary": "#007aff",
-                          "secondary": "#5856d6",
-                          "success": "#4cd964",
-                          "warning": "#ffcc00",
-                        },
-                      },
-                      "primary": "#2089dc",
-                      "searchBg": "#303337",
-                      "secondary": "#8F0CE8",
-                      "success": "#52c41a",
-                      "warning": "#faad14",
-                    },
-                  }
-                }
-                underlayColor="white"
-              >
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#86939e",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      Object {
-                        "fontFamily": "Material Icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                  testID="iconIcon"
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-          <TextInput
-            allowFontScaling={true}
-            editable={true}
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Search Bars Here"
-            placeholderTextColor="#86939e"
-            platform="default"
-            platfrom="android"
-            rejectResponderTermination={true}
-            style={
-              Object {
-                "alignSelf": "center",
-                "color": "black",
-                "flex": 1,
-                "fontSize": 18,
-                "marginLeft": 10,
-                "minHeight": 40,
-              }
-            }
-            testID="searchInput"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "marginLeft": 15,
-                "marginRight": 8,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-</View>
-`;
-
-exports[`renders correctly 4`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "#000",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
->
-  <View
-    accessibilityIgnoresInvertColors={true}
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#990000",
-        "borderBottomColor": "#f2f2f2",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "height": 64,
-        "justifyContent": "space-between",
-        "paddingHorizontal": 10,
-        "paddingTop": 20,
-      }
-    }
-  >
-    <Image
-      style={
-        Array [
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          Object {
-            "height": 64,
-            "width": undefined,
-          },
-          undefined,
-        ]
-      }
-      testID="headerContainer"
-    />
-    <View
-      style={
-        Object {
-          "alignItems": "flex-start",
-          "flex": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "borderRadius": 3,
-          }
-        }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#990000",
-                "borderColor": "#2089dc",
-                "borderRadius": 3,
-                "borderWidth": 0,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "padding": 8,
-              }
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "transparent",
-                    "justifyContent": "center",
-                  }
-                }
-                theme={
-                  Object {
-                    "colors": Object {
-                      "disabled": "hsl(208, 8%, 90%)",
-                      "divider": "#bcbbc1",
-                      "error": "#ff190c",
-                      "grey0": "#393e42",
-                      "grey1": "#43484d",
-                      "grey2": "#5e6977",
-                      "grey3": "#86939e",
-                      "grey4": "#bdc6cf",
-                      "grey5": "#e1e8ee",
-                      "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
-                          "error": "#f44336",
-                          "primary": "#2196f3",
-                          "secondary": "#9C27B0",
-                          "success": "#4caf50",
-                          "warning": "#ffeb3b",
-                        },
-                        "ios": Object {
-                          "error": "#ff3b30",
-                          "primary": "#007aff",
-                          "secondary": "#5856d6",
-                          "success": "#4cd964",
-                          "warning": "#ffcc00",
-                        },
-                      },
-                      "primary": "#2089dc",
-                      "searchBg": "#303337",
-                      "secondary": "#8F0CE8",
-                      "success": "#52c41a",
-                      "warning": "#faad14",
-                    },
-                  }
-                }
-                underlayColor="white"
-              >
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "black",
-                        "fontSize": 24,
-                      },
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      Object {
-                        "fontFamily": "Material Icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                  testID="iconIcon"
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 3,
-        }
-      }
-    >
-      <Text
-        style={Object {}}
-        theme={
-          Object {
-            "colors": Object {
-              "disabled": "hsl(208, 8%, 90%)",
-              "divider": "#bcbbc1",
-              "error": "#ff190c",
-              "grey0": "#393e42",
-              "grey1": "#43484d",
-              "grey2": "#5e6977",
-              "grey3": "#86939e",
-              "grey4": "#bdc6cf",
-              "grey5": "#e1e8ee",
-              "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
-                  "error": "#f44336",
-                  "primary": "#2196f3",
-                  "secondary": "#9C27B0",
-                  "success": "#4caf50",
-                  "warning": "#ffeb3b",
-                },
-                "ios": Object {
-                  "error": "#ff3b30",
-                  "primary": "#007aff",
-                  "secondary": "#5856d6",
-                  "success": "#4cd964",
-                  "warning": "#ffcc00",
-                },
-              },
-              "primary": "#2089dc",
-              "searchBg": "#303337",
-              "secondary": "#8F0CE8",
-              "success": "#52c41a",
-              "warning": "#faad14",
-            },
-          }
-        }
-      >
-        
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "flex-end",
-          "flex": 1,
-        }
-      }
-    />
-  </View>
-  <RCTScrollView>
-    <View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "justifyContent": "center",
-            "paddingTop": 5,
-          }
-        }
-      >
-        <View
-          resizeMode="contain"
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "borderRadius": 100,
-              "height": 200,
-              "width": 200,
-            }
-          }
-          theme={
-            Object {
-              "colors": Object {
-                "disabled": "hsl(208, 8%, 90%)",
-                "divider": "#bcbbc1",
-                "error": "#ff190c",
-                "grey0": "#393e42",
-                "grey1": "#43484d",
-                "grey2": "#5e6977",
-                "grey3": "#86939e",
-                "grey4": "#bdc6cf",
-                "grey5": "#e1e8ee",
-                "greyOutline": "#bbb",
-                "platform": Object {
-                  "android": Object {
-                    "error": "#f44336",
-                    "primary": "#2196f3",
-                    "secondary": "#9C27B0",
-                    "success": "#4caf50",
-                    "warning": "#ffeb3b",
-                  },
-                  "ios": Object {
-                    "error": "#ff3b30",
-                    "primary": "#007aff",
-                    "secondary": "#5856d6",
-                    "success": "#4cd964",
-                    "warning": "#ffcc00",
-                  },
-                },
-                "primary": "#2089dc",
-                "searchBg": "#303337",
-                "secondary": "#8F0CE8",
-                "success": "#52c41a",
-                "warning": "#faad14",
-              },
-            }
-          }
-        >
-          <View
-            accessibilityIgnoresInvertColors={true}
-            style={
-              Object {
-                "backgroundColor": "#bdbdbd",
-                "borderRadius": 100,
-                "flex": 1,
-                "overflow": "hidden",
-                "position": "relative",
-              }
-            }
-          >
-            <Image
-              onLoad={[Function]}
-              source={
-                Object {
-                  "testUri": "../../../assets/Husky.jpg",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "height": null,
-                    "width": null,
-                  },
-                ]
-              }
-              testID="RNE__Image"
-              theme={
-                Object {
-                  "colors": Object {
-                    "disabled": "hsl(208, 8%, 90%)",
-                    "divider": "#bcbbc1",
-                    "error": "#ff190c",
-                    "grey0": "#393e42",
-                    "grey1": "#43484d",
-                    "grey2": "#5e6977",
-                    "grey3": "#86939e",
-                    "grey4": "#bdc6cf",
-                    "grey5": "#e1e8ee",
-                    "greyOutline": "#bbb",
-                    "platform": Object {
-                      "android": Object {
-                        "error": "#f44336",
-                        "primary": "#2196f3",
-                        "secondary": "#9C27B0",
-                        "success": "#4caf50",
-                        "warning": "#ffeb3b",
-                      },
-                      "ios": Object {
-                        "error": "#ff3b30",
-                        "primary": "#007aff",
-                        "secondary": "#5856d6",
-                        "success": "#4cd964",
-                        "warning": "#ffcc00",
-                      },
-                    },
-                    "primary": "#2089dc",
-                    "searchBg": "#303337",
-                    "secondary": "#8F0CE8",
-                    "success": "#52c41a",
-                    "warning": "#faad14",
-                  },
-                }
-              }
-            />
-            <View
-              accessibilityElementsHidden={true}
-              importantForAccessibility="no-hide-descendants"
-              pointerEvents="none"
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 1,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#bdbdbd",
-                    "flex": 1,
-                    "height": null,
-                    "justifyContent": "center",
-                    "width": null,
-                  }
-                }
-                testID="RNE__Image__placeholder"
-              />
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "height": null,
-                  "width": null,
-                }
-              }
-            />
-          </View>
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#aaa",
-                "borderRadius": 33.333333333333336,
-                "bottom": 0,
-                "height": 66.66666666666667,
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 0,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.5,
-                "shadowRadius": 2,
-                "width": 66.66666666666667,
-              }
-            }
-          >
-            <View
-              style={null}
-            >
-              <View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "justifyContent": "center",
-                    }
-                  }
-                  theme={
-                    Object {
-                      "colors": Object {
-                        "disabled": "hsl(208, 8%, 90%)",
-                        "divider": "#bcbbc1",
-                        "error": "#ff190c",
-                        "grey0": "#393e42",
-                        "grey1": "#43484d",
-                        "grey2": "#5e6977",
-                        "grey3": "#86939e",
-                        "grey4": "#bdc6cf",
-                        "grey5": "#e1e8ee",
-                        "greyOutline": "#bbb",
-                        "platform": Object {
-                          "android": Object {
-                            "error": "#f44336",
-                            "primary": "#2196f3",
-                            "secondary": "#9C27B0",
-                            "success": "#4caf50",
-                            "warning": "#ffeb3b",
-                          },
-                          "ios": Object {
-                            "error": "#ff3b30",
-                            "primary": "#007aff",
-                            "secondary": "#5856d6",
-                            "success": "#4cd964",
-                            "warning": "#ffcc00",
-                          },
-                        },
-                        "primary": "#2089dc",
-                        "searchBg": "#303337",
-                        "secondary": "#8F0CE8",
-                        "success": "#52c41a",
-                        "warning": "#faad14",
-                      },
-                    }
-                  }
-                  underlayColor="#000"
-                >
-                  <Text
-                    allowFontScaling={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fff",
-                          "fontSize": 53.33333333333334,
-                        },
-                        Object {
-                          "backgroundColor": "transparent",
-                        },
-                        Object {
-                          "fontFamily": "Material Icons",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
-                        },
-                        Object {},
-                      ]
-                    }
-                    testID="iconIcon"
-                  >
-                    
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-        <Text
-          style={
-            Object {
-              "color": "white",
-            }
-          }
-        />
-      </View>
-      <View
-        style={
-          Object {
-            "height": 200,
-            "marginBottom": 48,
-            "marginHorizontal": 30,
-            "marginTop": 28,
-            "width": 710,
-          }
-        }
-      >
-        <View>
-          <Text
-            style={
-              Object {
-                "color": "#ccc",
-                "fontSize": 10,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            Email Address
-          </Text>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCompleteType="email"
-            keyboardType="email-address"
-            rejectResponderTermination={true}
-            returnKeyType="next"
-            style={
-              Object {
-                "borderBottomColor": "#ccc",
-                "borderBottomWidth": 0.5,
-                "color": "#eee",
-                "fontSize": 15,
-                "height": 40,
-              }
-            }
-            textContentType="emailAddress"
-            underlineColorAndroid="transparent"
-          />
-        </View>
-        <View
-          style={
-            Object {
-              "marginTop": 32,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#ccc",
-                "fontSize": 10,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            Old Password
-          </Text>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            rejectResponderTermination={true}
-            returnKeyType="done"
-            secureTextEntry={true}
-            style={
-              Object {
-                "borderBottomColor": "#ccc",
-                "borderBottomWidth": 0.5,
-                "color": "#eee",
-                "fontSize": 15,
-                "height": 40,
-              }
-            }
-            underlineColorAndroid="transparent"
-          />
-        </View>
-        <View
-          style={
-            Object {
-              "marginTop": 32,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#ccc",
-                "fontSize": 10,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            New Password
-          </Text>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            rejectResponderTermination={true}
-            returnKeyType="done"
-            secureTextEntry={true}
-            style={
-              Object {
-                "borderBottomColor": "#ccc",
-                "borderBottomWidth": 0.5,
-                "color": "#eee",
-                "fontSize": 15,
-                "height": 40,
-              }
-            }
-            underlineColorAndroid="transparent"
-          />
-        </View>
-      </View>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#f55",
-            "borderRadius": 4,
-            "height": 32,
-            "justifyContent": "center",
-            "marginHorizontal": 30,
-            "opacity": 1,
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "color": "#222",
-              "fontWeight": "500",
-            }
-          }
-        >
-          Logout
-        </Text>
-      </View>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#f55",
-            "borderRadius": 4,
-            "height": 32,
-            "justifyContent": "center",
-            "marginHorizontal": 30,
-            "opacity": 1,
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "color": "#222",
-              "fontWeight": "500",
-            }
-          }
-        >
-          Change Password
-        </Text>
-      </View>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#f55",
-            "borderRadius": 4,
-            "height": 32,
-            "justifyContent": "center",
-            "marginHorizontal": 30,
-            "opacity": 1,
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "color": "#222",
-              "fontWeight": "500",
-            }
-          }
-        >
-          Change Username
-        </Text>
-      </View>
-    </View>
-  </RCTScrollView>
-</View>
-`;
-
-exports[`renders correctly 5`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    pointerEvents="auto"
-    style={
-      Object {
-        "backgroundColor": "#242020",
-        "elevation": 1,
-        "height": 75,
-        "top": 30,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-        "zIndex": 1,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "elevation": 1,
-          "flexDirection": "row",
-          "paddingLeft": 15,
-          "paddingTop": 25,
-          "zIndex": 1,
-        }
-      }
-    >
-      <RNGestureHandlerButton
-        collapsable={false}
-        onGestureEvent={[Function]}
-        onGestureHandlerEvent={[Function]}
-        onGestureHandlerStateChange={[Function]}
-        onHandlerStateChange={[Function]}
-        rippleColor={0}
-        style={
-          Array [
-            Object {
-              "overflow": "hidden",
-            },
-            undefined,
-          ]
-        }
-      >
-        <View
-          accessible={true}
-          style={
-            Object {
-              "backgroundColor": "#990000",
-              "borderBottomLeftRadius": 10,
-              "borderBottomRightRadius": 10,
-              "borderTopLeftRadius": 10,
-              "borderTopRightRadius": 10,
-              "elevation": 1,
-              "marginRight": 15,
-              "opacity": 1,
-              "zIndex": 1,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "white",
-                "fontSize": 14,
-                "paddingBottom": 8,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 8,
-              }
-            }
-          >
-            FILTER
-          </Text>
-        </View>
-      </RNGestureHandlerButton>
-    </View>
-  </View>
-  <RCTScrollView
-    contentContainerStyle={
-      Object {
-        "backgroundColor": "black",
-        "elevation": 20,
-        "paddingBottom": 15,
-        "paddingTop": 30,
-      }
-    }
-    contentInset={
-      Object {
-        "top": 300,
-      }
-    }
-    contentOffset={
-      Object {
-        "y": -300,
-      }
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={300}
-        refreshing={false}
-      />
-    }
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={16}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "elevation": 1,
-      }
-    }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View />
-  </RCTScrollView>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "backgroundColor": "#990000",
-        "elevation": 4,
-        "height": 300,
-        "left": 0,
-        "overflow": "hidden",
-        "position": "absolute",
-        "right": 0,
-        "shadowColor": "black",
-        "shadowOffset": Object {
-          "height": 5,
-          "width": 5,
-        },
-        "shadowOpacity": 1,
-        "shadowRadius": 10,
-        "top": 0,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-      }
-    }
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../assets/Home-background.jpg",
-        }
-      }
-      style={
-        Object {
-          "height": 300,
-          "left": 0,
-          "opacity": 1,
-          "position": "absolute",
-          "resizeMode": "cover",
-          "right": 0,
-          "top": 0,
-          "transform": Array [
-            Object {
-              "translateY": 0,
-            },
-          ],
-          "width": null,
-        }
-      }
-    />
-    <Text
-      style={
-        Object {
-          "color": "white",
-          "fontSize": 40,
-          "marginLeft": 50,
-          "marginTop": 100,
-        }
-      }
-    >
-      Sunday
-      
-
-      Deals
-    </Text>
-  </View>
-  <View
-    pointerEvents="auto"
-    style={
-      Object {
-        "elevation": 5,
-        "height": 60,
-        "marginLeft": 75,
-        "position": "absolute",
-        "top": 265,
-        "transform": Array [
-          Object {
-            "translateY": 0,
-          },
-        ],
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "transparent",
-          "borderBottomColor": "transparent",
-          "borderBottomWidth": 1,
-          "borderTopColor": "transparent",
-          "borderTopWidth": 1,
-          "padding": 8,
-          "top": 0,
-          "width": 562.5,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "paddingHorizontal": 0,
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderBottomWidth": 0,
-              "borderColor": "#86939e",
-              "borderRadius": 15,
-              "flexDirection": "row",
-              "minHeight": 30,
-              "overflow": "hidden",
-              "transform": Array [
-                Object {
-                  "translateX": 0,
-                },
-              ],
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "marginLeft": 8,
-              }
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "transparent",
-                    "justifyContent": "center",
-                  }
-                }
-                theme={
-                  Object {
-                    "colors": Object {
-                      "disabled": "hsl(208, 8%, 90%)",
-                      "divider": "#bcbbc1",
-                      "error": "#ff190c",
-                      "grey0": "#393e42",
-                      "grey1": "#43484d",
-                      "grey2": "#5e6977",
-                      "grey3": "#86939e",
-                      "grey4": "#bdc6cf",
-                      "grey5": "#e1e8ee",
-                      "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
-                          "error": "#f44336",
-                          "primary": "#2196f3",
-                          "secondary": "#9C27B0",
-                          "success": "#4caf50",
-                          "warning": "#ffeb3b",
-                        },
-                        "ios": Object {
-                          "error": "#ff3b30",
-                          "primary": "#007aff",
-                          "secondary": "#5856d6",
-                          "success": "#4cd964",
-                          "warning": "#ffcc00",
-                        },
-                      },
-                      "primary": "#2089dc",
-                      "searchBg": "#303337",
-                      "secondary": "#8F0CE8",
-                      "success": "#52c41a",
-                      "warning": "#faad14",
-                    },
-                  }
-                }
-                underlayColor="white"
-              >
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#86939e",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "backgroundColor": "transparent",
-                      },
-                      Object {
-                        "fontFamily": "Material Icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                  testID="iconIcon"
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-          <TextInput
-            allowFontScaling={true}
-            editable={true}
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Search Bars Here"
-            placeholderTextColor="#86939e"
-            platform="default"
-            platfrom="android"
-            rejectResponderTermination={true}
-            style={
-              Object {
-                "alignSelf": "center",
-                "color": "black",
-                "flex": 1,
-                "fontSize": 18,
-                "marginLeft": 10,
-                "minHeight": 40,
-              }
-            }
-            testID="searchInput"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "marginLeft": 15,
-                "marginRight": 8,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-</View>
-`;
-
-exports[`renders correctly 6`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "#000",
-      "flex": 1,
-    }
-  }
->
-  <Image
-    source={
-      Object {
-        "testUri": "../../../assets/logo.png",
-      }
-    }
-    style={
-      Object {
-        "alignSelf": "center",
-        "height": 128,
-        "marginTop": 64,
-        "width": 400,
-      }
-    }
-  />
-  <Text
-    style={
-      Object {
-        "color": "#ccc",
-        "fontSize": 28,
-        "fontWeight": "700",
-        "marginTop": 28,
-        "textAlign": "center",
-      }
-    }
-  >
-    Sign Up
-  </Text>
-  <View
-    style={
-      Object {
-        "marginBottom": 48,
-        "marginHorizontal": 30,
-        "marginTop": 28,
-      }
-    }
-  >
-    <View>
-      <Text
-        style={
-          Object {
-            "color": "#ccc",
-            "fontSize": 10,
-            "textTransform": "uppercase",
-          }
-        }
-      >
-        Username
-      </Text>
-      <TextInput
-        allowFontScaling={true}
-        rejectResponderTermination={true}
-        returnKeyType="next"
-        style={
-          Object {
-            "borderBottomColor": "#ccc",
-            "borderBottomWidth": 0.5,
-            "color": "#eee",
-            "fontSize": 15,
-            "height": 40,
-          }
-        }
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "marginTop": 32,
-        }
-      }
-    >
-      <Text
-        style={
-          Object {
-            "color": "#ccc",
-            "fontSize": 10,
-            "textTransform": "uppercase",
-          }
-        }
-      >
-        Email Address
-      </Text>
-      <TextInput
-        allowFontScaling={true}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        keyboardType="email-address"
-        rejectResponderTermination={true}
-        returnKeyType="next"
-        style={
-          Object {
-            "borderBottomColor": "#ccc",
-            "borderBottomWidth": 0.5,
-            "color": "#eee",
-            "fontSize": 15,
-            "height": 40,
-          }
-        }
-        textContentType="emailAddress"
-        underlineColorAndroid="transparent"
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "marginTop": 32,
-        }
-      }
-    >
-      <Text
-        style={
-          Object {
-            "color": "#ccc",
-            "fontSize": 10,
-            "textTransform": "uppercase",
-          }
-        }
-      >
-        Password
-      </Text>
-      <TextInput
-        allowFontScaling={true}
-        autoCapitalize="none"
+        onChangeText={[Function]}
         rejectResponderTermination={true}
         returnKeyType="done"
         secureTextEntry={true}

@@ -1,5 +1,560 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test change email page 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#ccc",
+        "fontSize": 28,
+        "fontWeight": "400",
+        "marginTop": 28,
+        "textAlign": "center",
+      }
+    }
+  >
+    Change Email
+  </Text>
+  <View
+    style={
+      Object {
+        "marginBottom": 48,
+        "marginHorizontal": 30,
+        "marginTop": 28,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        New Email Address
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        textContentType="emailAddress"
+        underlineColorAndroid="transparent"
+      />
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Email Address
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        textContentType="emailAddress"
+        underlineColorAndroid="transparent"
+      />
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="done"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 10,
+        "height": 52,
+        "justifyContent": "center",
+        "marginBottom": 20,
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Change Email
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 10,
+        "height": 52,
+        "justifyContent": "center",
+        "marginBottom": 20,
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Return
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Test change image page 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#ccc",
+        "fontSize": 28,
+        "fontWeight": "400",
+        "marginBottom": 15,
+        "marginTop": 50,
+        "textAlign": "center",
+      }
+    }
+  >
+    Change Profile Picture
+  </Text>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 10,
+        "height": 52,
+        "justifyContent": "center",
+        "marginBottom": 20,
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Change Image
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 10,
+        "height": 52,
+        "justifyContent": "center",
+        "marginBottom": 20,
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Return
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Test change password page 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#ccc",
+        "fontSize": 28,
+        "fontWeight": "400",
+        "marginTop": 28,
+        "textAlign": "center",
+      }
+    }
+  >
+    Change Password
+  </Text>
+  <View
+    style={
+      Object {
+        "marginBottom": 48,
+        "marginHorizontal": 30,
+        "marginTop": 28,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Email Address
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        textContentType="emailAddress"
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Old Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        New Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Repeat New Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 10,
+        "height": 52,
+        "justifyContent": "center",
+        "marginBottom": 20,
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Change Password
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 10,
+        "height": 52,
+        "justifyContent": "center",
+        "marginBottom": 20,
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Return
+    </Text>
+  </View>
+</View>
+`;
+
 exports[`Test contact page 1`] = `
 <View
   style={
@@ -157,7 +712,7 @@ exports[`Test contact page 1`] = `
 </View>
 `;
 
-exports[`Test favorite page 1`] = `
+exports[`Test favorites page 1`] = `
 <View
   style={
     Object {
@@ -557,6 +1112,153 @@ exports[`Test favorite page 1`] = `
         </View>
       </View>
     </View>
+  </View>
+</View>
+`;
+
+exports[`Test forgot password page 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../assets/logo.png",
+      }
+    }
+    style={
+      Object {
+        "alignSelf": "center",
+        "height": 128,
+        "marginTop": 64,
+        "width": 400,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#ccc",
+        "fontSize": 28,
+        "fontWeight": "400",
+        "marginTop": 28,
+        "textAlign": "center",
+      }
+    }
+  >
+    Reset Password
+  </Text>
+  <View
+    style={
+      Object {
+        "marginBottom": 48,
+        "marginHorizontal": 30,
+        "marginTop": 28,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Email Address
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        keyboardType="email-address"
+        rejectResponderTermination={true}
+        returnKeyType="done"
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        textContentType="emailAddress"
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 4,
+        "height": 52,
+        "justifyContent": "center",
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Reset Password
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+        "marginTop": 32,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#f55",
+          "fontSize": 14,
+          "fontWeight": "500",
+        }
+      }
+    >
+      Back to Login
+    </Text>
   </View>
 </View>
 `;
@@ -992,6 +1694,424 @@ exports[`Test home page 1`] = `
         </View>
       </View>
     </View>
+  </View>
+</View>
+`;
+
+exports[`Test login page 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../assets/logo.png",
+      }
+    }
+    style={
+      Object {
+        "alignSelf": "center",
+        "height": 128,
+        "marginTop": 64,
+        "width": 400,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#ccc",
+        "fontSize": 28,
+        "fontWeight": "400",
+        "marginTop": 28,
+        "textAlign": "center",
+      }
+    }
+  >
+    Login
+  </Text>
+  <View
+    style={
+      Object {
+        "marginBottom": 48,
+        "marginHorizontal": 30,
+        "marginTop": 28,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Email Address
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        textContentType="emailAddress"
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        returnKeyType="done"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 4,
+        "height": 52,
+        "justifyContent": "center",
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Login
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+        "marginTop": 32,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#f55",
+          "fontSize": 14,
+          "fontWeight": "500",
+        }
+      }
+    >
+      Forgot Password?
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+        "marginTop": 8,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#777",
+          "fontSize": 13,
+        }
+      }
+    >
+      Don't have an account?
+       
+      <Text
+        style={
+          Object {
+            "color": "#f55",
+            "fontWeight": "500",
+          }
+        }
+      >
+        Sign Up
+      </Text>
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Test new password page 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+      "flex": 1,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../assets/logo.png",
+      }
+    }
+    style={
+      Object {
+        "alignSelf": "center",
+        "height": 128,
+        "marginTop": 64,
+        "width": 400,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#ccc",
+        "fontSize": 28,
+        "fontWeight": "400",
+        "marginTop": 28,
+        "textAlign": "center",
+      }
+    }
+  >
+    Create New Password
+  </Text>
+  <View
+    style={
+      Object {
+        "marginBottom": 48,
+        "marginHorizontal": 30,
+        "marginTop": 28,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Validation Code
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        New Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        rejectResponderTermination={true}
+        returnKeyType="next"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ccc",
+            "fontSize": 10,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Repeat Password
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        rejectResponderTermination={true}
+        returnKeyType="done"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderBottomColor": "#ccc",
+            "borderBottomWidth": 0.5,
+            "color": "#eee",
+            "fontSize": 15,
+            "height": 40,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f55",
+        "borderRadius": 4,
+        "height": 52,
+        "justifyContent": "center",
+        "marginHorizontal": 30,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222",
+          "fontWeight": "500",
+        }
+      }
+    >
+      Reset Password
+    </Text>
   </View>
 </View>
 `;

@@ -13,6 +13,7 @@ import {
 import {goToTabs, goToSignup, goToForgotPwd} from '../../navigation';
 
 import {getItem} from '../../getItem';
+import styles from './styles';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -70,17 +71,17 @@ export default class Login extends Component {
   render() {
     LayoutAnimation.easeInEaseOut();
     return (
-      <View style={styles.container}>
+      <View style={styles.containerLogin}>
         <StatusBar barStyle="light-content" />
-        <Image source={require('../../assets/logo.png')} style={styles.image} />
+        <Image source={require('../../assets/logo.png')} style={styles.imageLogin} />
 
-        <Text style={styles.greeting}>{'Login'}</Text>
+        <Text style={styles.greetingLogin}>{'Login'}</Text>
 
-        <View style={styles.form}>
+        <View style={styles.formLogin}>
           <View>
-            <Text style={styles.inputTitle}>Email Address</Text>
+            <Text style={styles.inputTitleLogin}>Email Address</Text>
             <TextInput
-              style={styles.input}
+              style={styles.inputLogin}
               autoCapitalize="none"
               returnKeyType="next"
               autoCompleteType="email"
@@ -91,9 +92,9 @@ export default class Login extends Component {
           </View>
 
           <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Password</Text>
+            <Text style={styles.inputTitleLogin}>Password</Text>
             <TextInput
-              style={styles.input}
+              style={styles.inputLogin}
               secureTextEntry
               autoCapitalize="none"
               returnKeyType="done"
@@ -102,7 +103,7 @@ export default class Login extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.userLogin}>
+        <TouchableOpacity style={styles.buttonLogin} onPress={this.userLogin}>
           <Text style={{fontWeight: '500', color: '#222'}}>Login</Text>
         </TouchableOpacity>
 
@@ -132,48 +133,3 @@ export default class Login extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-  greeting: {
-    marginTop: 28,
-    color: '#ccc',
-    fontSize: 28,
-    fontWeight: '400',
-    textAlign: 'center',
-  },
-  form: {
-    marginTop: 28,
-    marginBottom: 48,
-    marginHorizontal: 30,
-  },
-  inputTitle: {
-    color: '#ccc',
-    fontSize: 10,
-    textTransform: 'uppercase',
-  },
-  input: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    height: 40,
-    fontSize: 15,
-    color: '#eee',
-  },
-  button: {
-    marginHorizontal: 30,
-    backgroundColor: '#f55',
-    borderRadius: 4,
-    height: 52,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    alignSelf: 'center',
-    width: 400,
-    height: 128,
-    marginTop: 64,
-  },
-});

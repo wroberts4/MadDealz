@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   StatusBar,
@@ -10,8 +9,8 @@ import {
 } from 'react-native';
 
 import {goToTabs} from '../../navigation';
-
 import AsyncStorage from '@react-native-community/async-storage';
+import styles from './styles'
 
 let user_requests = require('../requests/user_requests');
 
@@ -56,7 +55,7 @@ export default class ChangeEmail extends Component {
   render() {
     LayoutAnimation.easeInEaseOut();
     return (
-      <View style={styles.container}>
+      <View style={styles.containerChangeEmail}>
         <StatusBar barStyle="light-content" />
 
         <Text style={styles.greeting}>{'Change Email'}</Text>
@@ -96,59 +95,13 @@ export default class ChangeEmail extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.changeName}>
+        <TouchableOpacity style={styles.buttonChangeEmail} onPress={this.changeName}>
           <Text style={{fontWeight: '500', color: '#222'}}>Change Email</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.buttonChangeEmail} onPress={this.tabsPage}>
           <Text style={{fontWeight: '500', color: '#222'}}>Return</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-  greeting: {
-    marginTop: 28,
-    color: '#ccc',
-    fontSize: 28,
-    fontWeight: '400',
-    textAlign: 'center',
-  },
-  form: {
-    marginTop: 28,
-    marginBottom: 48,
-    marginHorizontal: 30,
-  },
-  inputTitle: {
-    color: '#ccc',
-    fontSize: 10,
-    textTransform: 'uppercase',
-  },
-  input: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    height: 40,
-    fontSize: 15,
-    color: '#eee',
-  },
-  button: {
-    marginHorizontal: 30,
-    backgroundColor: '#f55',
-    borderRadius: 10,
-    height: 52,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-  image: {
-    alignSelf: 'center',
-    width: 400,
-    height: 128,
-    marginTop: 64,
-  },
-});

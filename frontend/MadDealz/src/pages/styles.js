@@ -243,7 +243,7 @@ export default StyleSheet.create({
     marginTop: 64,
   },
   header_2: {
-    height: 73,
+    height: 100,
     backgroundColor: '#990000',
     overflow: 'hidden',
     shadowColor: 'black',

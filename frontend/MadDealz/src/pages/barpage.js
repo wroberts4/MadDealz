@@ -134,7 +134,7 @@ class Barpage extends React.Component {
           }
           centerComponent={
             <Text style={{ 
-              // color: '#ccc',
+              color: '#ccc',
               fontSize: 30,
               fontWeight: 'bold', 
               marginBottom: 5} }>{this.props.bar.name}</Text>

@@ -14,6 +14,7 @@ import {goToLogin, goToChangePwd, goToChangeEmail, goToChangeImage} from '../../
 
 import AsyncStorage from '@react-native-community/async-storage';
 import ImageLoad from 'react-native-image-placeholder';
+import sty from './styles';
 
 let userId = "";
 let ip = "https://api.maddealz.software/images/user/";
@@ -72,7 +73,7 @@ export default class Profile extends Component {
     return (
       <View style={styles.container}>
         <Header
-          containerStyle={styles.header}
+          containerStyle={sty.header_2}
           centerComponent={{text: this.state.user.username, style: { 
             color: '#ccc',
             fontSize: 30,

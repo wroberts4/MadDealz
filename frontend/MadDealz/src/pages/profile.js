@@ -72,10 +72,13 @@ export default class Profile extends Component {
     return (
       <View style={styles.container}>
         <Header
-          containerStyle={{backgroundColor: '#990000'}}
-          centerComponent={{text: this.state.user.username, style: { color: '#ccc',
-          fontSize: 30,
-          fontWeight: 'bold', } }}
+          containerStyle={styles.header}
+          centerComponent={{text: this.state.user.username, style: { 
+            color: '#ccc',
+            fontSize: 30,
+            fontWeight: 'bold', 
+            marginBottom: 15,} 
+          }}
         />
         <ScrollView style={styles.scroll}>
           <View
@@ -146,7 +149,8 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color: '#ccc',
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: 'bold',
     textTransform: 'uppercase',
   },
   headerTitle: {
@@ -173,6 +177,17 @@ const styles = StyleSheet.create({
     height: 62,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    width: 250
   },
+  header: {
+    height: 73,
+    backgroundColor: '#990000',
+    overflow: 'hidden',
+    shadowColor: 'black',
+    elevation: 4,
+    shadowOpacity: 1,
+    shadowRadius: 10
+  }
+  
 });

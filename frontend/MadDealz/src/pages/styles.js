@@ -242,4 +242,13 @@ export default StyleSheet.create({
     height: 128,
     marginTop: 64,
   },
+  header_2: {
+    height: 73,
+    backgroundColor: '#990000',
+    overflow: 'hidden',
+    shadowColor: 'black',
+    elevation: 4,
+    shadowOpacity: 1,
+    shadowRadius: 10
+  }
 });

@@ -113,7 +113,7 @@ class Barpage extends React.Component {
     return (
       <View style={{flex: 1}}>
         <Header
-          containerStyle={{backgroundColor: '#990000'}}
+          containerStyle={styles.header_2}
           leftComponent={
             <Button
               icon={<Icon name="arrow-back" />}
@@ -132,7 +132,13 @@ class Barpage extends React.Component {
               buttonStyle={{backgroundColor: '#990000'}}
             />
           }
-          centerComponent={{text: this.props.bar.name}}
+          centerComponent={
+            <Text style={{ 
+              // color: '#ccc',
+              fontSize: 30,
+              fontWeight: 'bold', 
+              marginBottom: 5} }>{this.props.bar.name}</Text>
+          }
         />
         <ScrollView style={styles.scroll}>
           <View

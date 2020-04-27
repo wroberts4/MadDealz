@@ -57,7 +57,7 @@ export default class Profile extends Component {
         this.setState({user: JSON.parse(user)});
         this.setState({image_uri: ip + this.state.user.image + '.png'})
         console.log("User found: " + this.state.user.username)
-        console.log('image: ' + this.state.image_uri);
+        console.log('image link: ' + this.state.image_uri);
       }
     } catch (error) {
       // Error retrieving data
@@ -89,7 +89,7 @@ export default class Profile extends Component {
                 style={{ borderRadius: 75, width: 150, height: 150, marginBottom: 15, marginTop: 10 }}
                 source={{
                   uri: this.state.image_uri,
-                  method: 'POST',
+                  // method: 'POST',
                   cache: 'default'
                 }}
                 resizeMode={'cover'}

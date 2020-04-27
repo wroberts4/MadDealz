@@ -28,8 +28,8 @@ class Barpage extends React.Component {
 
     this.state = {
       count: 0,
-      barName: this.props.bar.name,
-      barId: this.props.bar._id,
+      //barName: this.props.bar.name,
+      //barId: this.props.bar._id,
       deals: this.props.bar.deals,
       barLongitude: this.props.bar.location.lon, 
       barLatitude: this.props.bar.location.lat,
@@ -132,7 +132,7 @@ class Barpage extends React.Component {
               buttonStyle={{backgroundColor: '#990000'}}
             />
           }
-          centerComponent={{text: this.state.barName}}
+          centerComponent={{text: this.props.bar.name}}
         />
         <ScrollView style={styles.scroll}>
           <View
@@ -313,7 +313,7 @@ class Barpage extends React.Component {
                 <Marker
                     coordinate={{latitude: this.state.barLatitude, 
                     longitude: this.state.barLongitude}}
-                    title={this.state.barName}
+                    title={this.props.bar.name}
                     pinColor={"red"}
                 />
             </MapView>

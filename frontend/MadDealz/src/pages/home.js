@@ -518,53 +518,33 @@ export default class Home extends Component {
           renderItem={({item}) => (
             <TouchableOpacity onPress={() => this.barPage(item)}>
               <View style={styles.item}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.address}>{item.address}</Text>
-              {/* <Item 
-                name={item.name} 
-                address={item.address}
-                // deal_0 = {item.deals[0].info != undefined ? item.deals[0].info : 'No Deals'}
-                // deal_1 = {item.deals[1] != undefined  ? item.deals[1].info : null}
-                // time_0 = {(item.deals[0].times['Tuesday'] != undefined) ? item.deals[0].times['Tuesday']['start'] + '-' + item.deals[0].times['Tuesday']['end']: 
-                // (item.deals[0].times['Wednesday'] != undefined) ? item.deals[0].times['Wednesday']['start'] + '-' + item.deals[0].times['Wednesday']['end']: 
-                // (item.deals[0].times['Thursday'] != undefined) ? item.deals[0].times['Thursday']['start'] + '-' + item.deals[0].times['Thursday']['end'] : 
-                // (item.deals[0].times['Friday'] != undefined) ? item.deals[0].times['Friday']['start'] + '-' + item.deals[0].times['Friday']['end'] :
-                // (item.deals[0].times['Saturday'] != undefined) ? item.deals[0].times['Saturday']['start'] + '-' + item.deals[0].times['Saturday']['end'] :
-                // (item.deals[0].times['Sunday'] != undefined) ? item.deals[0].times['Sunday']['start'] + '-' + item.deals[0].times['Sunday']['end'] :
-                // (item.deals[0].times['Monday'] != undefined) ? item.deals[0].times['Monday']['start'] + '-' + item.deals[0].times['Monday']['end'] : 'No Time'} 
-                // // time_1 = {(item.deals[1] != undefined) ? item.deals[1].times['Tuesday']['start'] + '-' + item.deals[1].times['Tuesday']['end']: 
-                // // (item.deals[1].times['Wednesday'] != undefined) ? item.deals[1].times['Wednesday']['start'] + '-' + item.deals[1].times['Wednesday']['end']: 
-                // // (item.deals[1].times['Thursday'] != undefined) ? item.deals[1].times['Thursday']['start'] + '-' + item.deals[1].times['Thursday']['end'] : 
-                // // (item.deals[1].times['Friday'] != undefined) ? item.deals[1].times['Friday']['start'] + '-' + item.deals[1].times['Friday']['end'] :
-                // // (item.deals[1].times['Saturday'] != undefined) ? item.deals[1].times['Saturday']['start'] + '-' + item.deals[1].times['Saturday']['end'] :
-                // // (item.deals[1].times['Sunday'] != undefined) ? item.deals[1].times['Sunday']['start'] + '-' + item.deals[1].times['Sunday']['end'] :
-                // // (item.deals[1].times['Monday'] != undefined) ? item.deals[1].times['Monday']['start'] + '-' + item.deals[1].times['Monday']['end'] : 'No Time'}
-                // time_1 = {item.deals[0].info != undefined ? console.log() : 'No Deals'}
-              /> */}
-              <FlatList
-                data={item.deals}
-                renderItem={({item}) => (
-                  <Text style={styles.address}>
-                    {this.state.c_day == 'Monday' && item.times['Monday'] != undefined ? item.info + ': ' : 
-                    this.state.c_day == 'Tuesday'  && item.times['Tuesday'] != undefined ? item.info + ': ' :
-                    this.state.c_day == 'Wednesday' && item.times['Wednesday'] != undefined ? item.info + ': ' :
-                    this.state.c_day == 'Thursday' && item.times['Thursday'] != undefined ? item.info + ': ' :
-                    this.state.c_day == 'Friday' && item.times['Friday'] != undefined ? item.info + ': ' :
-                    this.state.c_day == 'Saturday' && item.times['Saturday'] != undefined ? item.info + ': ' :
-                    this.state.c_day == 'Sunday' && item.times['Sunday'] != undefined ? item.info + ': ' : ''}
-                    {this.state.c_day == 'Monday' && item.times['Monday'] != undefined ? item.times['Monday']['start'] + '-' + item.times['Monday']['end'] : 
-                    this.state.c_day == 'Tuesday'  && item.times['Tuesday'] != undefined ? item.times['Tuesday']['start'] + '-' + item.times['Tuesday']['end'] :
-                    this.state.c_day == 'Wednesday' && item.times['Wednesday'] != undefined ? item.times['Wednesday']['start'] + '-' + item.times['Wednesday']['end'] :
-                    this.state.c_day == 'Thursday' && item.times['Thursday']!= undefined ? item.times['Thursday']['start'] + '-' + item.times['Thursday']['end'] :
-                    this.state.c_day == 'Friday' && item.times['Friday'] != undefined ? item.times['Friday']['start'] + '-' + item.times['Friday']['end'] :
-                    this.state.c_day == 'Saturday' && item.times['Saturday'] != undefined ? item.times['Saturday']['start'] + '-' + item.times['Saturday']['end'] :
-                    this.state.c_day == 'Sunday' && item.times['Sunday'] != undefined ? item.times['Sunday']['start'] + '-' + item.times['Sunday']['end'] : ''}
-                  </Text>
-                )}
-                keyExtractor={item => item._id}
-                >
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.address}>{item.address}</Text>
+              
+                <FlatList
+                  data={item.deals}
+                  renderItem={({item}) => (
+                    <Text style={styles.address}>
+                      {this.state.c_day == 'Monday' && item.times['Monday'] != undefined ? item.info + ': ' : 
+                      this.state.c_day == 'Tuesday'  && item.times['Tuesday'] != undefined ? item.info + ': ' :
+                      this.state.c_day == 'Wednesday' && item.times['Wednesday'] != undefined ? item.info + ': ' :
+                      this.state.c_day == 'Thursday' && item.times['Thursday'] != undefined ? item.info + ': ' :
+                      this.state.c_day == 'Friday' && item.times['Friday'] != undefined ? item.info + ': ' :
+                      this.state.c_day == 'Saturday' && item.times['Saturday'] != undefined ? item.info + ': ' :
+                      this.state.c_day == 'Sunday' && item.times['Sunday'] != undefined ? item.info + ': ' : ''}
+                      {this.state.c_day == 'Monday' && item.times['Monday'] != undefined ? item.times['Monday']['start'] + '-' + item.times['Monday']['end'] : 
+                      this.state.c_day == 'Tuesday'  && item.times['Tuesday'] != undefined ? item.times['Tuesday']['start'] + '-' + item.times['Tuesday']['end'] :
+                      this.state.c_day == 'Wednesday' && item.times['Wednesday'] != undefined ? item.times['Wednesday']['start'] + '-' + item.times['Wednesday']['end'] :
+                      this.state.c_day == 'Thursday' && item.times['Thursday']!= undefined ? item.times['Thursday']['start'] + '-' + item.times['Thursday']['end'] :
+                      this.state.c_day == 'Friday' && item.times['Friday'] != undefined ? item.times['Friday']['start'] + '-' + item.times['Friday']['end'] :
+                      this.state.c_day == 'Saturday' && item.times['Saturday'] != undefined ? item.times['Saturday']['start'] + '-' + item.times['Saturday']['end'] :
+                      this.state.c_day == 'Sunday' && item.times['Sunday'] != undefined ? item.times['Sunday']['start'] + '-' + item.times['Sunday']['end'] : ''}
+                    </Text>
+                  )}
+                  keyExtractor={item => item._id}
+                  >
 
-              </FlatList>
+                </FlatList>
               </View>
 
             </TouchableOpacity>

@@ -217,9 +217,7 @@ class Barpage extends React.Component {
             ))}
           </Card>
           <Card title="Contact Us" containerStyle={{borderRadius: 10}}>
-            <Text>Hours</Text>
             <Text>Phone Number: {this.props.bar.contact}</Text>
-            <Text>Email Address?</Text>
           </Card>
           <View style={styles.mapContainer}>
             <MapView

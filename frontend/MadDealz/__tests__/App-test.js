@@ -4,7 +4,6 @@
 
 import 'react-native';
 import React from 'react';
-import App from '../App';
 import Barpage from '../src/pages/barpage';
 import ChangeEmail from '../src/pages/changeEmail'
 import ChangeImage from '../src/pages/changeImage';
@@ -24,7 +23,20 @@ import renderer from 'react-test-renderer';
 jest.mock(
     '../node_modules/react-native/Libraries/LayoutAnimation/LayoutAnimation.js',
 );
-jest.mock('react-native-maps', () => 'AirGoogleMaps');
+jest.mock('react-native-maps', () => {
+    const { View } = require('react-native');
+    const MockMapView = (props: any) => {
+      return <View>{props.children}</View>;
+    };
+    const MockMarker = (props: any) => {
+      return <View>{props.children}</View>;
+    };
+    return {
+      __esModule: true,
+      default: MockMapView,
+      Marker: MockMarker,
+    };
+  });
 
 // Tests barpage snapshot
 test('Test bar page', () => {

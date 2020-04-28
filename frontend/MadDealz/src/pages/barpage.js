@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {
   Card,
   Image,
@@ -33,7 +33,6 @@ export default class Barpage extends Component {
       barLongitude: this.props.bar.location.lon, 
       barLatitude: this.props.bar.location.lat,
       img: 'https://api.maddealz.software/images/bar/' + this.props.bar.image,
-      fail: false,
       day: date.getDay()
     };
   }
@@ -83,21 +82,6 @@ export default class Barpage extends Component {
 
   componentDidMount() {
     this._checkFavorite();
-    this._checkImageURL(this.state.img);
-  }
-
-  _checkImageURL(url) {
-    fetch(url)
-      .then(res => {
-        if (res.status == 404) {
-          this.setState({fail: true});
-        } else {
-          return false;
-        }
-      })
-      .catch(err => {
-        this.setState({fail: true});
-      });
   }
 
   renderListItem = (item, i, day) => {
@@ -114,8 +98,8 @@ export default class Barpage extends Component {
         subtitle={ item.times[day]['start'] +
               ' - ' +
               item.times[day]['end']
-        }
-      />)
+        }/>
+      )
     }
   }
 
@@ -162,11 +146,7 @@ export default class Barpage extends Component {
                 height: 350,
                 width: 350,
               }}
-              source={
-                this.state.fail
-                  ? require('../../assets/notfound.png')
-                  : {uri: this.state.img}
-              }
+              source={{uri: this.state.img}}
               resizeMode="contain"
             />
           </View>

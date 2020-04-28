@@ -110,6 +110,24 @@ class Barpage extends React.Component {
       });
   }
 
+  renderListItem = (item, i) => {
+    if(item.times[i]) {
+      return (<ListItem
+        containerStyle={{
+          width: '100%',
+          padding: 5,
+          alignItems: 'center',
+        }}
+        key={i}
+        title={item.info}
+        subtitle={ item.times[i]['start'] +
+              ' - ' +
+              item.times[i]['end']
+        }
+      />)
+    }
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -163,142 +181,37 @@ class Barpage extends React.Component {
           </View>
           <Card title="Sunday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Sunday'] ? item.info : null}
-                subtitle={
-                  item.times['Sunday']
-                    ? item.times['Sunday']['start'] +
-                      ' - ' +
-                      item.times['Sunday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Sunday')
             ))}
           </Card>
           <Card title="Monday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Monday'] ? item.info : null}
-                subtitle={
-                  item.times['Monday']
-                    ? item.times['Monday']['start'] +
-                      ' - ' +
-                      item.times['Monday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Monday')
             ))}
           </Card>
           <Card title="Tuesday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Tuesday'] ? item.info : null}
-                subtitle={
-                  item.times['Tuesday']
-                    ? item.times['Tuesday']['start'] +
-                      ' - ' +
-                      item.times['Tuesday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Tuesday')
             ))}
           </Card>
           <Card title="Wednesday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Wednesday'] ? item.info : null}
-                subtitle={
-                  item.times['Wednesday']
-                    ? item.times['Wednesday']['start'] +
-                      ' - ' +
-                      item.times['Wednesday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Wednesday')
             ))}
           </Card>
           <Card title="Thursday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Thursday'] ? item.info : null}
-                subtitle={
-                  item.times['Thursday']
-                    ? item.times['Thursday']['start'] +
-                      ' - ' +
-                      item.times['Thursday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Thursday')
             ))}
           </Card>
           <Card title="Friday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Friday'] ? item.info : null}
-                subtitle={
-                  item.times['Friday']
-                    ? item.times['Friday']['start'] +
-                      ' - ' +
-                      item.times['Friday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Friday')
             ))}
           </Card>
           <Card title="Saturday" containerStyle={{borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              <ListItem
-                containerStyle={{
-                  width: '100%',
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                key={i}
-                title={item.times['Saturday'] ? item.info : null}
-                subtitle={
-                  item.times['Saturday']
-                    ? item.times['Saturday']['start'] +
-                      ' - ' +
-                      item.times['Saturday']['end']
-                    : null
-                }
-              />
+              this.renderListItem(item, 'Saturday')
             ))}
           </Card>
           <Card title="Contact Us" containerStyle={{borderRadius: 10}}>

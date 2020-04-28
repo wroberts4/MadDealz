@@ -181,14 +181,12 @@ class Barpage extends React.Component {
               resizeMode="contain"
             />
           </View>
-          <Card title='Sunday' titleStyle={{color: 'black'}} containerStyle={this.state.day == 0 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}
-            wrapperStyle={this.state.day == 0 ? {backgroundColor: '#990000'} : {backgroundColor: 'white'}}>
+          <Card title='Sunday' titleStyle={{color: 'black'}} containerStyle={this.state.day == 0 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
               this.renderListItem(item, 0, 'Sunday')
             ))}
           </Card>
-          <Card title="Monday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 1 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}
-            wrapperStyle={this.state.day == 0 ? {backgroundColor: '#990000'} : {backgroundColor: 'white'}}>
+          <Card title="Monday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 1 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
               this.renderListItem(item, 1, 'Monday')
             ))}

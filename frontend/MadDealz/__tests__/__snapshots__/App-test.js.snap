@@ -6052,6 +6052,55 @@ exports[`Test bar page 1`] = `
             Phone Number: 
             (608) 251-6375
           </Text>
+          <Text>
+            Sunday: 
+            11:00AM
+             - 
+            11:30PM
+             
+          </Text>
+          <Text>
+            Monday: 
+            11:00AM
+             - 
+            2:00AM
+             
+          </Text>
+          <Text>
+            Tuesday: 
+            11:00AM
+             - 
+            2:00AM
+             
+          </Text>
+          <Text>
+            Wednesday: 
+            11:00AM
+             - 
+            2:00AM
+             
+          </Text>
+          <Text>
+            Thursday: 
+            11:00AM
+             - 
+            2:00AM
+             
+          </Text>
+          <Text>
+            Friday: 
+            11:00AM
+             - 
+            2:00AM
+             
+          </Text>
+          <Text>
+            Saturday: 
+            11:00AM
+             - 
+            2:00AM
+             
+          </Text>
         </View>
       </View>
       <View

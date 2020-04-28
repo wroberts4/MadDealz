@@ -10,7 +10,6 @@ import {
 } from 'react-native-elements';
 import {goToTabs} from '../../navigation';
 import styles from './styles';
-
 import AsyncStorage from '@react-native-community/async-storage';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
@@ -187,6 +186,13 @@ export default class Barpage extends Component {
           </Card>
           <Card title="Contact Us" containerStyle={{borderRadius: 10}}>
             <Text>Phone Number: {this.props.bar.contact}</Text>
+            <Text>Sunday: {this.props.bar.hours.Sunday.open} - {this.props.bar.hours.Sunday.close} </Text>
+            <Text>Monday: {this.props.bar.hours.Monday.open} - {this.props.bar.hours.Monday.close} </Text>
+            <Text>Tuesday: {this.props.bar.hours.Tuesday.open} - {this.props.bar.hours.Tuesday.close} </Text>
+            <Text>Wednesday: {this.props.bar.hours.Wednesday.open} - {this.props.bar.hours.Wednesday.close} </Text>
+            <Text>Thursday: {this.props.bar.hours.Thursday.open} - {this.props.bar.hours.Thursday.close} </Text>
+            <Text>Friday: {this.props.bar.hours.Friday.open} - {this.props.bar.hours.Friday.close} </Text>
+            <Text>Saturday: {this.props.bar.hours.Saturday.open} - {this.props.bar.hours.Saturday.close} </Text>
           </Card>
           <View style={styles.mapContainer}>
             <MapView

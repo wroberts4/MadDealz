@@ -1496,7 +1496,7 @@ exports[`Test home page 1`] = `
           }
         }
       >
-        Sunday
+        Tuesday
         
 
         Deals
@@ -2135,11 +2135,16 @@ exports[`Test profile page 1`] = `
         "backgroundColor": "#990000",
         "borderBottomColor": "#f2f2f2",
         "borderBottomWidth": 0.5,
+        "elevation": 4,
         "flexDirection": "row",
-        "height": 64,
+        "height": 100,
         "justifyContent": "space-between",
+        "overflow": "hidden",
         "paddingHorizontal": 10,
         "paddingTop": 20,
+        "shadowColor": "black",
+        "shadowOpacity": 1,
+        "shadowRadius": 10,
       }
     }
   >
@@ -2154,7 +2159,7 @@ exports[`Test profile page 1`] = `
             "top": 0,
           },
           Object {
-            "height": 64,
+            "height": 100,
             "width": undefined,
           },
           undefined,
@@ -2184,6 +2189,7 @@ exports[`Test profile page 1`] = `
             "color": "#ccc",
             "fontSize": 30,
             "fontWeight": "bold",
+            "marginBottom": 15,
           }
         }
         theme={
@@ -2360,6 +2366,7 @@ exports[`Test profile page 1`] = `
             "marginBottom": 20,
             "marginHorizontal": 30,
             "opacity": 1,
+            "width": 250,
           }
         }
       >
@@ -2367,7 +2374,8 @@ exports[`Test profile page 1`] = `
           style={
             Object {
               "color": "#ccc",
-              "fontSize": 14,
+              "fontSize": 16,
+              "fontWeight": "bold",
               "textTransform": "uppercase",
             }
           }
@@ -2396,6 +2404,7 @@ exports[`Test profile page 1`] = `
             "marginBottom": 20,
             "marginHorizontal": 30,
             "opacity": 1,
+            "width": 250,
           }
         }
       >
@@ -2403,7 +2412,8 @@ exports[`Test profile page 1`] = `
           style={
             Object {
               "color": "#ccc",
-              "fontSize": 14,
+              "fontSize": 16,
+              "fontWeight": "bold",
               "textTransform": "uppercase",
             }
           }
@@ -2432,6 +2442,7 @@ exports[`Test profile page 1`] = `
             "marginBottom": 20,
             "marginHorizontal": 30,
             "opacity": 1,
+            "width": 250,
           }
         }
       >
@@ -2439,7 +2450,8 @@ exports[`Test profile page 1`] = `
           style={
             Object {
               "color": "#ccc",
-              "fontSize": 14,
+              "fontSize": 16,
+              "fontWeight": "bold",
               "textTransform": "uppercase",
             }
           }
@@ -2468,6 +2480,7 @@ exports[`Test profile page 1`] = `
             "marginBottom": 20,
             "marginHorizontal": 30,
             "opacity": 1,
+            "width": 250,
           }
         }
       >
@@ -2475,7 +2488,8 @@ exports[`Test profile page 1`] = `
           style={
             Object {
               "color": "#ccc",
-              "fontSize": 14,
+              "fontSize": 16,
+              "fontWeight": "bold",
               "textTransform": "uppercase",
             }
           }

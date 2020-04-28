@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {
   Card,
@@ -7,7 +7,6 @@ import {
   Icon,
   Header,
   ListItem,
-  ThemeConsumer,
 } from 'react-native-elements';
 import {goToTabs} from '../../navigation';
 import styles from './styles';
@@ -18,7 +17,7 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 bar_requests = require('../requests/bar_requests');
 user_requests = require('../requests/user_requests');
 
-class Barpage extends React.Component {
+export default class Barpage extends Component {
   tabsPage = async () => {
     goToTabs();
   };
@@ -28,15 +27,14 @@ class Barpage extends React.Component {
     var date = new Date();
     this.state = {
       count: 0,
-      //barName: this.props.bar.name,
-      //barId: this.props.bar._id,
+      barName: this.props.bar.name,
+      barId: this.props.bar._id,
       deals: this.props.bar.deals,
       barLongitude: this.props.bar.location.lon, 
       barLatitude: this.props.bar.location.lat,
       img: 'https://api.maddealz.software/images/bar/' + this.props.bar.image,
       fail: false,
       day: date.getDay()
-      //reviews: []
     };
   }
 
@@ -77,13 +75,6 @@ class Barpage extends React.Component {
     }
   };
 
-  /*
-    _getReviews = async () => {
-        let reviews = await bar_requests.get_reviews(this.props.bar._id);
-        this.setState({reviews: reviews});
-    }
-    */
-
   _checkFavorite = async () => {
     let user = JSON.parse(await AsyncStorage.getItem('@user'));
     if (user.favorites.bars.includes(this.props.bar._id))
@@ -92,9 +83,7 @@ class Barpage extends React.Component {
 
   componentDidMount() {
     this._checkFavorite();
-    //this._getReviews();
     this._checkImageURL(this.state.img);
-    console.log(this.props)
   }
 
   _checkImageURL(url) {
@@ -243,27 +232,3 @@ class Barpage extends React.Component {
     );
   }
 }
-
-/*
-<Card
-    title="Reviews"
-    containerStyle={{ borderRadius: 10 }}
->
-    {
-        this.state.reviews.map((item, i) => (
-        <ListItem
-            containerStyle={{
-                width: '100%',
-                padding: 5,
-                alignItems: 'center'
-            }}
-            key={i}
-            title={'"'+item.content+'"'}
-            subtitle={"-"+item.user}
-        />
-        ))
-    }   
-</Card>
-*/
-
-export default Barpage;

@@ -237,7 +237,7 @@ export default class Home extends Component {
       this.rating = this.rating.sort(this.compare_item_ratings);
       position = 6;
     }
-    console.log('hello m8 ', this.weekdays[3][0].deals[1].times);
+    //console.log('hello m8 ', this.weekdays[3][0].deals[1].times);
   }
   
 

@@ -84,14 +84,14 @@ export default class Barpage extends Component {
     this._checkFavorite();
   }
 
-  renderListItem = (item, i, day) => {
+  renderListItem = (item, i, day, dayNum) => {
     if(item.times[day]) {
       return (<ListItem
         containerStyle={{
           width: '100%',
           padding: 5,
           alignItems: 'center',
-          backgroundColor: this.state.day == i? '#990000' : 'white'
+          backgroundColor: this.state.day == dayNum? '#990000' : 'white'
         }}
         key={i}
         title={item.info}
@@ -152,37 +152,37 @@ export default class Barpage extends Component {
           </View>
           <Card title='Sunday' titleStyle={{color: 'black'}} containerStyle={this.state.day == 0 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 0, 'Sunday')
+              this.renderListItem(item, i, 'Sunday', 0)
             ))}
           </Card>
           <Card title="Monday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 1 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 1, 'Monday')
+              this.renderListItem(item, i, 'Monday', 1)
             ))}
           </Card>
           <Card title="Tuesday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 2 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 2, 'Tuesday')
+              this.renderListItem(item, i, 'Tuesday', 2)
             ))}
           </Card>
           <Card title="Wednesday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 3 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 3, 'Wednesday')
+              this.renderListItem(item, i, 'Wednesday', 3)
             ))}
           </Card>
           <Card title="Thursday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 4 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 4, 'Thursday')
+              this.renderListItem(item, i, 'Thursday', 4)
             ))}
           </Card>
           <Card title="Friday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 5 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 5, 'Friday')
+              this.renderListItem(item, i, 'Friday', 5)
             ))}
           </Card>
           <Card title="Saturday" titleStyle={{color: 'black'}} containerStyle={this.state.day == 6 ? {borderRadius: 10, backgroundColor: '#990000'} : {borderRadius: 10}}>
             {this.state.deals.map((item, i) => (
-              this.renderListItem(item, 6, 'Saturday')
+              this.renderListItem(item, i, 'Saturday', 6)
             ))}
           </Card>
           <Card title="Contact Us" containerStyle={{borderRadius: 10}}>

@@ -25,10 +25,10 @@ jest.mock(
 );
 jest.mock('react-native-maps', () => {
     const { View } = require('react-native');
-    const MockMapView = (props: any) => {
+    const MockMapView = (props) => {
       return <View>{props.children}</View>;
     };
-    const MockMarker = (props: any) => {
+    const MockMarker = (props) => {
       return <View>{props.children}</View>;
     };
     return {

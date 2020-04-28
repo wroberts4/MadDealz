@@ -93,6 +93,7 @@ class Barpage extends React.Component {
     this._checkFavorite();
     //this._getReviews();
     this._checkImageURL(this.state.img);
+    console.log(this.props)
   }
 
   _checkImageURL(url) {
@@ -135,7 +136,7 @@ class Barpage extends React.Component {
           centerComponent={
             <Text style={{ 
               color: '#ccc',
-              fontSize: 30,
+              fontSize: 20,
               fontWeight: 'bold', 
               marginBottom: 5} }>{this.props.bar.name}</Text>
           }

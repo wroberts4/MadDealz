@@ -260,7 +260,7 @@ export default StyleSheet.create({
   scrollContact: {
     backgroundColor: 'black',
     height: Dimensions.get('screen').height,
-    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT + 20 : 20,
+    paddingTop: Platform.OS !== 'ios' ? 20 : 20,
     paddingBottom: 30,
   },
   containerContact: {
@@ -277,5 +277,21 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20
+  },
+  buttonText: {
+    color: '#ccc',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
+  contactButton: {
+    marginHorizontal: 30,
+    backgroundColor: '#990000',
+    borderRadius: 10,
+    height: 62,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    width: 250
   },
 });

@@ -65,8 +65,8 @@ export default class Contact extends Component {
                         onChangeText={val => this.onChangeText('message', val)}
                     />
                     <View style={{padding: 10}}></View>
-                    <TouchableOpacity style={styles.buttContact} onPress={() => slackMessage(this.state.message)}>
-                        <Text style={{color: 'black', fontSize: 30}}>Submit</Text>
+                    <TouchableOpacity style={styles.contactButton} onPress={() => slackMessage(this.state.message)}>
+                        <Text style={styles.buttonText}>Submit</Text>
                     </TouchableOpacity>
                 </ScrollView>
             </View>

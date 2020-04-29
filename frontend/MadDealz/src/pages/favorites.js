@@ -319,7 +319,7 @@ export default class Home extends Component {
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.address}>{item.address}</Text>
               
-                <FlatList
+                {/* <FlatList
                   data={item.deals}
                   renderItem={({item}) => (
                     <Text style={styles.address}>
@@ -336,7 +336,7 @@ export default class Home extends Component {
                   keyExtractor={item => item._id}
                   >
 
-                </FlatList>
+                </FlatList> */}
               </View>
             </TouchableOpacity>
           )}

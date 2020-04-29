@@ -1818,7 +1818,7 @@ exports[`Test bar page 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#990000",
+            "backgroundColor": "white",
             "borderColor": "#e1e8ee",
             "borderRadius": 10,
             "borderWidth": 1,
@@ -1909,7 +1909,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#990000",
+                  "backgroundColor": "white",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2028,7 +2028,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#990000",
+                  "backgroundColor": "white",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2147,7 +2147,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#990000",
+                  "backgroundColor": "white",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2266,7 +2266,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#990000",
+                  "backgroundColor": "white",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2385,7 +2385,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#990000",
+                  "backgroundColor": "white",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2504,7 +2504,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#990000",
+                  "backgroundColor": "white",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2623,7 +2623,7 @@ exports[`Test bar page 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#990000",
             "borderColor": "#e1e8ee",
             "borderRadius": 10,
             "borderWidth": 1,
@@ -2714,7 +2714,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2833,7 +2833,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -2952,7 +2952,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -3071,7 +3071,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -3190,7 +3190,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -3309,7 +3309,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -3428,7 +3428,7 @@ exports[`Test bar page 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#990000",
                   "borderColor": "#bcbbc1",
                   "flexDirection": "row",
                   "padding": 5,
@@ -7620,7 +7620,7 @@ exports[`Test home page 1`] = `
           }
         }
       >
-        Tuesday
+        Wednesday
         
 
         Deals

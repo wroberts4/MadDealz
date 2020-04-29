@@ -13,13 +13,13 @@ import {first, second, third, fourth} from '../../env';
 
 const def = 'https://hooks.slack.com/services/';
 
-async function slackMessage(message) {
+export async function slackMessage(message) {
     const slck = new Slack(def+first+second+third+fourth);
     slck.post(message, '#feedback').then(res => {
         if(res.status == 200) {
-            console.log(res.status)
+            return 200;
         } else {
-            console.log(res);
+            return -1;
         }
     }).catch(err=>{console.log(err)})
 }

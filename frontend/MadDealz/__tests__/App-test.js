@@ -16,6 +16,7 @@ import Home from '../src/pages/home';
 import Login from '../src/pages/login';
 import NewPassword from '../src/pages/newPassword';
 import Signup from '../src/pages/signup';
+//import {slackMessage} from '../src/pages/contact';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -91,6 +92,14 @@ test('Test contact page', () => {
     const tree = renderer.create(<Contact />).toJSON();
     expect(tree).toMatchSnapshot();
 });
+/*
+async function test_slack_message(message) {
+    let code = await slackMessage(message);
+    expect(code).toBe(200);
+}
+
+test('test slack message on contact page', async () => {await test_slack_message('testing')});
+*/
 
 // Tests favorite snapshot
 test('Test favorites page', () => {

@@ -46,16 +46,18 @@ export default class Contact extends Component {
     render() {
         return(
             <View style={{flex: 1}}>
-                <ScrollView style={styles.scrollContact} contentContainerStyle={styles.containerContact} keyboardShouldPersistTaps='handled'>
+                <ScrollView style={styles.scrollContact} contentContainerStyle={styles.containerContact} keyboardShouldPersistTaps='handled' testID='Black'>
                     <Image
+                        testID='Image'
                         source={require('../../assets/logo.png')}
                         style={styles.imageContact}>
                     </Image>
-                    <Text style={{color: 'white'}}>Questions? Comments? Complaints? 
+                    <Text style={{color: 'white'}} testID="Message">Questions? Comments? Complaints? 
                         Please let us know below and leave your email address if you would like a response.
                     </Text>
                     <Text style={{color: 'white', paddingBottom: 40}}>Thanks!</Text>
                     <Input 
+                        testID="Input"
                         placeholder='Please enter your message here.'
                         placeholderTextColor='grey'
                         inputContainerStyle={{borderColor: '#990000'}}
@@ -65,7 +67,7 @@ export default class Contact extends Component {
                         onChangeText={val => this.onChangeText('message', val)}
                     />
                     <View style={{padding: 10}}></View>
-                    <TouchableOpacity style={styles.contactButton} onPress={() => slackMessage(this.state.message)}>
+                    <TouchableOpacity style={styles.contactButton} onPress={() => slackMessage(this.state.message)} testID='Submit'>
                         <Text style={styles.buttonText}>Submit</Text>
                     </TouchableOpacity>
                 </ScrollView>

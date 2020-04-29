@@ -1,60 +1,74 @@
 {
-    "name": "MadDealz",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "android": "react-native run-android",
-        "ios": "react-native run-ios",
-        "start": "react-native start",
-        "test": "jest --coverage --coverageDirectory=coverage",
-        "lint": "eslint ."
+  "name": "MadDealz",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest --coverage --coverageDirectory=coverage",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.9.0",
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.6.0",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
+    "react-native-bootsplash": "^2.1.0",
+    "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-get-random-values": "^1.4.0",
+    "react-native-image-crop-picker": "^0.28.0",
+    "react-native-image-placeholder": "^1.0.14",
+    "react-native-maps": "0.27.1",
+    "react-native-modals": "^0.19.9",
+    "react-native-navigation": "^6.3.1",
+    "react-native-popup-dialog": "^0.18.3",
+    "react-native-slack-webhook": "0.0.5",
+    "react-native-swipe-gestures": "^1.0.5",
+    "react-native-vector-icons": "^6.6.0",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "toggle-switch-react-native": "^2.1.0",
+    "uuid": "^7.0.3",
+    "watchman": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^0.0.7",
+    "babel-jest": "^25.1.0",
+    "detox": "^16.3.1",
+    "eslint": "^6.8.0",
+    "jest": "^25.3.0",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "react-test-renderer": "16.9.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native-root-siblings)"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ]
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/MadDealz.app",
+        "build": "xcodebuild -workspace ios/MadDealz.xcworkspace -scheme MadDealz -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11 Pro"
+        }
+      }
     },
-    "dependencies": {
-        "@react-native-community/async-storage": "^1.9.0",
-        "form-data": "^3.0.0",
-        "node-fetch": "^2.6.0",
-        "react": "16.9.0",
-        "react-native": "0.61.5",
-        "react-native-bootsplash": "^2.1.0",
-        "react-native-elements": "^1.2.7",
-        "react-native-gesture-handler": "^1.6.1",
-        "react-native-get-random-values": "^1.4.0",
-        "react-native-image-crop-picker": "^0.28.0",
-        "react-native-image-placeholder": "^1.0.14",
-        "react-native-maps": "0.27.1",
-        "react-native-modals": "^0.19.9",
-        "react-native-navigation": "^6.3.1",
-        "react-native-popup-dialog": "^0.18.3",
-        "react-native-slack-webhook": "0.0.5",
-        "react-native-swipe-gestures": "^1.0.5",
-        "react-native-vector-icons": "^6.6.0",
-        "redux": "^4.0.5",
-        "redux-persist": "^6.0.0",
-        "toggle-switch-react-native": "^2.1.0",
-        "uuid": "^7.0.3",
-        "watchman": "^1.0.0"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.8.6",
-        "@babel/runtime": "^7.8.4",
-        "@react-native-community/eslint-config": "^0.0.7",
-        "babel-jest": "^25.1.0",
-        "eslint": "^6.8.0",
-        "jest": "^25.3.0",
-        "metro-react-native-babel-preset": "^0.58.0",
-        "react-test-renderer": "16.9.0"
-    },
-    "jest": {
-        "preset": "react-native",
-        "setupFiles": [
-            "./node_modules/react-native-gesture-handler/jestSetup.js"
-        ],
-        "transformIgnorePatterns": [
-            "node_modules/?!(react-native-root-siblings)"
-        ],
-        "coverageReporters": [
-            "text",
-            "html"
-        ]
-    }
+    "test-runner": "jest"
+  }
 }

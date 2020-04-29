@@ -777,6 +777,7 @@ export default class Home extends Component {
             zIndex: 2
           }}>
           <SearchBar
+            testID='Search'
             platfrom="android"
             round
             containerStyle={styles.searchbar}

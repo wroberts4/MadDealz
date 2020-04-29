@@ -79,6 +79,7 @@ export default class Login extends Component {
           <View>
             <Text style={styles.inputTitleLogin}>Email Address</Text>
             <TextInput
+              testID='Email'
               style={styles.inputLogin}
               autoCapitalize="none"
               returnKeyType="next"
@@ -92,6 +93,7 @@ export default class Login extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitleLogin}>Password</Text>
             <TextInput
+              testID='Password'
               style={styles.inputLogin}
               secureTextEntry
               autoCapitalize="none"
@@ -101,7 +103,7 @@ export default class Login extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.buttonLogin} onPress={this.userLogin}>
+        <TouchableOpacity style={styles.buttonLogin} onPress={this.userLogin} testID='Login'>
           <Text style={{fontWeight: '500', color: '#222'}}>Login</Text>
         </TouchableOpacity>
 

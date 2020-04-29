@@ -109,6 +109,7 @@ export default class Barpage extends Component {
           containerStyle={styles.header_2}
           leftComponent={
             <Button
+              testID='Back'
               icon={<Icon name="arrow-back" />}
               onPress={this.tabsPage}
               buttonStyle={{backgroundColor: '#990000'}}
@@ -116,6 +117,7 @@ export default class Barpage extends Component {
           }
           rightComponent={
             <Button
+              testID='Favorite'
               icon={
                 <Icon
                   name={this.state.count == 0 ? 'favorite-border' : 'favorite'}
@@ -133,7 +135,7 @@ export default class Barpage extends Component {
               marginBottom: 5} }>{this.props.bar.name}</Text>
           }
         />
-        <ScrollView style={styles.scroll}>
+        <ScrollView style={styles.scroll} testID='Scroll'>
           <View
             style={{
               justifyContent: 'center',
@@ -141,6 +143,7 @@ export default class Barpage extends Component {
               paddingTop: 5,
             }}>
             <Image
+              testID='Image'
               style={{
                 height: 350,
                 width: 350,

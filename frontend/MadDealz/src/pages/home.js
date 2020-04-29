@@ -436,10 +436,7 @@ export default class Home extends Component {
       this.rating = this.rating.sort(this.compare_item_ratings);
       position = 6;
     }
-<<<<<<< HEAD
-=======
     //console.log('hello m8 ', this.weekdays[3][0].deals[1].times);
->>>>>>> 73ea8741fcc452b1d4ed31baee991a8e588db1c1
   }
   
 

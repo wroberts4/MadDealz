@@ -250,5 +250,32 @@ export default StyleSheet.create({
     elevation: 4,
     shadowOpacity: 1,
     shadowRadius: 10
-  }
+  },
+  imageContact: {
+    // alignSelf: 'center',
+    width: 400,
+    height: 128,
+    marginTop: 64,
+  },
+  scrollContact: {
+    backgroundColor: 'black',
+    height: Dimensions.get('screen').height,
+    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT + 20 : 20,
+    paddingBottom: 30,
+  },
+  containerContact: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttContact: {
+    marginHorizontal: 30,
+    backgroundColor: '#990000',
+    borderRadius: 10,
+    height: 50,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20
+  },
 });

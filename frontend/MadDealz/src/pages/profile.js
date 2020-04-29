@@ -53,7 +53,7 @@ export default class Profile extends Component {
   _retrieveData = async () => {
     try {
       user = await AsyncStorage.getItem('@user');
-      console.log("This is the user: " + JSON.parse(user));
+      //console.log("This is the user: " + JSON.parse(user));
       if (user !== null) {
         this.setState({user: JSON.parse(user)});
         this.setState({image_uri: ip + this.state.user.image + '.png'})

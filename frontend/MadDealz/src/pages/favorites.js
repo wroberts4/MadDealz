@@ -107,18 +107,18 @@ export default class Home extends Component {
   }
  
   searchFunction(text) {
-    console.log("hello", this.arrayholder);
+    //console.log("hello", this.arrayholder);
     const newData = this.arrayholder.filter(function(item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
-    console.log(newData)
+    //onsole.log(newData)
     this.setState({ 
       bars: newData,
       search: text
     });
-    console.log("data ", this.state.bars)
+    //console.log("data ", this.state.bars)
   };
 
   render() {

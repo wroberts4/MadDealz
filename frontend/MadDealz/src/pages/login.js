@@ -47,10 +47,8 @@ export default class Login extends Component {
 
   componentDidMount = async () => {
     let dataToken = await AsyncStorage.getItem('@user');
-    console.log(dataToken);
+    //console.log(dataToken);
     if (dataToken !== null) {
-      //const {navigate} = this.props.navigation;
-
       goToTabs();
     }
   };
@@ -59,7 +57,7 @@ export default class Login extends Component {
     try {
       if (this.state.email && this.state.password) {
         let user = await user_requests.user_login(this.state.email, this.state.password, 5000);
-        console.log(user);
+        //console.log(user);
         await AsyncStorage.setItem('@user', JSON.stringify(user));
         this.tabsPage();
       }

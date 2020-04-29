@@ -84,7 +84,7 @@ export default class Home extends Component {
       this.setState({bars: bars});
       this.arrayholder = bars;
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   }
 

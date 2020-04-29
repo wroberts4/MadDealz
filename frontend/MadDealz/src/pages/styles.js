@@ -118,6 +118,11 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#ebe6e6',
   },
+  address2: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ebe6e6',
+  },
   searchbarinputtext: {
     color: 'black',
   },
@@ -267,16 +272,6 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  buttContact: {
-    marginHorizontal: 30,
-    backgroundColor: '#990000',
-    borderRadius: 10,
-    height: 50,
-    width: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20
   },
   buttonText: {
     color: '#ccc',

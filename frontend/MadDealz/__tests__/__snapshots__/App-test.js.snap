@@ -6809,20 +6809,22 @@ exports[`Test contact page 1`] = `
             "alignItems": "center",
             "backgroundColor": "#990000",
             "borderRadius": 10,
-            "height": 50,
+            "height": 62,
             "justifyContent": "center",
             "marginBottom": 20,
             "marginHorizontal": 30,
             "opacity": 1,
-            "width": 100,
+            "width": 250,
           }
         }
       >
         <Text
           style={
             Object {
-              "color": "black",
-              "fontSize": 30,
+              "color": "#ccc",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "textTransform": "uppercase",
             }
           }
         >

@@ -336,7 +336,7 @@ export default class Home extends Component {
       this.setState({current: this.weekdays[i]});
       this.setState({c_day: weekday[i]});
       this.bar_deals_to_array();
-      console.log(i + ': ' + this.weekdays[i]);
+      //console.log(i + ': ' + this.weekdays[i]);
     }
     this.setState({c_day: Day()});
 
@@ -364,7 +364,7 @@ export default class Home extends Component {
       this.setState({current: this.weekdays[2]});
       this.arrayholder =  this.weekdays[2];
       // this.bar_deals_to_array();
-      console.log('Tuesdays stuff ', this.state.current);
+      //console.log('Tuesdays stuff ', this.state.current);
       this.alpha = [...this.weekdays[2]];
       this.alpha = this.alpha.sort(this.compare_item_names);
       this.rating = [...this.weekdays[2]];
@@ -416,18 +416,18 @@ export default class Home extends Component {
   
 
   searchFunction(text) {
-    console.log("hello", this.arrayholder);
+    //console.log("hello", this.arrayholder);
     const newData = this.arrayholder.filter(function(item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
-    console.log(newData)
+    //console.log(newData)
     this.setState({ 
       current: newData,
       search: text
     });
-    console.log("data ", this.state.current)
+    //console.log("data ", this.state.current)
   };
 
   onSwipeRight(gestureState) {
@@ -591,10 +591,10 @@ export default class Home extends Component {
 
     return (
       <GestureRecognizer
-      onSwipeLeft={(state) => this.onSwipeLeft(state)}
-      onSwipeRight={(state) => this.onSwipeRight(state)}
-      config={config}
-      style = {{backgroundColor: 'transparent', flex: 1}}
+        onSwipeLeft={(state) => this.onSwipeLeft(state)}
+        onSwipeRight={(state) => this.onSwipeRight(state)}
+        config={config}
+        style = {{backgroundColor: 'transparent', flex: 1}}
       >
         <View style={styles.fill}>
         <Modal
@@ -697,8 +697,7 @@ export default class Home extends Component {
             <TouchableOpacity onPress={() => this.barPage(item)}>
               <View style={styles.item}>
                 <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.address}>{item.address}</Text>
-                <Text> {"\n"} </Text>
+                <Text style={styles.address2}>{item.address}</Text>
                 <Text style={styles.address}>
                   {this.state.c_day == 'Monday' ? item.Monday : 
                   this.state.c_day == 'Tuesday' ? item.Tuesday:

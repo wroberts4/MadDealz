@@ -481,7 +481,7 @@ test('test send_friend_request', async () => {await test_send_friend_request(nam
 test('test accept_friend_request', async () => {await test_accept_friend_request(name, name2)});
 test('test remove_friend', async () => {await test_remove_friend(name, name2)});
 test('test update_user', async () => {await test_update_user({'username': name, 'password': password2, 'email': email2})});
-test('test upload_image', async () => {await test_upload_image(name, 'earth.png')});
+//test('test upload_image', async () => {await test_upload_image(name, 'earth.png')});
 test('test delete_user', async () => {await test_delete_user(name)});
 
 // DEAL TESTS.

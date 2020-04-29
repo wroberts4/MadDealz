@@ -28,6 +28,7 @@ var position = 0;
 var weekday = new Array(7);
 var w_position = 0;
 
+/*
 function Item({name, address}) {
   return (
     <View style={styles.item}>
@@ -36,6 +37,7 @@ function Item({name, address}) {
     </View>
   );
 }
+*/
 
 export default class Home extends Component {
   constructor(props) {
@@ -105,18 +107,18 @@ export default class Home extends Component {
   }
  
   searchFunction(text) {
-    console.log("hello", this.arrayholder);
+    //console.log("hello", this.arrayholder);
     const newData = this.arrayholder.filter(function(item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
-    console.log(newData)
+    //onsole.log(newData)
     this.setState({ 
       bars: newData,
       search: text
     });
-    console.log("data ", this.state.bars)
+    //console.log("data ", this.state.bars)
   };
 
   render() {
@@ -337,6 +339,7 @@ export default class Home extends Component {
                   >
 
                 </FlatList> */}
+
               </View>
             </TouchableOpacity>
           )}
@@ -419,3 +422,24 @@ export default class Home extends Component {
     );
   }
 }
+
+/*
+<FlatList
+                  data={item.deals}
+                  renderItem={({item}) => (
+                    <Text style={styles.address}>
+                      {item.info + ': '}
+                      {item.times['Monday'] != undefined ? '\nMonday: ' + item.times['Monday']['start'] + '-' + item.times['Monday']['end'] : ''}
+                      {item.times['Tuesday'] != undefined ? '\nTuesday: ' + item.times['Tuesday']['start'] + '-' + item.times['Tuesday']['end'] : ''}
+                      {item.times['Wednesday'] != undefined ? '\nWednesday: ' + item.times['Wednesday']['start'] + '-' + item.times['Wednesday']['end'] : ''}
+                      {item.times['Thursday']!= undefined ? '\nThursday: ' + item.times['Thursday']['start'] + '-' + item.times['Thursday']['end'] : ''}
+                      {item.times['Friday'] != undefined ? '\nFriday: ' + item.times['Friday']['start'] + '-' + item.times['Friday']['end'] : ''}
+                      {item.times['Saturday'] != undefined ? '\nSaturday: ' + item.times['Saturday']['start'] + '-' + item.times['Saturday']['end'] : ''}
+                      {item.times['Sunday'] != undefined ? '\nSunday: ' + item.times['Sunday']['start'] + '-' + item.times['Sunday']['end'] : ''} 
+                    </Text>
+                  )}
+                  keyExtractor={item => item._id}
+                  >
+
+                </FlatList>
+*/

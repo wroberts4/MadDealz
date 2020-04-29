@@ -29,7 +29,7 @@ export default class ChangePassword extends Component {
 
   componentDidMount = async () => {
     let dataToken = await AsyncStorage.getItem('@user');
-    console.log(dataToken);
+    //console.log(dataToken);
   };
 
   changePassword = async () => {
@@ -50,9 +50,9 @@ export default class ChangePassword extends Component {
           await AsyncStorage.setItem('@user', JSON.stringify(user));
           user.password = this.state.newPassword;
           user.email = "";
-          console.log(user);
+          //console.log(user);
           let newusername = await user_requests.update_user(user, 5000);
-          console.log(user.password);
+          //console.log(user.password);
           this.tabsPage();
         }
       }

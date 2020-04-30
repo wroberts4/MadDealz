@@ -30,8 +30,8 @@ describe('Application Flow', () => {
     await expect(element(by.id('Login'))).toBeVisible();
     await expect(element(by.id('Email'))).toBeVisible();
     await expect(element(by.id('Password'))).toBeVisible();
-    await element(by.id('Email')).typeText('pavlakovic@wisc.edu');
-    await element(by.id('Password')).typeText('testpassword2');
+    await element(by.id('Email')).typeText('automatedtesting@mail.com');
+    await element(by.id('Password')).typeText('automatedtesting');
     await element(by.id('Login')).tap();
     await expect(element(by.id('Search'))).toBeVisible();
     await expect(element(by.id('Email'))).toNotExist();

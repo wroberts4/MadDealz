@@ -61,13 +61,18 @@ export default class Signup extends Component {
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Username</Text>
-            <TextInput style={styles.input} returnKeyType="next"
-            onChangeText={ (username) => this.setState({ username }) }></TextInput>
+            <TextInput
+              style={styles.input}
+              returnKeyType="next"
+              onChangeText={ (username) => this.setState({ username })} 
+              testID='Username'>
+            </TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Email Address</Text>
             <TextInput
+              testID="Email"
               style={styles.input}
               autoCapitalize="none"
               returnKeyType="next"
@@ -81,6 +86,7 @@ export default class Signup extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Password</Text>
             <TextInput
+              testID="Password"
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
@@ -90,7 +96,7 @@ export default class Signup extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.signupPress}>
+        <TouchableOpacity style={styles.button} onPress={this.signupPress} testID="SignUp">
           <Text style={{fontWeight: '500', color: '#222'}}>Sign Up</Text>
         </TouchableOpacity>
 
@@ -99,6 +105,7 @@ export default class Signup extends Component {
             alignSelf: 'center',
             marginTop: 32,
           }}
+          testID='Login'
           onPress={this.loginPage}>
           <Text style={{color: '#777', fontSize: 13}}>
             Already have an account?{' '}

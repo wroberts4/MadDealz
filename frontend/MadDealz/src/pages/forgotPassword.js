@@ -44,6 +44,7 @@ export default class ForgotPassword extends Component {
           <View>
             <Text style={styles.inputTitle}>Email Address</Text>
             <TextInput
+              testID='Email'
               style={styles.input}
               autoCapitalize="none"
               returnKeyType="done"
@@ -53,7 +54,7 @@ export default class ForgotPassword extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.newPasswordPage}>
+        <TouchableOpacity style={styles.button} onPress={this.newPasswordPage} testID='ResetPassword'>
           <Text style={{fontWeight: '500', color: '#222'}}>Reset Password</Text>
         </TouchableOpacity>
 
@@ -62,6 +63,7 @@ export default class ForgotPassword extends Component {
             alignSelf: 'center',
             marginTop: 32,
           }}
+          testID='Login'
           onPress={this.loginPage}>
           <Text style={{fontSize: 14, fontWeight: '500', color: '#f55'}}>
             Back to Login

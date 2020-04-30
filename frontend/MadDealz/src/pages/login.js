@@ -112,6 +112,7 @@ export default class Login extends Component {
             alignSelf: 'center',
             marginTop: 32,
           }}
+          testID='ForgotPassword'
           onPress={this.forgotPwdPage}>
           <Text style={{fontSize: 14, fontWeight: '500', color: '#f55'}}>
             Forgot Password?
@@ -123,6 +124,7 @@ export default class Login extends Component {
             alignSelf: 'center',
             marginTop: 8,
           }}
+          testID='SignUp'
           onPress={this.signupPage}>
           <Text style={{color: '#777', fontSize: 13}}>
             Don't have an account?{' '}

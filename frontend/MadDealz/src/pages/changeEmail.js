@@ -64,6 +64,7 @@ export default class ChangeEmail extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>New Email Address</Text>
             <TextInput
+              testID='New'
               style={styles.input}
               autoCapitalize="none"
               returnKeyType="next"
@@ -75,6 +76,7 @@ export default class ChangeEmail extends Component {
 
             <Text style={styles.inputTitle}>Email Address</Text>
             <TextInput
+              testID='Old'
               style={styles.input}
               autoCapitalize="none"
               returnKeyType="next"
@@ -86,6 +88,7 @@ export default class ChangeEmail extends Component {
 
             <Text style={styles.inputTitle}>Password</Text>
             <TextInput
+              testID='Password'
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
@@ -95,10 +98,10 @@ export default class ChangeEmail extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.buttonChangeEmail} onPress={this.changeName}>
+        <TouchableOpacity style={styles.buttonChangeEmail} onPress={this.changeName} testID='Change'>
           <Text style={{fontWeight: '500', color: '#222'}}>Change Email</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonChangeEmail} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.buttonChangeEmail} onPress={this.tabsPage} testID='Return'>
           <Text style={{fontWeight: '500', color: '#222'}}>Return</Text>
         </TouchableOpacity>
       </View>

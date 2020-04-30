@@ -73,6 +73,7 @@ export default class ChangePassword extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Email Address</Text>
             <TextInput
+              testID='Email'
               style={styles.input}
               autoCapitalize="none"
               returnKeyType="next"
@@ -86,6 +87,7 @@ export default class ChangePassword extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Old Password</Text>
             <TextInput
+              testID='Old'
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
@@ -97,6 +99,7 @@ export default class ChangePassword extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>New Password</Text>
             <TextInput
+              testID='New'
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
@@ -108,6 +111,7 @@ export default class ChangePassword extends Component {
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Repeat New Password</Text>
             <TextInput
+              testID='Repeat'
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
@@ -118,12 +122,12 @@ export default class ChangePassword extends Component {
    
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.changePassword}>
+        <TouchableOpacity style={styles.button} onPress={this.changePassword} testID='Change'>
           <Text style={{fontWeight: '500', color: '#222'}}>
             Change Password
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.button} onPress={this.tabsPage} testID='Return'>
           <Text style={{fontWeight: '500', color: '#222'}}>Return</Text>
         </TouchableOpacity>
       </View>

@@ -104,7 +104,7 @@ export default class Profile extends Component {
             />
           </View>
          
-          <TouchableOpacity style={styles.button} onPress={this.changeImagePage}>
+          <TouchableOpacity style={styles.button} onPress={this.changeImagePage} testID='Picture'>
             <Text style={styles.inputTitle}>
               Change Profile Picture
             </Text>
@@ -112,19 +112,20 @@ export default class Profile extends Component {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={this.changeEmailPage}>
+            onPress={this.changeEmailPage}
+            testID='Email'>
             <Text style={styles.inputTitle}>
               Change Email
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={this.changePwdPage}>
+          <TouchableOpacity style={styles.button} onPress={this.changePwdPage} testID='Password'>
             <Text style={styles.inputTitle}>
               Change Password
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={this.loginPage}>
+          <TouchableOpacity style={styles.button} onPress={this.loginPage} testID='Logout'>
             <Text style={styles.inputTitle}>Logout</Text>
           </TouchableOpacity>
 

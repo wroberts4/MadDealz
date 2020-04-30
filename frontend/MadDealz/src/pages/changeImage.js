@@ -56,13 +56,13 @@ export default class ChangeImage extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
 
-        <Text style={styles.greeting}>{'Change Profile Picture'}</Text>
+        <Text style={styles.greeting} testID='Text'>{'Change Profile Picture'}</Text>
 
-        <TouchableOpacity style={styles.button} onPress={this.openImagePicker}>
+        <TouchableOpacity style={styles.button} onPress={this.openImagePicker} testID='Change'>
           <Text style={{fontWeight: '500', color: '#222'}}>Change Image</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={this.tabsPage}>
+        <TouchableOpacity style={styles.button} onPress={this.tabsPage} testID='Return'>
           <Text style={{fontWeight: '500', color: '#222'}}>Return</Text>
         </TouchableOpacity>
       </View>

@@ -79,6 +79,7 @@ exports[`Test bar page 1`] = `
               "opacity": 1,
             }
           }
+          testID="Back"
         >
           <View
             style={
@@ -223,6 +224,7 @@ exports[`Test bar page 1`] = `
               "opacity": 1,
             }
           }
+          testID="Favorite"
         >
           <View
             style={
@@ -323,6 +325,7 @@ exports[`Test bar page 1`] = `
         "height": 1334,
       }
     }
+    testID="Scroll"
   >
     <View>
       <View
@@ -366,7 +369,7 @@ exports[`Test bar page 1`] = `
                 },
               ]
             }
-            testID="RNE__Image"
+            testID="Image"
             theme={
               Object {
                 "colors": Object {
@@ -6188,6 +6191,7 @@ exports[`Test change email page 1`] = `
             "height": 40,
           }
         }
+        testID="New"
         textContentType="emailAddress"
         underlineColorAndroid="transparent"
       />
@@ -6219,6 +6223,7 @@ exports[`Test change email page 1`] = `
             "height": 40,
           }
         }
+        testID="Old"
         textContentType="emailAddress"
         underlineColorAndroid="transparent"
       />
@@ -6249,6 +6254,7 @@ exports[`Test change email page 1`] = `
             "height": 40,
           }
         }
+        testID="Password"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -6276,6 +6282,7 @@ exports[`Test change email page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Change"
   >
     <Text
       style={
@@ -6311,6 +6318,7 @@ exports[`Test change email page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Return"
   >
     <Text
       style={
@@ -6346,6 +6354,7 @@ exports[`Test change image page 1`] = `
         "textAlign": "center",
       }
     }
+    testID="Text"
   >
     Change Profile Picture
   </Text>
@@ -6372,6 +6381,7 @@ exports[`Test change image page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Change"
   >
     <Text
       style={
@@ -6407,6 +6417,7 @@ exports[`Test change image page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Return"
   >
     <Text
       style={
@@ -6488,6 +6499,7 @@ exports[`Test change password page 1`] = `
             "height": 40,
           }
         }
+        testID="Email"
         textContentType="emailAddress"
         underlineColorAndroid="transparent"
       />
@@ -6526,6 +6538,7 @@ exports[`Test change password page 1`] = `
             "height": 40,
           }
         }
+        testID="Old"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -6563,6 +6576,7 @@ exports[`Test change password page 1`] = `
             "height": 40,
           }
         }
+        testID="New"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -6600,6 +6614,7 @@ exports[`Test change password page 1`] = `
             "height": 40,
           }
         }
+        testID="Repeat"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -6627,6 +6642,7 @@ exports[`Test change password page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Change"
   >
     <Text
       style={
@@ -6662,6 +6678,7 @@ exports[`Test change password page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Return"
   >
     <Text
       style={
@@ -6705,6 +6722,7 @@ exports[`Test contact page 1`] = `
         "paddingTop": 20,
       }
     }
+    testID="Black"
   >
     <View>
       <Image
@@ -6720,6 +6738,7 @@ exports[`Test contact page 1`] = `
             "width": 400,
           }
         }
+        testID="Image"
       />
       <Text
         style={
@@ -6727,6 +6746,7 @@ exports[`Test contact page 1`] = `
             "color": "white",
           }
         }
+        testID="Message"
       >
         Questions? Comments? Complaints? Please let us know below and leave your email address if you would like a response.
       </Text>
@@ -6781,7 +6801,7 @@ exports[`Test contact page 1`] = `
                 "minHeight": 40,
               }
             }
-            testID="RNE__Input__text-input"
+            testID="Input"
             underlineColorAndroid="transparent"
           />
         </View>
@@ -6817,6 +6837,7 @@ exports[`Test contact page 1`] = `
             "width": 250,
           }
         }
+        testID="Submit"
       >
         <Text
           style={
@@ -7314,6 +7335,7 @@ exports[`Test forgot password page 1`] = `
             "height": 40,
           }
         }
+        testID="Email"
         textContentType="emailAddress"
         underlineColorAndroid="transparent"
       />
@@ -7341,6 +7363,7 @@ exports[`Test forgot password page 1`] = `
         "opacity": 1,
       }
     }
+    testID="ResetPassword"
   >
     <Text
       style={
@@ -7371,6 +7394,7 @@ exports[`Test forgot password page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Login"
   >
     <Text
       style={
@@ -7791,7 +7815,7 @@ exports[`Test home page 1`] = `
                   "minHeight": 40,
                 }
               }
-              testID="searchInput"
+              testID="Search"
               underlineColorAndroid="transparent"
               value=""
             />
@@ -7897,6 +7921,7 @@ exports[`Test login page 1`] = `
             "height": 40,
           }
         }
+        testID="Email"
         textContentType="emailAddress"
         underlineColorAndroid="transparent"
       />
@@ -7935,6 +7960,7 @@ exports[`Test login page 1`] = `
             "height": 40,
           }
         }
+        testID="Password"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -7961,6 +7987,7 @@ exports[`Test login page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Login"
   >
     <Text
       style={
@@ -7991,6 +8018,7 @@ exports[`Test login page 1`] = `
         "opacity": 1,
       }
     }
+    testID="ForgotPassword"
   >
     <Text
       style={
@@ -8022,6 +8050,7 @@ exports[`Test login page 1`] = `
         "opacity": 1,
       }
     }
+    testID="SignUp"
   >
     <Text
       style={
@@ -8493,6 +8522,7 @@ exports[`Test profile page 1`] = `
             "width": 250,
           }
         }
+        testID="Picture"
       >
         <Text
           style={
@@ -8531,6 +8561,7 @@ exports[`Test profile page 1`] = `
             "width": 250,
           }
         }
+        testID="Email"
       >
         <Text
           style={
@@ -8569,6 +8600,7 @@ exports[`Test profile page 1`] = `
             "width": 250,
           }
         }
+        testID="Password"
       >
         <Text
           style={
@@ -8607,6 +8639,7 @@ exports[`Test profile page 1`] = `
             "width": 250,
           }
         }
+        testID="Logout"
       >
         <Text
           style={
@@ -8698,6 +8731,7 @@ exports[`Test signup page 1`] = `
             "height": 40,
           }
         }
+        testID="Username"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -8736,6 +8770,7 @@ exports[`Test signup page 1`] = `
             "height": 40,
           }
         }
+        testID="Email"
         textContentType="emailAddress"
         underlineColorAndroid="transparent"
       />
@@ -8774,6 +8809,7 @@ exports[`Test signup page 1`] = `
             "height": 40,
           }
         }
+        testID="Password"
         underlineColorAndroid="transparent"
       />
     </View>
@@ -8800,6 +8836,7 @@ exports[`Test signup page 1`] = `
         "opacity": 1,
       }
     }
+    testID="SignUp"
   >
     <Text
       style={
@@ -8830,6 +8867,7 @@ exports[`Test signup page 1`] = `
         "opacity": 1,
       }
     }
+    testID="Login"
   >
     <Text
       style={
